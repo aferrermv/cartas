@@ -2740,7 +2740,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "1.7.9",
+    "pack_version": "1.8.0",
     "habilidades": [
       {
         "cost": {
@@ -25424,6 +25424,829 @@
         },
         "descripcion": "Una vez por turno, puedes desterrar una carta del cementerio oponente.",
         "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 666,
+    "nombre": "Ceilican Seelie",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/ceilicanceelie.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano. Jugar Armas en este Aliado cuesta 1 Oro Menos.  ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Puedes buscar una copia de 'Ceilican Seelie' en tu Mazo Castillo para ponerla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Ceilican Seelie"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano."
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Jugar Armas en este Aliado cuesta 1 Oro menos."
+      }
+    ]
+  },
+   {
+    "id": 636,
+    "nombre": "Despertar Oscuro",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/despertaroscuro.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 3,
+          "discardCount": 1
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1.",
+        "play_condition": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "currentPhase",
+                  "phase": "Principal"
+                },
+                {
+                  "type": "isPlayerTurn"
+                }
+              ]
+            },
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "isPlayerTurn"
+                },
+                {
+                  "type": "hasNotPerformedActionThisTurn"
+                }
+              ]
+            }
+          ]
+        },
+        "special_properties": [
+          {
+            "type": "allowGoldPlayAfter",
+            "condition": {
+              "type": "wasFirstActionOfTurn"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 668,
+    "nombre": "Dragon de Navidad",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/nuevasporagregar/dragondenavidad.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, roba 2 cartas. Los jugadores pueden robar una carta adicional en cada Fase Final. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, roba 2 cartas."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Los jugadores pueden robar una carta adicional en cada Fase Final.",
+        "oncePerTurn": true,
+        "activeOnAnyTurn": true
+      }
+    ]
+  },
+   {
+    "id": 669,
+    "nombre": "Espada Miliciana",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/espadamiliciana.webp",
+    "habilidad_texto_descriptivo": "El portador gana 3 a la fuerza. Cuando entra en juego, tu oponente bota 2 cartas de su Mazo Castillo. Si esta Arma esta en tu Cementerio y controlas uno o mas Aliados guerrero, puedes pagar 2 de Oro para jugarla sin pagar su coste. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 3,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, tu oponente bota 2 cartas de su Mazo Castillo."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfAsWeapon"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Guerrero"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Si esta Arma está en tu Cementerio y controlas uno o más Aliados Guerrero, puedes pagar 2 de Oro para jugarla desde tu Cementerio."
+      }
+    ]
+  },
+  {
+    "id": 670,
+    "nombre": "Fatae",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/fatae.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Puedes buscar una copia de 'Fatae' en tu Mazo Castillo para ponerla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Fatae"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 671,
+    "nombre": "Fuente del Saber",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasporagregar/fuentedelsaber.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes descartar un Talisman para buscar otro en tu Mazo Castillo o Cementerio y ponerlo en tu Mano",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "query": {
+              "type": "Talisman"
+            },
+            "prompt": "Elige un Talismán de tu mano para descartar como coste."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Busca un Talismán en tu Mazo o Cementerio para poner en tu mano.",
+          "options": [
+            {
+              "id": "deck_talisman",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Buscar en Mazo"
+            },
+            {
+              "id": "graveyard_talisman",
+              "zone": "cementerio",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "query": {
+                "type": "Talisman"
+              }
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, puedes descartar un Talismán para buscar otro en tu Mazo Castillo o Cementerio y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 672,
+    "nombre": "Ira Ignea",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/iraignea.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado de fuerza 3 o Menos. Puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar 1 carta?",
+              "options": [
+                {
+                  "id": "ira_ignea_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "ira_ignea_no_draw",
+                  "action": {
+
+                  },
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado de fuerza 3 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 3,
+                "operator": "\u003C="
+              }
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destruye un Aliado de fuerza 3 o menos. Puedes robar 1 carta."
+      }
+    ]
+  },
+   {
+    "id": 673,
+    "nombre": "Sir Lancelot del Lago",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/lancelotdellago.webp",
+    "habilidad_texto_descriptivo": "Sir Lancelot del Lago puede atacar cuando entra en juego. No puede ser Afectado por talismanes oponentes. Jugar Armas en este Aliado cuesta un Oro Menos. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "talismanImmunity"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego y no puede ser afectado por talismanes oponentes."
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Jugar Armas en este Aliado cuesta 1 Oro menos."
+      }
+    ]
+  },
+  {
+    "id": 682,
+    "nombre": "Levantar Castillo",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasporagregar/levantarcastillo.webp",
+    "habilidad_texto_descriptivo": "Busca un Totem en tu cementerio y ponlo en tu Linea de Apoyo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Busca un Totem en tu Cementerio y ponlo en juego sin pagar su coste."
+      }
+    ]
+ },
+  {
+    "id": 677,
+    "nombre": "Pan",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/pan.webp",
+    "habilidad_texto_descriptivo": "Cuando Pan Entra en juego, puedes buscar un oro en tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Pan Entra en juego, puedes buscar un oro en tu Cementerio y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 678,
+    "nombre": "Rhongomiant",
+    "tipo": "Arma",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/rhongom.webp",
+    "habilidad_texto_descriptivo": "El portador de Rhongomiant gana 1 a la fuerza. Si el portador de Rhongomiant hace daño de combate al Mazo Castillo Oponente, puedes buscar un totem en juego o barajar una carta de tu Cementerio en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Rhongomiant: Elige un efecto.",
+          "options": [
+            {
+              "id": "rhongo_play_totem",
+              "action": {
+                "type": "searchAndPlayToTotem",
+                "prompt": "Elige un Tótem de tu Mazo para jugar sin pagar su coste.",
+                "searchQuery": {
+                  "type": "Totem",
+                  "zone": "mazoCastillo"
+                }
+              },
+              "description": "Buscar un Tótem en tu Mazo y ponerlo en juego."
+            },
+            {
+              "id": "rhongo_shuffle_graveyard",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 1,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
+                "canCancel": true
+              },
+              "description": "Barajar una carta de tu Cementerio en tu Mazo."
+            }
+          ]
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "descripcion": "Si el portador hace daño de combate al Mazo Castillo Oponente, puedes buscar un Tótem en tu Mazo y ponerlo en juego, o barajar una carta de tu Cementerio en tu Mazo."
+      }
+    ]
+  },
+  {
+    "id": 679,
+    "nombre": "Sonriente",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/sonriente.webp",
+    "habilidad_texto_descriptivo": "Cuando Sonriente entra en juego, puedes robar 4 cartas. Mientras Sonriente este en Juego, en cada Fase de Agrupacion debes descartar 1 carta o botar 3.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres robar 4 cartas por la habilidad de Sonriente?",
+          "options": [
+            {
+              "id": "sonriente_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 4
+              },
+              "description": "Sí, robar 4 cartas"
+            },
+            {
+              "id": "sonriente_no_draw",
+              "action": {
+
+              },
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Sonriente entra en juego, puedes robar 4 cartas."
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Sonriente: Debes descartar 1 carta o botar 3.",
+          "options": [
+            {
+              "id": "sonriente_discard",
+              "action": {
+                "type": "discardCard",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu mano para descartar.",
+                "optional": false
+              },
+              "condition": {
+                "type": "playerHasInHand",
+                "count": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "description": "Descartar 1 carta"
+            },
+            {
+              "id": "sonriente_mill",
+              "action": {
+                "type": "millCards",
+                "count": 3,
+                "target": "self"
+              },
+              "description": "Botar 3 cartas de tu Mazo"
+            }
+          ],
+          "canCancel": false
+        },
+        "trigger": "onEndOfTurn",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            }
+          ]
+        },
+        "descripcion": "En cada Fase de Agrupación, debes descartar 1 carta o botar 3."
+      }
+    ]
+  },
+  {
+    "id": 680,
+    "nombre": "Velas Negras",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/velasnegras.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado de coste 3 o mas o un totem de coste 3 o mas. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Velas Negras: Elige un tipo de carta para destruir.",
+          "options": [
+            {
+              "id": "velas_negras_ally",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado de coste 3 o más para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado",
+                    "coste_oro": {
+                      "value": 3,
+                      "operator": "\u003E="
+                    }
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir un Aliado de coste 3 o más."
+            },
+            {
+              "id": "velas_negras_totem",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Tótem de coste 3 o más para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Totem",
+                    "coste_oro": {
+                      "value": 3,
+                      "operator": "\u003E="
+                    }
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir un Tótem de coste 3 o más."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destruye un Aliado de coste 3 o más o un Tótem de coste 3 o más."
+      }
+    ]
+  },
+  {
+    "id": 681,
+    "nombre": "Poseidon rey Del Mar",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/poseidon.webp",
+    "habilidad_texto_descriptivo": "Poseidon, rey del Mar es Imbloqueable, si hace daño al Mazo castillo oponente puedes robar 2 cartas.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ]
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Poseidon, Rey del Mar: Elige cuántas cartas robar.",
+          "options": [
+            {
+              "id": "poseidondraw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
+            },
+            {
+              "id": "poseidondraw_1",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            },
+            {
+              "id": "poseidon_no_draw",
+              "action": {
+
+              },
+              "description": "No robar"
+            }
+          ]
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo Castillo oponente, puedes robar 2 cartas.",
+        "id_habilidad": "PoseidonMakeDamage"
+      }
+    ]
+  },
+  {
+    "id": 683,
+    "nombre": "Raza de Pigmeos",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/cartasporagregar/raza.webp",
+    "habilidad_texto_descriptivo": "Anula un totem. \n",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "descripcion": "Anula un Tótem que esté entrando en juego."
       }
     ]
   }

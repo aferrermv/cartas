@@ -1016,7 +1016,8 @@
     "habilidades": [
       {
         "inherent": [
-          "canAttackOnEnterPlay"
+          "canAttackOnEnterPlay",
+           "talismanImmunity"
         ]
       },
       {
@@ -1164,9 +1165,10 @@
           "prompt": "Elige un Aliado en juego para destruir y todas sus copias.",
           "target": {
             "zone": "field",
-            "query": {
-              "type": "Aliado"
-            },
+            "type": [
+                "Aliado",
+                "Oro"
+              ],
             "controller": "any"
           }
         },
@@ -2740,7 +2742,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "1.8.0",
+    "pack_version": "1.8.2",
     "habilidades": [
       {
         "cost": {
@@ -26247,6 +26249,1107 @@
         },
         "trigger": "onOpponentPlayTotem",
         "descripcion": "Anula un Tótem que esté entrando en juego."
+      }
+    ]
+  },
+  {
+    "id": 684,
+    "nombre": "Ashrays",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/ashrays.webp",
+    "habilidad_texto_descriptivo": "Para que Ashrays sea declarado atacante, debes botar 2 cartas de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede atacar normalmente."
+      },
+      {
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 2,
+            "target": "self"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Para que Ashrays sea declarado atacante, debes botar 2 cartas de tu Mazo Castillo.",
+        "id_habilidad": "ashrays_pay_to_attack"
+      }
+    ]
+  },
+  {
+    "id": 685,
+    "nombre": "Astreo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/astreo.webp",
+    "habilidad_texto_descriptivo": "Cuando Astreos entra en juego, puedes descartar una carta de tu mano para buscar un aliado de raza Olimpico de fuerza 1 o menos en tu Mazo Castillo y ponerlo en tu mano. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Habilidad de Astreo: ¿Quieres descartar una carta para buscar un Aliado Olímpico?",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de raza Olímpico de fuerza 1 o menos para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Olimpico",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "fuerza": {
+              "value": 1,
+              "operator": "\u003C="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Astreos entra en juego, puedes descartar una carta de tu mano para buscar un aliado de raza Olimpico de fuerza 1 o menos en tu Mazo Castillo y ponerlo en tu mano."
+      }
+    ]
+  },
+  {
+    "id": 686,
+    "nombre": "Atenea",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/atenea.webp",
+    "habilidad_texto_descriptivo": "Cuando Atenea entra en juego, elige 4 cartas de tu Cementerio y barajalas en tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 4,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Atenea: Elige 4 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Atenea entra en juego, elige 4 cartas de tu Cementerio y barajalas en tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 687,
+    "nombre": "Atlantida",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/atlantida.webp",
+    "habilidad_texto_descriptivo": "Mientras Atlantida este en juego, los Aliados oponente pierden 1 a la fuerza",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Atlantida este en juego, los Aliados oponente pierden 1 a la fuerza."
+      }
+    ]
+  },
+  {
+    "id": 688,
+    "nombre": "Belial",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/belial.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Belial gana 1 a la fuerza por cada otro Aliado Faerie en juego.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "raza": "Faerie",
+            "type": "Aliado",
+            "isOther": true,
+            "controller": "self"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "descripcion": "Belial gana 1 a la fuerza por cada otro Aliado Faerie en juego."
+      }
+    ]
+  },
+  {
+    "id": 689,
+    "nombre": "Conn",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasporagregar/conn.webp",
+    "habilidad_texto_descriptivo": "Mientras Conn este en juego, todos tus Aliados de Raza defensor ganan 1 a la fuerza. En respuesta a que Conn no sea declarado Atacante, tus Aliados de raza Defensor pueden ser agrupados en la fase final. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Conn este en juego, todos tus Aliados de Raza defensor ganan 1 a la fuerza."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupAllies",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "descripcion": "En respuesta a que Conn no sea declarado Atacante, tus Aliados de raza Defensor pueden ser agrupados en la fase final.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 690,
+    "nombre": "Guerreras Britanicas",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/guerrerasbritanicas.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado Atacante, gana 1 a la fuerza por cada otro Aliado en tu Linea de Ataque. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Aliado",
+            "zone": [
+              "attack"
+            ],
+            "isOther": true,
+            "controller": "self"
+          },
+          "target": "self",
+          "duration": "endOfTurn",
+          "multiplier": 1
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando sea declarado Atacante, gana 1 a la fuerza por cada otro Aliado en tu Linea de Ataque.",
+        "id_habilidad": "guerreras_britanicas_attack_buff"
+      }
+    ]
+  },
+  {
+    "id": 691,
+    "nombre": "Guerrero Fianna",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/nuevasporagregar/guerrerofiana.webp",
+    "habilidad_texto_descriptivo": "Para declarar Atacante a Este Aliado debes pagar 1 Oro por cada  Guerrero Fiana que controles. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "descripcion": "No puede atacar normalmente."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGoldFromCount",
+            "query": {
+              "zone": "field",
+              "nombre": "Guerrero Fianna",
+              "controller": "self"
+            },
+            "multiplier": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Para declarar Atacante a Este Aliado debes pagar 1 Oro por cada Guerrero Fianna que controles.",
+        "id_habilidad": "guerrero_fianna_pay_to_attack"
+      }
+    ]
+  },
+  {
+    "id": 692,
+    "nombre": "Jacko The Green",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/jackothegreen.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliados de Coste 2 o Menos que controles para Destruir un Aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Jacko The Green: ¿Quieres destruir uno de tus Aliados de coste 2 o menos para destruir un Aliado oponente?",
+            "target": {
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "\u003C="
+                }
+              },
+              "controller": "self"
+            },
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente."
+      }
+    ]
+  },
+  {
+    "id": 693,
+    "nombre": "Laberinto de Creta",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/laberintodecreta.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Laberinto de Creta en juego. Tu oponente debe Bloquear con al menos 1 Aliado en su Fase de Bloqueo. Si controlas uno o más Minotauro, los Aliados oponentes pierden 1 a la fuerza. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes tener un Laberinto de Creta en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "restriction": {
+            "type": "mustBlockWithOneAlly"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tu oponente debe Bloquear con al menos 1 Aliado en su Fase de Bloqueo."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Minotauro"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas uno o más Minotauro, los Aliados oponentes pierden 1 a la fuerza."
+      }
+    ]
+  },
+  {
+    "id": 694,
+    "nombre": "Laeg",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/laeg.webp",
+    "habilidad_texto_descriptivo": "Puede Atacar cuando entra en juego. Puedes moverlo a tu Linea de Ataque para que un Aliado Gane 1 a la fuerza hasta la Fase Final. Si Cuchulain esta en juego, ambos ganan 1 a la Fuerza. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "cost": {
+          "type": "moveSelfToZoneAsCost",
+          "destination": "attack"
+        },
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "then": {
+            "effect": {
+              "type": "cuchulainBuff"
+            },
+            "condition": {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nombre": "Cuchulain"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "description": "Puedes moverlo a tu Linea de Ataque para que un Aliado Gane 1 a la fuerza hasta la Fase Final. Si Cuchulain esta en juego, ambos ganan 1 a la Fuerza."
+      }
+    ]
+  },
+  {
+    "id": 695,
+    "nombre": "Lanza del Cuervo",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/lanzadelcuervo.webp",
+    "habilidad_texto_descriptivo": "El portador, pierde su habilidad y no puede ser declarado Atacante. Si esta carta esta en tu Cementerio, y controlas a Morrigu, puedes jugarla desde tu Cementerio pagando su coste. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 0,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "target": "wielder",
+          "duration": "whileInPlay"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador pierde su habilidad."
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "cannotAttack"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador no puede ser declarado Atacante."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfAsWeapon"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "nombre": "Morrigu"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Si esta carta está en tu Cementerio y controlas a Morrigu, puedes pagar 2 de Oro para jugarla desde tu Cementerio."
+      }
+    ]
+  },
+  {
+    "id": 696,
+    "nombre": "Llamarada Impia",
+    "tipo": "Talisman",
+    "coste_oro": 6,
+    "imagen_url": "/img/nuevasporagregar/llamaradaimpia.png",
+    "habilidad_texto_descriptivo": "Destruye Todos los Aliados en juego. Luego, cada jugador destierra las dos primeras cartas de su Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": []
+  },
+  {
+    "id": 697,
+    "nombre": "Lugaid",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/lugaid.webp",
+    "habilidad_texto_descriptivo": "Si este Aliado hace daño al Mazo Castillo oponente, puedes desterrar una carta de un Cementerio. Si Cuchulain esta en juego, este Aliado puede atacar el turno que entra en juego y ambos son Imbloqueables. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Habilidad de Lugaid: Elige una carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "descripcion": "Si este Aliado hace daño al Mazo Castillo oponente, puedes desterrar una carta de un Cementerio."
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nombre": "Cuchulain"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nombre": "Cuchulain"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "nombre": "Cuchulain"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nombre": "Cuchulain"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      }
+    ]
+  },
+  {
+    "id": 698,
+    "nombre": "Matronas Sagradas",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/matronassagradas.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes mover este Aliado a la linea de Ataque desde la linea de Defensa para que un Aliado que Controles sea Imbloqueable hasta la Fase Final. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "moveSelfToZoneAsCost",
+          "destination": "attack"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado que controles para que sea Imbloqueable hasta la Fase Final.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "descripcion": "En tu Fase de Vigilia, puedes mover este Aliado a la linea de Ataque desde la linea de Defensa para que un Aliado que Controles sea Imbloqueable hasta la Fase Final.",
+        "costPaidBeforeResponse": true
+      }
+    ]
+  },
+  {
+    "id": 699,
+    "nombre": "Midyir",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/midyir.webp",
+    "habilidad_texto_descriptivo": "Midyir puede atacar cuando entra en juego. Imbloqueable. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "unblockable"
+        ],
+        "descripcion": "Midyir puede atacar cuando entra en juego. Imbloqueable."
+      }
+    ]
+  },
+  {
+    "id": 700,
+    "nombre": "Muro de Espinas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/murodeespinas.webp",
+    "habilidad_texto_descriptivo": "Anula un Aliado oponente, enviandolo a su Mano. Tu oponente puede pagar 2 Oros para anular este Talisman. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndReturnToHand"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "descripcion": "Anula un Aliado oponente, enviándolo a su Mano. Tu oponente puede pagar 2 Oros para anular este Talismán.",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "payGold",
+            "count": 2
+          },
+          "prompt": "Tu oponente jugó Muro de Espinas. ¿Quieres pagar 2 Oros para anularlo?"
+        }
+      }
+    ]
+  },
+  {
+    "id": 701,
+    "nombre": "Pluton",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/pluton.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Solo puedes tener un Pluton en juego. Cuando entra en juego, puedes destruir un Aliado que controles para jugar un Aliado de igual o Menor Coste de tu Cementerio sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable. Solo puedes tener un Pluton en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Plutón: ¿Quieres destruir un Aliado que controles para jugar otro desde tu Cementerio?",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            },
+            "optional": true,
+            "rememberAs": "sacrificedAlly"
+          }
+        ],
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": {
+                "fromContext": "sacrificedAlly.coste_oro"
+              },
+              "operator": "\u003C="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes destruir un Aliado que controles para jugar un Aliado de igual o Menor Coste de tu Cementerio sin pagar su coste."
+      }
+    ]
+  },
+  {
+    "id": 702,
+    "nombre": "Sidhes del Bosque",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/nuevasporagregar/sidhesdelbosque.webp",
+    "habilidad_texto_descriptivo": "Busca un Aliado en el Mazo Castillo oponente y juegalo bajo tu control sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchOpponentDeckAndPlay",
+          "prompt": "Elige un Aliado del Mazo oponente para jugar bajo tu control sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "controller": "opponent"
+          },
+          "destinationZone": "defense"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Busca un Aliado en el Mazo Castillo oponente y juegalo bajo tu control sin pagar su coste."
+      }
+    ]
+  },
+  {
+    "id": 703,
+    "nombre": "Tributo Sangriento",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/tributosangriento.png",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Destierra un Aliado que controles para barajar tastas cartas de tu Mazo Castillo como fuerza tenga el Aliado desterrado. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [],
+        "effect": {
+          "type": "banishToShuffle",
+          "shuffleZone": "cementerio",
+          "targetQuery": {
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destierra un Aliado que controles para barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga el Aliado desterrado.",
+        "banishOnPlay": true
+      }
+    ]
+  },
+  {
+    "id": 704,
+    "nombre": "Sir Tristan",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasporagregar/tristi.webp",
+    "habilidad_texto_descriptivo": "Cuando Sir Tristan entra en juego, busca una carta en tu Cementerio y ponla en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "*",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Sir Tristan entra en juego, busca una carta en tu Cementerio y ponla en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 705,
+    "nombre": "Tutatis",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasporagregar/tutatis.webp",
+    "habilidad_texto_descriptivo": "Solo puedes jugar a Tutatis si controlas dos o mas aliados. Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes jugar a Tutatis si controlas dos o más Aliados.",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "effect": {
+          "type": "forceAllAlliesToAttack"
+        },
+        "trigger": "onMoveToAttack",
+        "descripcion": "Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo."
+      }
+    ]
+  },
+  {
+    "id": 706,
+    "nombre": "Unicornio Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasporagregar/unicorniosidhe.webp",
+    "habilidad_texto_descriptivo": "Unicornio Sidhe es Imbloqueable",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Unicornio Sidhe es Imbloqueable."
       }
     ]
   }

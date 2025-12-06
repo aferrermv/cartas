@@ -1017,7 +1017,7 @@
       {
         "inherent": [
           "canAttackOnEnterPlay",
-           "talismanImmunity"
+          "talismanImmunity"
         ]
       },
       {
@@ -1166,9 +1166,9 @@
           "target": {
             "zone": "field",
             "type": [
-                "Aliado",
-                "Oro"
-              ],
+              "Aliado",
+              "Oro"
+            ],
             "controller": "any"
           }
         },
@@ -2682,7 +2682,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-        "habilidades": [
+    "habilidades": [
       {
         "phase": "any",
         "effect": {
@@ -2742,7 +2742,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "1.8.2",
+    "pack_version": "1.8.3",
     "habilidades": [
       {
         "cost": {
@@ -25490,7 +25490,7 @@
       }
     ]
   },
-   {
+  {
     "id": 636,
     "nombre": "Despertar Oscuro",
     "tipo": "Talisman",
@@ -25600,7 +25600,7 @@
       }
     ]
   },
-   {
+  {
     "id": 669,
     "nombre": "Espada Miliciana",
     "tipo": "Arma",
@@ -25808,9 +25808,7 @@
                 },
                 {
                   "id": "ira_ignea_no_draw",
-                  "action": {
-
-                  },
+                  "action": {},
                   "description": "No, gracias"
                 }
               ]
@@ -25834,7 +25832,7 @@
       }
     ]
   },
-   {
+  {
     "id": 673,
     "nombre": "Sir Lancelot del Lago",
     "tipo": "Aliado",
@@ -25915,7 +25913,7 @@
         "descripcion": "Busca un Totem en tu Cementerio y ponlo en juego sin pagar su coste."
       }
     ]
- },
+  },
   {
     "id": 677,
     "nombre": "Pan",
@@ -26041,9 +26039,7 @@
             },
             {
               "id": "sonriente_no_draw",
-              "action": {
-
-              },
+              "action": {},
               "description": "No, gracias"
             }
           ]
@@ -26191,10 +26187,10 @@
       {
         "effect": {
           "type": "chooseOne",
-          "prompt": "Habilidad de Poseidon, Rey del Mar: Elige cuántas cartas robar.",
+          "prompt": "Habilidad de Poseidon, Rey del Mar: ¿Quieres robar 2 cartas?",
           "options": [
             {
-              "id": "poseidondraw_2",
+              "id": "poseidon_draw_2",
               "action": {
                 "type": "drawCards",
                 "count": 2
@@ -26202,18 +26198,8 @@
               "description": "Robar 2 cartas"
             },
             {
-              "id": "poseidondraw_1",
-              "action": {
-                "type": "drawCards",
-                "count": 1
-              },
-              "description": "Robar 1 carta"
-            },
-            {
               "id": "poseidon_no_draw",
-              "action": {
-
-              },
+              "action": {},
               "description": "No robar"
             }
           ]
@@ -26717,6 +26703,10 @@
           }
         },
         "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
         "descripcion": "Tu oponente debe Bloquear con al menos 1 Aliado en su Fase de Bloqueo."
       },
       {
@@ -26737,13 +26727,22 @@
         },
         "trigger": "continuous",
         "condition": {
-          "type": "playerControls",
-          "query": {
-            "type": "Aliado",
-            "nameContains": "Minotauro"
-          },
-          "amount": 1,
-          "comparison": "greaterOrEqual"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Minotauro"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
         },
         "descripcion": "Si controlas uno o más Minotauro, los Aliados oponentes pierden 1 a la fuerza."
       }
@@ -26779,25 +26778,11 @@
           "destination": "attack"
         },
         "effect": {
+          "type": "grantBuffToTarget",
           "buff": {
             "stat": "fuerza",
             "value": 1
           },
-          "then": {
-            "effect": {
-              "type": "cuchulainBuff"
-            },
-            "condition": {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado",
-                "nombre": "Cuchulain"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            }
-          },
-          "type": "grantBuffToTarget",
           "target": {
             "zone": [
               "attack",
@@ -26815,7 +26800,14 @@
           "type": "isInZone",
           "zone": "defense"
         },
-        "description": "Puedes moverlo a tu Linea de Ataque para que un Aliado Gane 1 a la fuerza hasta la Fase Final. Si Cuchulain esta en juego, ambos ganan 1 a la Fuerza."
+        "description": "Puedes moverlo a tu Linea de Ataque para que un Aliado Gane 1 a la fuerza hasta la Fase Final."
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "cuchulainBuff"
+        },
+        "description": "Si Cuchulain esta en juego, ambos ganan 1 a la Fuerza."
       }
     ]
   },

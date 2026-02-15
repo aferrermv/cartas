@@ -2033,6 +2033,7 @@
     "tipo": "Aliado",
     "coste_oro": 6,
     "imagen_url": "/img/aliados/kilgharrah17.jpeg",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener un Kilgharrah en juego. Imbloqueable, puede atacar el turno que entra en juego. En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
@@ -2766,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.1.4",
+    "pack_version": "2.1.5",
     "habilidades": []
   },
   {
@@ -3225,6 +3226,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/aliados/vouivre82.webp",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Carta Única. Cuando Vouivre entra en juego, puedes barajar un Aliado que controles para barajar 2 Aliados oponentes. En tu Fase de Vigilia y una vez por turno, puedes buscar un Aliado de raza Dragón en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -3754,6 +3756,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/liontari100.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Lionari puede atacar cuándo entra en juego. Cuando entra en juego puedes destruir un Aliado oponente.Lionari no puede bloquear.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -3896,6 +3899,7 @@
     "tipo": "Aliado",
     "coste_oro": 6,
     "imagen_url": "/img/helenica/rea98.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "En tu fase de vigilia y solo una vez por turno Busca un Aliado de raza olímpico o titán en tu zona de destierro y ponlo en tu línea de defensa sin pagar su coste",
     "descripcion": null,
     "expansion": "Helenica",
@@ -6380,7 +6384,7 @@
           "type": "banishFromGraveyard",
           "count": 1,
           "query": {
-            "race": "Sombra",
+            "raza": "Sombra",
             "type": "Aliado",
             "isOther": true
           },
@@ -6574,7 +6578,7 @@
         "trigger": "activatable",
         "description": "En respuesta a que uno de tus Aliados de raza Sombra sea destruido o desterrado, puedes robar tantas cartas como coste tenga el Aliado.",
         "eventCondition": {
-          "race": "Sombra",
+          "raza": "Sombra",
           "type": "Aliado",
           "destinationZone": [
             "cementerio",
@@ -6981,13 +6985,16 @@
           "type": "drawCards",
           "count": 1
         },
-        "trigger": "activatable",
+        "trigger": "onPhaseStart",
         "condition": {
           "type": "and",
           "conditions": [
             {
               "type": "isInZone",
               "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
             },
             {
               "type": "playerControls",
@@ -7000,7 +7007,8 @@
             }
           ]
         },
-        "oncePerTurn": true
+        "resolvesInstantly": true,
+        "description": "Si controlas 2 o más Aliados de raza Héroe, en tu fase Final roba una carta de tu Mazo."
       }
     ]
   },
@@ -7163,6 +7171,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/helenica/juliocesar195.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Mientras Julio César esté en juego, todos tus demas Aliados ganan 1 a la Fuerza y son imbloqueables.\nUnica.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -8557,6 +8566,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/espada_sagrada/reyarturopendragon325.jfif",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Unica. Tus demas Aliados de raza Caballero ganan 2 a la Fuerza. Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste. En cada fase de Agrupacion tu oponente bota 2 cartas.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -9804,6 +9814,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/elgranzeus352.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "El Gran Zeus es Indestructible. En tu Fase de Vigilia, sólo una vez por turno, puedes robar hasta 2 cartas. Carta unica. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -10141,6 +10152,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/helios359.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Mientras Helios esté en juego, tus Aliados de raza Olimpico ganan 2 a la fuerza y no pueden ser afectados por Talismanes oponentes. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -12790,6 +12802,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/espada_sagrada/morgana410.png",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -17558,6 +17571,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/ra/ra492.webp",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Única. No puede ser Anulado. Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo. Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -20119,6 +20133,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/ra/djoser545.webp",
+     "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "No tiene límite de Armas. Este Aliado gana 2 a la fuerza por cada Arma que porte. Las Armas jugadas en tus Aliados cuestan 1 oro menos. Una vez por turno, cuando un Arma entra en juego bajo tu control, puedes destruir un Aliado Oponente. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -22812,6 +22827,7 @@
         },
         "trigger": "activatable",
         "id_habilidad": "abu_simbel_protection_ally",
+        "requireOpponentTrigger": true,
         "eventCondition": {
           "type": "triggeringCardCondition",
           "query": {
@@ -22836,6 +22852,7 @@
         },
         "trigger": "activatable",
         "id_habilidad": "abu_simbel_protection_totem",
+        "requireOpponentTrigger": true,
         "eventCondition": {
           "type": "triggeringCardCondition",
           "query": {
@@ -38162,7 +38179,7 @@
     "expansion": "Dominios de Ra",
     "rareza": "Común",
     "fecha_creacion": null,
-    "fuerza": 3,
+    "fuerza": 2,
     "raza": "Eterno",
     "leyenda": null,
     "danio": null,

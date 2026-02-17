@@ -474,6 +474,7 @@
           "type": "destroyTarget",
           "count": 1,
           "prompt": "Elige una carta en juego que no sea Oro para destruir.",
+           "canCancel": true,
           "target": {
             "zone": "field",
             "query": {
@@ -2767,7 +2768,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.1.5",
+    "pack_version": "2.1.6",
     "habilidades": []
   },
   {
@@ -2775,7 +2776,7 @@
     "nombre": "Wyvern de Sangre",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/gift/wyverndesangre41.webp",
+    "imagen_url": "/img/gift/wyvernGift.webp",
     "habilidad_texto_descriptivo": "Wyvern de Sangre puede atacar el turno que entra en juego. Si está en tu cementerio, puedes pagar dos de oro para ponerlo en tu mano",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -6484,7 +6485,7 @@
             {
               "type": "playerControls",
               "query": {
-                "race": "Sombra",
+                "raza": "Sombra",
                 "type": "Aliado",
                 "zone": [
                   "attack"
@@ -8920,29 +8921,27 @@
     "salud": null,
     "habilidades": [
       {
-        "costs": [
-          {
-            "type": "revealFromHand",
-            "count": 1,
-            "query": {
-              "raza": "Desafiante",
-              "type": "Aliado"
-            },
-            "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
-            "optional": true
-          }
-        ],
+        "trigger": "onEnterPlay",
         "effect": {
-          "type": "banishTarget",
-          "prompt": "Elige un Aliado oponente para desterrar.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
+          "optional": true,
+          "onSuccess": {
+            "type": "banishTarget",
+            "prompt": "Elige un Aliado oponente para desterrar.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "opponent"
+            }
           }
         },
-        "trigger": "onEnterPlay",
         "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
         "id_habilidad": "aine_reveal_and_banish"
       }
@@ -30814,7 +30813,12 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
+      
       {
+         "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        },
         "phase": "Principal",
         "effect": {
           "type": "searchOpponentDeckAndPlay",
@@ -32972,7 +32976,8 @@
           "target": {
             "query": {
               "type": "Aliado",
-              "isUnblocked": true
+              "isUnblocked": true,
+              "zone": "attack"
             },
             "controller": "any"
           },

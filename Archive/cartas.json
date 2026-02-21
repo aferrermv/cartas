@@ -1867,7 +1867,6 @@
         "id_habilidad": "cultistas_del_dragon_shuffle_hand",
         "trigger": "activatable_with_costs",
         "phase": "Principal",
-        "oncePerTurn": true,
         "condition": {
           "type": "isInZone",
           "zone": "field"
@@ -2768,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.1.6",
+    "pack_version": "2.1.7",
     "habilidades": []
   },
   {
@@ -4813,7 +4812,7 @@
           "type": "grantToNextPlayed",
           "query": {
             "type": "Aliado",
-            "subtype": "Defensor"
+             "raza": "Defensor"
           },
           "duration": "endOfTurn",
           "keywords": [
@@ -4922,47 +4921,47 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+ "habilidades": [
+  {
+    "costs": [
       {
-        "costs": [
-          {
-            "type": "banishSelf"
-          },
-          {
-            "type": "payGold",
-            "count": 2
-          }
-        ],
-        "phase": "Principal",
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado oponente de coste 3 o menos para destruir.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "cost": {
-                "value": 3,
-                "operator": "<="
-              },
-              "tipo": "Aliado"
-            },
-            "controller": "any"
-          }
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "goldReserve"
-        },
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "goldReserve",
-            "paidGold"
-          ]
-        }
+        "type": "banishSelf"
+      },
+      {
+        "type": "payGold",
+        "count": 2
       }
-    ]
+    ],
+    "phase": "Principal",
+    "effect": {
+      "type": "destroyTarget",
+      "prompt": "Elige un Aliado oponente de coste 3 o menos para destruir.",
+      "target": {
+        "zone": "field",
+        "query": {
+          "cost": {
+            "value": 3,
+            "operator": "<="
+          },
+          "type": "Aliado"
+        },
+        "controller": "any"
+      }
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": "goldReserve"
+    },
+    "play_limitation": {
+      "type": "unique",
+      "scope": [
+        "goldReserve",
+        "paidGold"
+      ]
+    }
+  }
+]
   },
   {
     "id": 142,
@@ -15562,58 +15561,58 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Puede atacar cuando entra en juego.",
-        "id_habilidad": "guerrero_escorpion_haste"
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "isOther": true,
-            "controller": "self"
+    {
+      "inherent": [
+        "canAttackOnEnterPlay"
+      ],
+      "description": "Puede atacar cuando entra en juego.",
+      "id_habilidad": "guerrero_escorpion_haste"
+    },
+    {
+      "effect": {
+        "type": "grantKeyword",
+        "target": {
+          "query": {
+            "type": "Aliado"
           },
-          "keyword": "canAttackOnEnterPlay"
+          "isOther": true,
+          "controller": "self"
         },
-        "trigger": "continuous",
-        "description": "Tus demás Aliados pueden ser declarados atacantes el turno que entran en juego.",
-        "id_habilidad": "guerrero_escorpion_aura_haste"
+        "keyword": "canAttackOnEnterPlay"
       },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
+      "trigger": "continuous",
+      "description": "Tus demás Aliados pueden ser declarados atacantes el turno que entran en juego.",
+      "id_habilidad": "guerrero_escorpion_aura_haste"
+    },
+    {
+      "phase": "Final",
+      "effect": {
+        "type": "drawCards",
+        "count": 1
+      },
+      "trigger": "activatable",
+      "condition": {
+        "type": "and",
+        "conditions": [
+          {
+            "type": "isInZone",
+            "zone": "field"
+          },
+          {
+            "type": "playerAttackedWith",
+            "query": {
+              "hasMarker": "attackedAsWarrior"
             },
-            {
-              "type": "playerControls",
-              "query": {
-                "hasMarker": "attackedAsWarrior"
-              },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "En tu Fase Final, si uno o más Aliados Guerrero fueron declarados atacantes este turno, puedes robar 1 carta.",
-        "oncePerTurn": true,
-        "id_habilidad": "guerrero_escorpion_draw"
-      }
-    ]
+            "amount": 1,
+            "comparison": "greaterOrEqual"
+          }
+        ]
+      },
+      "description": "En tu Fase Final, si dos o más Aliados Guerrero fueron declarados atacantes este turno, puedes robar 1 carta.",
+      "oncePerTurn": true,
+      "id_habilidad": "guerrero_escorpion_draw"
+    }
+  ]
   },
   {
     "id": 465,
@@ -33432,7 +33431,7 @@
       {
         "effect": {
           "type": "applyBuffToSelf",
-          "buffs": [
+          "buff": [
             {
               "stat": "fuerza",
               "value": 1
@@ -38226,8 +38225,8 @@
           "Principal",
           "Guerra de Talismanes"
         ],
-        "effect": {
-          "type": "moveSelfToBottomDeck"
+         "effect": {
+          "type": "moveSelfToBottomOfDeck"
         },
         "trigger": "activatable",
         "condition": {

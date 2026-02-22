@@ -40961,5 +40961,92 @@
         "oncePerTurn": true
       }
     ]
+  },
+   {
+    "id": 99,
+    "nombre": "Cronos",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+   "imagen_url": "/img/store/cartas/cronosshogun4.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente. En tu fase final puedes agrupar tus cartas. Carta Unica",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Cronos:",
+            "options": [
+              {
+                "id": "pay_gold_cost",
+                "action": {
+                  "type": "payGold",
+                  "count": 3
+                },
+                "description": "Pagar 3 Oros"
+              },
+              {
+                "id": "destroy_titan_cost",
+                "action": {
+                  "type": "destroyTarget",
+                  "count": 1,
+                  "prompt": "Elige un Aliado Titán que controles para destruir como coste.",
+                  "target": {
+                    "query": {
+                      "raza": "Titan",
+                      "type": "Aliado"
+                    },
+                    "controller": "self"
+                  }
+                },
+                "description": "Destruir un Aliado Titán que controles"
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupAll"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "En tu fase final puedes agrupar tus cartas."
+      }
+    ]
   }
 ]

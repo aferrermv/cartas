@@ -40963,15 +40963,15 @@
     ]
   },
    {
-    "id": 99,
+    "id": 2051,
     "nombre": "Cronos",
     "tipo": "Aliado",
     "coste_oro": 5,
    "imagen_url": "/img/store/cartas/cronosshogun4.webp",
     "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente. En tu fase final puedes agrupar tus cartas. Carta Unica",
-    "descripcion": null,
+    "descripcion": "Edición Especial Shogun",
     "expansion": "Helenica",
-    "rareza": "Común",
+    "rareza": "Promo",
     "fecha_creacion": null,
     "fuerza": 5,
     "raza": "Titan",

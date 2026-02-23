@@ -474,7 +474,7 @@
           "type": "destroyTarget",
           "count": 1,
           "prompt": "Elige una carta en juego que no sea Oro para destruir.",
-           "canCancel": true,
+          "canCancel": true,
           "target": {
             "zone": "field",
             "query": {
@@ -2033,7 +2033,7 @@
     "tipo": "Aliado",
     "coste_oro": 6,
     "imagen_url": "/img/aliados/kilgharrah17.jpeg",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener un Kilgharrah en juego. Imbloqueable, puede atacar el turno que entra en juego. En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
@@ -3226,7 +3226,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/aliados/vouivre82.webp",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Carta Única. Cuando Vouivre entra en juego, puedes barajar un Aliado que controles para barajar 2 Aliados oponentes. En tu Fase de Vigilia y una vez por turno, puedes buscar un Aliado de raza Dragón en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -3756,7 +3756,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/liontari100.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Lionari puede atacar cuándo entra en juego. Cuando entra en juego puedes destruir un Aliado oponente.Lionari no puede bloquear.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -3899,7 +3899,7 @@
     "tipo": "Aliado",
     "coste_oro": 6,
     "imagen_url": "/img/helenica/rea98.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "En tu fase de vigilia y solo una vez por turno Busca un Aliado de raza olímpico o titán en tu zona de destierro y ponlo en tu línea de defensa sin pagar su coste",
     "descripcion": null,
     "expansion": "Helenica",
@@ -4812,7 +4812,7 @@
           "type": "grantToNextPlayed",
           "query": {
             "type": "Aliado",
-             "raza": "Defensor"
+            "raza": "Defensor"
           },
           "duration": "endOfTurn",
           "keywords": [
@@ -4921,47 +4921,47 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
- "habilidades": [
-  {
-    "costs": [
+    "habilidades": [
       {
-        "type": "banishSelf"
-      },
-      {
-        "type": "payGold",
-        "count": 2
-      }
-    ],
-    "phase": "Principal",
-    "effect": {
-      "type": "destroyTarget",
-      "prompt": "Elige un Aliado oponente de coste 3 o menos para destruir.",
-      "target": {
-        "zone": "field",
-        "query": {
-          "cost": {
-            "value": 3,
-            "operator": "<="
+        "costs": [
+          {
+            "type": "banishSelf"
           },
-          "type": "Aliado"
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de coste 3 o menos para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "cost": {
+                "value": 3,
+                "operator": "<="
+              },
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
         },
-        "controller": "any"
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "goldReserve",
+            "paidGold"
+          ]
+        }
       }
-    },
-    "trigger": "activatable_with_costs",
-    "condition": {
-      "type": "isInZone",
-      "zone": "goldReserve"
-    },
-    "play_limitation": {
-      "type": "unique",
-      "scope": [
-        "goldReserve",
-        "paidGold"
-      ]
-    }
-  }
-]
+    ]
   },
   {
     "id": 142,
@@ -7171,7 +7171,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/helenica/juliocesar195.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Mientras Julio César esté en juego, todos tus demas Aliados ganan 1 a la Fuerza y son imbloqueables.\nUnica.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -9812,7 +9812,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/elgranzeus352.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "El Gran Zeus es Indestructible. En tu Fase de Vigilia, sólo una vez por turno, puedes robar hasta 2 cartas. Carta unica. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -10150,7 +10150,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/helenica/helios359.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Mientras Helios esté en juego, tus Aliados de raza Olimpico ganan 2 a la fuerza y no pueden ser afectados por Talismanes oponentes. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -12800,7 +12800,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/espada_sagrada/morgana410.png",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -15561,58 +15561,58 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-    {
-      "inherent": [
-        "canAttackOnEnterPlay"
-      ],
-      "description": "Puede atacar cuando entra en juego.",
-      "id_habilidad": "guerrero_escorpion_haste"
-    },
-    {
-      "effect": {
-        "type": "grantKeyword",
-        "target": {
-          "query": {
-            "type": "Aliado"
-          },
-          "isOther": true,
-          "controller": "self"
-        },
-        "keyword": "canAttackOnEnterPlay"
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "guerrero_escorpion_haste"
       },
-      "trigger": "continuous",
-      "description": "Tus demás Aliados pueden ser declarados atacantes el turno que entran en juego.",
-      "id_habilidad": "guerrero_escorpion_aura_haste"
-    },
-    {
-      "phase": "Final",
-      "effect": {
-        "type": "drawCards",
-        "count": 1
-      },
-      "trigger": "activatable",
-      "condition": {
-        "type": "and",
-        "conditions": [
-          {
-            "type": "isInZone",
-            "zone": "field"
-          },
-          {
-            "type": "playerAttackedWith",
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
             "query": {
-              "hasMarker": "attackedAsWarrior"
+              "type": "Aliado"
             },
-            "amount": 1,
-            "comparison": "greaterOrEqual"
-          }
-        ]
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "description": "Tus demás Aliados pueden ser declarados atacantes el turno que entran en juego.",
+        "id_habilidad": "guerrero_escorpion_aura_haste"
       },
-      "description": "En tu Fase Final, si dos o más Aliados Guerrero fueron declarados atacantes este turno, puedes robar 1 carta.",
-      "oncePerTurn": true,
-      "id_habilidad": "guerrero_escorpion_draw"
-    }
-  ]
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerAttackedWith",
+              "query": {
+                "hasMarker": "attackedAsWarrior"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si dos o más Aliados Guerrero fueron declarados atacantes este turno, puedes robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "guerrero_escorpion_draw"
+      }
+    ]
   },
   {
     "id": 465,
@@ -17569,7 +17569,7 @@
     "tipo": "Aliado",
     "coste_oro": 5,
     "imagen_url": "/img/ra/ra492.webp",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "Única. No puede ser Anulado. Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo. Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -20131,7 +20131,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/ra/djoser545.webp",
-     "visualEffect": "heavyEntrance",
+    "visualEffect": "heavyEntrance",
     "habilidad_texto_descriptivo": "No tiene límite de Armas. Este Aliado gana 2 a la fuerza por cada Arma que porte. Las Armas jugadas en tus Aliados cuestan 1 oro menos. Una vez por turno, cuando un Arma entra en juego bajo tu control, puedes destruir un Aliado Oponente. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -21364,180 +21364,6 @@
           "target": "opponent"
         },
         "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 930287,
-    "nombre": "Asesinos En La Corte",
-    "tipo": "Talisman",
-    "coste_oro": 4,
-    "imagen_url": "/img/093_espada_sagrada_aniversario/asesinosenlacorte930287.webp",
-    "habilidad_texto_descriptivo": "Destruye un Aliado oponente de fuerza 2 ó menor.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
-    "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "description": "Destruye un Aliado oponente de fuerza 2 ó menor.",
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado oponente de fuerza 2 o menos para destruir.",
-          "target": {
-            "query": {
-              "fuerza": {
-                "value": 2,
-                "operator": "<="
-              },
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id": 930288,
-    "nombre": "Camino A Avalon",
-    "tipo": "Talisman",
-    "coste_oro": 3,
-    "imagen_url": "/img/093_espada_sagrada_aniversario/caminoaavalon930288.webp",
-    "habilidad_texto_descriptivo": "Destruye 1 de tus Aliados para barajar 1 carta de tu cementerio en tu mazo castillo.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
-    "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "cost": {
-          "type": "destroyTarget",
-          "count": 1,
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "self"
-          },
-          "message": "Coste de Camino A Avalon: Elige uno de tus Aliados para destruir."
-        },
-        "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "*"
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id": 930289,
-    "nombre": "Cantrip",
-    "tipo": "Talisman",
-    "coste_oro": 0,
-    "imagen_url": "/img/093_espada_sagrada_aniversario/cantrip930289.webp",
-    "habilidad_texto_descriptivo": "Roba 1 carta.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
-    "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "description": "Roba 1 carta.",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 930293,
-    "nombre": "Juglares",
-    "tipo": "Talisman",
-    "coste_oro": 0,
-    "imagen_url": "/img/093_espada_sagrada_aniversario/juglares930293.webp",
-    "habilidad_texto_descriptivo": "Genera un oro hasta el final del turno.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
-    "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "description": "Genera un oro hasta el final del turno.",
-        "effect": {
-          "type": "generateTemporaryGold",
-          "count": 1
-        }
-      }
-    ]
-  },
-  {
-    "id": 930296,
-    "nombre": "Funeral Para Un Amigo",
-    "tipo": "Talisman",
-    "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/funeralamigo.webp",
-    "habilidad_texto_descriptivo": "Baraja del cementerio a tu mazo castillo un Aliado.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
-    "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "Aliado"
-          },
-          "prompt": "Elige 1 Aliado de tu Cementerio para barajar en tu Mazo Castillo.",
-          "canCancel": true
-        }
       }
     ]
   },
@@ -30812,9 +30638,8 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      
       {
-         "play_condition": {
+        "play_condition": {
           "type": "currentPhase",
           "phase": "Principal"
         },
@@ -38225,7 +38050,7 @@
           "Principal",
           "Guerra de Talismanes"
         ],
-         "effect": {
+        "effect": {
           "type": "moveSelfToBottomOfDeck"
         },
         "trigger": "activatable",
@@ -38238,8 +38063,135 @@
       }
     ]
   },
-    {
-    "id": 2000,
+  {
+    "id": 7000,
+    "nombre": "Afrodita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/afroditafullart.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
+    "descripcion": "Edición Especial Full Art",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseTypeAndViewTop",
+          "prompt": "Nombra un tipo de carta:",
+          "options": [
+            "Aliado",
+            "Arma",
+            "Totem"
+          ]
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7001,
+    "nombre": "Afrodita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/afroditashogun.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseTypeAndViewTop",
+          "prompt": "Nombra un tipo de carta:",
+          "options": [
+            "Aliado",
+            "Arma",
+            "Totem"
+          ]
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7002,
+    "nombre": "Aine",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/aineshogun.webp",
+    "habilidad_texto_descriptivo": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente. ",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
+          "optional": true,
+          "onSuccess": {
+            "type": "banishTarget",
+            "prompt": "Elige un Aliado oponente para desterrar.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "opponent"
+            }
+          }
+        },
+        "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
+        "id_habilidad": "aine_reveal_and_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7003,
     "nombre": "Alas de Druida",
     "tipo": "Talisman",
     "coste_oro": 2,
@@ -38275,10 +38227,11 @@
         "description": "Busca un Aliado de coste 2 o menos en tu Cementerio y ponlo en tu Mano.",
         "id_habilidad": "alas_de_druida_tutor"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2001,
+    "id": 7004,
     "nombre": "Arbol de Sangre",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -38315,10 +38268,11 @@
         "trigger": "onEnterPlay",
         "description": "Cuando Arbol de Sangre entra en juego, ambos jugadores botan 2 cartas de su Mazo. Luego puedes barajar una carta de tu Cementerio en tu Mazo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2002,
+    "id": 7005,
     "nombre": "Ares",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -38364,10 +38318,11 @@
         "description": "En Guerra de Talismanes, una vez por turno, puedes pagar 2 de oro para cancelar el ataque o bloqueo oponente.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2003,
+    "id": 7006,
     "nombre": "Ashrays",
     "tipo": "Aliado",
     "coste_oro": 1,
@@ -38413,10 +38368,79 @@
         "description": "Para que Ashrays sea declarado atacante, debes botar 2 cartas de tu Mazo Castillo.",
         "id_habilidad": "ashrays_pay_to_attack"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2004,
+    "id": 7007,
+    "nombre": "Averix el Sabio",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/averixelsabioalt.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes elegir una carta que no sea oro para que pierda su habilidad mientras esta carta esté en juego en tu fase final si controlas uno o más aliados druida puedes robar una carta.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "canCancel": true,
+          "target": {
+            "query": {
+              "type_not_in": [
+                "Oro"
+              ],
+              "isOther": true
+            },
+            "controller": "any"
+          },
+          "message": "Elige otra carta (que no sea Oro) para que pierda su habilidad mientras esta carta esté en juego.",
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "message": "Robas una carta por la habilidad de Averix el Sabio."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7008,
     "nombre": "Bec de Corbin",
     "tipo": "Arma",
     "coste_oro": 2,
@@ -38462,10 +38486,11 @@
         },
         "trigger": "onEnterPlay"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2005,
+    "id": 7009,
     "nombre": "Beleth",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -38509,10 +38534,48 @@
         "description": "Cuando entra en juego, puedes descartar una carta de tu mano para buscar en tu mazo castillo un Aliado de raza Desafiante de coste 3 o menos y ponerlo en tu mano.",
         "id_habilidad": "beleth_tutor"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2006,
+    "id": 7010,
+    "nombre": "Bola de Fuego",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/boladefuegoalt.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta en juego, que no sea un oro.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "message": "Habilidad de Bola de Fuego: Elige una carta en juego que no sea Oro para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7011,
     "nombre": "Brian Boru",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -38553,10 +38616,11 @@
         "id_habilidad": "brian_boru_move_ally",
         "habilidad_texto_descriptivo": "Cuando Brian Boru entra en juego, puedes elegir un Aliado oponente en la linea de Defensa y moverlo a la Linea de Ataque."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2007,
+    "id": 7012,
     "nombre": "Cathach",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -38612,10 +38676,107 @@
           }
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2008,
+    "id": 7013,
+    "nombre": "Caja de Pandora",
+    "tipo": "Oro",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/caja-de-pandora-myl.webp",
+    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
+    "descripcion": "Edición Especial",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7014,
+    "nombre": "Caja de Pandora",
+    "tipo": "Oro",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cajadepandoraalt.webp",
+    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7015,
+    "nombre": "Capa de Invisibilidad",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/capadeinvisibilidadshogun.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que tu oponente baje una carta, ésta es barajada en su mazo castillo. Esta habilidad no afecta a los oros.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:33:33.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayAlly"
+      },
+      {
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayWeapon"
+      },
+      {
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayTotem"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7016,
     "nombre": "Carnwennan",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -38655,10 +38816,11 @@
           "zone": "goldReserve"
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2009,
+    "id": 7017,
     "nombre": "Caturix",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -38697,10 +38859,11 @@
         "trigger": "onEnterPlay",
         "id_habilidad": "caturix_recycle"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2010,
+    "id": 7018,
     "nombre": "Corff",
     "tipo": "Aliado",
     "coste_oro": 1,
@@ -38746,10 +38909,11 @@
         "trigger": "onDeclareAttack",
         "description": "Cuando Corff sea declarado atacante, elige hasta 2 Aliados que lo acompañen para que ganen 1 a la fuerza hasta la Fase Final."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2011,
+    "id": 7019,
     "nombre": "Corona de Arturo",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -38808,10 +38972,139 @@
           "zone": "cementerio"
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2012,
+    "id": 7020,
+    "nombre": "Crom Cruach",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cromcruachalt.webp",
+    "habilidad_texto_descriptivo": "Croom Cruach no puede bloquear, Cuando Crom Cruach es declarado atacante, puedes buscar un aliado de raza Sombra de coste 2  menos en tu Cementerio y ponerlo en tu mano. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBlock"
+        ]
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "raza": "Sombra",
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onDeclareAttack"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7021,
+    "nombre": "Cronos",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/cronosshogun4.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente. En tu fase final puedes agrupar tus cartas. Carta Unica",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Cronos:",
+            "options": [
+              {
+                "id": "pay_gold_cost",
+                "action": {
+                  "type": "payGold",
+                  "count": 3
+                },
+                "description": "Pagar 3 Oros"
+              },
+              {
+                "id": "destroy_titan_cost",
+                "action": {
+                  "type": "destroyTarget",
+                  "count": 1,
+                  "prompt": "Elige un Aliado Titán que controles para destruir como coste.",
+                  "target": {
+                    "query": {
+                      "raza": "Titan",
+                      "type": "Aliado"
+                    },
+                    "controller": "self"
+                  }
+                },
+                "description": "Destruir un Aliado Titán que controles"
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupAll"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "En tu fase final puedes agrupar tus cartas."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7022,
     "nombre": "Cuchulain",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -38891,10 +39184,74 @@
         "oncePerTurn": true,
         "id_habilidad": "cuchulain_draw_card_activatable"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2013,
+    "id": 7023,
+    "nombre": "Demoledor de Amon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/demoledordeamonalternativo.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Talismanes oponentes que afecten a este Aliado cuestan 2 Oros adicionales. Cuando es declarado atacante, puedes elegir un Aliado para que lo bloque. Ese aliado pierde su habilidad y 1 a la fuerza hasta la Fase Final. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "cost": {
+            "type": "payGold",
+            "count": 2
+          },
+          "type": "forceOpponentToPayCost",
+          "prompt": "Debes pagar 2 Oros adicionales para que tu Talismán afecte a Demoledor de Amon."
+        },
+        "trigger": "onBeforeBeingTarget",
+        "condition": {
+          "type": "triggeringCardIsType",
+          "cardType": "Talisman"
+        },
+        "description": "Talismanes oponentes que afecten a este Aliado cuestan 2 Oros adicionales.",
+        "resolvesInstantly": true
+      },
+      {
+        "effect": {
+          "type": "forceBlockAndDebuff",
+          "prompt": "Elige un Aliado oponente para que bloquee a Demoledor de Amon.",
+          "canCancel": true,
+          "target": {
+            "zone": [
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando es declarado atacante, puedes elegir un Aliado para que lo bloquee. Ese aliado pierde su habilidad y 1 a la fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7024,
     "nombre": "Despertar",
     "tipo": "Talisman",
     "coste_oro": 1,
@@ -38919,10 +39276,11 @@
         },
         "trigger": "onEnterPlay"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2014,
+    "id": 7025,
     "nombre": "Diadema Feerica",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -38976,10 +39334,76 @@
         "oncePerTurn": "byAbilityId",
         "id_habilidad": "diadema_feerica_recycle"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2015,
+    "id": 7026,
+    "nombre": "Djedefhor",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/djedefhoraniversario.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener un Djedefhor en juego. Cuando Djedefhor entra en juego, roba 2 cartas. Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo. ",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Sólo puedes tener un Djedefhor en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Djedefhor entra en juego, roba 2 cartas.",
+        "id_habilidad": "djedefhor_enter_play"
+      },
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Sacerdote",
+            "type": "Aliado"
+          },
+          "amount": 0,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "djedefhor_leave_play"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7027,
     "nombre": "Djedefhor",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -39040,10 +39464,85 @@
         "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
         "id_habilidad": "djedefhor_leave_play"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2016,
+    "id": 7028,
+    "nombre": "Dragón de Magma",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragondemagmaalt.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:50:02.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7029,
+    "nombre": "Dragón de Magma",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragondemagmaalternativo.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:50:02.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7030,
     "nombre": "Draig Ifanc",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -39099,10 +39598,87 @@
           ]
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2017,
+    "id": 7031,
+    "nombre": "Duque Godofredo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/duquegodofredofullart.webp",
+    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
+    "descripcion": "Edición Especial Full Art",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T20:24:45.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "continuous"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7032,
+    "nombre": "Duque Godofredo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/duquegodofredoshogun.webp",
+    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T20:24:45.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "continuous"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7033,
     "nombre": "Expulsion de Titanes",
     "tipo": "Talisman",
     "coste_oro": 3,
@@ -39149,10 +39725,11 @@
         },
         "description": "Destierra un Aliado oponente. Si el Aliado era de raza Titan, tu oponente bota 3 cartas."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2018,
+    "id": 7034,
     "nombre": "Fe sin Límite",
     "tipo": "Talisman",
     "coste_oro": 1,
@@ -39176,10 +39753,11 @@
         },
         "trigger": "onOpponentPlayTalisman"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2019,
+    "id": 7035,
     "nombre": "Flecha Acida",
     "tipo": "Talisman",
     "coste_oro": 2,
@@ -39217,10 +39795,99 @@
         "trigger": "onEnterPlay",
         "description": "Destruye un Aliado oponente de Fuerza 2 o menos. Luego, roba una carta."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2020,
+    "id": 7036,
+    "nombre": "Forma de Lince",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/formadelinceaniversario.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final. Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final. ",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forma_de_lince_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "effect": {
+              "type": "addMarkerToTarget",
+              "marker": "forma_de_lince_target",
+              "duration": "endOfTurn"
+            }
+          }
+        },
+        "description": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "forma_de_lince_final_phase_draw",
+        "trigger": "onPhaseStart",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "El Aliado afectado por Forma de Lince hizo daño. ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "forma_de_lince_draw_card",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "forma_de_lince_no_draw",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "forma_de_lince_can_draw",
+          "uniqueSource": true
+        },
+        "oncePerTurn": true,
+        "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7037,
     "nombre": "Fragarach",
     "tipo": "Arma",
     "coste_oro": 2,
@@ -39255,10 +39922,11 @@
         "trigger": "onEnterPlay",
         "description": "Cuando Fragarach entra en juego, puedes buscar un Aliado de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2021,
+    "id": 7038,
     "nombre": "Fragarach",
     "tipo": "Arma",
     "coste_oro": 2,
@@ -39293,10 +39961,11 @@
         "trigger": "onEnterPlay",
         "description": "Cuando Fragarach entra en juego, puedes buscar un Aliado de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2022,
+    "id": 7039,
     "nombre": "Fragarach",
     "tipo": "Arma",
     "coste_oro": 2,
@@ -39331,10 +40000,11 @@
         "trigger": "onEnterPlay",
         "description": "Cuando Fragarach entra en juego, puedes buscar un Aliado de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2023,
+    "id": 7040,
     "nombre": "Goblin",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -39390,10 +40060,11 @@
         "descripcion": "Si tienes 3 o más cartas Goblin en juego este Aliado es Imbloqueable.",
         "id_habilidad": "goblin_unblockable_continuous"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2024,
+    "id": 7041,
     "nombre": "Guardia Real",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -39439,10 +40110,94 @@
         "id_habilidad": "guardia_real_destroy_if_defending",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2025,
+    "id": 7042,
+    "nombre": "Heka",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/hekaaniversario.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para robar una carta extra en tu Fase Final.",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "heka_pay_for_draw",
+        "trigger": "activatable_with_costs",
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "addMarkerToPlayer",
+          "marker": "heka_draw_pending",
+          "uniqueSource": true,
+          "duration": "endOfTurn"
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para habilitar el robo de una carta en tu Fase Final."
+      },
+      {
+        "id_habilidad": "heka_final_phase_auto_draw",
+        "trigger": "onPhaseStart",
+        "phase": "Final",
+        "triggerZones": [
+          "field",
+          "graveyard",
+          "hand",
+          "deck",
+          "banish"
+        ],
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "heka_draw_pending",
+          "uniqueSource": true
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Pagaste el coste de Heka. ¿Quieres robar una carta extra?",
+          "options": [
+            {
+              "id": "heka_accept_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "heka_decline_draw",
+              "action": {},
+              "description": "No por ahora."
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "description": "En tu Fase Final, si pagaste el coste de Heka este turno, puedes robar una carta."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7043,
     "nombre": "Heka",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -39521,10 +40276,11 @@
         "oncePerTurn": true,
         "description": "En tu Fase Final, si pagaste el coste de Heka este turno, puedes robar una carta."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2026,
+    "id": 7044,
     "nombre": "Hemera",
     "tipo": "Aliado",
     "coste_oro": 1,
@@ -39553,10 +40309,11 @@
         "description": "Cuando Hémera entra en juego, puedes mirar las tres primeras cartas de tu Mazo Castillo y devolverlas en cualquier orden.",
         "id_habilidad": "hemera_reorder_deck"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2027,
+    "id": 7045,
     "nombre": "Hera",
     "tipo": "Aliado",
     "coste_oro": 4,
@@ -39607,10 +40364,11 @@
         "id_habilidad": "hera_protection",
         "askOncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2028,
+    "id": 7046,
     "nombre": "Joya Amatista",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -39648,10 +40406,11 @@
           "zone": "goldReserve"
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2029,
+    "id": 7047,
     "nombre": "Laegerie",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -39682,10 +40441,54 @@
         "trigger": "onBeingBlocked",
         "description": "En respuesta a que sea Bloqueado, duplica su fuerza hasta la fase final."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2030,
+    "id": 7048,
+    "nombre": "La Vision",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/lavisionaniversario.webp",
+    "habilidad_texto_descriptivo": "No puede ser Anulado. Mira las 4 primeras cartas del tope de tu Mazo Castillo, elige una y ponla en tu Mano. Luego Baraja el resto en tu Mazo Castillo. ",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ]
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de las 4 que viste para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 4,
+          "unselected": "shuffleBack"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7049,
     "nombre": "Llamarada Impia",
     "tipo": "Talisman",
     "coste_oro": 6,
@@ -39723,10 +40526,11 @@
         "description": "Destruye todos los Aliados en juego.",
         "id_habilidad": "llamarada_destroy"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2031,
+    "id": 7050,
     "nombre": "Medusa",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -39757,10 +40561,11 @@
         },
         "trigger": "onDealCombatDamageToDeck"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2032,
+    "id": 7051,
     "nombre": "Merenptah",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -39845,10 +40650,11 @@
         "oncePerTurn": true,
         "id_habilidad": "merenptah_final_phase_draw"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2033,
+    "id": 7052,
     "nombre": "Milano Rojo",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -39885,16 +40691,17 @@
           "zone": "goldReserve"
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2034,
+    "id": 7053,
     "nombre": "Minas de Gruagash",
     "tipo": "Totem",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/minasdegruagash.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 Oros para que tu oponente bote 5 cartas de su Mazo Castillo. Carta Única. ",
-    "descripcion": "Edición Especial Shogun",
+    "descripcion": "Edición Especial",
     "expansion": "Hijos De Daana",
     "rareza": "Promo",
     "fecha_creacion": null,
@@ -39929,10 +40736,11 @@
         "oncePerTurn": true,
         "id_habilidad": "minas_de_gruagash_mill"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2035,
+    "id": 7054,
     "nombre": "Minotauro",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -39970,10 +40778,11 @@
         "description": "Minotauro gana 1 a la fuerza por cada Minotauro en juego.",
         "id_habilidad": "minotauro_strength_buff"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2036,
+    "id": 7055,
     "nombre": "Morrigu",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -40027,10 +40836,61 @@
         "descripcion": "Una vez por turno, puedes desterrar una carta del cementerio oponente.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2037,
+    "id": 7056,
+    "nombre": "Oengus",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/oengusalt.webp",
+    "habilidad_texto_descriptivo": "En Guerra de Talismanes, puedes destruir a Oengus para que tu oponente bote 2 cartas de su Mazo Castillo. En tu fase de Vigilia, si Oengus esta en tu cementerio puedes pagar 2 Oros para ponerlo en juego sin pagar su coste.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sombra",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7057,
     "nombre": "Orcos",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -40097,10 +40957,58 @@
         },
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2038,
+    "id": 7058,
+    "nombre": "Oseye",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/oseyeaniversario.webp",
+    "habilidad_texto_descriptivo": "Oseye no puede ser Anulado. Puede atacar cuando entra en juego. Puedes pagar el coste de Oseye para prevenir que sea destruida o desterrada subiendola a tu mano. ",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled",
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "cost": {
+          "type": "payGold",
+          "count": 2
+        },
+        "effect": {
+          "type": "returnSelfToHand"
+        },
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio",
+            "banish"
+          ]
+        },
+        "description": "Puedes pagar 2 Oros para prevenir que sea destruida o desterrada, subiéndola a tu mano.",
+        "id_habilidad": "oseye_salvation"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7059,
     "nombre": "Oseye",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -40143,10 +41051,11 @@
         "description": "Puedes pagar 2 Oros para prevenir que sea destruida o desterrada, subiéndola a tu mano.",
         "id_habilidad": "oseye_salvation"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2039,
+    "id": 7060,
     "nombre": "Perseo",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -40189,10 +41098,11 @@
         "id_habilidad": "perseo_banish_shuffle",
         "costPaidBeforeResponse": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2040,
+    "id": 7061,
     "nombre": "Pilar Botero",
     "tipo": "Oro",
     "coste_oro": 0,
@@ -40256,1738 +41166,11 @@
         "oncePerTurn": true,
         "id_habilidad": "pilar_botero_unblockable"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2041,
-    "nombre": "Resplandor de Heka",
-    "tipo": "Talisman",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/resplandordehekashogun4.webp",
-    "habilidad_texto_descriptivo": "Cuando se juegue una carta que no sea Talisman, puedes jugar Resplandor de Heka para que esa carta entre en juego sin habilidad hasta la Fase Final. Luego puedes robar una carta. Si controlas a Heka puedes robar una carta extra.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "then": {
-            "effect": {
-              "type": "chooseOne",
-              "prompt": "Elige una opción:",
-              "options": [
-                {
-                  "id": "heka_draw_2_ally",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 2
-                  },
-                  "condition": {
-                    "type": "playerControls",
-                    "query": {
-                      "nombre": "Heka"
-                    },
-                    "amount": 1,
-                    "comparison": "greaterOrEqual"
-                  },
-                  "description": "Robar 2 cartas (Controlas a Heka)"
-                },
-                {
-                  "id": "heka_draw_1_ally",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 1
-                  },
-                  "description": "Robar 1 carta"
-                },
-                {
-                  "id": "heka_no_draw_ally",
-                  "action": {},
-                  "description": "No robar"
-                }
-              ]
-            }
-          },
-          "type": "annulCardAbility",
-          "target": {
-            "fromContext": "triggeringCard"
-          },
-          "duration": "startOfFinalPhase"
-        },
-        "trigger": "onOpponentPlayAlly",
-        "description": "Anula la habilidad de un Aliado oponente que entra en juego y luego te permite robar.",
-        "id_habilidad": "resplandor_de_heka_ally"
-      },
-      {
-        "effect": {
-          "then": {
-            "effect": {
-              "type": "chooseOne",
-              "prompt": "Elige una opción:",
-              "options": [
-                {
-                  "id": "heka_draw_2_weapon",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 2
-                  },
-                  "condition": {
-                    "type": "playerControls",
-                    "query": {
-                      "nombre": "Heka"
-                    },
-                    "amount": 1,
-                    "comparison": "greaterOrEqual"
-                  },
-                  "description": "Robar 2 cartas (Controlas a Heka)"
-                },
-                {
-                  "id": "heka_draw_1_weapon",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 1
-                  },
-                  "description": "Robar 1 carta"
-                },
-                {
-                  "id": "heka_no_draw_weapon",
-                  "action": {},
-                  "description": "No robar"
-                }
-              ]
-            }
-          },
-          "type": "annulCardAbility",
-          "target": {
-            "fromContext": "triggeringCard"
-          },
-          "duration": "startOfFinalPhase"
-        },
-        "trigger": "onOpponentPlayWeapon",
-        "description": "Anula la habilidad de un Arma oponente que entra en juego y luego te permite robar.",
-        "id_habilidad": "resplandor_de_heka_weapon"
-      },
-      {
-        "effect": {
-          "then": {
-            "effect": {
-              "type": "chooseOne",
-              "prompt": "Elige una opción:",
-              "options": [
-                {
-                  "id": "heka_draw_2_totem",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 2
-                  },
-                  "condition": {
-                    "type": "playerControls",
-                    "query": {
-                      "nombre": "Heka"
-                    },
-                    "amount": 1,
-                    "comparison": "greaterOrEqual"
-                  },
-                  "description": "Robar 2 cartas (Controlas a Heka)"
-                },
-                {
-                  "id": "heka_draw_1_totem",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 1
-                  },
-                  "description": "Robar 1 carta"
-                },
-                {
-                  "id": "heka_no_draw_totem",
-                  "action": {},
-                  "description": "No robar"
-                }
-              ]
-            }
-          },
-          "type": "annulCardAbility",
-          "target": {
-            "fromContext": "triggeringCard"
-          },
-          "duration": "startOfFinalPhase"
-        },
-        "trigger": "onOpponentPlayTotem",
-        "description": "Anula la habilidad de un Tótem oponente que entra en juego y luego te permite robar.",
-        "id_habilidad": "resplandor_de_heka_totem"
-      },
-      {
-        "effect": {
-          "then": {
-            "effect": {
-              "type": "chooseOne",
-              "prompt": "Elige una opción:",
-              "options": [
-                {
-                  "id": "heka_draw_2_gold",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 2
-                  },
-                  "condition": {
-                    "type": "playerControls",
-                    "query": {
-                      "nombre": "Heka"
-                    },
-                    "amount": 1,
-                    "comparison": "greaterOrEqual"
-                  },
-                  "description": "Robar 2 cartas (Controlas a Heka)"
-                },
-                {
-                  "id": "heka_draw_1_gold",
-                  "action": {
-                    "type": "drawCards",
-                    "count": 1
-                  },
-                  "description": "Robar 1 carta"
-                },
-                {
-                  "id": "heka_no_draw_gold",
-                  "action": {},
-                  "description": "No robar"
-                }
-              ]
-            }
-          },
-          "type": "annulCardAbility",
-          "target": {
-            "fromContext": "triggeringCard"
-          },
-          "duration": "startOfFinalPhase"
-        },
-        "trigger": "onOpponentPlayGold",
-        "description": "Anula la habilidad de un Oro oponente que entra en juego y luego te permite robar.",
-        "id_habilidad": "resplandor_de_heka_gold"
-      }
-    ]
-  },
-  {
-    "id": 2042,
-    "nombre": "Sir Erec",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/sirerecshogun4.webp",
-    "habilidad_texto_descriptivo": "Sir Erec puede atacar cuando entra en juego. Cuando es declarado atacante, puedes barajar 1 carta o 2 Aliados de raza Caballero de tu Cementerio en tu Mazo Castillo.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-25T10:16:56.000Z",
-    "fuerza": 2,
-    "raza": "Caballero",
-    "leyenda": "Se dice que su armadura está forjada con los lamentos de sus enemigos caídos, infundiendo terror en el corazón de cualquiera que se le oponga. La luna misma palidece ante su mirada.",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ]
-      },
-      {
-        "effect": {
-          "type": "chooseAndShuffle",
-          "zone": "cementerio",
-          "prompt": "Habilidad de Sir Erec: Elige una opción para barajar cartas de tu cementerio.",
-          "options": [
-            {
-              "id": "option_any_1",
-              "query": {
-                "type": "*"
-              },
-              "maxCount": 1,
-              "minCount": 1,
-              "description": "Barajar 1 carta cualquiera"
-            },
-            {
-              "id": "option_knight_2",
-              "query": {
-                "race": "Caballero",
-                "type": "Aliado"
-              },
-              "maxCount": 2,
-              "minCount": 2,
-              "description": "Barajar 2 Aliados de raza Caballero"
-            }
-          ]
-        },
-        "trigger": "onDeclareAttack"
-      }
-    ]
-  },
-  {
-    "id": 2043,
-    "nombre": "Tadg el Druida",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/tadgeldruidashogun4.webp",
-    "habilidad_texto_descriptivo": "Sólo puede blquear. Cuando entra en juego, puedes mirar las cuatro primeras cartas de tu Castillo. Luego, puedes poner un Oro o un Aliado Druida en tu Man y las demas en la pare inferir de tu Mazo Castillo",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 4,
-    "raza": "Defensor",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "cannotAttack"
-        ]
-      },
-      {
-        "effect": {
-          "type": "viewTopAndChooseConditionalToHand",
-          "choice": {
-            "query": {
-              "or": [
-                {
-                  "type": "Oro"
-                },
-                {
-                  "type": "Aliado",
-                  "nameContains": "Druida"
-                }
-              ]
-            },
-            "prompt": "Elige un Oro o Aliado Druida para añadir a tu mano.",
-            "optional": true,
-            "destination": "hand"
-          },
-          "viewCount": 4,
-          "unselected": "moveToBottom"
-        },
-        "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 2044,
-    "nombre": "Taliesin",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/taliesinshogun4.webp",
-    "habilidad_texto_descriptivo": "Solo puedes tener un Taliesin en juego. Cuando Taliesin entra en juego, puedes buscar un aliado de raza Faerie en tu mazo Castillo y jugarlo sin pagar su coste.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Faerie",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "description": "Solo puedes tener un Taliesin en juego.",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "attack",
-            "defense"
-          ]
-        }
-      },
-      {
-        "effect": {
-          "type": "searchAndPlayToDefense",
-          "prompt": "Elige un Aliado de raza Faerie de tu Mazo Castillo para jugar sin pagar su coste.",
-          "searchQuery": {
-            "raza": "Faerie",
-            "type": "Aliado",
-            "zone": "mazoCastillo",
-            "nameIsNot": "Taliesin"
-          }
-        },
-        "trigger": "onEnterPlay",
-        "description": "Cuando Taliesin entra en juego, puedes buscar un aliado de raza Faerie en tu mazo Castillo y jugarlo sin pagar su coste.",
-        "id_habilidad": "taliesin_tutor_faerie"
-      }
-    ]
-  },
-  {
-    "id": 2045,
-    "nombre": "Tamis",
-    "tipo": "Aliado",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/tamisshogun.webp",
-    "habilidad_texto_descriptivo": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final. Si Hace daño al Mazo Castillo oponente, tu recibes el mismo daño.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Faraon",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "buff": {
-            "stat": "fuerza",
-            "value": 2
-          },
-          "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
-        },
-        "trigger": "onDeclareAttack",
-        "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
-        "id_habilidad": "tamis_attack_buff"
-      },
-      {
-        "effect": {
-          "type": "millCards",
-          "count": {
-            "fromContext": "damageDealtToDeck"
-          },
-          "target": "self"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "description": "Si Hace daño al Mazo Castillo oponente, tu recibes el mismo daño.",
-        "id_habilidad": "tamis_damage_recoil"
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "value": {
-            "from": "context",
-            "property": "damageDealtToDeck"
-          },
-          "marker": "damageDealtByTamis"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "tamis_set_damage_marker"
-      }
-    ]
-  },
-  {
-    "id": 2046,
-    "nombre": "Teseo de Atenas",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/teseodeatenasshogun4.webp",
-    "habilidad_texto_descriptivo": "Teseo de Atenas puede atacar cuandoo entra en juego. Si Tese de Atenas hace daño al Mazo Castillo oponente y controlas 2 o mas Aliados de raza Heroe, puedes destruir un Aliado en juego. ",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 4,
-    "raza": "Heroe",
-    "salud": null,
-    "cantidad_generada": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ]
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "teseo_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado en juego para destruir.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "any"
-          }
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Heroe",
-                "type": "Aliado"
-              },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "oncePerTurn": true,
-        "id_habilidad": "teseo_destroy_on_damage"
-      }
-    ]
-  },
-  {
-    "id": 2047,
-    "nombre": "Toro Apis",
-    "tipo": "Oro",
-    "coste_oro": 0,
-    "imagen_url": "/img/store/cartas/toroapisshogun4.webp",
-    "habilidad_texto_descriptivo": "Indestructible. Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la fase Final",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": 1,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "indestructible"
-        ]
-      },
-      {
-        "costs": [
-          {
-            "type": "paySelfAsCost"
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "buff": {
-            "stat": "fuerza",
-            "value": -1
-          },
-          "type": "grantBuffToTarget",
-          "prompt": "Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
-          "target": {
-            "query": {
-              "type": [
-                "Aliado",
-                "Oro"
-              ]
-            },
-            "controller": "opponent"
-          },
-          "duration": "endOfTurn"
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "goldReserve"
-        },
-        "description": "Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final.",
-        "id_habilidad": "toro_apis_debuff"
-      }
-    ]
-  },
-  {
-    "id": 2048,
-    "nombre": "Traicion de Bruto",
-    "tipo": "Talisman",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/traiciondebrutoshogun4.webp",
-    "habilidad_texto_descriptivo": "Baraja un Aliado en juego que tenga algún modificador de Fuerza. ",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "targetAndShuffle",
-          "prompt": "Elige un Aliado en juego que tenga un modificador de Fuerza para barajar.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": "Aliado"
-            },
-            "condition": {
-              "type": "propertyComparison",
-              "operator": "notEqual",
-              "property1": "fuerza",
-              "property2": "base_fuerza"
-            },
-            "controller": "any"
-          }
-        },
-        "trigger": "onEnterPlay",
-        "id_habilidad": "traicion_de_bruto_main",
-        "habilidad_texto_descriptivo": "Baraja un Aliado en juego que tenga algún modificador de Fuerza."
-      }
-    ]
-  },
-  {
-    "id": 2049,
-    "nombre": "Wyrm Abismal",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/wyrmabismal.webp",
-    "habilidad_texto_descriptivo": "Mientras Wyrm Abismal esté en juego, en respuesta a que uno de tus Aliados de raza Sombra sea destruido, tu oponente debe destruir uno de sus Aliados a su elección.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 4,
-    "raza": "Sombra",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "forceOpponentToDestroyAlly",
-          "prompt": "Debes destruir uno de tus Aliados a tu elección.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "descripcion": "Mientras este Aliado esté en juego, si un Aliado Sombra que controlas es destruido, tu oponente debe destruir un Aliado.",
-        "id_habilidad": "wyrm_abismal_retaliate",
-        "eventCondition": {
-          "raza": "Sombra",
-          "type": "Aliado",
-          "destinationZone": "cementerio"
-        },
-        "listensForEvent": "onAllyLeavePlay",
-        "triggeringPlayer": "self"
-      }
-    ]
-  },
-  {
-    "id": 2050,
-    "nombre": "Zagreus",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/zagreusshogun4.webp",
-    "habilidad_texto_descriptivo": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente, En tu Fase de Vigilia, si Zagreus esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste. ",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Olimpico",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "id": "zagreus_annul",
-        "cost": {
-          "type": "shuffleSelf"
-        },
-        "effect": {
-          "type": "annulTriggeringCard"
-        },
-        "trigger": "onOpponentPlayAlly",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente.",
-        "costPaidBeforeResponse": true
-      },
-      {
-        "id": "zagreus_graveyard_play",
-        "cost": {
-          "type": "payCostForGraveyardAbility",
-          "count": 4
-        },
-        "phase": "Principal",
-        "effect": {
-          "type": "playSelfFromGraveyardFree"
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": "cementerio"
-        },
-        "description": "En tu Fase de Vigilia, si Zagreus está en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
-        "oncePerTurn": true
-      }
-    ]
-  },
-  {
-    "id": 2051,
-    "nombre": "Cronos",
-    "tipo": "Aliado",
-    "coste_oro": 5,
-   "imagen_url": "/img/store/cartas/cronosshogun4.webp",
-    "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente. En tu fase final puedes agrupar tus cartas. Carta Unica",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 5,
-    "raza": "Titan",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "costs": [
-          {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Cronos:",
-            "options": [
-              {
-                "id": "pay_gold_cost",
-                "action": {
-                  "type": "payGold",
-                  "count": 3
-                },
-                "description": "Pagar 3 Oros"
-              },
-              {
-                "id": "destroy_titan_cost",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "prompt": "Elige un Aliado Titán que controles para destruir como coste.",
-                  "target": {
-                    "query": {
-                      "raza": "Titan",
-                      "type": "Aliado"
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado Titán que controles"
-              }
-            ]
-          }
-        ],
-        "phase": "Principal",
-        "effect": {
-          "type": "destroyTarget",
-          "count": 1,
-          "prompt": "Elige un Aliado oponente para destruir.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "oncePerTurn": true,
-        "habilidad_texto_descriptivo": "En tu fase de vigilia y una vez por turno puedes pagar tres de oro o destruir un Aliado de raza titán que controles para destruir un Aliado oponente."
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "regroupAll"
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "oncePerTurn": true,
-        "habilidad_texto_descriptivo": "En tu fase final puedes agrupar tus cartas."
-      }
-    ]
-  },
-  {
-    "id": 2052,
-    "nombre": "Afrodita",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/afroditafullart.webp",
-    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
-    "descripcion": "Edición Especial Full Art",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Olimpico",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "chooseTypeAndViewTop",
-          "prompt": "Nombra un tipo de carta:",
-          "options": [
-            "Aliado",
-            "Arma",
-            "Totem"
-          ]
-        },
-        "trigger": "activatable",
-        "phase": "Principal",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "oncePerTurn": true
-      }
-    ]
-  },
-  {
-    "id": 2053,
-    "nombre": "Afrodita",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/afroditashogun.webp",
-    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Olimpico",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "chooseTypeAndViewTop",
-          "prompt": "Nombra un tipo de carta:",
-          "options": [
-            "Aliado",
-            "Arma",
-            "Totem"
-          ]
-        },
-        "trigger": "activatable",
-        "phase": "Principal",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "oncePerTurn": true
-      }
-    ]
-  },
-  {
-    "id": 2054,
-    "nombre": "Aine",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/aineshogun.webp",
-    "habilidad_texto_descriptivo": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente. ",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Desafiante",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "trigger": "onEnterPlay",
-        "effect": {
-          "type": "revealFromHand",
-          "count": 1,
-          "query": {
-            "raza": "Desafiante",
-            "type": "Aliado"
-          },
-          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
-          "optional": true,
-          "onSuccess": {
-            "type": "banishTarget",
-            "prompt": "Elige un Aliado oponente para desterrar.",
-            "target": {
-              "query": {
-                "type": "Aliado"
-              },
-              "controller": "opponent"
-            }
-          }
-        },
-        "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
-        "id_habilidad": "aine_reveal_and_banish"
-      }
-    ]
-  },
-  {
-    "id": 2055,
-    "nombre": "Averix el Sabio",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/averixelsabioalt.webp",
-    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes elegir una carta que no sea oro para que pierda su habilidad mientras esta carta esté en juego en tu fase final si controlas uno o más aliados druida puedes robar una carta.",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Defensor",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "annulCardAbility",
-          "canCancel": true,
-          "target": {
-            "query": {
-              "type_not_in": [
-                "Oro"
-              ],
-              "isOther": true
-            },
-            "controller": "any"
-          },
-          "message": "Elige otra carta (que no sea Oro) para que pierda su habilidad mientras esta carta esté en juego.",
-          "duration": "whileInPlay"
-        },
-        "trigger": "onEnterPlay"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1,
-          "message": "Robas una carta por la habilidad de Averix el Sabio."
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado",
-                "nameContains": "Druida"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "oncePerTurn": true
-      }
-    ]
-  },
-  {
-    "id": 2056,
-    "nombre": "Bola de Fuego",
-    "tipo": "Talisman",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/boladefuegoalt.webp",
-    "habilidad_texto_descriptivo": "Destruye una carta en juego, que no sea un oro.",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "destroyTarget",
-          "visualEffect": "fireball",
-          "count": 1,
-          "target": {
-            "query": {
-              "notType": "Oro"
-            },
-            "controller": "any"
-          },
-          "message": "Habilidad de Bola de Fuego: Elige una carta en juego que no sea Oro para destruir."
-        },
-        "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 2057,
-    "nombre": "Caja de Pandora",
-    "tipo": "Oro",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/caja-de-pandora-myl.webp",
-    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
-    "descripcion": "Edición Especial",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": 1,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "annulTriggeringTalisman"
-        },
-        "trigger": "onOpponentPlayTalisman"
-      }
-    ]
-  },
-  {
-    "id": 2058,
-    "nombre": "Caja de Pandora",
-    "tipo": "Oro",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/cajadepandoraalt.webp",
-    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Helenica",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": 1,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "annulTriggeringTalisman"
-        },
-        "trigger": "onOpponentPlayTalisman"
-      }
-    ]
-  },
-  {
-    "id": 2059,
-    "nombre": "Capa de Invisibilidad",
-    "tipo": "Talisman",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/capadeinvisibilidadshogun.webp",
-    "habilidad_texto_descriptivo": "En respuesta a que tu oponente baje una carta, ésta es barajada en su mazo castillo. Esta habilidad no afecta a los oros.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-26T19:33:33.000Z",
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "shuffleTriggeringCardIfNotOro"
-        },
-        "trigger": "onOpponentPlayAlly"
-      },
-      {
-        "effect": {
-          "type": "shuffleTriggeringCardIfNotOro"
-        },
-        "trigger": "onOpponentPlayWeapon"
-      },
-      {
-        "effect": {
-          "type": "shuffleTriggeringCardIfNotOro"
-        },
-        "trigger": "onOpponentPlayTotem"
-      }
-    ]
-  },
-  {
-    "id": 2060,
-    "nombre": "Crom Cruach",
-    "tipo": "Aliado",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/cromcruachalt.webp",
-    "habilidad_texto_descriptivo": "Croom Cruach no puede bloquear, Cuando Crom Cruach es declarado atacante, puedes buscar un aliado de raza Sombra de coste 2  menos en tu Cementerio y ponerlo en tu mano. ",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Sombra",
-    "salud": null,
-    "cantidad_generada": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "cannotBlock"
-        ]
-      },
-      {
-        "effect": {
-          "type": "searchAndPutInHand",
-          "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
-          "searchQuery": {
-            "cost": {
-              "value": 2,
-              "operator": "<="
-            },
-            "raza": "Sombra",
-            "type": "Aliado",
-            "zone": "cementerio"
-          }
-        },
-        "trigger": "onDeclareAttack"
-      }
-    ]
-  },
-  {
-    "id": 2061,
-    "nombre": "Demoledor de Amon",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/demoledordeamonalternativo.webp",
-    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Talismanes oponentes que afecten a este Aliado cuestan 2 Oros adicionales. Cuando es declarado atacante, puedes elegir un Aliado para que lo bloque. Ese aliado pierde su habilidad y 1 a la fuerza hasta la Fase Final. ",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 4,
-    "raza": "Sacerdote",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Puede atacar cuando entra en juego."
-      },
-      {
-        "effect": {
-          "cost": {
-            "type": "payGold",
-            "count": 2
-          },
-          "type": "forceOpponentToPayCost",
-          "prompt": "Debes pagar 2 Oros adicionales para que tu Talismán afecte a Demoledor de Amon."
-        },
-        "trigger": "onBeforeBeingTarget",
-        "condition": {
-          "type": "triggeringCardIsType",
-          "cardType": "Talisman"
-        },
-        "description": "Talismanes oponentes que afecten a este Aliado cuestan 2 Oros adicionales.",
-        "resolvesInstantly": true
-      },
-      {
-        "effect": {
-          "type": "forceBlockAndDebuff",
-          "prompt": "Elige un Aliado oponente para que bloquee a Demoledor de Amon.",
-          "canCancel": true,
-          "target": {
-            "zone": [
-              "defense"
-            ],
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        },
-        "trigger": "onDeclareAttack",
-        "description": "Cuando es declarado atacante, puedes elegir un Aliado para que lo bloquee. Ese aliado pierde su habilidad y 1 a la fuerza hasta la Fase Final."
-      }
-    ]
-  },
-  {
-    "id": 2062,
-    "nombre": "Djedefhor",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/djedefhoraniversario.webp",
-    "habilidad_texto_descriptivo": "Sólo puedes tener un Djedefhor en juego. Cuando Djedefhor entra en juego, roba 2 cartas. Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo. ",
-    "descripcion": "Edición Especial Aniversario",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Sacerdote",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "description": "Sólo puedes tener un Djedefhor en juego.",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "attack",
-            "defense"
-          ]
-        }
-      },
-      {
-        "effect": {
-          "type": "drawCards",
-          "count": 2
-        },
-        "trigger": "onEnterPlay",
-        "description": "Cuando Djedefhor entra en juego, roba 2 cartas.",
-        "id_habilidad": "djedefhor_enter_play"
-      },
-      {
-        "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "*"
-          },
-          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-          "canCancel": true
-        },
-        "trigger": "onLeavePlay",
-        "condition": {
-          "type": "playerControls",
-          "query": {
-            "raza": "Sacerdote",
-            "type": "Aliado"
-          },
-          "amount": 0,
-          "comparison": "greaterOrEqual"
-        },
-        "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
-        "id_habilidad": "djedefhor_leave_play"
-      }
-    ]
-  },
-  {
-    "id": 2063,
-    "nombre": "Dragón de Magma",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/dragondemagmaalt.webp",
-    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-26T19:50:02.000Z",
-    "fuerza": 3,
-    "raza": "Dragon",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "destroyTarget",
-          "visualEffect": "fireball",
-          "count": 1,
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          },
-          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
-        },
-        "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 2064,
-    "nombre": "Dragón de Magma",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/dragondemagmaalternativo.webp",
-    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-26T19:50:02.000Z",
-    "fuerza": 3,
-    "raza": "Dragon",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "destroyTarget",
-          "visualEffect": "fireball",
-          "count": 1,
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          },
-          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
-        },
-        "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 2065,
-    "nombre": "Duque Godofredo",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/duquegodofredofullart.webp",
-    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
-    "descripcion": "Edición Especial Full Art",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-25T20:24:45.000Z",
-    "fuerza": 2,
-    "raza": "Caballero",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "statBuff",
-          "buffs": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
-          "target": {
-            "raza": "Caballero",
-            "type": "Aliado"
-          }
-        },
-        "trigger": "continuous"
-      }
-    ]
-  },
-  {
-    "id": 2066,
-    "nombre": "Duque Godofredo",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/duquegodofredoshogun.webp",
-    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
-    "descripcion": "Edición Especial Shogun",
-    "expansion": "Espada Sagrada",
-    "rareza": "Promo",
-    "fecha_creacion": "2025-06-25T20:24:45.000Z",
-    "fuerza": 2,
-    "raza": "Caballero",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "statBuff",
-          "buffs": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
-          "target": {
-            "raza": "Caballero",
-            "type": "Aliado"
-          }
-        },
-        "trigger": "continuous"
-      }
-    ]
-  },
-  {
-    "id": 2067,
-    "nombre": "Forma de Lince",
-    "tipo": "Talisman",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/formadelinceaniversario.webp",
-    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final. Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final. ",
-    "descripcion": "Edición Especial Aniversario",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "id_habilidad": "forma_de_lince_enter_play",
-        "trigger": "onEnterPlay",
-        "effect": {
-          "type": "grantBuffToTarget",
-          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "self"
-          },
-          "buff": {
-            "stat": "fuerza",
-            "value": 3
-          },
-          "duration": "endOfTurn",
-          "then": {
-            "effect": {
-              "type": "addMarkerToTarget",
-              "marker": "forma_de_lince_target",
-              "duration": "endOfTurn"
-            }
-          }
-        },
-        "description": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final."
-      },
-      {
-        "id_habilidad": "forma_de_lince_final_phase_draw",
-        "trigger": "onPhaseStart",
-        "triggerZones": [
-          "graveyard",
-          "hand",
-          "deck",
-          "banish",
-          "field"
-        ],
-        "phase": "Final",
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "El Aliado afectado por Forma de Lince hizo daño. ¿Quieres robar una carta?",
-          "options": [
-            {
-              "id": "forma_de_lince_draw_card",
-              "action": {
-                "type": "drawCards",
-                "count": 1
-              },
-              "description": "Sí, robar 1 carta."
-            },
-            {
-              "id": "forma_de_lince_no_draw",
-              "action": {},
-              "description": "No, gracias."
-            }
-          ]
-        },
-        "condition": {
-          "type": "playerHasMarker",
-          "marker": "forma_de_lince_can_draw",
-          "uniqueSource": true
-        },
-        "oncePerTurn": true,
-        "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
-      }
-    ]
-  },
-  {
-    "id": 2068,
-    "nombre": "Heka",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/hekaaniversario.webp",
-    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para robar una carta extra en tu Fase Final.",
-    "descripcion": "Edición Especial Aniversario",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Eterno",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "id_habilidad": "heka_pay_for_draw",
-        "trigger": "activatable_with_costs",
-        "costs": [
-          {
-            "type": "payGold",
-            "count": 1
-          }
-        ],
-        "phase": "Principal",
-        "effect": {
-          "type": "addMarkerToPlayer",
-          "marker": "heka_draw_pending",
-          "uniqueSource": true,
-          "duration": "endOfTurn"
-        },
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "oncePerTurn": true,
-        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para habilitar el robo de una carta en tu Fase Final."
-      },
-      {
-        "id_habilidad": "heka_final_phase_auto_draw",
-        "trigger": "onPhaseStart",
-        "phase": "Final",
-        "triggerZones": [
-          "field",
-          "graveyard",
-          "hand",
-          "deck",
-          "banish"
-        ],
-        "condition": {
-          "type": "playerHasMarker",
-          "marker": "heka_draw_pending",
-          "uniqueSource": true
-        },
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Pagaste el coste de Heka. ¿Quieres robar una carta extra?",
-          "options": [
-            {
-              "id": "heka_accept_draw",
-              "action": {
-                "type": "drawCards",
-                "count": 1
-              },
-              "description": "Sí, robar 1 carta."
-            },
-            {
-              "id": "heka_decline_draw",
-              "action": {},
-              "description": "No por ahora."
-            }
-          ]
-        },
-        "oncePerTurn": true,
-        "description": "En tu Fase Final, si pagaste el coste de Heka este turno, puedes robar una carta."
-      }
-    ]
-  },
-  {
-    "id": 2069,
-    "nombre": "La Vision",
-    "tipo": "Talisman",
-    "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/lavisionaniversario.webp",
-    "habilidad_texto_descriptivo": "No puede ser Anulado. Mira las 4 primeras cartas del tope de tu Mazo Castillo, elige una y ponla en tu Mano. Luego Baraja el resto en tu Mazo Castillo. ",
-    "descripcion": "Edición Especial Aniversario",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "cannotBeAnnulled"
-        ]
-      },
-      {
-        "effect": {
-          "type": "viewTopAndChooseConditionalToHand",
-          "choice": {
-            "query": {
-              "type": "*"
-            },
-            "prompt": "Elige una carta de las 4 que viste para poner en tu mano.",
-            "optional": false,
-            "destination": "hand"
-          },
-          "viewCount": 4,
-          "unselected": "shuffleBack"
-        },
-        "trigger": "onEnterPlay"
-      }
-    ]
-  },
-  {
-    "id": 2070,
-    "nombre": "Oengus",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/oengusalt.webp",
-    "habilidad_texto_descriptivo": "En Guerra de Talismanes, puedes destruir a Oengus para que tu oponente bote 2 cartas de su Mazo Castillo. En tu fase de Vigilia, si Oengus esta en tu cementerio puedes pagar 2 Oros para ponerlo en juego sin pagar su coste.",
-    "descripcion": "Edición Especial Arte Alternativo",
-    "expansion": "Hijos De Daana",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Sombra",
-    "salud": null,
-    "cantidad_generada": null,
-    "habilidades": [
-      {
-        "cost": {
-          "type": "destroySelf"
-        },
-        "phase": "Guerra de Talismanes",
-        "effect": {
-          "type": "millCards",
-          "count": 2,
-          "target": "opponent"
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        }
-      },
-      {
-        "cost": {
-          "type": "payCostForGraveyardAbility",
-          "count": 2
-        },
-        "phase": "Principal",
-        "effect": {
-          "type": "playSelfFromGraveyardFree"
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": "cementerio"
-        }
-      }
-    ]
-  },
-  {
-    "id": 2071,
-    "nombre": "Oseye",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/oseyeaniversario.webp",
-    "habilidad_texto_descriptivo": "Oseye no puede ser Anulado. Puede atacar cuando entra en juego. Puedes pagar el coste de Oseye para prevenir que sea destruida o desterrada subiendola a tu mano. ",
-    "descripcion": "Edición Especial Aniversario",
-    "expansion": "Dominios de Ra",
-    "rareza": "Promo",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Sacerdote",
-    "leyenda": null,
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "cannotBeAnnulled",
-          "canAttackOnEnterPlay"
-        ]
-      },
-      {
-        "cost": {
-          "type": "payGold",
-          "count": 2
-        },
-        "effect": {
-          "type": "returnSelfToHand"
-        },
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio",
-            "banish"
-          ]
-        },
-        "description": "Puedes pagar 2 Oros para prevenir que sea destruida o desterrada, subiéndola a tu mano.",
-        "id_habilidad": "oseye_salvation"
-      }
-    ]
-  },
-  {
-    "id": 2072,
+    "id": 7062,
     "nombre": "Ptah",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -42022,10 +41205,11 @@
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, tu oponente elige 6 cartas de tu Cementerio y las barajas en tu Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2073,
+    "id": 7063,
     "nombre": "Ra",
     "tipo": "Aliado",
     "coste_oro": 5,
@@ -42118,10 +41302,11 @@
         },
         "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2074,
+    "id": 7064,
     "nombre": "Ramses II",
     "tipo": "Aliado",
     "coste_oro": 4,
@@ -42196,10 +41381,11 @@
         "trigger": "onBeingBlocked",
         "description": "Cuando este Aliado sea Bloqueado, tu oponente bota tantas cartas como fuerza tenga este Aliado."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2075,
+    "id": 7065,
     "nombre": "Resplandor de Heka",
     "tipo": "Talisman",
     "coste_oro": 2,
@@ -42413,10 +41599,383 @@
         "description": "Anula la habilidad de un Oro oponente que entra en juego y luego te permite robar.",
         "id_habilidad": "resplandor_de_heka_gold"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2076,
+    "id": 7066,
+    "nombre": "Resplandor de Heka",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/resplandordehekashogun4.webp",
+    "habilidad_texto_descriptivo": "Cuando se juegue una carta que no sea Talisman, puedes jugar Resplandor de Heka para que esa carta entre en juego sin habilidad hasta la Fase Final. Luego puedes robar una carta. Si controlas a Heka puedes robar una carta extra.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_ally",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_ally",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_ally",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "description": "Anula la habilidad de un Aliado oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_ally"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_weapon",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_weapon",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_weapon",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "description": "Anula la habilidad de un Arma oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_weapon"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_totem",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_totem",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_totem",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "description": "Anula la habilidad de un Tótem oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_totem"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_gold",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_gold",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_gold",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayGold",
+        "description": "Anula la habilidad de un Oro oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_gold"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7067,
+    "nombre": "Sir Erec",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sirerecshogun4.webp",
+    "habilidad_texto_descriptivo": "Sir Erec puede atacar cuando entra en juego. Cuando es declarado atacante, puedes barajar 1 carta o 2 Aliados de raza Caballero de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T10:16:56.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "Se dice que su armadura está forjada con los lamentos de sus enemigos caídos, infundiendo terror en el corazón de cualquiera que se le oponga. La luna misma palidece ante su mirada.",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "effect": {
+          "type": "chooseAndShuffle",
+          "zone": "cementerio",
+          "prompt": "Habilidad de Sir Erec: Elige una opción para barajar cartas de tu cementerio.",
+          "options": [
+            {
+              "id": "option_any_1",
+              "query": {
+                "type": "*"
+              },
+              "maxCount": 1,
+              "minCount": 1,
+              "description": "Barajar 1 carta cualquiera"
+            },
+            {
+              "id": "option_knight_2",
+              "query": {
+                "race": "Caballero",
+                "type": "Aliado"
+              },
+              "maxCount": 2,
+              "minCount": 2,
+              "description": "Barajar 2 Aliados de raza Caballero"
+            }
+          ]
+        },
+        "trigger": "onDeclareAttack"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7068,
+    "nombre": "Tadg el Druida",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/tadgeldruidashogun4.webp",
+    "habilidad_texto_descriptivo": "Sólo puede blquear. Cuando entra en juego, puedes mirar las cuatro primeras cartas de tu Castillo. Luego, puedes poner un Oro o un Aliado Druida en tu Man y las demas en la pare inferir de tu Mazo Castillo",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ]
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "or": [
+                {
+                  "type": "Oro"
+                },
+                {
+                  "type": "Aliado",
+                  "nameContains": "Druida"
+                }
+              ]
+            },
+            "prompt": "Elige un Oro o Aliado Druida para añadir a tu mano.",
+            "optional": true,
+            "destination": "hand"
+          },
+          "viewCount": 4,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7069,
+    "nombre": "Taliesin",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/taliesinshogun4.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Taliesin en juego. Cuando Taliesin entra en juego, puedes buscar un aliado de raza Faerie en tu mazo Castillo y jugarlo sin pagar su coste.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Taliesin en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de raza Faerie de tu Mazo Castillo para jugar sin pagar su coste.",
+          "searchQuery": {
+            "raza": "Faerie",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "nameIsNot": "Taliesin"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Taliesin entra en juego, puedes buscar un aliado de raza Faerie en tu mazo Castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "taliesin_tutor_faerie"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7070,
     "nombre": "Tamis",
     "tipo": "Aliado",
     "coste_oro": 1,
@@ -42472,10 +42031,11 @@
         "isHidden": true,
         "id_habilidad": "tamis_set_damage_marker"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2077,
+    "id": 7071,
     "nombre": "Tamis",
     "tipo": "Aliado",
     "coste_oro": 1,
@@ -42531,10 +42091,71 @@
         "isHidden": true,
         "id_habilidad": "tamis_set_damage_marker"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2078,
+    "id": 7072,
+    "nombre": "Tamis",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/tamisshogun.webp",
+    "habilidad_texto_descriptivo": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final. Si Hace daño al Mazo Castillo oponente, tu recibes el mismo daño.",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
+        "id_habilidad": "tamis_attack_buff"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "fromContext": "damageDealtToDeck"
+          },
+          "target": "self"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si Hace daño al Mazo Castillo oponente, tu recibes el mismo daño.",
+        "id_habilidad": "tamis_damage_recoil"
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "value": {
+            "from": "context",
+            "property": "damageDealtToDeck"
+          },
+          "marker": "damageDealtByTamis"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "tamis_set_damage_marker"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7073,
     "nombre": "Tanutamani",
     "tipo": "Aliado",
     "coste_oro": 2,
@@ -42596,10 +42217,82 @@
         "oncePerTurn": true,
         "id_habilidad": "tanutamani_shuffle_on_damage"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2079,
+    "id": 7074,
+    "nombre": "Teseo de Atenas",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/teseodeatenasshogun4.webp",
+    "habilidad_texto_descriptivo": "Teseo de Atenas puede atacar cuandoo entra en juego. Si Tese de Atenas hace daño al Mazo Castillo oponente y controlas 2 o mas Aliados de raza Heroe, puedes destruir un Aliado en juego. ",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "teseo_set_damage_marker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado en juego para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Heroe",
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "id_habilidad": "teseo_destroy_on_damage"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7075,
     "nombre": "Toque de Persival",
     "tipo": "Talisman",
     "coste_oro": 1,
@@ -42636,10 +42329,118 @@
         "trigger": "onEnterPlay",
         "id_habilidad": "toque_de_persival_effect"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2080,
+    "id": 7076,
+    "nombre": "Toro Apis",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/toroapisshogun4.webp",
+    "habilidad_texto_descriptivo": "Indestructible. Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la fase Final",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": [
+                "Aliado",
+                "Oro"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "toro_apis_debuff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7077,
+    "nombre": "Traicion de Bruto",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/traiciondebrutoshogun4.webp",
+    "habilidad_texto_descriptivo": "Baraja un Aliado en juego que tenga algún modificador de Fuerza. ",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado en juego que tenga un modificador de Fuerza para barajar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "condition": {
+              "type": "propertyComparison",
+              "operator": "notEqual",
+              "property1": "fuerza",
+              "property2": "base_fuerza"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "traicion_de_bruto_main",
+        "habilidad_texto_descriptivo": "Baraja un Aliado en juego que tenga algún modificador de Fuerza."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7078,
     "nombre": "Vouivre",
     "tipo": "Aliado",
     "coste_oro": 5,
@@ -42699,10 +42500,11 @@
         "trigger": "activatable",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
-    "id": 2081,
+    "id": 7079,
     "nombre": "Vouivre",
     "tipo": "Aliado",
     "coste_oro": 5,
@@ -42762,6 +42564,111 @@
         "trigger": "activatable",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7080,
+    "nombre": "Wyrm Abismal",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/wyrmabismal.webp",
+    "habilidad_texto_descriptivo": "Mientras Wyrm Abismal esté en juego, en respuesta a que uno de tus Aliados de raza Sombra sea destruido, tu oponente debe destruir uno de sus Aliados a su elección.",
+    "descripcion": "Edición Especial",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "forceOpponentToDestroyAlly",
+          "prompt": "Debes destruir uno de tus Aliados a tu elección.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Mientras este Aliado esté en juego, si un Aliado Sombra que controlas es destruido, tu oponente debe destruir un Aliado.",
+        "id_habilidad": "wyrm_abismal_retaliate",
+        "eventCondition": {
+          "raza": "Sombra",
+          "type": "Aliado",
+          "destinationZone": "cementerio"
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7081,
+    "nombre": "Zagreus",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/zagreusshogun4.webp",
+    "habilidad_texto_descriptivo": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente, En tu Fase de Vigilia, si Zagreus esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste. ",
+    "descripcion": "Edición Especial Shogun",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "zagreus_annul",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "id": "zagreus_graveyard_play",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 4
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si Zagreus está en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
   }
 ]

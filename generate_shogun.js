@@ -3,7 +3,7 @@ const path = require('path');
 
 const JSON_PATH = '/Users/dmarambio/cartas/cartas.json';
 const IMG_DIR = '/Users/dmarambio/cartas/img/store/cartas/';
-const START_ID = 2000;
+const START_ID = 7000;
 
 const cartas = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 // Ordenar archivos para que la asignacion de IDs sea determinista
@@ -85,6 +85,7 @@ files.forEach(file => {
         newCard.imagen_url = "/img/store/cartas/" + file;
         newCard.rareza = "Promo";
         newCard.descripcion = "Edición Especial Shogun";
+        newCard.tier = "bajo";
 
         results.push(newCard);
     } else {

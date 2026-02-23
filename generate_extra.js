@@ -3,7 +3,7 @@ const path = require('path');
 
 const JSON_PATH = '/Users/dmarambio/cartas/cartas.json';
 const IMG_DIR = '/Users/dmarambio/cartas/cartasporagregar/';
-const START_ID = 2052;
+const START_ID = 7056;
 
 const cartas = JSON.parse(fs.readFileSync(JSON_PATH, 'utf8'));
 const files = fs.readdirSync(IMG_DIR).filter(f => f.endsWith('.webp')).sort();

@@ -27443,6 +27443,35 @@
     ]
   },
   {
+    "id": 707,
+    "nombre": "Cantrip",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/nuevascartas/cantrip707.webp",
+    "habilidad_texto_descriptivo": "Roba 1 carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Sin Raza",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "description": "Roba 1 carta.",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        }
+      }
+    ]
+  },
+  {
     "id": 1011,
     "nombre": "Dragon de Plata",
     "tipo": "Aliado",

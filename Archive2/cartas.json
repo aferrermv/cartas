@@ -42699,5 +42699,34 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 930289,
+    "nombre": "Cantrip",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/093_espada_sagrada_aniversario/cantrip930289.webp",
+    "habilidad_texto_descriptivo": "Roba 1 carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Sin Raza",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "description": "Roba 1 carta.",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        }
+      }
+    ]
   }
 ]

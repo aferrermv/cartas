@@ -42701,18 +42701,70 @@
     "tier": "medio"
   },
   {
-    "id": 930289,
-    "nombre": "Cantrip",
-    "tipo": "Talisman",
-    "coste_oro": 0,
-    "imagen_url": "/img/093_espada_sagrada_aniversario/cantrip930289.webp",
-    "habilidad_texto_descriptivo": "Roba 1 carta.",
-    "descripcion": null,
-    "expansion": "Espada Sagrada",
-    "rareza": "",
+    "id": 1585,
+    "nombre": "Perifetes",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-776.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado de taza Titán que controles para que tu oponente bote 3 cartas.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado de taza Titán que controles para que tu oponente bote 3 cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
     "fecha_creacion": null,
-    "fuerza": 0,
-    "raza": "Sin Raza",
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige otro Aliado de raza Titán que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "raza": "Titan",
+                "type": "Aliado",
+                "isOther": true
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes destruir otro Aliado de raza Titán que controles para que tu oponente bote 3 cartas.",
+        "oncePerTurn": true,
+        "id_habilidad": "perifetes_sacrifice_mill"
+      }
+    ]
+  },
+  {
+    "id": 2186,
+    "nombre": "Ojo Udyat",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1555.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que tu oponente juegue una carta, si Ojo Udyat está en tu Reserva de Oro, puedes desterrarlo para buscar una carta de Tótem en tu Mazo Castillo y jugarla pagando su coste.",
+    "descripcion": "En respuesta a que tu oponente juegue una carta, si Ojo Udyat está en tu Reserva de Oro, puedes desterrarlo para buscar una carta de Tótem en tu Mazo Castillo y jugarla pagando su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
@@ -42720,12 +42772,306 @@
     "salud": null,
     "habilidades": [
       {
-        "trigger": "onEnterPlay",
-        "description": "Roba 1 carta.",
+        "cost": {
+          "type": "banishSelf"
+        },
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        }
+          "type": "searchAndPlayPayingCost",
+          "prompt": "Elige un Tótem de tu Mazo Castillo para jugar pagando su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo"
+          },
+          "destinationZone": "field"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "En respuesta a que tu oponente juegue una carta, si Ojo Udyat está en tu Reserva de Oro, puedes desterrarlo para buscar una carta de Tótem en tu Mazo Castillo y jugarla pagando su coste.",
+        "listensForEvent": "onOpponentPlayCardFromHand"
+      }
+    ]
+  },
+  {
+    "id": 2188,
+    "nombre": "Guerrero de Guardia",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1560.webp",
+    "habilidad_texto_descriptivo": "Si controlas otro Aliado Guerrero puede atacar el turno que entra en juego. Cuando entra en juego o sea declarado atacante, elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final.",
+    "descripcion": "Si controlas otro Aliado Guerrero puede atacar el turno que entra en juego. Cuando entra en juego o sea declarado atacante, elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "isOther": true,
+            "nameContains": "Guerrero"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas otro Aliado Guerrero puede atacar el turno que entra en juego."
+      },
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "prompt": "Elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final."
+      },
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "prompt": "Elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando sea declarado atacante, elige un Aliado o Tótem oponente para que pierda su habilidad hasta la Fase Final."
+      }
+    ]
+  },
+  {
+    "id": 2157,
+    "nombre": "Iuwlot",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1525.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Mazo Castillo y ponlo en tu Mano. Luego, roba una carta.",
+    "descripcion": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Mazo Castillo y ponlo en tu Mano. Luego, roba una carta.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Tótem de coste 3 o menos de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "type": "Totem",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Mazo Castillo y ponlo en tu Mano. Luego, roba una carta."
+      }
+    ]
+  },
+  {
+    "id": 1979,
+    "nombre": "Snofru",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1300.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego, Cuando entra en juego, puedes barajar hasta 3 cartas de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "Puede atacar cuando entra en juego, Cuando entra en juego, puedes barajar hasta 3 cartas de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige hasta 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes barajar hasta 3 cartas de tu Cementerio en tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 2197,
+    "nombre": "Ayu",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1569.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, tu oponente bota 1 carta por cada Tótem en juego.",
+    "descripcion": "Una vez por turno, tu oponente bota 1 carta por cada Tótem en juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Totem",
+              "zone": "field",
+              "controller": "any"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, tu oponente bota 1 carta por cada Tótem en juego.",
+        "oncePerTurn": true,
+        "id_habilidad": "ayu_mill_per_totem"
+      }
+    ]
+  },
+  {
+    "id": 2004,
+    "nombre": "Aliento de Anubis",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1336.webp",
+    "habilidad_texto_descriptivo": "Juega un Aliado de tu Cementerio reduciendo su coste en 2 Oros.",
+    "descripcion": "Juega un Aliado de tu Cementerio reduciendo su coste en 2 Oros.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "SearchAndplayToDefenseReducingCost",
+          "prompt": "Elige un Aliado de tu Cementerio para jugar reduciendo su coste en 2 Oros.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          },
+          "costReduction": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Juega un Aliado de tu Cementerio reduciendo su coste en 2 Oros."
+      }
+    ]
+  },
+  {
+    "id": 1225,
+    "nombre": "Templo del Desierto",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-275.webp",
+    "habilidad_texto_descriptivo": "Mientras Templo del Desierto esté en juego, sólo se puede declarar un aliado atacante por turno.",
+    "descripcion": "Mientras Templo del Desierto esté en juego, sólo se puede declarar un aliado atacante por turno.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotDeclareOtherAttackers"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Templo del Desierto esté en juego, sólo se puede declarar un aliado atacante por turno.",
+        "id_habilidad": "templo_del_desierto_global_rule"
       }
     ]
   }

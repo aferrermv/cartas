@@ -2767,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.0",
+    "pack_version": "2.2.1",
     "habilidades": []
   },
   {
@@ -42700,7 +42700,7 @@
     ],
     "tier": "medio"
   },
-    {
+  {
     "id": 7082,
     "nombre": "Abu Simbel",
     "tipo": "Totem",

@@ -42700,6 +42700,1440 @@
     ],
     "tier": "medio"
   },
+    {
+    "id": 7082,
+    "nombre": "Abu Simbel",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/abusimbelalt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta. Puedes destruir este Totem, para prevenir que un Aliado o un Totem que controles sea destruido o barajado por una habilidad oponente. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "abu_simbel_enter_play_sequence",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta."
+      },
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "id_habilidad": "abu_simbel_protection_ally",
+        "requireOpponentTrigger": true,
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "excludeReason": "combat",
+            "destinationZone": [
+              "cementerio",
+              "mazoCastillo"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado que controles sea destruido o barajado por una habilidad oponente."
+      },
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "id_habilidad": "abu_simbel_protection_totem",
+        "requireOpponentTrigger": true,
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Totem",
+            "excludeReason": "combat",
+            "destinationZone": [
+              "cementerio",
+              "mazoCastillo"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Totem que controles sea destruido o barajado por una habilidad oponente."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7083,
+    "nombre": "Anillos de Badbury",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/anillosdebadburyalt.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes barajar una carta en juego que no sea oro en el mazo castillo de su dueño. Puedes destruir este tótem para desterrar dos cartas del cementerio oponente.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "canCancel": true,
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 2,
+          "prompt": "Elige dos cartas del cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7084,
+    "nombre": "Ataud de Ramses",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ataudderamsesalt.webp",
+    "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oro, puedes destruirlo para que un Aliado en juego gane 1 a la fuerza y sea imbloqueable hasta la Fase Final. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToTarget",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 1 a la fuerza y sea Imbloqueable.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este Oro está en tu Reserva de Oro, puedes destruirlo para que un Aliado en juego gane 1 a la fuerza y sea imbloqueable hasta la Fase Final.",
+        "id_habilidad": "ataud_ramses_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7085,
+    "nombre": "Ceangal An Fhanaigh",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ceangalanfhanaighalt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juegom puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+          "options": [
+            {
+              "id": "activate_ceangal",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "payTargetCostToDestroy",
+                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
+                      "target": {
+                        "query": {
+                          "notType": "Oro"
+                        },
+                        "controller": "opponent"
+                      },
+                      "canCancel": true
+                    }
+                  ],
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste y destruir."
+            },
+            {
+              "id": "decline_ceangal",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "ceangal_an_fhanaigh_main",
+        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7086,
+    "nombre": "Clochafarmore",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/clochafarmorealt.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes desterrar este Oro para que un Aliado en juego gane 2 a la fuerza Permanentemente. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "salud": null,
+    "cantidad_generada": 1,
+    "habilidades": [
+      {
+        "id": "ofrenda_poder_activatable",
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que gane 2 a la fuerza permanentemente.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes desterrar este Oro para que un Aliado en juego gane 2 a la fuerza Permanentemente."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7087,
+    "nombre": "Dragón de Magma",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragondemagmazombie.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:50:02.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7088,
+    "nombre": "Dumbarton",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dumbartonalt.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes buscar un tótem de coste 3 o menos en tu Mazo castillo y ponerlo en tu mano puedes destruir este tótem para generar un oro para jugar tótem o robar una carta",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Busca un Tótem de coste 3 o menos en tu Mazo y ponlo en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "type": "Totem",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "cost": {
+          "type": "destroySelf",
+          "phase": "Principal"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "options": [
+            {
+              "id": "dumbarton_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar una carta."
+            },
+            {
+              "id": "dumbarton_gold",
+              "action": {
+                "type": "generateRestrictedGold",
+                "count": 1,
+                "isTemporary": true,
+                "restriction": {
+                  "type": "Totem"
+                }
+              },
+              "description": "Generar 1 Oro para jugar un Tótem."
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7089,
+    "nombre": "Focea",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/foceaalt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, pon al tope del mazo castillo de su dueño una carta oponente en juego que no sea oro. En guerra de talismanes puedes destruir este tótem para robar dos cartas, luego descarta una de tu mano.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Focea: Elige una carta oponente en juego (que no sea Oro) para poner en el tope de su mazo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7090,
+    "nombre": "Forma de Lince",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/formadelincealt.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final. Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forma_de_lince_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "effect": {
+              "type": "addMarkerToTarget",
+              "marker": "forma_de_lince_target",
+              "duration": "endOfTurn"
+            }
+          }
+        },
+        "description": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "forma_de_lince_final_phase_draw",
+        "trigger": "onPhaseStart",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "El Aliado afectado por Forma de Lince hizo daño. ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "forma_de_lince_draw_card",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "forma_de_lince_no_draw",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "forma_de_lince_can_draw",
+          "uniqueSource": true
+        },
+        "oncePerTurn": true,
+        "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7091,
+    "nombre": "Guardia Gozosa",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/guardiagozosaalt.webp",
+    "habilidad_texto_descriptivo": "Cuando Guardia Gozosa entra en juego un Aliado oponente pierde su habilidad y es destruido. Puedes destruir Guardián Gozosa barajar una carta de tu cementerio en tu Mazo Castillo",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndDestroyTarget",
+          "prompt": "Elige un Aliado oponente para quitarle su habilidad y destruirlo.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7092,
+    "nombre": "Herrero",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/herreroalt.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas. Si pierde la habilidad es destruido.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T21:03:01.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 2,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "activateSmithy"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "id_habilidad": "herrero_generate_gold"
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "destroySelf"
+        },
+        "condition": {
+          "type": "isAbilityAnnulled"
+        },
+        "description": "Si pierde su habilidad, es destruido.",
+        "id_habilidad": "herrero_self_destruct"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7093,
+    "nombre": "Ib-Muit",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ibmutalt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "mutualGraveyardShuffleThenPayToDraw",
+          "drawCount": 1,
+          "shuffleCount": 1,
+          "drawChoicePrompt": "Habilidad de Ib-Muit: ¿Deseas pagar este oro para robar una carta?",
+          "playerShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar.",
+          "opponentShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar."
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+        "id_habilidad": "ib_muit_enter_play_sequence"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7094,
+    "nombre": "La Llama de Brigit",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/lallamadebrigitalt.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes desterrar a La Llama de Brigit para mirar las dos primeras cartas de tu Mazo Castillo, Pon una carta en tu mano y la otra en tu Cementerio. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "salud": null,
+    "cantidad_generada": 1,
+    "habilidades": [
+      {
+        "id": "llama_brigit_activatable",
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano. La otra irá a tu Cementerio.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "notify": "unselected",
+          "viewCount": 2,
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes desterrar este Oro para mirar las dos primeras cartas de tu Mazo Castillo, pon una carta en tu mano y la otra en tu Cementerio."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7095,
+    "nombre": "Luz Esmeralda",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/luzesmeraldaalt.webp",
+    "habilidad_texto_descriptivo": "Elige un Aliado en juego para que pierda 2 a la fuerza hasta la Fase Final. Luego, Puedes robar una carta.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "id": "debilitar_main_effect",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -2
+          },
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar una carta?",
+              "options": [
+                {
+                  "id": "draw_card",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar una carta"
+                },
+                {
+                  "id": "do_nothing",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que pierda 2 a la fuerza.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un Aliado en juego para que pierda 2 a la fuerza hasta la Fase Final. Luego, Puedes robar una carta."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7096,
+    "nombre": "Nacimiento de Pegaso",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/nacimientodepegasoalt.webp",
+    "habilidad_texto_descriptivo": "Única. Mira las dos primeras cartas de tu Mazo Castillo puedes elegir dejarlas en la parte superior o inferior de tu Mazo Castillo. Luego, roba dos cartas",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChoose",
+          "prompt": "Ves las dos primeras cartas de tu mazo. Elige dónde dejarlas:",
+          "options": [
+            {
+              "id": "top",
+              "description": "Dejar en la parte superior"
+            },
+            {
+              "id": "bottom",
+              "description": "Mover al fondo del mazo"
+            }
+          ],
+          "drawCount": 2,
+          "viewCount": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7097,
+    "nombre": "Resplandor de Heka",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/resplandordehekaalt.webp",
+    "habilidad_texto_descriptivo": "Cuando se juegue una carta que no sea Talisman, puedes jugar Resplandor de Heka para que esa carta entre en juego sin habilidad hasta la Fase Final. Luego puedes robar una carta. Si controlas a Heka puedes robar una carta extra.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_ally",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_ally",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_ally",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "description": "Anula la habilidad de un Aliado oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_ally"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_weapon",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_weapon",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_weapon",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "description": "Anula la habilidad de un Arma oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_weapon"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_totem",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_totem",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_totem",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "description": "Anula la habilidad de un Tótem oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_totem"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Elige una opción:",
+              "options": [
+                {
+                  "id": "heka_draw_2_gold",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "condition": {
+                    "type": "playerControls",
+                    "query": {
+                      "nombre": "Heka"
+                    },
+                    "amount": 1,
+                    "comparison": "greaterOrEqual"
+                  },
+                  "description": "Robar 2 cartas (Controlas a Heka)"
+                },
+                {
+                  "id": "heka_draw_1_gold",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "heka_no_draw_gold",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "startOfFinalPhase"
+        },
+        "trigger": "onOpponentPlayGold",
+        "description": "Anula la habilidad de un Oro oponente que entra en juego y luego te permite robar.",
+        "id_habilidad": "resplandor_de_heka_gold"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7098,
+    "nombre": "Siete contra Tebas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sietecontratebasalt.webp",
+    "habilidad_texto_descriptivo": "Cancela la habilidad de una carta oponente en juego que no sea oro. Luego puedes robar una carta de tu Mazo Castillo",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentActivateAbility"
+      },
+      {
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentPlayAlly"
+      },
+      {
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentPlayWeapon"
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringAbility",
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar una carta por el efecto de Siete contra Tebas?",
+              "options": [
+                {
+                  "id": "siete_contra_tebas_draw_4",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "siete_contra_tebas_no_draw_4",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          }
+        },
+        "trigger": "onOpponentPlayTotem"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7099,
+    "nombre": "Sir Lamorak",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/sirlamorakalt.webp",
+    "habilidad_texto_descriptivo": "Cuando Sir Lamorak entra en juego, juega una carta de Oro desde tu Mazo Castillo. Baraja tu Mazo Castillo.\r\nCuando Sir Lamorak salga del juego, puedes robar 2 cartas.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T20:39:27.000Z",
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Sir Lamorak: ¿Quieres buscar un Oro en tu Mazo Castillo y jugarlo?",
+          "options": [
+            {
+              "id": "lamorak_search_gold",
+              "action": {
+                "type": "searchAndPlayGold",
+                "prompt": "Elige una carta de Oro de tu Mazo Castillo para poner en tu reserva.",
+                "searchQuery": {
+                  "type": "Oro",
+                  "zone": "mazoCastillo",
+                  "nameIsNot": "Caballeros"
+                }
+              },
+              "description": "Sí, buscar y jugar Oro"
+            },
+            {
+              "id": "lamorak_no_search",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        }
+      },
+      {
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego puedes robar hasta 2 cartas.",
+        "id_habilidad": "Lamoleaveplay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Sir Lamorak: Elige cuántas cartas robar.",
+          "options": [
+            {
+              "id": "lamodraw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
+            },
+            {
+              "id": "lamodraw_1",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            },
+            {
+              "id": "lamo_no_draw",
+              "action": {},
+              "description": "No robar"
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7100,
+    "nombre": "Tesoro de Mowa",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/tesorodemowaalt.webp",
+    "habilidad_texto_descriptivo": "Sí controlas dos o más aliados de una misma raza puedes pagar Tesoro de Mowa para que un Aliado sea imbloqueable hasta la Fase Final.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado para que sea Imbloqueable este turno.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve"
+              ]
+            },
+            {
+              "type": "controllerHasAlliesOfSameRace",
+              "count": 2
+            }
+          ]
+        },
+        "description": "Si controlas dos o más aliados de una misma raza, puedes pagar Tesoro de Mowa para que un Aliado sea imbloqueable hasta la Fase Final.",
+        "id_habilidad": "tesoro_mowa_unblockable"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7101,
+    "nombre": "Trono Dorado",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/tronodoradoalt.webp",
+    "habilidad_texto_descriptivo": "Si Trono Dorado está en tu reserva puedes barajarlo en tu Mazo Castillo para desterrar una carta del cementerio oponente. Luego puedes robar una carta",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "onSuccess": {
+            "type": "chooseOne",
+            "prompt": "Habilidad de Trono Dorado: ¿Quieres robar una carta?",
+            "options": [
+              {
+                "id": "trono_draw",
+                "action": {
+                  "type": "drawCards",
+                  "count": 1
+                },
+                "description": "Sí, robar una carta"
+              },
+              {
+                "id": "trono_no_draw",
+                "action": {},
+                "description": "No, gracias"
+              }
+            ]
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7102,
+    "nombre": "Vinculo del Aullido",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/vinculodelaullidoalt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este y otro Oro para robar 2 cartas y descartar 1?",
+          "options": [
+            {
+              "id": "vinculo_activate",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "payGold",
+                      "count": 1
+                    }
+                  ],
+                  "effect": {
+                    "type": "drawThenDiscard",
+                    "drawCount": 2,
+                    "discardCount": 1
+                  },
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste y robar."
+            },
+            {
+              "id": "vinculo_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "vinculo_aullido_enter_play",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano."
+      }
+    ],
+    "tier": "bajo"
+  },
   {
     "id": 1585,
     "nombre": "Perifetes",

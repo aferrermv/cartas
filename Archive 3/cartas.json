@@ -2767,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.1",
+    "pack_version": "2.2.2",
     "habilidades": []
   },
   {
@@ -13350,6 +13350,10 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Guerra de Talismanes"
+        },
         "effect": {
           "type": "chooseOne",
           "prompt": "Misil Mágico: Elige un efecto.",
@@ -15603,7 +15607,7 @@
               "query": {
                 "hasMarker": "attackedAsWarrior"
               },
-              "amount": 1,
+              "amount": 2,
               "comparison": "greaterOrEqual"
             }
           ]
@@ -28151,17 +28155,38 @@
         "description": "Puede atacar cuando entra en juego."
       },
       {
-        "costs": [
-          {
-            "type": "banishFromGraveyard",
-            "count": 1,
-            "query": {
-              "type": "*"
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "*"
+              }
             },
-            "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
-            "optional": true
-          }
-        ],
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "zone": "cementerio",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "cost": {
+          "type": "banishFromGraveyard",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
+          "optional": true
+        },
         "effect": {
           "type": "chooseAndBanish",
           "count": 1,
@@ -38063,10 +38088,6 @@
             {
               "type": "isInZone",
               "zone": "field"
-            },
-            {
-              "type": "bothPlayersHaveInGraveyard",
-              "count": 1
             }
           ]
         },

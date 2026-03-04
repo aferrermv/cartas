@@ -2870,7 +2870,8 @@
         },
         "trigger": "onOpponentPlayAlly"
       }
-    ]
+    ],
+    "tier": "alto"
   },
   {
     "id": 43,
@@ -2911,14 +2912,15 @@
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, puedes elegir un Aliado oponente de coste 4 o menos y ponerlo en la parte inferior del Mazo Castillo de su dueño."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 44,
     "nombre": "Cinturon de Lady Ann",
     "tipo": "Oro",
     "coste_oro": 0,
-   "imagen_url": "/img/store/cartas/pb2607311311.webp",
+    "imagen_url": "/img/store/cartas/pb2607311311.webp",
     "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, las cartas de los Cementerios no pueden ser desterradas.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -2947,7 +2949,8 @@
         },
         "description": "Si este Oro esta en tu Reserva de Oros, las cartas de los Cementerios no pueden ser desterradas."
       }
-    ]
+    ],
+    "tier": "alto"
   },
   {
     "id": 45,
@@ -44805,7 +44808,8 @@
         "description": "En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Cementerio para desterrar la primera carta del Mazo Castillo oponente.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 709,
@@ -44856,7 +44860,8 @@
         "description": "Elige una carta de coste 4 o menos en juego que no sea Oro para que pierda su habilidad y sea destruida.",
         "id_habilidad": "robar_vellocino_destroy"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 710,
@@ -44940,7 +44945,8 @@
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, puedes elegir entre desterrar una carta oponente en juego de coste 2 o menos o desterrar una carta de cualquier Cementerio."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 711,
@@ -45000,7 +45006,8 @@
         },
         "description": "Si este Oro esta en tu reserva de Oros, puedes barajarlo en tu Mazo Castillo para que un Aliado oponente pierda su habilidad y 2 a la fuerza hasta la Fase Final."
       }
-    ]
+    ],
+    "tier": "alto"
   },
   {
     "id": 712,
@@ -45062,7 +45069,8 @@
         "description": "En tu Fase de vigilia, una vez por turno, puedes pagar 2 Oros para buscar una carta de tu Mazo Castillo y ponerla en tu Mano.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 713,
@@ -45098,7 +45106,8 @@
         "trigger": "onEnterPlay",
         "description": "Busca un Aliado en el Mazo Castillo oponente y destiérralo. Luego puedes destruir un Aliado en juego con el mismo nombre. Si lo haces, puedes robar una carta."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 714,
@@ -45164,7 +45173,8 @@
         "listensForEvent": "onAllyEnterPlay",
         "triggeringPlayer": "self"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 715,
@@ -45221,7 +45231,8 @@
         },
         "description": "Si este Oro esta en tu reserva de Oros, los Aliados que controles en tu Linea de Ataque ganan 1 a la fuerza."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 716,
@@ -45274,11 +45285,12 @@
           "comparison": "greaterOrEqual"
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 718,
-    "nombre": "Templo de Isisr",
+    "nombre": "Templo de Isis",
     "tipo": "Totem",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/pb263014111411.webp",
@@ -45346,7 +45358,8 @@
         "description": "En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Mano para poner las ultimas dos cartas de tu Mazo Castillo en tu Mano.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 719,
@@ -45451,7 +45464,8 @@
         "oncePerTurn": true,
         "activeOnAnyTurn": true
       }
-    ]
+    ],
+    "tier": "Alto"
   },
   {
     "id": 720,
@@ -45508,7 +45522,8 @@
         "description": "En la Fase Final, debes subir esta Arma a tu Mano y botar 2 cartas.",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 1631,

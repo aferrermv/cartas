@@ -2820,7 +2820,7 @@
     "nombre": "Desafiar a Arturo",
     "tipo": "Talisman",
     "coste_oro": 1,
-    "imagen_url": "/img/nuevascartas/pb2605111111.webp",
+    "imagen_url": "/img/store/cartas/pb2605111111.webp",
     "habilidad_texto_descriptivo": "Unica. Cancela la habilidad de un Aliado en juego. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -2877,7 +2877,7 @@
     "nombre": "Galatine",
     "tipo": "Arma",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb2606211211.webp",
+    "imagen_url": "/img/store/cartas/pb2606211211.webp",
     "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cuando entra en juego, puedes elegir un Aliado oponente de coste 4 o menos y ponerlo en la parte inferior del Mazo Castillo de su dueño.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -2918,7 +2918,7 @@
     "nombre": "Cinturon de Lady Ann",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevascartas/pb2607311311.webp",
+   "imagen_url": "/img/store/cartas/pb2607311311.webp",
     "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, las cartas de los Cementerios no pueden ser desterradas.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -44765,7 +44765,7 @@
     "nombre": "Totem del Errante",
     "tipo": "Totem",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/pb2608411411.webp",
+    "imagen_url": "/img/store/cartas/pb2608411411.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Cementerio para desterrar la primera carta del Mazo Castillo oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -44812,7 +44812,7 @@
     "nombre": "Robar el Vellocino",
     "tipo": "Talisman",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb2613511511.webp",
+    "imagen_url": "/img/store/cartas/pb2613511511.webp",
     "habilidad_texto_descriptivo": "Si controlas menos Aliados que tu Oponente, este Talisman no puede ser anulado. Elige una carta de coste 4 o menos en juego que no sea Oro para que pierda su habilidad y sea destruida. \n",
     "descripcion": null,
     "expansion": "Helenica",
@@ -44863,7 +44863,7 @@
     "nombre": "Carro de Medea",
     "tipo": "Arma",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/pb2614611611.webp",
+    "imagen_url": "/img/store/cartas/pb2614611611.webp",
     "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Cuando entra en juego, puedes elegir entre desterrar una carta oponente en juego de coste 2 o menos o desterrar una carta de cualquier Cementerio. \n",
     "descripcion": null,
     "expansion": "Helenica",
@@ -44947,7 +44947,7 @@
     "nombre": "Diente de la Bestia",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevascartas/pb2615711711.webp",
+    "imagen_url": "/img/store/cartas/pb2615711711.webp",
     "habilidad_texto_descriptivo": "Si este Oro esta en tu reserva de Oros, puedes barajarlo en tu Mazo Castillo para que un oponente pierda su habilidad y 2 a la fuerza hasta la Fase Final. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -45007,7 +45007,7 @@
     "nombre": "Atenas",
     "tipo": "Totem",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb2616811811.webp",
+    "imagen_url": "/img/store/cartas/pb2616811811.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Oro o un Totem en tu Mazo Castillo y ponerlo en tu Mano. En tu Fase de vigilia, una vez por turno, puedes pagar 2 Oros para buscar una carta de tu Mazo Castillo y ponerla en tu Mano. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -45069,7 +45069,7 @@
     "nombre": "Magia Amatista",
     "tipo": "Talisman",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb2621911911.webp",
+    "imagen_url": "/img/store/cartas/pb2621911911.webp",
     "habilidad_texto_descriptivo": "Busca un Aliaado en el Mazo Castillo oponente y destierralo. Luego puedes destruir un Aliado en juego con el mismo nombre. Si lo Haces, puedes robar una carta.",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -45105,7 +45105,7 @@
     "nombre": "Lonch Lein",
     "tipo": "Totem",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/pb262210111011.webp",
+    "imagen_url": "/img/store/cartas/pb262210111011.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener un Lonch Lein en juego. Mientras este Totem este en juego, una vez por turno, cuando un Aliado entra en juego bajo tu control, tu oponente debe elegir descartar una carta de su Mano o botar 2 cartas.",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -45171,7 +45171,7 @@
     "nombre": "Torc Fianna",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevascartas/pb262311111111.webp",
+    "imagen_url": "/img/store/cartas/pb262311111111.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener un Torc Fianna en juego. Si este Oro esta en tu reserva de Oros, los Aliados que controles en tu Linea de Ataque ganan 1 a la fuerza. ",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -45228,7 +45228,7 @@
     "nombre": "Crear Talisman",
     "tipo": "Talisman",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb262412111211.webp",
+    "imagen_url": "/img/store/cartas/pb262412111211.webp",
     "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Copia el efecto de un Talismane de coste 3 o menos de tu Cementerio. ",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -45281,7 +45281,7 @@
     "nombre": "Templo de Isisr",
     "tipo": "Totem",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/pb263014111411.webp",
+    "imagen_url": "/img/store/cartas/pb263014111411.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener un templo de Isis en juego. En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Mano para poner las ultimas dos cartas de tu Mazo Castillo en tu Mano. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -45353,7 +45353,7 @@
     "nombre": "Nudo de Isis",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevascartas/pb263115111511.webp",
+    "imagen_url": "/img/store/cartas/pb263115111511.webp",
     "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, los Jugadores no pueden barajar cartas de su Cementerio en su Mazo Castillo. Una vez por turno, tu oponente puede pagar 2 oros o Botar 3 cartas para que este Oro y todas sus copias en juego pierdan su habilidad hasta la Fase Final. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -45458,7 +45458,7 @@
     "nombre": "Carro Real",
     "tipo": "Arma",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/pb263216111611.webp",
+    "imagen_url": "/img/store/cartas/pb263216111611.webp",
     "habilidad_texto_descriptivo": "El portador gana 3 a la fuerza y es Imbloqueable. En la Fase Final, debes subir esta Arma a tu Mano y botar 2 cartas. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -45507,6 +45507,163 @@
         },
         "description": "En la Fase Final, debes subir esta Arma a tu Mano y botar 2 cartas.",
         "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 1631,
+    "nombre": "Fergus",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-844.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isHighestStrength": true
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1957,
+    "nombre": "Medb",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1247.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar una carta de tu Mano para buscar un Aliado de coste 2 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": "Cuando entra en juego, puedes desterrar una carta de tu Mano para buscar un Aliado de coste 2 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishFromHand",
+            "count": 1,
+            "prompt": "Habilidad de Medb: ¿Quieres desterrar una carta de tu mano para buscar un Aliado?",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de coste 2 o menos de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes desterrar una carta de tu Mano para buscar un Aliado de coste 2 o menos en tu Mazo Castillo y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 721,
+    "nombre": "Fundacion de Thebas",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/fundaciondethebasbase.webp",
+    "habilidad_texto_descriptivo": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado de raza Dragon en el Mazo Castillo oponente y desterrarlo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "searchAndChooseToBanish",
+              "count": 1,
+              "prompt": "Busca un Aliado de raza Dragón en el Mazo Castillo oponente para desterrar.",
+              "canCancel": true,
+              "searchQuery": {
+                "raza": "Dragon",
+                "type": "Aliado",
+                "zone": "mazoCastillo",
+                "controller": "opponent"
+              }
+            }
+          },
+          "type": "reduceAllCombatDamageToZero"
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado de raza Dragon en el Mazo Castillo oponente y desterrarlo."
       }
     ]
   }

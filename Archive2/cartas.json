@@ -3073,6 +3073,7 @@
         "effect": {
           "type": "destroyTarget",
           "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+           "visualEffect": "fergusDestroy",
           "target": {
             "query": {
               "type": "Aliado",

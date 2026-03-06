@@ -3049,6 +3049,62 @@
     ]
   },
   {
+    "id": 46,
+    "nombre": "Fergus",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/gift/ferguspromo/ferguspromo.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isHighestStrength": true
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
     "id": 30,
     "nombre": "Plaga",
     "tipo": "Talisman",

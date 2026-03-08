@@ -2887,7 +2887,7 @@
     "fuerza": null,
     "raza": null,
     "leyenda": null,
-    "danio": 3,
+    "danio": 2,
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
@@ -5552,6 +5552,15 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "type": "*"
+          }
+        },
         "effect": {
           "type": "chooseAndBanish",
           "count": 2,
@@ -5610,7 +5619,25 @@
         "effect": {
           "type": "annulTriggeringTalisman"
         },
-        "trigger": "onOpponentPlayTalisman"
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -35216,7 +35243,10 @@
     "salud": null,
     "habilidades": [
       {
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "stat": "fuerza",
           "type": "buffSelfByTargetStrength",
@@ -35745,7 +35775,7 @@
     "id": 4494,
     "nombre": "Sai",
     "tipo": "Arma",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/primera_era/sai4494.webp",
     "habilidad_texto_descriptivo": "Puedes destruir esta Arma y tu oponente bota de su Castillo tantas cartas como fuerza tenga este Aliado.",
     "descripcion": null,

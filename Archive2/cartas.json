@@ -3107,6 +3107,61 @@
     ]
   },
   {
+    "id": 47,
+    "nombre": "Morir de Pie",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/moridepieesmeralda.webp",
+    "habilidad_texto_descriptivo": "Cuándo juegues morir de pie destierralo, solo puedes jugar morir de pie si controlas dos o más aliados de una misma raza anula una carta oponente que no sea oro ni Aliado.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 30,
     "nombre": "Plaga",
     "tipo": "Talisman",

@@ -2767,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.3",
+    "pack_version": "2.2.4",
     "habilidades": []
   },
   {
@@ -2887,7 +2887,7 @@
     "fuerza": null,
     "raza": null,
     "leyenda": null,
-    "danio": 3,
+    "danio": 2,
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
@@ -3073,6 +3073,7 @@
         "effect": {
           "type": "destroyTarget",
           "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "visualEffect": "fergusDestroy",
           "target": {
             "query": {
               "type": "Aliado",
@@ -3104,6 +3105,61 @@
         "oncePerTurn": true
       }
     ]
+  },
+  {
+    "id": 47,
+    "nombre": "Morir de Pie",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/moridepieesmeralda.webp",
+    "habilidad_texto_descriptivo": "Cuándo juegues morir de pie destierralo, solo puedes jugar morir de pie si controlas dos o más aliados de una misma raza anula una carta oponente que no sea oro ni Aliado.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      }
+    ],
+    "tier": "medio"
   },
   {
     "id": 30,
@@ -5551,6 +5607,15 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "type": "*"
+          }
+        },
         "effect": {
           "type": "chooseAndBanish",
           "count": 2,
@@ -5609,7 +5674,25 @@
         "effect": {
           "type": "annulTriggeringTalisman"
         },
-        "trigger": "onOpponentPlayTalisman"
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -35215,7 +35298,10 @@
     "salud": null,
     "habilidades": [
       {
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "stat": "fuerza",
           "type": "buffSelfByTargetStrength",
@@ -35744,7 +35830,7 @@
     "id": 4494,
     "nombre": "Sai",
     "tipo": "Arma",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/primera_era/sai4494.webp",
     "habilidad_texto_descriptivo": "Puedes destruir esta Arma y tu oponente bota de su Castillo tantas cartas como fuerza tenga este Aliado.",
     "descripcion": null,
@@ -45736,6 +45822,230 @@
           "zone": "hand"
         },
         "description": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado de raza Dragon en el Mazo Castillo oponente y desterrarlo."
+      }
+    ]
+  },
+  {
+    "id": 2210,
+    "nombre": "Levantar las Aguas",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevascartas/MYL-1583.webp",
+    "habilidad_texto_descriptivo": "Elige un Oro en juego, éste y todas sus copias pierden su habilidad por el resto del juego.",
+    "descripcion": "Elige un Oro en juego, éste y todas sus copias pierden su habilidad por el resto del juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAbilityOnTargetAndCopies",
+          "prompt": "Elige un Oro en juego para que él y todas sus copias pierdan su habilidad por el resto del juego.",
+          "target": {
+            "zone": [
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "any"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un Oro en juego, éste y todas sus copias pierden su habilidad por el resto del juego."
+      }
+    ]
+  },
+  {
+    "id": 1493,
+    "nombre": "Jano",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevascartas/MYL-645.webp",
+    "habilidad_texto_descriptivo": "El turno que Jano entra en juego, genera 2 Oros. Cuando Jano sale del juego, puedes subir un Oro oponente a su mano.",
+    "descripcion": "El turno que Jano entra en juego, genera 2 Oros. Cuando Jano sale del juego, puedes subir un Oro oponente a su mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "El turno que Jano entra en juego, genera 2 Oros."
+      },
+      {
+        "effect": {
+          "type": "returnGoldToHandInModal",
+          "count": 1,
+          "prompt": "Elige un Oro oponente para devolver a su mano.",
+          "target": {
+            "zone": [
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando Jano sale del juego, puedes subir un Oro oponente a su mano."
+      }
+    ]
+  },
+  {
+    "id": 1635,
+    "nombre": "Dianan y Bechulle",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/MYL-849.webp",
+    "habilidad_texto_descriptivo": "Dianan y Bechulle gana 1 a la fuerza por cada Dianan y Bechulle en juego.",
+    "descripcion": "Dianan y Bechulle gana 1 a la fuerza por cada Dianan y Bechulle en juego.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Aliado",
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any",
+            "nameContains": "Dianan y Bechulle"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "description": "Dianan y Bechulle gana 1 a la fuerza por cada Dianan y Bechulle en juego."
+      }
+    ]
+  },
+  {
+    "id": 1858,
+    "nombre": "Aed Finn",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/MYL-1106.webp",
+    "habilidad_texto_descriptivo": "En tu Fase Final puedes agrupar a Aed Finn.",
+    "descripcion": "En tu Fase Final puedes agrupar a Aed Finn.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupSelf"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase Final puedes agrupar a Aed Finn.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1831,
+    "nombre": "Cuatro Aceros",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevascartas/MYL-1075.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta oponente en juego que no sea Oro. Luego, si la carta destruida era de coste 4 o menos, tu oponente bota cuatro cartas de su Mazo Castillo.",
+    "descripcion": "Destruye una carta oponente en juego que no sea Oro. Luego, si la carta destruida era de coste 4 o menos, tu oponente bota cuatro cartas de su Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 4,
+              "target": "opponent"
+            },
+            "condition": {
+              "type": "cardMatchesQuery",
+              "query": {
+                "coste_oro": {
+                  "value": 4,
+                  "operator": "<="
+                }
+              },
+              "cardFromContext": "lastTarget"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige una carta oponente en juego que no sea Oro para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye una carta oponente en juego que no sea Oro. Luego, si la carta destruida era de coste 4 o menos, tu oponente bota cuatro cartas de su Mazo Castillo."
       }
     ]
   }

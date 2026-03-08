@@ -4,7 +4,7 @@
     "nombre": "Leucrota",
     "tipo": "Aliado",
     "coste_oro": 5,
-    "imagen_url": "/img/helenica/leucrota102.png",
+    "imagen_url": "/img/helenica/leucrota1023.png",
     "habilidad_texto_descriptivo": "Cuando Leucrota entra en juego destruye todos los aliados de fuerza 3 o menos",
     "descripcion": null,
     "expansion": "Helenica",
@@ -3073,7 +3073,7 @@
         "effect": {
           "type": "destroyTarget",
           "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
-           "visualEffect": "fergusDestroy",
+          "visualEffect": "fergusDestroy",
           "target": {
             "query": {
               "type": "Aliado",

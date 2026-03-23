@@ -48907,7 +48907,8 @@
         },
         "trigger": "onEnterPlay"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1783,
@@ -48991,7 +48992,8 @@
         },
         "description": "Si controlas uno o más Aliados Druida, puedes jugar este Talismán desde tu Cementerio pagando 3 de oro. Si lo haces, destiérralo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1281,
@@ -49059,7 +49061,8 @@
         },
         "description": "Puedes jugar Levitar Ciudad desde tu Cementerio, si lo haces destiérralo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1956,
@@ -49118,7 +49121,8 @@
         "trigger": "onDeclareAttack",
         "description": "Cuando este Aliado sea declarado atacante, puedes elegir entre barajar una carta de tu Cementerio en tu Mazo Castillo o que tu oponente bote 2 cartas."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1876,
@@ -49150,7 +49154,8 @@
         },
         "description": "Mientras Santuario del Norte esté en juego, todos los bonificadores de fuerza se aplican negativamente."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1617,
@@ -49204,7 +49209,8 @@
         "description": "En tu Fase de Vigilia puedes elegir una carta, busca las copias de esa carta en tu Cementerio y barájalas en tu Mazo Castillo.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1989,
@@ -49256,7 +49262,8 @@
         },
         "requireOpponentTrigger": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 2002,
@@ -49293,7 +49300,8 @@
         "trigger": "onEnterPlay",
         "description": "Un Tótem oponente pierda su Habilidad por el resto del juego."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 2283,
@@ -49342,7 +49350,8 @@
         "trigger": "onEnterPlay",
         "description": "Un Aliado pierde su habilidad, tiene fuerza 0 y no puede recibir modificadores de fuerza hasta la Fase Final."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1969,
@@ -49373,7 +49382,8 @@
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, cada jugador puede elegir un Oro de su Cementerio y ponerlo en la parte superior de su Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1650,
@@ -49414,7 +49424,8 @@
         "id_habilidad": "lanza_victoria_switch",
         "listensForEvent": "onPlayGold"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1789,
@@ -49480,7 +49491,8 @@
         "description": "El portador de Espada Lusitana puede duplicar su fuerza, si lo haces, en la Fase Final es destruido.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1962,
@@ -49535,7 +49547,8 @@
         "listensForEvent": "onCardLeavePlay",
         "triggeringPlayer": "opponent"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1629,
@@ -49576,7 +49589,8 @@
         },
         "description": "Mientras Vincegeratorix esté en juego, en respuesta a un ataque oponente, puedes agrupar un Aliado para declararlo bloqueador."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1830,
@@ -49618,7 +49632,8 @@
           "count": 2
         }
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1199,
@@ -49656,7 +49671,8 @@
         "trigger": "onEnterPlay",
         "description": "Busca en el Cementerio oponente un Aliado de fuerza 3 o menos y juégalo sin pagar su coste."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1268,
@@ -49693,7 +49709,8 @@
         "trigger": "onEnterPlay",
         "description": "Busca un Arma en tu Mazo Castillo o Cementerio y juégala en un Aliado que controles reduciendo su coste en 1 Oro. El Aliado portador puedes ser declarado atacante este turno."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1165,
@@ -49740,7 +49757,8 @@
         "description": "Gana el control de un Aliado oponente hasta la Fase Final.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1175,
@@ -49771,7 +49789,8 @@
         "description": "Si su portador es bloqueado, tu oponente se descarta de 1 carta.",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1893,
@@ -49810,7 +49829,8 @@
         "trigger": "continuous",
         "description": "Mientras Hechiceros del Caos esté en juego, jugar Aliados de Raza Sombra cuesta 1 oro menos."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1679,
@@ -49852,7 +49872,8 @@
         },
         "description": "Si este Aliado es destruido, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1553,
@@ -49933,7 +49954,8 @@
         },
         "description": "Si Escudo de Perseo esta en tu Mano, puedes pagar 1 Oro y barajarlo en tu Mazo Castillo para robar 1 carta."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1575,
@@ -49983,7 +50005,8 @@
         "description": "En tu Fase Final, si uno o más Aliados fueron destruidos este turno, puedes barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 2168,
@@ -50015,7 +50038,8 @@
         "description": "Tu oponente destierra las 3 primeras cartas de su mazo Castillo. Luego, destierra este Talismán.",
         "banishOnPlay": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1131,
@@ -50069,7 +50093,8 @@
         "id_habilidad": "bandidos_pictos_shuffle",
         "habilidad_texto_descriptivo": "Puedes destruir Bandidos Pictos para barajar un Aliado oponente de igual fuerza en su Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1667,
@@ -50098,7 +50123,8 @@
         "description": "Cuando Zorro de Fuego entra en juego, ambos jugadores deben poner el Aliado de mayor fuerza en la parte superior de su Mazo Castillo.",
         "id_habilidad": "zorro_fuego_enter_play"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1615,
@@ -50132,7 +50158,8 @@
         "trigger": "onEnterPlay",
         "description": "Cuando Belenos entra en juego, puedes buscar una carta en tu Cementerio y ponerla en tu Mano."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 722,
@@ -50184,7 +50211,8 @@
         "description": "En tu Fase de Vigilia, una vez por turno puedes robar una carta por cada Aliado Sidhe Que controles.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 727,
@@ -50242,7 +50270,8 @@
         "triggeringPlayer": "self",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 723,
@@ -50287,7 +50316,8 @@
         "oncePerTurn": "byAbilityId",
         "id_habilidad": "asesino_de_pheist_attack_mill"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1734,
@@ -50314,7 +50344,8 @@
         ],
         "description": "Leanan Sidhe no puede ser declarado atacante."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 724,
@@ -50354,7 +50385,8 @@
         "trigger": "onEnterPlay",
         "description": "Unica. Tu oponente bota una carta por cada Oro en su Reserva de Oro o Pagado."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 725,
@@ -50425,7 +50457,8 @@
         },
         "description": "Si controlas uno o más Aliados Chrom, gana 1 a la fuerza."
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 726,
@@ -50465,7 +50498,8 @@
         "triggeringPlayer": "self",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 7159,

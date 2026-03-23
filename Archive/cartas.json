@@ -5627,15 +5627,6 @@
     "salud": null,
     "habilidades": [
       {
-        "play_condition": {
-          "type": "playerHasInGraveyard",
-          "controller": "opponent",
-          "amount": 2,
-          "comparison": "greaterOrEqual",
-          "query": {
-            "type": "*"
-          }
-        },
         "effect": {
           "type": "chooseAndBanish",
           "count": 2,
@@ -9320,7 +9311,7 @@
     "habilidades": [
       {
         "trigger": "onEnterPlay",
-        "effect": {
+        "cost": {
           "type": "revealFromHand",
           "count": 1,
           "query": {
@@ -9328,16 +9319,16 @@
             "type": "Aliado"
           },
           "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
-          "optional": true,
-          "onSuccess": {
-            "type": "banishTarget",
-            "prompt": "Elige un Aliado oponente para desterrar.",
-            "target": {
-              "query": {
-                "type": "Aliado"
-              },
-              "controller": "opponent"
-            }
+          "optional": true
+        },
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
           }
         },
         "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
@@ -38612,7 +38603,7 @@
     "habilidades": [
       {
         "trigger": "onEnterPlay",
-        "effect": {
+        "cost": {
           "type": "revealFromHand",
           "count": 1,
           "query": {
@@ -38620,16 +38611,16 @@
             "type": "Aliado"
           },
           "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
-          "optional": true,
-          "onSuccess": {
-            "type": "banishTarget",
-            "prompt": "Elige un Aliado oponente para desterrar.",
-            "target": {
-              "query": {
-                "type": "Aliado"
-              },
-              "controller": "opponent"
-            }
+          "optional": true
+        },
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
           }
         },
         "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
@@ -48871,6 +48862,1608 @@
         },
         "trigger": "onEnterPlay",
         "description": "Destruye una carta oponente en juego que no sea Oro. Luego, si la carta destruida era de coste 4 o menos, tu oponente bota cuatro cartas de su Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 1699,
+    "nombre": "Discipulos",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-928.webp",
+    "habilidad_texto_descriptivo": "Destruye uno de tus Aliados para generar tantos Oros como fuerza tenga.",
+    "descripcion": "Destruye uno de tus Aliados para generar tantos Oros como fuerza tenga.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "prompt": "Elige uno de tus Aliados para destruir.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            },
+            "rememberAs": "sacrificedAlly"
+          }
+        ],
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": {
+            "fromContext": "sacrificedAlly.fuerza"
+          },
+          "isTemporary": true
+        },
+        "trigger": "onEnterPlay"
+      }
+    ]
+  },
+  {
+    "id": 1783,
+    "nombre": "Reunion de Druidas",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1016.webp",
+    "habilidad_texto_descriptivo": "Si controlas uno o más Aliados Druida, puedes jugar este Talismán desde tu Cementerio pagando su coste. Si lo haces, destiérralo. Tu oponente bota una carta de su Mazo Castillo por cada Aliado que controles.",
+    "descripcion": "Si controlas uno o más Aliados Druida, puedes jugar este Talismán desde tu Cementerio pagando su coste. Si lo haces, destiérralo. Tu oponente bota una carta de su Mazo Castillo por cada Aliado que controles.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Tu oponente bota una carta de su Mazo Castillo por cada Aliado que controles."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 3
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si controlas uno o más Aliados Druida, puedes jugar este Talismán desde tu Cementerio pagando 3 de oro. Si lo haces, destiérralo."
+      }
+    ]
+  },
+  {
+    "id": 1281,
+    "nombre": "Levitar ciudad",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-384.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar Levitar Ciudad desde tu Cementerio, si lo haces destiérralo. Elige un Tótem en juego y ponlo en la parte superior del Mazo Castillo de su dueño.",
+    "descripcion": "Puedes jugar Levitar Ciudad desde tu Cementerio, si lo haces destiérralo. Elige un Tótem en juego y ponlo en la parte superior del Mazo Castillo de su dueño.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "prompt": "Elige un Tótem en juego para poner en la parte superior del Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un Tótem en juego y ponlo en la parte superior del Mazo Castillo de su dueño."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "prompt": "Elige un Tótem en juego para poner en la parte superior del Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Puedes jugar Levitar Ciudad desde tu Cementerio, si lo haces destiérralo."
+      }
+    ]
+  },
+  {
+    "id": 1956,
+    "nombre": "Erc",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-1246.webp",
+    "habilidad_texto_descriptivo": "Puede atacar el tuerno que entra en juego. Cuando este Aliado sea declarado atacante, puedes elegir entre abrajar una carta de tu Cementerio en tu Mazo Castillo o que tu oponente bote 2 cartas.",
+    "descripcion": "Puede atacar el tuerno que entra en juego. Cuando este Aliado sea declarado atacante, puedes elegir entre abrajar una carta de tu Cementerio en tu Mazo Castillo o que tu oponente bote 2 cartas.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar el turno que entra en juego."
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Erc: Elige un efecto.",
+          "options": [
+            {
+              "id": "erc_shuffle",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 1,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo."
+              },
+              "description": "Barajar 1 carta de tu Cementerio en tu Mazo."
+            },
+            {
+              "id": "erc_mill",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota 2 cartas."
+            }
+          ]
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando este Aliado sea declarado atacante, puedes elegir entre barajar una carta de tu Cementerio en tu Mazo Castillo o que tu oponente bote 2 cartas."
+      }
+    ]
+  },
+  {
+    "id": 1876,
+    "nombre": "Santuario del Norte",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-1127.webp",
+    "habilidad_texto_descriptivo": "Mientras Santuario del Norte esté en juego, todos los bonificadores de fuerza se aplican negativamente.",
+    "descripcion": "Mientras Santuario del Norte esté en juego, todos los bonificadores de fuerza se aplican negativamente.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyNegativeBuff"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Santuario del Norte esté en juego, todos los bonificadores de fuerza se aplican negativamente."
+      }
+    ]
+  },
+  {
+    "id": 1617,
+    "nombre": "Balor",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-827.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia puedes nombrar una carta, busca las copias de esa carta en tu Cementerio y barájalas en tu Mazo Castillo. Balor sólo puede ser bloqueado por Lugh. Carta única.",
+    "descripcion": "En tu Fase de Vigilia puedes nombrar una carta, busca las copias de esa carta en tu Cementerio y barájalas en tu Mazo Castillo. Balor sólo puede ser bloqueado por Lugh. Carta única.",
+    "expansion": "Hijos De Daana",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          {
+            "condition": {
+              "type": "nameIsNot",
+              "value": "Lugh"
+            },
+            "unblockableBy": true
+          }
+        ],
+        "description": "Balor sólo puede ser bloqueado por Lugh."
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "selectAndShuffleCopiesFromGraveyard",
+          "prompt": "Elige una carta para barajar todas sus copias de tu Cementerio en tu Mazo Castillo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "*"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia puedes elegir una carta, busca las copias de esa carta en tu Cementerio y barájalas en tu Mazo Castillo.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1989,
+    "nombre": "Takelot",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1312.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, nombra una carta para que ésta y todas sus copias pierdan su Habilidad mientras este Aliado esté en juego. En respuesta a que este Aliado sea destruido o desterrado por una Habilidad oponente, puedes pagar 2 Oros para prevenirlo.",
+    "descripcion": "Cuando entra en juego, nombra una carta para que ésta y todas sus copias pierdan su Habilidad mientras este Aliado esté en juego. En respuesta a que este Aliado sea destruido o desterrado por una Habilidad oponente, puedes pagar 2 Oros para prevenirlo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "nameAndAnull",
+          "prompt": "Nombra una carta. Ésta y todas sus copias pierden su Habilidad mientras Takelot esté en juego.",
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, nombra una carta para que ésta y todas sus copias pierdan su Habilidad mientras este Aliado esté en juego."
+      },
+      {
+        "cost": {
+          "type": "payGold",
+          "count": 2
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onBeforeLeave",
+        "description": "En respuesta a que este Aliado sea destruido o desterrado por una Habilidad oponente, puedes pagar 2 Oros para prevenirlo.",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "excludeReason": "combat",
+            "destinationZone": [
+              "cementerio",
+              "banish"
+            ]
+          }
+        },
+        "requireOpponentTrigger": true
+      }
+    ]
+  },
+  {
+    "id": 2002,
+    "nombre": "Ojos de Serpiente",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1334.webp",
+    "habilidad_texto_descriptivo": "Un Tótem oponente pierda su Habilidad por el resto del juego.",
+    "descripcion": "Un Tótem oponente pierda su Habilidad por el resto del juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "prompt": "Elige un Tótem oponente para que pierda su Habilidad por el resto del juego.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "opponent"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Tótem oponente pierda su Habilidad por el resto del juego."
+      }
+    ]
+  },
+  {
+    "id": 2283,
+    "nombre": "Condenar al Cruel",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1669.webp",
+    "habilidad_texto_descriptivo": "Un Aliado pierde su habilidad, tiene fuerza 0 y no puede recibir modificadores de fuerza hasta la Fase Final.",
+    "descripcion": "Un Aliado pierde su habilidad, tiene fuerza 0 y no puede recibir modificadores de fuerza hasta la Fase Final.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "then": {
+            "effect": {
+              "type": "annulCardAbility",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que pierda su habilidad, tenga fuerza 0 y no pueda recibir modificadores.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado pierde su habilidad, tiene fuerza 0 y no puede recibir modificadores de fuerza hasta la Fase Final."
+      }
+    ]
+  },
+  {
+    "id": 1969,
+    "nombre": "Caer Ibormeith",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasCartas/MYL-1274.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador puede elegir un Oro de su Cementerio y ponerlo en la parte superior de su Mazo Castillo.",
+    "descripcion": "Cuando entra en juego, cada jugador puede elegir un Oro de su Cementerio y ponerlo en la parte superior de su Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "mutualSearchFromGraveyardAndPutInTopDeck",
+          "query": {
+            "type": "Oro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador puede elegir un Oro de su Cementerio y ponerlo en la parte superior de su Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 1650,
+    "nombre": "Lanza de la Victoria",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-872.webp",
+    "habilidad_texto_descriptivo": "El portador de Lanza de la Victoria gana 3 a la fuerza. En respuesta a jugar un Oro, puedes cambiar el Aliado portador de Lanza de la Victoria.",
+    "descripcion": "El portador de Lanza de la Victoria gana 3 a la fuerza. En respuesta a jugar un Oro, puedes cambiar el Aliado portador de Lanza de la Victoria.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 3,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "attachToTarget",
+          "prompt": "Elige un nuevo portador para Lanza de la Victoria.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En respuesta a jugar un Oro, puedes cambiar el Aliado portador de Lanza de la Victoria.",
+        "id_habilidad": "lanza_victoria_switch",
+        "listensForEvent": "onPlayGold"
+      }
+    ]
+  },
+  {
+    "id": 1789,
+    "nombre": "Espada Lusitana",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1022.webp",
+    "habilidad_texto_descriptivo": "El portador de Espada Lusitana puede duplicar su fuerza, si lo haces, en la Fase Final es destruido.",
+    "descripcion": "El portador de Espada Lusitana puede duplicar su fuerza, si lo haces, en la Fase Final es destruido.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "addMarkerToWielder",
+              "marker": "lusitana_curse",
+              "ability": {
+                "effect": {
+                  "type": "destroySelf"
+                },
+                "trigger": "onPhaseStart",
+                "condition": {
+                  "type": "and",
+                  "conditions": [
+                    {
+                      "type": "currentPhase",
+                      "phase": "Final"
+                    },
+                    {
+                      "type": "hasMarker",
+                      "marker": "lusitana_curse"
+                    }
+                  ]
+                },
+                "id_habilidad": "lusitana_destroy_at_end",
+                "resolvesInstantly": true
+              },
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "doubleWielderStrength",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "El portador de Espada Lusitana puede duplicar su fuerza, si lo haces, en la Fase Final es destruido.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1962,
+    "nombre": "Venganza de Conall",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1260.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en respuesta a que uno de tus Aliados salga del juego por la habilidad de un Aliado oponente. Destierra un Aliado oponente en juego. Luego, roba 1 carta.",
+    "descripcion": "Sólo puedes jugar este Talismán en respuesta a que uno de tus Aliados salga del juego por la habilidad de un Aliado oponente. Destierra un Aliado oponente en juego. Luego, roba 1 carta.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "description": "Sólo puedes jugar este Talismán en respuesta a que uno de tus Aliados salga del juego por la habilidad de un Aliado oponente. Destierra un Aliado oponente en juego. Luego, roba 1 carta.",
+        "id_habilidad": "venganza_conall_response",
+        "eventCondition": {
+          "type": "Aliado",
+          "controller": "self",
+          "excludeReason": "combat"
+        },
+        "listensForEvent": "onCardLeavePlay",
+        "triggeringPlayer": "opponent"
+      }
+    ]
+  },
+  {
+    "id": 1629,
+    "nombre": "Vincegeratorix",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-841.webp",
+    "habilidad_texto_descriptivo": "Mientras Vincegeratorix esté en juego, en respuesta a un ataque oponente, puedes agrupar un Aliado para declararlo bloqueador.",
+    "descripcion": "Mientras Vincegeratorix esté en juego, en respuesta a un ataque oponente, puedes agrupar un Aliado para declararlo bloqueador.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "chooseAndRegroup",
+          "prompt": "Elige un Aliado para agruparlo y declararlo bloqueador.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Vincegeratorix esté en juego, en respuesta a un ataque oponente, puedes agrupar un Aliado para declararlo bloqueador."
+      }
+    ]
+  },
+  {
+    "id": 1830,
+    "nombre": "Envenenar la Tierra",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1074.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de la misma raza. Destierra hasta 2 Tótem oponentes.",
+    "descripcion": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de la misma raza. Destierra hasta 2 Tótem oponentes.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishTargetInModal",
+          "prompt": "Elige hasta 2 Tótem oponentes para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "opponent"
+          },
+          "maxCount": 2,
+          "minCount": 0
+        },
+        "trigger": "onEnterPlay",
+        "description": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de la misma raza. Destierra hasta 2 Tótem oponentes.",
+        "play_condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 1199,
+    "nombre": "Siroco",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-246.webp",
+    "habilidad_texto_descriptivo": "Busca en el Cementerio oponente un Aliado de fuerza 3 o menos y juégalo sin pagar su coste.",
+    "descripcion": "Busca en el Cementerio oponente un Aliado de fuerza 3 o menos y juégalo sin pagar su coste.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Busca en el Cementerio oponente un Aliado de fuerza 3 o menos y juégalo sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "fuerza": {
+              "value": 3,
+              "operator": "<="
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca en el Cementerio oponente un Aliado de fuerza 3 o menos y juégalo sin pagar su coste."
+      }
+    ]
+  },
+  {
+    "id": 1268,
+    "nombre": "Juramento Feerico",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-361.webp",
+    "habilidad_texto_descriptivo": "Busca un Arma en tu Mazo Castillo o Cementerio y juégala en un Aliado que controles reduciendo su coste en 1 Oro. El Aliado portador puedes ser declarado atacante este turno.",
+    "descripcion": "Busca un Arma en tu Mazo Castillo o Cementerio y juégala en un Aliado que controles reduciendo su coste en 1 Oro. El Aliado portador puedes ser declarado atacante este turno.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayWeaponReducingCostAndGiveHaste",
+          "prompt": "Busca un Arma en tu Mazo o Cementerio para jugarla en un Aliado.",
+          "fromZones": [
+            "mazoCastillo",
+            "cementerio"
+          ],
+          "searchQuery": {
+            "type": "Arma"
+          },
+          "costReduction": 1
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca un Arma en tu Mazo Castillo o Cementerio y juégala en un Aliado que controles reduciendo su coste en 1 Oro. El Aliado portador puedes ser declarado atacante este turno."
+      }
+    ]
+  },
+  {
+    "id": 1165,
+    "nombre": "Totem Celta",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-210.webp",
+    "habilidad_texto_descriptivo": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
+    "descripcion": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente para ganar su control hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn",
+          "modifications": {
+            "addKeywords": [
+              "canBlockThisTurn"
+            ]
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Gana el control de un Aliado oponente hasta la Fase Final.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1175,
+    "nombre": "Catapulta",
+    "tipo": "Arma",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasCartas/MYL-221.webp",
+    "habilidad_texto_descriptivo": "Si su portador es bloqueado, tu oponente se descarta de 1 carta. ",
+    "descripcion": "Si su portador es bloqueado, tu oponente se descarta de 1 carta. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onBeingBlocked",
+        "description": "Si su portador es bloqueado, tu oponente se descarta de 1 carta.",
+        "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 1893,
+    "nombre": "Hechiceros del Caos",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1146.webp",
+    "habilidad_texto_descriptivo": "Mientras Hechiceros del Caos esté en juego, jugar Aliados de Raza Sombra cuesta 1 oro menos.",
+    "descripcion": "Mientras Hechiceros del Caos esté en juego, jugar Aliados de Raza Sombra cuesta 1 oro menos.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "raza": "Sombra",
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras Hechiceros del Caos esté en juego, jugar Aliados de Raza Sombra cuesta 1 oro menos."
+      }
+    ]
+  },
+  {
+    "id": 1679,
+    "nombre": "Merodeador",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-905.webp",
+    "habilidad_texto_descriptivo": "Si este Aliado es destruido, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado.",
+    "descripcion": "Si este Aliado es destruido, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "source": "property",
+            "property": "fuerza"
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Si este Aliado es destruido, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado."
+      }
+    ]
+  },
+  {
+    "id": 1553,
+    "nombre": "Escudo de Perseo",
+    "tipo": "Arma",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-729.webp",
+    "habilidad_texto_descriptivo": "El portador de Escudo de Perseo gana 1 a la fuerza por cada Arma en juego. Los Aliados oponentes que no porten Armas pierden 1 a la fuerza. Si Escudo de Perseo esta en tu Mano, puedes pagar 1 Oro y barajarlo en tu Mazo Castillo para robar 1 carta.",
+    "descripcion": "El portador de Escudo de Perseo gana 1 a la fuerza por cada Arma en juego. Los Aliados oponentes que no porten Armas pierden 1 a la fuerza. Si Escudo de Perseo esta en tu Mano, puedes pagar 1 Oro y barajarlo en tu Mazo Castillo para robar 1 carta.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Arma",
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ]
+          },
+          "target": "wielder",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "description": "El portador de Escudo de Perseo gana 1 a la fuerza por cada Arma en juego."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "hasWeaponEquipped": false
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Los Aliados oponentes que no porten Armas pierden 1 a la fuerza."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "shuffleSelf"
+          }
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "Si Escudo de Perseo esta en tu Mano, puedes pagar 1 Oro y barajarlo en tu Mazo Castillo para robar 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 1575,
+    "nombre": "Teseion",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-763.webp",
+    "habilidad_texto_descriptivo": "En tu Fase Final, si uno o más Aliados fueron destruidos este turno, puedes barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "En tu Fase Final, si uno o más Aliados fueron destruidos este turno, puedes barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "alliesDestroyedThisTurn",
+              "amount": 1
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si uno o más Aliados fueron destruidos este turno, puedes barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 2168,
+    "nombre": "Festin Impio",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1536.webp",
+    "habilidad_texto_descriptivo": "Tu oponente destierra las 3 primeras cartas de su mazo Castillo. Luego, destierra este Talismán.",
+    "descripcion": "Tu oponente destierra las 3 primeras cartas de su mazo Castillo. Luego, destierra este Talismán.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Tu oponente destierra las 3 primeras cartas de su mazo Castillo. Luego, destierra este Talismán.",
+        "banishOnPlay": true
+      }
+    ]
+  },
+  {
+    "id": 1131,
+    "nombre": "Bandidos Pictos",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasCartas/MYL-171.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir Bandidos Pictos, para barajar a un Aliado oponente de igual fuerza en su mazo castillo. ",
+    "descripcion": "Puedes destruir Bandidos Pictos, para barajar a un Aliado oponente de igual fuerza en su mazo castillo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf",
+            "rememberAs": "sacrificedAlly"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente de igual fuerza para barajar.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": {
+                  "fromContext": "sacrificedAlly.fuerza"
+                },
+                "operator": "=="
+              }
+            },
+            "controller": "opponent"
+          },
+          "requiresChoice": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "id_habilidad": "bandidos_pictos_shuffle",
+        "habilidad_texto_descriptivo": "Puedes destruir Bandidos Pictos para barajar un Aliado oponente de igual fuerza en su Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 1667,
+    "nombre": "Zorro de Fuego",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-892.webp",
+    "habilidad_texto_descriptivo": "Cuando Zorro de Fuego entra en juego, ambos jugadores deben poner el Aliado de mayor fuerza en la parte superior de su Mazo Castillo.",
+    "descripcion": "Cuando Zorro de Fuego entra en juego, ambos jugadores deben poner el Aliado de mayor fuerza en la parte superior de su Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "putAllyHighStrenghtToTop"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Zorro de Fuego entra en juego, ambos jugadores deben poner el Aliado de mayor fuerza en la parte superior de su Mazo Castillo.",
+        "id_habilidad": "zorro_fuego_enter_play"
+      }
+    ]
+  },
+  {
+    "id": 1615,
+    "nombre": "Belenos",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-825.webp",
+    "habilidad_texto_descriptivo": "Cuando Belenos entra en juego, puedes buscar una carta en tu Cementerio y ponerla en tu Mano.",
+    "descripcion": "Cuando Belenos entra en juego, puedes buscar una carta en tu Cementerio y ponerla en tu Mano.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "*",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Belenos entra en juego, puedes buscar una carta en tu Cementerio y ponerla en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 722,
+    "nombre": "Alberitch Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevascartas/alberitchsidhe.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Alberitch Sidhe en juego. En tu Fase de Vigilia, una vez por turno puedes robar una carta por cada Aliado Sidhe Que controles. \n",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Alberitch Sidhe en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "controller": "self",
+              "nameContains": "Sidhe"
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno puedes robar una carta por cada Aliado Sidhe Que controles.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 727,
+    "nombre": "Uaisle Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/uaislesidhe.webp",
+    "habilidad_texto_descriptivo": "Si controlas 2. o mas cartas Sidhe este Aliado es Imbloqueable. Una vez por turno, si descartaste 1 o mas cartas este turno, este Aliado gana 1 a la fuerza hasta la fase Final. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nameContains": "Sidhe"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas 2 o mas cartas Sidhe este Aliado es Imbloqueable."
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, si descartaste 1 o mas cartas este turno, este Aliado gana 1 a la fuerza hasta la fase Final.",
+        "oncePerTurn": true,
+        "listensForEvent": "onDiscardCard",
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 723,
+    "nombre": "Asesino de Pheist",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/asesinodepheist.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado atacante, tu oponente bota 1 carta por cada Aliado en tu Linea de Ataque. Sólo puedes disparar un Asesino de Pheist por Turno. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "attack",
+              "controller": "self"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando sea declarado atacante, tu oponente bota 1 carta por cada Aliado en tu Linea de Ataque. Sólo puedes disparar un Asesino de Pheist por Turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "asesino_de_pheist_attack_mill"
+      }
+    ]
+  },
+  {
+    "id": 1734,
+    "nombre": "Leanan Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasCartas/MYL-964.webp",
+    "habilidad_texto_descriptivo": "Leanan Sidhe no puede ser declarado atacante.",
+    "descripcion": "Leanan Sidhe no puede ser declarado atacante.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "Leanan Sidhe no puede ser declarado atacante."
+      }
+    ]
+  },
+  {
+    "id": 724,
+    "nombre": "Mercado Egipcio",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/nuevascartas/mercadoegipcio.webp",
+    "habilidad_texto_descriptivo": "Unica. Tu oponente bota una carta por cada oro que controle.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "tipo": "Oro",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ],
+              "controller": "opponent"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Unica. Tu oponente bota una carta por cada Oro en su Reserva de Oro o Pagado."
+      }
+    ]
+  },
+  {
+    "id": 725,
+    "nombre": "Serpiente de Irlanda",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/serpienteidlanda.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo. Pon una en tu mano y la otra en tu Cementerio. Si controlas uno o más Aliados Chrom, gana 1 a la fuerza. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano. La otra irá a tu Cementerio.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 2,
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo. Pon una en tu mano y la otra en tu Cementerio."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Crom"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas uno o más Aliados Chrom, gana 1 a la fuerza."
+      }
+    ]
+  },
+  {
+    "id": 726,
+    "nombre": "Totem del Alba",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/totemdelalba.webp",
+    "habilidad_texto_descriptivo": "Mientra Totem del Alba este en juego, cada vez que entre en juego un Totem bajo tu control, tu oponente bota 2 cartas de su Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientra Totem del Alba este en juego, cada vez que entre en juego un Totem bajo tu control, tu oponente bota 2 cartas de su Mazo Castillo.",
+        "eventCondition": {
+          "type": "Totem"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true
       }
     ]
   }

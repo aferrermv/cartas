@@ -50345,7 +50345,7 @@
         "description": "Leanan Sidhe no puede ser declarado atacante."
       }
     ],
-    "tier": "bajo"
+   "tier": "muy bajo"
   },
   {
     "id": 724,

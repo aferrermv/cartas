@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.6",
+    "pack_version": "2.2.7",
     "habilidades": []
   },
   {
@@ -17482,13 +17482,22 @@
         },
         "trigger": "onLeavePlay",
         "condition": {
-          "type": "playerControls",
-          "query": {
-            "raza": "Sacerdote",
-            "type": "Aliado"
-          },
-          "amount": 0,
-          "comparison": "greaterOrEqual"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "mazoCastillo"
+              ]
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Sacerdote"
+              }
+            }
+          ]
         },
         "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
         "id_habilidad": "djedefhor_leave_play"
@@ -29966,14 +29975,14 @@
               },
               "controller": "opponent"
             },
-            "rememberAs": "paidCostTarget"
+            "rememberAs": "preselectedTarget"
           }
         ],
         "phase": "Principal",
         "effect": {
           "type": "destroyTarget",
           "target": {
-            "fromContext": "paidCostTarget"
+            "fromContext": "preselectedTarget"
           }
         },
         "trigger": "activatable_with_costs",
@@ -39830,13 +39839,22 @@
         },
         "trigger": "onLeavePlay",
         "condition": {
-          "type": "playerControls",
-          "query": {
-            "raza": "Sacerdote",
-            "type": "Aliado"
-          },
-          "amount": 0,
-          "comparison": "greaterOrEqual"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "mazoCastillo"
+              ]
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Sacerdote"
+              }
+            }
+          ]
         },
         "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
         "id_habilidad": "djedefhor_leave_play"
@@ -39895,13 +39913,22 @@
         },
         "trigger": "onLeavePlay",
         "condition": {
-          "type": "playerControls",
-          "query": {
-            "raza": "Sacerdote",
-            "type": "Aliado"
-          },
-          "amount": 0,
-          "comparison": "greaterOrEqual"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "mazoCastillo"
+              ]
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Sacerdote"
+              }
+            }
+          ]
         },
         "description": "Cuando Djedefhor salga del juego, si controlabas Aliados de raza Sacerdote, baraja una carta de tu Cementerio en tu Mazo Castillo.",
         "id_habilidad": "djedefhor_leave_play"
@@ -46956,17 +46983,17 @@
   },
   {
     "id": 7150,
-    "nombre": "Nefertiti",
+    "nombre": "Neferite I",
     "tipo": "Aliado",
-    "coste_oro": 2,
+    "coste_oro": 3,
     "imagen_url": "/img/store/cartas/neferiteicarloko1.webp",
-    "habilidad_texto_descriptivo": "Cuando sale del juego, elije entre barajar 4 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 4 cartas.",
-    "descripcion": "Edición Especial Arte Alternativo",
+    "habilidad_texto_descriptivo": "Unica. En tu Fase de Vigilia, sólo una vez por turno, puedes desterrar tantas cartas de tu Cementerio como coste tenga una carta en juego para desterrarla. ",
+    "descripcion": null,
     "expansion": "Dominios de Ra",
-    "rareza": "Promo",
+    "rareza": "Común",
     "fecha_creacion": null,
     "fuerza": 2,
-    "raza": "Eterno",
+    "raza": "Faraon",
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
@@ -46974,36 +47001,28 @@
     "salud": null,
     "habilidades": [
       {
+        "costs": [
+          {
+            "type": "banishFromGraveyardAsCost",
+            "prompt": "Elige cartas de tu Cementerio para desterrar como coste.",
+            "minCount": 0,
+            "rememberAs": "banishedCount"
+          }
+        ],
+        "phase": "Principal",
         "effect": {
-          "type": "chooseOne",
-          "prompt": "Habilidad de Nefertiti: Elige un efecto.",
-          "options": [
-            {
-              "id": "nefertiti_shuffle",
-              "action": {
-                "type": "searchAndShuffleIntoDeck",
-                "zone": "cementerio",
-                "count": 4,
-                "query": {
-                  "type": "*"
-                },
-                "prompt": "Elige 4 cartas de tu Cementerio para barajar en tu Mazo."
-              },
-              "description": "Barajar 4 cartas de tu Cementerio"
-            },
-            {
-              "id": "nefertiti_mill",
-              "action": {
-                "type": "millCards",
-                "count": 4,
-                "target": "opponent"
-              },
-              "description": "Tu oponente bota 4 cartas"
-            }
-          ]
+          "type": "banishTargetByCostContext",
+          "prompt": "Elige una carta en juego para desterrar.",
+          "costContextProperty": "banishedCount"
         },
-        "trigger": "onLeavePlay",
-        "description": "Cuando sale del juego, elije entre barajar 4 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 4 cartas."
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes desterrar tantas cartas de tu Cementerio como coste tenga una carta en juego para desterrarla.",
+        "oncePerTurn": true,
+        "id_habilidad": "neferite_i_banish_effect"
       }
     ],
     "tier": "bajo"
@@ -50345,7 +50364,7 @@
         "description": "Leanan Sidhe no puede ser declarado atacante."
       }
     ],
-   "tier": "muy bajo"
+    "tier": "muy bajo"
   },
   {
     "id": 724,
@@ -52009,17 +52028,17 @@
   },
   {
     "id": 7188,
-    "nombre": "Fergus Mor MacEric",
-    "tipo": "Aliado",
+    "nombre": "Minas de Gruagash",
+    "tipo": "Totem",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/minasdegruashcarloko1.webp",
-    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
-    "descripcion": "Edición Especial Arte Alternativo",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 Oros para que tu oponente bote 5 cartas de su Mazo Castillo. Carta Única. ",
+    "descripcion": null,
     "expansion": "Hijos De Daana",
-    "rareza": "Promo",
+    "rareza": "Común",
     "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Defensor",
+    "fuerza": null,
+    "raza": null,
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
@@ -52027,38 +52046,27 @@
     "salud": null,
     "habilidades": [
       {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 3,
+            "canCancel": false
+          }
+        ],
+        "phase": "Principal",
         "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
-            },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "unblockable"
+          "type": "millCards",
+          "count": 5,
+          "target": "opponent"
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
-        "id_habilidad": "fergus_mor_unblockable_aura"
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
-            },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "canAttackOnEnterPlay"
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
-        "id_habilidad": "fergus_mor_haste_aura"
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 Oros para que tu oponente bote 5 cartas de su Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "minas_de_gruagash_mill"
       }
     ],
     "tier": "bajo"

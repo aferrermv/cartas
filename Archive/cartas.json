@@ -2770,7 +2770,7 @@
     "descripcion": "Este oro representa el primer recurso fundamental para tu estrategia.",
     "expansion": "Espada Sagrada",
     "rareza": "Común",
-    "fecha_creacion": "2025-06-25T19:39:36.000Z",
+    "fecha_creacion": "2025-06-25T19:39:37.000Z",
     "fuerza": null,
     "raza": null,
     "leyenda": null,
@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.7",
+    "pack_version": "2.2.8",
     "habilidades": []
   },
   {
@@ -2844,44 +2844,48 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
+   "habilidades": [
+  {
+    "condition": {
+      "type": "triggeringCardIsType",
+      "cardType": "Aliado"
+    },
+    "effect": {
+      "then": {
         "effect": {
-          "then": {
-            "effect": {
-              "type": "searchAndShuffleIntoDeck",
-              "zone": "cementerio",
-              "count": 1,
-              "query": {
-                "type": "*"
-              },
-              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-              "canCancel": true
-            }
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
           },
-          "type": "annulTriggeringAbility"
-        },
-        "trigger": "onOpponentActivateAbility"
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        }
       },
-      {
+      "type": "annulTriggeringAbility"
+    },
+    "trigger": "onOpponentActivateAbility"
+  },
+  {
+    "effect": {
+      "then": {
         "effect": {
-          "then": {
-            "effect": {
-              "type": "searchAndShuffleIntoDeck",
-              "zone": "cementerio",
-              "count": 1,
-              "query": {
-                "type": "*"
-              },
-              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-              "canCancel": true
-            }
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
           },
-          "type": "annulTriggeringAbility"
-        },
-        "trigger": "onOpponentPlayAlly"
-      }
-    ],
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        }
+      },
+      "type": "annulTriggeringAbility"
+    },
+    "trigger": "onOpponentPlayAlly"
+  }
+],
     "tier": "alto"
   },
   {
@@ -56770,5 +56774,246 @@
       }
     ],
     "tier": "alto"
+  },
+  {
+    "id": 3008,
+    "nombre": "Huracan",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/Huracan.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Puede atacar cuando entra en juego. Al final del turno que fue declarado atacante, debe ser destruido",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Imbloqueable. Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "attacked_this_turn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "isHidden": true,
+        "id_habilidad": "huracan_set_marker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "destroySelf"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "hasMarker",
+              "marker": "attacked_this_turn"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "description": "Al final del turno que fue declarado atacante, debe ser destruido.",
+        "id_habilidad": "huracan_self_destruct",
+        "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 3573,
+    "nombre": "Caballero aguila",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/Caballeroaguila.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes robar una carta de tu Mazo Castillo. Mientras Caballero Aguila este en juego, jugar armas en tus Guerreros cuesta 1 Oro menos.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "optional": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes robar una carta de tu Mazo Castillo.",
+        "id_habilidad": "caballero_aguila_draw"
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "raza": "Guerrero"
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras Caballero Águila esté en juego, jugar armas en tus Aliados de raza Guerrero cuesta 1 Oro menos.",
+        "id_habilidad": "caballero_aguila_cost_reduction"
+      }
+    ]
+  },
+  {
+    "id": 4371,
+    "nombre": "Shuar",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/Shuar.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, nombra una carta. La carta nombrada y todas sus copias pierden su habilidad por el resto del juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "nameAndAnull",
+          "prompt": "Nombra una carta para que ella y todas sus copias pierdan su habilidad por el resto del juego.",
+          "duration": "permanent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, nombra una carta. La carta nombrada y todas sus copias pierden su habilidad por el resto del juego.",
+        "id_habilidad": "shuar_annul_permanent"
+      }
+    ]
+  },
+  {
+    "id": 3080,
+    "nombre": "Janaqueo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/Janaqueo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas uno o mas Armas, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Janaqueo: Elige un Aliado oponente para barajar en su Mazo Castillo."
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Arma"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando entra en juego, si controlas uno o mas Armas, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+        "id_habilidad": "janaqueo_enter_shuffle"
+      }
+    ]
+  },
+  {
+    "id": 4734,
+    "nombre": "Karib",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/Karib3.webp",
+    "habilidad_texto_descriptivo": "Mientras este Aliado este en juego, cada vez que juegues un Arma, todos tus Aliados ganan 1 a la fuerza permanentemente.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras este Aliado este en juego, cada vez que juegues un Arma, todos tus Aliados ganan 1 a la fuerza permanentemente.",
+        "id_habilidad": "karib_weapon_buff_trigger",
+        "eventCondition": {
+          "type": "Arma"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true
+      }
+    ]
   }
 ]

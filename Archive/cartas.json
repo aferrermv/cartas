@@ -58034,5 +58034,591 @@
         "id_habilidad": "huascar_attack_buff"
       }
     ]
+  },
+  {
+    "id": 4367,
+    "nombre": "Maui",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/maui.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, bota 2 cartas de tu Mazo Castillo y descarta una carta de tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "discardCard",
+              "count": 1,
+              "prompt": "Habilidad de Maui: Debes descartar 1 carta de tu mano.",
+              "optional": false
+            }
+          },
+          "type": "millCards",
+          "count": 2,
+          "target": "self"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, bota 2 cartas de tu Mazo Castillo y descarta una carta de tu Mano.",
+        "id_habilidad": "maui_enter_play_penalty"
+      }
+    ]
+  },
+  {
+    "id": 4661,
+    "nombre": "Chasqui",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/chasqui.webp",
+    "habilidad_texto_descriptivo": "No puede atacar. Si recibe daño para ser destruido, puedes pagar un oro para que siga en juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede atacar."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1,
+            "prompt": "¿Quieres pagar 1 Oro para que Chasqui siga en juego?"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio"
+              ]
+            },
+            {
+              "type": "currentPhase",
+              "phase": "Asignacion de daño"
+            }
+          ]
+        },
+        "description": "Si es destruido en asignación de daño, puedes pagar un oro para que siga en juego.",
+        "id_habilidad": "chasqui_salvation"
+      }
+    ]
+  },
+  {
+    "id": 4775,
+    "nombre": "Galvarino",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/galvarino.webp",
+    "habilidad_texto_descriptivo": "Puede portar un Arma extra. Cuando entra en juego, puedes buscar hasta dos Armas en tu Mazo Castillo o Cementerio y ponlas en tu mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canEquipExtraWeapon"
+        ],
+        "description": "Puede portar un Arma extra."
+      },
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Habilidad de Galvarino: Elige hasta 2 Armas de tu Mazo o Cementerio para poner en tu mano.",
+          "options": [
+            {
+              "id": "galvarino_deck_weapons",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Mazo"
+            },
+            {
+              "id": "galvarino_graveyard_weapons",
+              "zone": "cementerio",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "optional": true,
+          "resolution": {
+            "type": "putInHand",
+            "count": 2,
+            "minCount": 0
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar hasta dos Armas en tu Mazo Castillo o Cementerio y ponlas en tu mano.",
+        "id_habilidad": "galvarino_tutor_weapons"
+      }
+    ]
+  },
+  {
+    "id": 3896,
+    "nombre": "Tlaca Tecolotl",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/tlacatecolotl.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, roba 4 cartas y descarta 2 cartas de tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 4,
+          "discardCount": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, roba 4 cartas y descarta 2 cartas de tu Mano.",
+        "id_habilidad": "tlaca_tecolotl_loot"
+      }
+    ]
+  },
+  {
+    "id": 4303,
+    "nombre": "Tlazolteotl",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/tlazolteotl.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye todos los Aliados de Fuerza 2 o menos.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyAllMatching",
+          "query": {
+            "type": "Aliado",
+            "fuerza": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "controller": "any"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ]
+  },
+  {
+    "id": 3102,
+    "nombre": "Arco Naskapi",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/arconaskapi.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la Fuerza por cada carta en tu Mano. Puedes destruir esta Arma, para barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 0,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "zone": [
+              "hand"
+            ],
+            "controller": "self"
+          },
+          "target": "wielder",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "description": "El portador gana 1 a la Fuerza por cada carta en tu Mano.",
+        "id_habilidad": "arco_naskapi_hand_buff"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige exactamente 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "minCount": 3
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruir esta Arma, para barajar 3 cartas de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "arco_naskapi_recycle"
+      }
+    ]
+  },
+  {
+    "id": 3187,
+    "nombre": "Cuauhtemoc",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/cuauhtemoc2.webp",
+    "habilidad_texto_descriptivo": "Si es bloqueado, puedes buscar un Arma en tu Castillo y ponerla en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Cuauhtemoc: Elige un Arma de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onBeingBlocked",
+        "description": "Si es bloqueado, puedes buscar un Arma en tu Castillo y ponerla en tu Mano.",
+        "id_habilidad": "cuauhtemoc_search_weapon"
+      }
+    ]
+  },
+  {
+    "id": 3374,
+    "nombre": "Templo de Tenochtitlan",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/templodetenochtitlan.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Totem desde tu Cementerio. Puedes desterrar este Totem para destruir una carta oponente que no sea Oro.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 4
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, puedes jugar este Totem desde tu Cementerio pagando 4 oros.",
+        "id_habilidad": "templo_tenochtitlan_recursion"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Habilidad de Templo de Tenochtitlán: Elige una carta oponente que no sea Oro para destruir.",
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes desterrar este Totem para destruir una carta oponente que no sea Oro.",
+        "id_habilidad": "templo_tenochtitlan_banish_removal"
+      }
+    ]
+  },
+  {
+    "id": 3201,
+    "nombre": "Tzitzimime",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/tzitzimime2.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando entra en juego, puedes elegir un Aliado que controlespara que sea Imbloqueable hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Habilidad de Tzitzimime: Elige un Aliado que controles para que sea Imbloqueable hasta la Fase Final.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn",
+          "optional": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir un Aliado que controles para que sea Imbloqueable hasta la Fase Final.",
+        "id_habilidad": "tzitzimime_unblockable_grant"
+      }
+    ]
+  },
+  {
+    "id": 3202,
+    "nombre": "Peri Pillan",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/peripillan2.webp",
+    "habilidad_texto_descriptivo": "Puede portar un Arma extra. Mientras este Aliado esté en juego, tus Aliados que porten Armas ganan 1 a la fuerza.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canEquipExtraWeapon"
+        ],
+        "description": "Puede portar un Arma extra."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "hasWeaponEquipped": true
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras este Aliado esté en juego, tus Aliados que porten Armas ganan 1 a la fuerza.",
+        "id_habilidad": "peri_pillan_weapon_master_aura"
+      }
+    ]
+  },
+  {
+    "id": 4128,
+    "nombre": "Xochiquetzal",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/xochiquetzal.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles duplica su Fuerza, hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "doubleTargetStrength",
+          "prompt": "Habilidad de Xochiquetzal: Elige un Aliado que controles para duplicar su fuerza hasta la Fase Final.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado que controles duplica su Fuerza, hasta la Fase Final.",
+        "id_habilidad": "xochiquetzal_double_strength"
+      }
+    ]
+  },
+  {
+    "id": 3309,
+    "nombre": "Tzolkin",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/tzolkin2.webp",
+    "habilidad_texto_descriptivo": "Sí este Oro está en tu Reserva de Oros puedes desterrarlo para que un Aliado que controles no pueda ser afectado por Talismanes oponentes hasta la Fase Final",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Habilidad de Tzolkin: Elige un Aliado que controles para que no sea afectado por Talismanes oponentes.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "talismanImmunity",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para que un Aliado que controles no pueda ser afectado por Talismanes oponentes hasta la Fase Final.",
+        "id_habilidad": "tzolkin_talisman_protection"
+      }
+    ]
   }
 ]

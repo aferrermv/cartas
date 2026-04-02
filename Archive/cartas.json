@@ -1529,7 +1529,7 @@
         "effect": {
           "type": "searchDeckAndPlaceOnTop",
           "searchQuery": {
-            "race": "Caballero",
+            "raza": "Caballero",
             "type": "Aliado"
           }
         },
@@ -2403,7 +2403,7 @@
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
-    "cantidad_generada": 2,
+    "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
       {
@@ -2844,48 +2844,48 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-   "habilidades": [
-  {
-    "condition": {
-      "type": "triggeringCardIsType",
-      "cardType": "Aliado"
-    },
-    "effect": {
-      "then": {
+    "habilidades": [
+      {
+        "condition": {
+          "type": "triggeringCardIsType",
+          "cardType": "Aliado"
+        },
         "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "*"
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
           },
-          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-          "canCancel": true
-        }
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentActivateAbility"
       },
-      "type": "annulTriggeringAbility"
-    },
-    "trigger": "onOpponentActivateAbility"
-  },
-  {
-    "effect": {
-      "then": {
+      {
         "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "*"
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
           },
-          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-          "canCancel": true
-        }
-      },
-      "type": "annulTriggeringAbility"
-    },
-    "trigger": "onOpponentPlayAlly"
-  }
-],
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayAlly"
+      }
+    ],
     "tier": "alto"
   },
   {
@@ -43805,7 +43805,7 @@
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
-    "cantidad_generada": 2,
+    "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
       {
@@ -56780,7 +56780,7 @@
     "nombre": "Huracan",
     "tipo": "Aliado",
     "coste_oro": 0,
-    "imagen_url": "/img/primera_era/Huracan.webp",
+    "imagen_url": "/img/primera_era/huracan.webp",
     "habilidad_texto_descriptivo": "Imbloqueable. Puede atacar cuando entra en juego. Al final del turno que fue declarado atacante, debe ser destruido",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -56840,7 +56840,7 @@
     "nombre": "Caballero aguila",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/primera_era/Caballeroaguila.webp",
+    "imagen_url": "/img/primera_era/caballeroaguila.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes robar una carta de tu Mazo Castillo. Mientras Caballero Aguila este en juego, jugar armas en tus Guerreros cuesta 1 Oro menos.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -56893,7 +56893,7 @@
     "nombre": "Shuar",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/primera_era/Shuar.webp",
+    "imagen_url": "/img/primera_era/shuar.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, nombra una carta. La carta nombrada y todas sus copias pierden su habilidad por el resto del juego.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -56924,7 +56924,7 @@
     "nombre": "Janaqueo",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/primera_era/Janaqueo.webp",
+    "imagen_url": "/img/primera_era/janaqueo.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas uno o mas Armas, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -56969,7 +56969,7 @@
     "nombre": "Karib",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/primera_era/Karib3.webp",
+    "imagen_url": "/img/primera_era/karib3.webp",
     "habilidad_texto_descriptivo": "Mientras este Aliado este en juego, cada vez que juegues un Arma, todos tus Aliados ganan 1 a la fuerza permanentemente.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -57013,6 +57013,1025 @@
         "listensForEvent": "onCardEnterPlay",
         "triggeringPlayer": "self",
         "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 3061,
+    "nombre": "Lautaro",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/lautaro2.webp",
+    "habilidad_texto_descriptivo": "Unica. Puede atacar el turno que entra en juego. Cuando entra en juego, baraja hasta 3 cartas de tu Cementerio en tu Mazo Castillo. Si hace daño al Mazo oponente puedes robar una carta de tu Mazo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Legendaria",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar el turno que entra en juego."
+      },
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Lautaro: Elige hasta 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, baraja hasta 3 cartas de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "lautaro_enter_play_shuffle"
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "lautaro_set_damage_marker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "optional": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            }
+          ]
+        },
+        "description": "Si hace daño al Mazo oponente puedes robar una carta de tu Mazo.",
+        "oncePerTurn": true,
+        "id_habilidad": "lautaro_draw_card_activatable"
+      }
+    ]
+  },
+  {
+    "id": 3578,
+    "nombre": "Taranis",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/taranis2.webp",
+    "habilidad_texto_descriptivo": "Las Armas que controle tu oponente pierden su habilidad. Al comienzo de tu Fase Final, si este Aliado porta un Arma, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAllMatching",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Las Armas que controle tu oponente pierden su habilidad.",
+        "id_habilidad": "taranis_2_annul_weapons"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "optional": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "hasWeaponEquipped"
+            }
+          ]
+        },
+        "description": "Al comienzo de tu Fase Final, si este Aliado porta un Arma, puedes robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "taranis_2_draw_on_weapon"
+      }
+    ]
+  },
+  {
+    "id": 728,
+    "nombre": "Cochise",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/cochise.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente bota 4 cartas. Mientras este Aliado esté en juego, los Alidos que controle tu oponente pierden 1 a la Fuerza.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 4,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, tu oponente bota 4 cartas.",
+        "id_habilidad": "cochise_enter_mill"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras este Aliado esté en juego, los Aliados que controle tu oponente pierden 1 a la Fuerza.",
+        "id_habilidad": "cochise_debuff_aura"
+      }
+    ]
+  },
+  {
+    "id": 3566,
+    "nombre": "Manco Capac",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/mancocapac.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar un Aliado oponente en juego de Coste igual o menor a la cantidad de Aliados y Armas que controles.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente de Coste igual o menor a la cantidad de Aliados y Armas que controles para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "condition": {
+              "value": {
+                "query": {
+                  "type": [
+                    "Aliado",
+                    "Arma"
+                  ],
+                  "zone": "field",
+                  "controller": "self"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes desterrar un Aliado oponente en juego de Coste igual o menor a la cantidad de Aliados y Armas que controles.",
+        "id_habilidad": "manco_capac_banish_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 4085,
+    "nombre": "Insignia de Toki",
+    "tipo": "Arma",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/insigniadetoki2.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la Fuerza.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": []
+  },
+  {
+    "id": 3568,
+    "nombre": "Lanza Wayki",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/lanzawayki.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la Fuerza. Si es portada por un Aliado Guerrero, en vez de eso, gana 2 a la Fuerza. Cuando entra en juego, puedes buscar un Arma en tu Cementerio y ponerla en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToWielder"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "wielderIs",
+          "query": {
+            "raza": "Guerrero"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "El portador gana 1 a la Fuerza. Si es portada por un Aliado de raza Guerrero, en vez de eso, gana 2 a la Fuerza.",
+        "id_habilidad": "lanza_wayki_guerrero_buff"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Lanza Wayki: Elige un Arma de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Arma en tu Cementerio y ponerla en tu Mano.",
+        "id_habilidad": "lanza_wayki_enter_play_tutor"
+      }
+    ]
+  },
+  {
+    "id": 3666,
+    "nombre": "Laque",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/laque.webp",
+    "habilidad_texto_descriptivo": "Su portador gana 1 a la Fuerza. Cuando entra en juego puedes buscar un Aliado en tu Mazo Castillo y ponerlo en tu Mano. Luego, bota 3 cartas de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 3,
+              "target": "self"
+            }
+          },
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Laque: Busca un Aliado en tu Mazo Castillo para ponerlo en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego puedes buscar un Aliado en tu Mazo Castillo y ponerlo en tu Mano. Luego, bota 3 cartas de tu Mazo Castillo.",
+        "id_habilidad": "laque_enter_play_tutor"
+      }
+    ]
+  },
+  {
+    "id": 3736,
+    "nombre": "Flechero",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/flechero2.webp",
+    "habilidad_texto_descriptivo": "Anula un Talisman oponente.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "id_habilidad": "flechero_annul"
+      }
+    ]
+  },
+  {
+    "id": 3964,
+    "nombre": "Machitun",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/machitun.webp",
+    "habilidad_texto_descriptivo": "Reduce a cero todo el daño hecho por tu oponente este turno.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "reduceAllCombatDamageToZero"
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "Reduce a cero todo el daño hecho por tu oponente este turno.",
+        "id_habilidad": "machitun_prevent_damage"
+      }
+    ]
+  },
+  {
+    "id": 3333,
+    "nombre": "Sotz' Na",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/sotzna2.webp",
+    "habilidad_texto_descriptivo": "Unica. Anula un Aliado.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringAlly"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "description": "Anula un Aliado.",
+        "id_habilidad": "sotz_na_annul_ally"
+      }
+    ]
+  },
+  {
+    "id": 3335,
+    "nombre": "El Dorado",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/eldorado3.webp",
+    "habilidad_texto_descriptivo": "Cuando este Oro entra en juego puedes robar una carta de tu Mazo Castillo. Luego, descarta una carta de tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de El Dorado 2: ¿Quieres robar una carta y luego descartar una?",
+          "options": [
+            {
+              "id": "el_dorado_accept",
+              "action": {
+                "type": "drawThenDiscard",
+                "drawCount": 1,
+                "discardCount": 1
+              },
+              "description": "Sí, robar 1 y descartar 1."
+            },
+            {
+              "id": "el_dorado_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando este Oro entra en juego puedes robar una carta de tu Mazo Castillo. Luego, descarta una carta de tu Mano.",
+        "id_habilidad": "el_dorado_2_loot_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 3777,
+    "nombre": "Guerreros Indomables",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/guerrerosindomables.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar un Guerrero de tu Mano para buscar un Arma en tu Mazo Castillo y ponerla en tu Mano. Puedes destruir este Oro para barajar un Arma de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHandAndResolve",
+          "prompt": "Puedes mostrar un Guerrero de tu mano para buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+          "optional": true,
+          "mainEffect": {
+            "type": "searchAndPutInHand",
+            "prompt": "Elige un Arma de tu Mazo Castillo para poner en tu mano.",
+            "canCancel": true,
+            "searchQuery": {
+              "type": "Arma",
+              "zone": "mazoCastillo"
+            }
+          },
+          "revealQuery": {
+            "raza": "Guerrero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mostrar un Guerrero de tu Mano para buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+        "id_habilidad": "guerreros_indomables_enter_play_tutor"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "Arma"
+          },
+          "prompt": "Elige un Arma de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "Puedes destruir este Oro para barajar un Arma de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "guerreros_indomables_recycle_weapon"
+      }
+    ]
+  },
+  {
+    "id": 4060,
+    "nombre": "Ocelote del Templo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/ocelotedeltemplo3.webp",
+    "habilidad_texto_descriptivo": "Al comienzo de tu Fase de Agrupación, si este Oro está en tu Cementerio, puedes desterrar una carta de tu Cementerio para ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*",
+              "isOther": true
+            },
+            "prompt": "Elige una carta de tu Cementerio para desterrar y recuperar a Ocelote del Templo 4."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "hasNotPerformedActionThisTurn"
+            }
+          ]
+        },
+        "description": "Al comienzo de tu Fase de Agrupación, si este Oro está en tu Cementerio, puedes desterrar una carta de tu Cementerio para ponerlo en tu Mano.",
+        "id_habilidad": "ocelote_templo_4_graveyard_recycle",
+        "special_properties": [
+          {
+            "type": "allowGoldPlayAfter",
+            "condition": {
+              "type": "wasFirstActionOfTurn"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3305,
+    "nombre": "Oro de los Cesares",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/orodeloscesares2.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar este Oro y otro Oro que controles para que un Aliado que controles sea Imbloqueable hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado que controles para que sea Imbloqueable hasta la Fase Final.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes pagar este Oro y otro Oro que controles para que un Aliado que controles sea Imbloqueable hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "oro_cesares_unblockable"
+      }
+    ]
+  },
+  {
+    "id": 4656,
+    "nombre": "Puchao",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/puchao.webp",
+    "habilidad_texto_descriptivo": "Devuelve un oro a tu mano, luego pon esta carta en tu reserva de oro. Al utilizarlo cuenta como 2 oros.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "countAs2gold"
+        ],
+        "description": "Al utilizarlo cuenta como 2 oros."
+      },
+      {
+        "effect": {
+          "type": "selectAndReturnToHandInModal",
+          "prompt": "Elige un Oro de tus zonas para devolver a tu mano.",
+          "targetQuery": {
+            "type": "Oro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Al entrar en juego, elige un Oro de tu reserva o pagados y devuélvelo a tu mano.",
+        "id_habilidad": "puchao_return_gold"
+      }
+    ]
+  },
+  {
+    "id": 3091,
+    "nombre": "Teepee",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/teepee.webp",
+    "habilidad_texto_descriptivo": "Si este Oro está en tu Reserva de Oros, puedes barajarlo en tu Mazo Castillo para desterrar la primera carta del Mazo Castillo oponente. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "shuffleSelfIntoDeck"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1,
+              "optional": true
+            }
+          },
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve"
+          ]
+        },
+        "description": "Si este Oro está en tu Reserva de Oros, puedes barajarlo en tu Mazo Castillo para desterrar la primera carta del Mazo Castillo oponente. Luego, puedes robar 1 carta.",
+        "id_habilidad": "teepee_shuffle_banish_draw"
+      }
+    ]
+  },
+  {
+    "id": 729,
+    "nombre": "Pipa Ceremonial",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/pipazo.webp",
+    "habilidad_texto_descriptivo": "Si controlas al menos 1 aliado, puedes pagar este Oro para poner una carta de tu Cementerio en la parte inferior de tu Mazo Castillo. Sólo puedes activar una Pipa Ceremonial por turno.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "paySelfAsCost"
+        },
+        "effect": {
+          "type": "searchAndMoveToBottom",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para poner en el fondo de tu Mazo Castillo."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "phase": [
+            "Principal"
+          ],
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve"
+              ]
+            }
+          ]
+        },
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "pipa_ceremonial_recycle"
+      }
+    ]
+  },
+  {
+    "id": 730,
+    "nombre": "Escudo de Guerra",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/escudodeguerra.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. En tu Fase de Vigilia, una vez por turno, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como Coste tenga el Aliado portador. ",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "source": "property",
+            "context": "wielder",
+            "property": "coste_oro"
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige exactamente {count} cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "minCount": {
+            "source": "property",
+            "context": "wielder",
+            "property": "coste_oro"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": {
+                "source": "property",
+                "context": "wielder",
+                "property": "coste_oro"
+              },
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como Coste tenga el Aliado portador.",
+        "oncePerTurn": true,
+        "id_habilidad": "escudo_guerra_recycle"
+      }
+    ]
+  },
+  {
+    "id": 3331,
+    "nombre": "Forma Voladora",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/formavoladora.webp",
+    "habilidad_texto_descriptivo": "Elije un numero. Las cartas en juego con Coste igual al numero elegido pierden su habilidad y son destruidas.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "selectAnnulAndDestroy",
+          "prompt": "Elige una carta en el campo. Todas las cartas con su mismo Coste serán anuladas y destruidas.",
+          "matchProperty": "coste_oro",
+          "selectionQuery": {
+            "type": "*",
+            "zone": "field",
+            "controller": "any"
+          },
+          "targetController": "any"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elije una carta en el campo. Las cartas en juego con Coste igual al numero de la carta elegida pierden su habilidad y son destruidas.",
+        "id_habilidad": "forma_voladora_mass_removal"
+      }
+    ]
+  },
+  {
+    "id": 3427,
+    "nombre": "Huascar",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/huascar2.webp",
+    "habilidad_texto_descriptivo": "Si es el primer Aliado que pones en juego, puedes buscar un Oro y un Arma en tu Mazo Castillo y ponerlos en tu Mano. Cuando es declarado atacante gana 1 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchMultipleAndPutInHand",
+          "zone": "mazoCastillo",
+          "prompt": "Habilidad de Huáscar: Busca un Oro y un Arma en tu Mazo Castillo.",
+          "searches": [
+            {
+              "count": 1,
+              "query": {
+                "type": "Oro"
+              }
+            },
+            {
+              "count": 1,
+              "query": {
+                "type": "Arma"
+              }
+            }
+          ],
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "isFirstAlly"
+        },
+        "description": "Si es el primer Aliado que pones en juego, puedes buscar un Oro y un Arma en tu Mazo Castillo y ponerlos en tu Mano.",
+        "id_habilidad": "huascar_first_ally_tutor"
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando es declarado atacante gana 1 a la Fuerza hasta la Fase Final.",
+        "id_habilidad": "huascar_attack_buff"
       }
     ]
   }

@@ -9702,6 +9702,14 @@
     "salud": null,
     "habilidades": [
       {
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
@@ -9714,13 +9722,13 @@
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Desafiante de coste 3 o menos para poner en tu mano.",
           "searchQuery": {
-            "cost": {
+            "type": "Aliado",
+            "raza": "Desafiante",
+            "zone": "mazoCastillo",
+            "coste_oro": {
               "value": 3,
               "operator": "<="
-            },
-            "raza": "Desafiante",
-            "type": "Aliado",
-            "zone": "mazoCastillo"
+            }
           }
         },
         "trigger": "onEnterPlay",
@@ -27092,7 +27100,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/nuevasporagregar/jackothegreen692.webp",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliados de Coste 2 o Menos que controles para Destruir un Aliado oponente. ",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -27106,6 +27114,20 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "jacko_the_green_removal",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "destroyTarget",
@@ -27134,8 +27156,7 @@
             "controller": "opponent"
           }
         },
-        "trigger": "onEnterPlay",
-        "descripcion": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente."
+        "description": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente."
       }
     ]
   },
@@ -34175,6 +34196,16 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "dione_banish_to_draw",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "banishFromGraveyard",
@@ -34182,7 +34213,7 @@
             "query": {
               "type": "*"
             },
-            "prompt": "Elige una carta de tu Cementerio para desterrar y robar una carta.",
+            "prompt": "Habilidad de Dione: Elige una carta de tu Cementerio para desterrar.",
             "optional": true
           }
         ],
@@ -34190,9 +34221,7 @@
           "type": "drawCards",
           "count": 1
         },
-        "trigger": "onEnterPlay",
-        "descripcion": "Cuando entra en juego, puedes desterrar una carta de tu Cementerio para robar 1 carta.",
-        "id_habilidad": "dione_banish_to_draw"
+        "description": "Cuando entra en juego, puedes desterrar una carta de tu Cementerio para robar 1 carta."
       }
     ]
   },
@@ -38961,6 +38990,14 @@
     "salud": null,
     "habilidades": [
       {
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
@@ -38973,13 +39010,13 @@
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Desafiante de coste 3 o menos para poner en tu mano.",
           "searchQuery": {
-            "cost": {
+            "type": "Aliado",
+            "raza": "Desafiante",
+            "zone": "mazoCastillo",
+            "coste_oro": {
               "value": 3,
               "operator": "<="
-            },
-            "raza": "Desafiante",
-            "type": "Aliado",
-            "zone": "mazoCastillo"
+            }
           }
         },
         "trigger": "onEnterPlay",
@@ -53930,56 +53967,57 @@
   },
   {
     "id": 7219,
-    "nombre": "Fergus Mor MacEric",
+    "nombre": "Fergus",
     "tipo": "Aliado",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/store/cartas/ferguscarloko1.webp",
-    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
-    "descripcion": "Edición Especial Arte Alternativo",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
     "expansion": "Hijos De Daana",
-    "rareza": "Promo",
+    "rareza": "false",
     "fecha_creacion": null,
-    "fuerza": 2,
+    "fuerza": 1,
     "raza": "Defensor",
-    "leyenda": null,
+    "leyenda": "",
     "danio": null,
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
       {
+        "phase": "Principal",
         "effect": {
-          "type": "grantKeyword",
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
           "target": {
             "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+              "type": "Aliado",
+              "isHighestStrength": true
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "unblockable"
+            "controller": "opponent"
+          }
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
-        "id_habilidad": "fergus_mor_unblockable_aura"
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "canAttackOnEnterPlay"
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
-        "id_habilidad": "fergus_mor_haste_aura"
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
       }
     ],
     "tier": "medio"

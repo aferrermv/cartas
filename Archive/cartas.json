@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.2.9",
+    "pack_version": "2.3.0",
     "habilidades": []
   },
   {
@@ -58658,5 +58658,410 @@
         "id_habilidad": "tzolkin_talisman_protection"
       }
     ]
+  },
+  {
+    "id": 1084,
+    "nombre": "Nixx",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl111.webp",
+    "habilidad_texto_descriptivo": "Cuando Nixx porta un arma, gana + 2 a la fuerza.",
+    "descripcion": "Cuando Nixx porta un arma, gana + 2 a la fuerza.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Arma",
+            "source": "attachedCards"
+          },
+          "target": "self",
+          "multiplier": 2
+        },
+        "trigger": "continuous",
+        "descripcion": "Por cada arma que porte, gana +2 a la fuerza.",
+        "id_habilidad": "nyxx_weapon_buff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1262,
+    "nombre": "Ataque de Goblins",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl346.webp",
+    "habilidad_texto_descriptivo": "Tu oponente bota 1 carta de su Mazo Castillo por cada Aliado en juego de coste 1 o menos.",
+    "descripcion": "Tu oponente bota 1 carta de su Mazo Castillo por cada Aliado en juego de coste 1 o menos.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "coste_oro": {
+                "value": 1,
+                "operator": "<="
+              },
+              "controller": "any"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Tu oponente bota 1 carta de su Mazo Castillo por cada Aliado en juego de coste 1 o menos.",
+        "id_habilidad": "ataque_de_goblins_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1922,
+    "nombre": "Diarmuid",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1179.webp",
+    "habilidad_texto_descriptivo": "Cuando Diarmuid entra en juego, puedes jugar un Defensor de coste 2 o menos desde tu Cementerio sin pagar su coste.",
+    "descripcion": "Cuando Diarmuid entra en juego, puedes jugar un Defensor de coste 2 o menos desde tu Cementerio sin pagar su coste.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Habilidad de Diarmuid: Elige un Aliado Defensor de coste 2 o menos en tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "raza": "Defensor",
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "raza": "Defensor",
+            "type": "Aliado",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando Diarmuid entra en juego, puedes jugar un Defensor de coste 2 o menos desde tu Cementerio sin pagar su coste.",
+        "id_habilidad": "diarmuid_reanimate_defensor"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1163,
+    "nombre": "Vegetacion Animada",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl208.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, destruye uno de tus oros para que un Aliado oponente tenga fuerza cero hasta el final del turno. ",
+    "descripcion": "En tu fase de vigilia, destruye uno de tus oros para que un Aliado oponente tenga fuerza cero hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTargetInModal",
+            "count": 1,
+            "prompt": "Habilidad de Vegetación Animada: Elige uno de tus Oros para destruir como coste.",
+            "target": {
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ],
+              "query": {
+                "type": ""
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para reducir su fuerza a 0 hasta el final del turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "En tu fase de vigilia, destruye uno de tus oros para que un Aliado oponente tenga fuerza cero hasta el final del turno.",
+        "id_habilidad": "vegetacion_animada_reduction",
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1038,
+    "nombre": "Atraer la Tormenta",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl57.webp",
+    "habilidad_texto_descriptivo": "Anula una carta oponente, a menos que éste bote 3 cartas. Atraer la Tormenta no afecta a los oros. ",
+    "descripcion": "Anula una carta oponente, a menos que éste bote 3 cartas. Atraer la Tormenta no afecta a los oros. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "description": "Anula una carta oponente, a menos que éste bote 3 cartas. Atraer la Tormenta no afecta a los oros.",
+        "id_habilidad": "atraer_tormenta_annul_ally",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "millCards",
+            "count": 3,
+            "target": "self"
+          },
+          "prompt": "Atraer la Tormenta: ¿Deseas botar 3 cartas para evitar que tu Aliado sea anulado?"
+        }
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "id_habilidad": "atraer_tormenta_annul_talisman",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "millCards",
+            "count": 3,
+            "target": "self"
+          },
+          "prompt": "Atraer la Tormenta: ¿Deseas botar 3 cartas para evitar que tu Talismán sea anulado?"
+        }
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "id_habilidad": "atraer_tormenta_annul_weapon",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "millCards",
+            "count": 3,
+            "target": "self"
+          },
+          "prompt": "Atraer la Tormenta: ¿Deseas botar 3 cartas para evitar que tu Arma sea anulada?"
+        }
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "id_habilidad": "atraer_tormenta_annul_totem",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "millCards",
+            "count": 3,
+            "target": "self"
+          },
+          "prompt": "Atraer la Tormenta: ¿Deseas botar 3 cartas para evitar que tu Tótem sea anulado?"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1596,
+    "nombre": "Antheia",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl789.webp",
+    "habilidad_texto_descriptivo": "Antheia es Indesterrable. SI esta carta está en tu Cementerio y solo controlas Aliados de raza Titán, puedes pagar 1 Oro y desterrarla para barajar hasta 2 Aliados de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "Antheia es Indesterrable. SI esta carta está en tu Cementerio y solo controlas Aliados de raza Titán, puedes pagar 1 Oro y desterrarla para barajar hasta 2 Aliados de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Antheia es Indesterrable."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Habilidad de Antheia: Elige hasta 2 Aliados de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Titan"
+              }
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si esta carta está en tu Cementerio y solo controlas Aliados de raza Titán, puedes pagar 1 Oro y desterrarla para barajar hasta 2 Aliados de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "antheia_graveyard_recycle"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1661,
+    "nombre": "Avalon",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl884.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+    "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": [
+                "attack",
+                "defense",
+                "support"
+              ],
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "field"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+        "oncePerTurn": true,
+        "id_habilidad": "avalon_draw_allies"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

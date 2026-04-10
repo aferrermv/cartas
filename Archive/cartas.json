@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.3.0",
+    "pack_version": "2.3.1",
     "habilidades": []
   },
   {
@@ -4893,10 +4893,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -52924,10 +52926,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -52965,10 +52969,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -53006,10 +53012,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -53047,10 +53055,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -53088,10 +53098,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -55459,10 +55471,12 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "aceite_oliva_search",
         "cost": {
           "type": "banishSelf"
         },
         "phase": "Principal",
+        "oncePerTurn": true,
         "effect": {
           "type": "searchAndPlayGold",
           "prompt": "Habilidad de Aceite de Oliva: Busca un Oro en tu Mazo Castillo y ponlo en juego.",
@@ -59060,6 +59074,217 @@
         "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
         "oncePerTurn": true,
         "id_habilidad": "avalon_draw_allies"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2029,
+    "nombre": "Sesotris",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1367.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tus Aliados ganan 2 a la fuerza hasta la Fase Final. Cuando sale del juego, puedes buscar un Oro o Tótem en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": "Cuando entra en juego, tus Aliados ganan 2 a la fuerza hasta la Fase Final. Cuando sale del juego, puedes buscar un Oro o Tótem en tu Mazo Castillo y ponerlo en tu Mano.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, tus Aliados ganan 2 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "sesotris_enter_play_buff"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Sesotris: Elige un Oro o Tótem de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": [
+              "Oro",
+              "Totem"
+            ],
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, puedes buscar un Oro o Tótem en tu Mazo Castillo y ponerlo en tu Mano.",
+        "id_habilidad": "sesotris_leave_play_tutor"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1117,
+    "nombre": "Campesino",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl156.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, destruye a Campesino para generar 1 oro por este turno. ",
+    "descripcion": "En tu fase de vigilia, destruye a Campesino para generar 1 oro por este turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia, destruye a Campesino para generar 1 oro por este turno."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1095,
+    "nombre": "La Piedra de los Sueños",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl126.webp",
+    "habilidad_texto_descriptivo": "Busca dos armas en tu mazo castillo y ponlas en tu mano. ",
+    "descripcion": "Busca dos armas en tu mazo castillo y ponlas en tu mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "count": 2,
+          "prompt": "Habilidad de La Piedra de los Sueños: Elige hasta 2 Armas de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca dos armas en tu mazo castillo y ponlas en tu mano.",
+        "id_habilidad": "piedra_suenos_tutor_armas"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1441,
+    "nombre": "Telchines",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl585.webp",
+    "habilidad_texto_descriptivo": "El turno en que Telchines entra en juego, un Aliado oponente en juego pierde su habilidad hasta el final del turno. ",
+    "descripcion": "El turno en que Telchines entra en juego, un Aliado oponente en juego pierde su habilidad hasta el final del turno. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "prompt": "Habilidad de Telchines: Elige un Aliado oponente para que pierda su habilidad hasta el final del turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "El turno en que Telchines entra en juego, un Aliado oponente en juego pierde su habilidad hasta el final del turno.",
+        "id_habilidad": "telchines_annul_on_enter"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1119,
+    "nombre": "Sir Thomas",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl158.webp",
+    "habilidad_texto_descriptivo": "Cuando Sir Thomas es declarado atacante, gana + 2 a la fuerza hasta el final del turno. ",
+    "descripcion": "Cuando Sir Thomas es declarado atacante, gana + 2 a la fuerza hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando Sir Thomas es declarado atacante, gana + 2 a la fuerza hasta el final del turno.",
+        "id_habilidad": "sir_thomas_attack_buff"
       }
     ],
     "tier": "muy bajo"

@@ -3180,6 +3180,37 @@
     "tier": "medio"
   },
   {
+    "id": 48,
+    "nombre": "Red De Plata",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/gift/reddeplatamarzo/reddeplatamarzo.webp",
+    "habilidad_texto_descriptivo": "Anula un Aliado que esté entrando en juego. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulTriggeringAlly"
+        },
+        "trigger": "onOpponentPlayAlly"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
     "id": 30,
     "nombre": "Plaga",
     "tipo": "Talisman",

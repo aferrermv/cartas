@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.3.4",
+    "pack_version": "2.3.5",
     "habilidades": []
   },
   {
@@ -9192,6 +9192,10 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        },
         "effect": {
           "type": "discardRandomCard",
           "count": 2,
@@ -49807,12 +49811,12 @@
   },
   {
     "id": 1165,
-    "nombre": "Totem Celta",
+    "nombre": "Totem Maldito",
     "tipo": "Totem",
-    "coste_oro": 4,
+    "coste_oro": 5,
     "imagen_url": "/img/store/cartas/1165.webp",
-    "habilidad_texto_descriptivo": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
-    "descripcion": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
+    "habilidad_texto_descriptivo": "En respuesta a un ataque oponente y sólo una vez por turno, puedes elegir un Aliado en su línea de defensa para bloquear su ataque. Si no es destruido, al final del turno devuélvelo a la línea de defensa del oponente. ",
+    "descripcion": "En respuesta a un ataque oponente y sólo una vez por turno, puedes elegir un Aliado en su línea de defensa para bloquear su ataque. Si no es destruido, al final del turno devuélvelo a la línea de defensa del oponente. ",
     "expansion": "Espada Sagrada",
     "rareza": "false",
     "fecha_creacion": null,

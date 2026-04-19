@@ -59323,5 +59323,743 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 2022,
+    "nombre": "Knum",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1358.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que uno de tus Aliados de raza Eterno sea afectado por una Habilidad oponente, puedes desterrar a este Aliado para cancelar esa habilidad.",
+    "descripcion": "En respuesta a que uno de tus Aliados de raza Eterno sea afectado por una Habilidad oponente, puedes desterrar a este Aliado para cancelar esa habilidad.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onAllyOrCardAffectedByOpponentAbility",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado"
+              }
+            }
+          ]
+        },
+        "description": "En respuesta a que uno de tus Aliados de raza Eterno sea afectado por una Habilidad oponente, puedes desterrar a este Aliado para cancelar esa habilidad.",
+        "id_habilidad": "knum_cancel_on_affected"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1545,
+    "nombre": "Escorpio",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl709.webp",
+    "habilidad_texto_descriptivo": "El portador de  Escorpio gana 1 a la fuerza. Cuando entra en juego, puedes destruir un Arma o Tótem en juego.",
+    "descripcion": "El portador de  Escorpio gana 1 a la fuerza. Cuando entra en juego, puedes destruir un Arma o Tótem en juego.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Habilidad de Escorpio: Elige un Arma o Tótem en juego para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": [
+                "Arma",
+                "Totem"
+              ]
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes destruir un Arma o Tótem en juego.",
+        "id_habilidad": "escorpio_destroy_on_enter"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1437,
+    "nombre": "Cerbero",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl581.webp",
+    "habilidad_texto_descriptivo": "Cerbero sólo puede bloquear y no puede portar armas. ",
+    "descripcion": "Cerbero sólo puede bloquear y no puede portar armas. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "Cerbero sólo puede bloquear."
+      },
+      {
+        "description": "No puede portar armas.",
+        "restrictions": {
+          "cannotEquipWeapon": {
+            "query": {
+              "type": "Arma"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1562,
+    "nombre": "Perses",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl745.webp",
+    "habilidad_texto_descriptivo": "Perses no puede ser declarado atacante. Si sólo controlas este Aliado, es indestructible.",
+    "descripcion": "Perses no puede ser declarado atacante. Si sólo controlas este Aliado, es indestructible.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "Perses no puede ser declarado atacante."
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "equal"
+            }
+          ]
+        },
+        "description": "Si sólo controlas este Aliado, es indestructible."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1999,
+    "nombre": "Lamento de Isis",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1328.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado de raza Eterno que controles para buscar una carta de Aliado en tu Mazo Castillo y ponerla en juego sin pagar su coste.",
+    "descripcion": "Destruye un Aliado de raza Eterno que controles para buscar una carta de Aliado en tu Mazo Castillo y ponerla en juego sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Lamento de Isis: Elige un Aliado de raza Eterno que controles para destruir como coste.",
+            "target": {
+              "zone": "field",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de tu Mazo Castillo para poner en juego.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado de raza Eterno que controles para buscar una carta de Aliado en tu Mazo Castillo y ponerla en juego sin pagar su coste.",
+        "id_habilidad": "lamento_isis_effect"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1114,
+    "nombre": "Piqueros",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl152.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, si Piqueros está en tu cementerio, puedes pagar su coste y ponerlo en juego. ",
+    "descripcion": "En tu fase de vigilia, si Piqueros está en tu cementerio, puedes pagar su coste y ponerlo en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 3
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu fase de vigilia, si Piqueros está en tu cementerio, puedes pagar 3 de oro y ponerlo en juego.",
+        "oncePerTurn": true,
+        "id_habilidad": "piqueros_graveyard_recursion"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1524,
+    "nombre": "Gladiador",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl681.webp",
+    "habilidad_texto_descriptivo": "Si Gladiador hace daño al Mazo Castillo oponente, puedes robar una carta.",
+    "descripcion": "Si Gladiador hace daño al Mazo Castillo oponente, puedes robar una carta.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Gladiador: ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "gladiador_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar una carta"
+            },
+            {
+              "id": "gladiador_draw_no",
+              "action": {},
+              "description": "No robar"
+            }
+          ]
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si Gladiador hace daño al Mazo Castillo oponente, puedes robar una carta.",
+        "id_habilidad": "gladiador_draw_on_damage"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1638,
+    "nombre": "Hijos de Lir",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl854.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que uno de tus Aliados sea destruido, juega Hijos de Lir para que tu oponente bote tantas cartas como fuerza tenga el Aliado destruido.",
+    "descripcion": "En respuesta a que uno de tus Aliados sea destruido, juega Hijos de Lir para que tu oponente bote tantas cartas como fuerza tenga el Aliado destruido.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "countFrom": {
+            "stat": "fuerza",
+            "context": "triggeringCard"
+          }
+        },
+        "trigger": "activatable",
+        "description": "En respuesta a que uno de tus Aliados sea destruido, juega Hijos de Lir para que tu oponente bote tantas cartas como fuerza tenga el Aliado destruido.",
+        "id_habilidad": "hijos_de_lir_mill_retaliation",
+        "eventCondition": {
+          "destinationZone": "cementerio"
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2355,
+    "nombre": "Cazar al Mal",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1766.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar esta carta en tu Fase de Vigilia. Baraja todos los Aliados en juego de fuerza 4 o más.",
+    "descripcion": "Sólo puedes jugar esta carta en tu Fase de Vigilia. Baraja todos los Aliados en juego de fuerza 4 o más.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "shuffleAllMatching",
+          "query": {
+            "type": "Aliado",
+            "fuerza": {
+              "value": 4,
+              "operator": ">="
+            }
+          },
+          "controller": "any"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Sólo puedes jugar esta carta en tu Fase de Vigilia. Baraja todos los Aliados en juego de fuerza 4 o más.",
+        "id_habilidad": "cazar_al_mal_mass_shuffle",
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1612,
+    "nombre": "Brigit",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl821.webp",
+    "habilidad_texto_descriptivo": "Mientras Brigit esté en juego, todos tus demás Aliados de raza Desafiante son indesterrables e indestructibles.",
+    "descripcion": "Mientras Brigit esté en juego, todos tus demás Aliados de raza Desafiante son indesterrables e indestructibles.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Desafiante",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "cannotBeBanished"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Brigit esté en juego, todos tus demás Aliados de raza Desafiante son indesterrables.",
+        "id_habilidad": "brigit_banish_protection"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Desafiante",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Brigit esté en juego, todos tus demás Aliados de raza Desafiante son indestructibles.",
+        "id_habilidad": "brigit_destruction_protection"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1929,
+    "nombre": "Lig-Na-Paiste",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1199.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar una carta en tu Mazo Castillo y ponerla en tu Cementerio. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "Cuando entra en juego, puedes buscar una carta en tu Mazo Castillo y ponerla en tu Cementerio. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Ahora, puedes elegir una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
+          },
+          "type": "searchAndMove",
+          "prompt": "Habilidad de Lig-Na-Paiste: ¿Quieres buscar una carta en tu Mazo para ponerla en tu Cementerio?",
+          "canCancel": true,
+          "destination": "cementerio",
+          "searchQuery": {
+            "type": "*",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar una carta en tu Mazo Castillo y ponerla en tu Cementerio. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "lig_na_paiste_mill_recycle"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2237,
+    "nombre": "Chike de la Sombra",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl1613.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes pagar 1 Oro para jugarlo sin pagar su coste.",
+    "descripcion": "En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes pagar 1 Oro para jugarlo sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 1
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes pagar 1 Oro para jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "chike_sombra_recursion"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1864,
+    "nombre": "Lilias",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1112.webp",
+    "habilidad_texto_descriptivo": "Si Lilias porta un Arma, tus Aliados de Raza Defensor son Indestructibles.",
+    "descripcion": "Si Lilias porta un Arma, tus Aliados de Raza Defensor son Indestructibles.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "hasWeaponEquipped"
+        },
+        "description": "Si Lilias porta un Arma, tus Aliados de Raza Defensor son Indestructibles.",
+        "id_habilidad": "lilias_indestructible_aura"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1495,
+    "nombre": "Gladius",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl649.webp",
+    "habilidad_texto_descriptivo": "El portador de Gladius gana 1 a la fuerza. Si hace daño al Mazo Castillo oponente, éste debe destruir a su elección uno de sus Aliados y debe botar 3 cartas.",
+    "descripcion": "El portador de Gladius gana 1 a la fuerza. Si hace daño al Mazo Castillo oponente, éste debe destruir a su elección uno de sus Aliados y debe botar 3 cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 3,
+              "target": "self"
+            }
+          },
+          "type": "forceOpponentToDestroyAlly",
+          "prompt": "Habilidad de Gladius: Tu oponente debe elegir un Aliado para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo Castillo oponente, éste debe destruir a su elección uno de sus Aliados y debe botar 3 cartas.",
+        "id_habilidad": "gladius_damage_effect"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1835,
+    "nombre": "Dalriada",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1079.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes elegir un Aliado en juego para que pierda su habilidad y su raza hasta la Fase Final.",
+    "descripcion": "Una vez por turno, puedes elegir un Aliado en juego para que pierda su habilidad y su raza hasta la Fase Final.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "TargetAndAnullAbilitieandloserace",
+          "prompt": "Habilidad de Dalriada: Elige un Aliado para que pierda su habilidad y su raza hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes elegir un Aliado en juego para que pierda su habilidad y su raza hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "dalriada_annul_race"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1816,
+    "nombre": "Math",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1053.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes tomar un Aliado de coste 2 o menos de tu Zona le Destierro y ponerlo en juego sin pagar su coste.",
+    "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes tomar un Aliado de coste 2 o menos de tu Zona le Destierro y ponerlo en juego sin pagar su coste.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Habilidad de Math: Elige un Aliado de coste 2 o menos de tu Zona de Destierro para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "type": "Aliado",
+            "zone": "banish"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes tomar un Aliado de coste 2 o menos de tu Zona de Destierro y ponerlo en juego sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "math_banish_reanimation"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

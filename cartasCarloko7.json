@@ -1,0 +1,447 @@
+[
+  {
+    "id": 7317,
+    "nombre": "Apophis",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/apophislegendaria311zon.webp",
+    "habilidad_texto_descriptivo": "Única. Mientras este Aliado este en juego, todos los demas Aliados en juego pierden su habilidad. Cada vez que tu oponente juegue una carta que no sea Oro, debe botar 3 cartas de su Mazo Castillo. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAllMatching",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras este Aliado este en juego, todos los demas Aliados en juego pierden su habilidad.",
+        "id_habilidad": "apophis_annul_aura"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "descripcion": "Cada vez que tu oponente juegue una carta que no sea Oro, debe botar 3 cartas de su Mazo Castillo.",
+        "id_habilidad": "apophis_mill_on_opponent_play",
+        "eventCondition": {
+          "notType": "Oro"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "opponent",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7318,
+    "nombre": "El Gran Zeus",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/elgranzeusreal11211zon.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "El Gran Zeus es Indestructible. En tu Fase de Vigilia, sólo una vez por turno, puedes robar hasta 2 cartas. Carta unica. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de El Gran Zeus: Elige un efecto.",
+          "options": [
+            {
+              "id": "zeus_draw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
+            },
+            {
+              "id": "zeus_draw_1",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            }
+          ]
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "trigger": "activatable",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7319,
+    "nombre": "Fergus Mor MacEric",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ferguslegendaria1411zon.webp",
+    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
+        "id_habilidad": "fergus_mor_unblockable_aura"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
+        "id_habilidad": "fergus_mor_haste_aura"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7320,
+    "nombre": "Julio Cesar",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/juliocesarreal1911zon.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Mientras Julio César esté en juego, todos tus demas Aliados ganan 1 a la Fuerza y son imbloqueables.\nUnica.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados ganan 1 a la Fuerza."
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados son Imbloqueables."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7321,
+    "nombre": "Cesar Augusto",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cesaraugustocarloko1.webp",
+    "habilidad_texto_descriptivo": "Puedes subir a la mano de su dueño a Cesar Augusto para anular una carta que no sea Talisman. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Aliado que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Arma que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Tótem que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayGold",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Oro que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7322,
+    "nombre": "Espada Larga",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadalargacarloko3.webp",
+    "habilidad_texto_descriptivo": "Cuando Espada Larga entra en juego, roba 2 cartas de tu Mazo Castillo. El portador de Espada Larga gana 1 a la fuerza.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T20:53:19.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7323,
+    "nombre": "Espartaco",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/espartacocarloko1.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes barajar de tu Cementerio a tu Mazo tantas cartas como fuerza tenga Espartaco. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "source": "property",
+            "property": "fuerza"
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7324,
+    "nombre": "Orion",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/orioncarloko1.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, roba una carta. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7325,
+    "nombre": "Perseo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/perseocarloko1.webp",
+    "habilidad_texto_descriptivo": "En tu fase de Vigilia, puedes desterrar a Perseo para barajar un aliado oponente de coste 3 o menos. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente de coste 3 o menos para barajar.",
+          "target": {
+            "query": {
+              "cost": {
+                "value": 3,
+                "operator": "<="
+              },
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "id_habilidad": "perseo_banish_shuffle",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "alto"
+  }
+]

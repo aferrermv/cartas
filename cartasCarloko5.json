@@ -1,0 +1,1256 @@
+[
+  {
+    "id": 7271,
+    "nombre": "Alas de Horus",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Alas-de-horus-real_1_11zon.webp",
+    "habilidad_texto_descriptivo": "Baraja una carta en juego que no sea Oro",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Baraja una carta en juego que no sea Oro.",
+        "id_habilidad": "alas_de_horus_main"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7272,
+    "nombre": "Alas de Horus",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Alas-de-horus-real_1_2_11zon.webp",
+    "habilidad_texto_descriptivo": "Baraja una carta en juego que no sea Oro",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Baraja una carta en juego que no sea Oro.",
+        "id_habilidad": "alas_de_horus_main"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7273,
+    "nombre": "Apophis",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/Apophis-real_4_11zon.webp",
+    "habilidad_texto_descriptivo": "Única. Mientras este Aliado este en juego, todos los demas Aliados en juego pierden su habilidad. Cada vez que tu oponente juegue una carta que no sea Oro, debe botar 3 cartas de su Mazo Castillo. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAllMatching",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras este Aliado este en juego, todos los demas Aliados en juego pierden su habilidad.",
+        "id_habilidad": "apophis_annul_aura"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "descripcion": "Cada vez que tu oponente juegue una carta que no sea Oro, debe botar 3 cartas de su Mazo Castillo.",
+        "id_habilidad": "apophis_mill_on_opponent_play",
+        "eventCondition": {
+          "notType": "Oro"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "opponent",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7274,
+    "nombre": "Despertar Oscuro",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Despertar-oscuro-real_1_8_11zon.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 3,
+          "discardCount": 1
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1.",
+        "play_condition": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "currentPhase",
+                  "phase": "Principal"
+                },
+                {
+                  "type": "isPlayerTurn"
+                }
+              ]
+            },
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "isPlayerTurn"
+                },
+                {
+                  "type": "hasNotPerformedActionThisTurn"
+                }
+              ]
+            }
+          ]
+        },
+        "special_properties": [
+          {
+            "type": "allowGoldPlayAfter",
+            "condition": {
+              "type": "wasFirstActionOfTurn"
+            }
+          }
+        ]
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7275,
+    "nombre": "Despertar Oscuro",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Despertar-oscuro-real_7_11zon.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 3,
+          "discardCount": 1
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Sólo puedes jugar este Talisman en Respuesta a tu Fase de Agrupación o en tu Fase de Vigilia. Roba 3 cartas, luego descarta 1.",
+        "play_condition": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "currentPhase",
+                  "phase": "Principal"
+                },
+                {
+                  "type": "isPlayerTurn"
+                }
+              ]
+            },
+            {
+              "type": "and",
+              "conditions": [
+                {
+                  "type": "isPlayerTurn"
+                },
+                {
+                  "type": "hasNotPerformedActionThisTurn"
+                }
+              ]
+            }
+          ]
+        },
+        "special_properties": [
+          {
+            "type": "allowGoldPlayAfter",
+            "condition": {
+              "type": "wasFirstActionOfTurn"
+            }
+          }
+        ]
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7276,
+    "nombre": "Dragón de Magma",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/Dragon-de-magma-real_9_11zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:50:02.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7277,
+    "nombre": "Dragón Nube",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/Dragon-nube-real_10_11zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón Nube entra en juego, puedes elegir entre robar 2 cartas o que tu oponente bote 2.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-26T19:48:50.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Dragón Nube: Elige un efecto.",
+          "options": [
+            {
+              "id": "dragon_nube_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
+            },
+            {
+              "id": "dragon_nube_mill",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota 2 cartas"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7278,
+    "nombre": "El Gran Zeus",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/El-gran-zeus-real_11_11zon.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "El Gran Zeus es Indestructible. En tu Fase de Vigilia, sólo una vez por turno, puedes robar hasta 2 cartas. Carta unica. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de El Gran Zeus: Elige un efecto.",
+          "options": [
+            {
+              "id": "zeus_draw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
+            },
+            {
+              "id": "zeus_draw_1",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            }
+          ]
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "trigger": "activatable",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7279,
+    "nombre": "Espartaco",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Espartaco-real_13_11zon.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes barajar de tu Cementerio a tu Mazo tantas cartas como fuerza tenga Espartaco. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "source": "property",
+            "property": "fuerza"
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7280,
+    "nombre": "Fergus Mor MacEric",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/Fergus-real_15_11zon.webp",
+    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
+        "id_habilidad": "fergus_mor_unblockable_aura"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
+        "id_habilidad": "fergus_mor_haste_aura"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7281,
+    "nombre": "Gaitas",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/Gaitas-promocional_16_11zon.webp",
+    "habilidad_texto_descriptivo": "En la Fase Final puedes agrupar este Oro. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "gaitas_regroup_gold",
+        "phase": "Final",
+        "effect": {
+          "type": "regroupGold"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "paidGold"
+        },
+        "description": "En la Fase Final puedes agrupar este Oro.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7282,
+    "nombre": "Jinetes de Fuego",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/Jinetes-de-fuego-legendaria_18_11zon.webp",
+    "habilidad_texto_descriptivo": "Jinetes de Fuego no puede ser anulado. Tu oponente bota 3 cartas de su Mazo Castillo. Puedes jugar esta carta si está en tu Cementerio, si lo haces debes desterrarla. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "resolvesInstantly": true,
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "description": "Tu oponente bota 3 cartas de su Mazo Castillo. No puede ser anulado.",
+        "id_habilidad": "jinetes_fuego_main"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "resolvesInstantly": true,
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Puedes jugar esta carta desde tu Cementerio pagando su coste, si lo haces destiérrala.",
+        "id_habilidad": "jinetes_fuego_from_graveyard"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7283,
+    "nombre": "Marco Antonio",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/Marco-antonio-real_20_11zon.webp",
+    "habilidad_texto_descriptivo": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados de raza Héroe ganan 1 a la fuerza.",
+        "id_habilidad": "marco_antonio_buff"
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "No se pueden jugar Talismanes.",
+        "id_habilidad": "marco_antonio_talisman_lock"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7284,
+    "nombre": "Aine",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ainecarloko1.webp",
+    "habilidad_texto_descriptivo": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
+          "optional": true
+        },
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
+        "id_habilidad": "aine_reveal_and_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7285,
+    "nombre": "Cesar Augusto",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cesaraugustocarloko3.webp",
+    "habilidad_texto_descriptivo": "Puedes subir a la mano de su dueño a Cesar Augusto para anular una carta que no sea Talisman. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Aliado que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Arma que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Tótem que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "returnSelfToHandAsCost"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayGold",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes devolver a César Augusto a tu mano para anular un Oro que tu oponente esté jugando.",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7286,
+    "nombre": "Constantino",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/constantinocarloko1.webp",
+    "habilidad_texto_descriptivo": "Mientras Constantino esté en juego, si todos tus Aliados son de Raza Héroe, ganan 2 a la Fuerza.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Heroe"
+          }
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7287,
+    "nombre": "Espada Larga",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadalargacarloko2.webp",
+    "habilidad_texto_descriptivo": "Cuando Espada Larga entra en juego, roba 2 cartas de tu Mazo Castillo. El portador de Espada Larga gana 1 a la fuerza.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": "2025-06-25T20:53:19.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7288,
+    "nombre": "Idmon el Adivino",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/idmoneladivinocarloko2.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes mirar la primera carta de tu Mazo Castillo, si es un aliado de raza Heroe, puedes ponerlo en juego sin pagar su coste, si la carta no es un Heroe, destruyela.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "viewTopAndResolve",
+          "choice": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7289,
+    "nombre": "Julio Cesar",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/juliocesarcarloko2.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Mientras Julio César esté en juego, todos tus demas Aliados ganan 1 a la Fuerza y son imbloqueables.\nUnica.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados ganan 1 a la Fuerza."
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados son Imbloqueables."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7290,
+    "nombre": "Marco Antonio",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/marcoantoniocarloko1.webp",
+    "habilidad_texto_descriptivo": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Helenica",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados de raza Héroe ganan 1 a la fuerza.",
+        "id_habilidad": "marco_antonio_buff"
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "No se pueden jugar Talismanes.",
+        "id_habilidad": "marco_antonio_talisman_lock"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7291,
+    "nombre": "Pixie",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/pixiecarloko1.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de vigilia y sólo si tienes a Morgana en juego, puedes elegir entre robar 3 cartas  buscar 2 en tu cementerio y barajarlas en tu Mazo Castillo",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Espada Sagrada",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Pixie: Elige un efecto.",
+          "options": [
+            {
+              "id": "pixie_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 3
+              },
+              "description": "Robar 3 cartas"
+            },
+            {
+              "id": "pixie_shuffle",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 2,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 2 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+                "canCancel": true
+              },
+              "description": "Barajar 2 cartas de tu Cementerio en tu Mazo"
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "nombre": "Morgana"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de vigilia y sólo si tienes a Morgana en juego, puedes elegir entre robar 3 cartas o buscar 2 en tu cementerio y barajarlas en tu Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "pixie_choose_effect"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7292,
+    "nombre": "Rhiannon",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/rhiannoncarloko2.webp",
+    "habilidad_texto_descriptivo": "Cuando Rhiannon entra en juego, puedes mostrar las 3 primeras cartas de tu Mazo, Elige una carta que no sea Aliado o todos los aliados de raza Desafiante y poonlas en tu mano. Luego, envia las cartas no escogidas al Cementerio. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres activar la habilidad de Rhiannon para mostrar las 3 primeras cartas de tu Mazo?",
+          "options": [
+            {
+              "id": "activar_rhiannon",
+              "description": "Sí, activar habilidad",
+              "action": {
+                "type": "rhiannonEffect"
+              }
+            },
+            {
+              "id": "decline_rhiannon",
+              "description": "No, gracias",
+              "action": {}
+            }
+          ]
+        },
+        "description": "Cuando Rhiannon entra en juego, puedes mostrar las 3 primeras cartas de tu Mazo, elige una carta que no sea Aliado o todos los Aliados de raza Desafiante y ponlas en tu mano. Luego, envía las cartas no escogidas al Cementerio.",
+        "id_habilidad": "rhiannon_reveal_and_choose"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7293,
+    "nombre": "Tuatha de Danaan",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/tuathadedanaancarloko1.webp",
+    "habilidad_texto_descriptivo": "En tu fase de Vigilia, una vez por turno, puedes subir a Tuata de Danaan a tu mano para robar 2 cartas. Unica. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "returnSelfToHandAsCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de Vigilia, una vez por turno, puedes subir a Tuata de Danaan a tu mano para robar 2 cartas.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "tuata_return_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7294,
+    "nombre": "Tuatha de Danaan",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/tuathadedanaancarloko2.webp",
+    "habilidad_texto_descriptivo": "En tu fase de Vigilia, una vez por turno, puedes subir a Tuata de Danaan a tu mano para robar 2 cartas. Unica. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "returnSelfToHandAsCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de Vigilia, una vez por turno, puedes subir a Tuata de Danaan a tu mano para robar 2 cartas.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "tuata_return_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7295,
+    "nombre": "Tutatis",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/tutatiscarloko1.webp",
+    "habilidad_texto_descriptivo": "Solo puedes jugar a Tutatis si controlas dos o mas aliados. Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo. ",
+    "descripcion": "Edición Especial Arte Alternativo",
+    "expansion": "Hijos De Daana",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes jugar a Tutatis si controlas dos o más Aliados.",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "effect": {
+          "type": "forceAllAlliesToAttack"
+        },
+        "trigger": "onMoveToAttack",
+        "descripcion": "Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo."
+      }
+    ],
+    "tier": "bajo"
+  }
+]

@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const mainDbPath = 'd:/cartas/Archive/cartas.json';
-const newCardsPath = 'd:/cartas/cartasCarlokoTotal.json';
+const newCardsPath = 'd:/cartas/cartasCarloko7.json';
 
 console.log("Iniciando fusión final con Archive/cartas.json...");
 

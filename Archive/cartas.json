@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.1",
+    "pack_version": "2.4.2",
     "habilidades": []
   },
   {
@@ -24398,17 +24398,15 @@
     "salud": null,
     "habilidades": [
       {
-        "costs": [
-          {
-            "type": "revealFromHand",
-            "count": 1,
-            "query": {
-              "type": "Aliado"
-            },
-            "prompt": "Elige un Aliado de tu mano para mostrar y robar 2 cartas.",
-            "optional": true
-          }
-        ],
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de tu mano para mostrar y robar 2 cartas.",
+          "optional": true
+        },
         "effect": {
           "type": "drawCards",
           "count": 2
@@ -62787,5 +62785,1378 @@
       }
     ],
     "tier": "alto"
+  },
+  {
+    "id": 731,
+    "nombre": "Luna de Sangre",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/nuevascartas/luna_de_sangre.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este Oro y otro Oro que controles para robar una carta. Sólo puedes activar una Luna de Sangre por turno.",
+    "descripcion": null,
+    "expansion": "Dracula",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Puedes pagar este Oro y otro Oro que controles para robar una carta. Sólo puedes activar una Luna de Sangre por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "luna_de_sangre_draw"
+      }
+    ]
+  },
+  {
+    "id": 2345,
+    "nombre": "Caliz Maldito",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1754.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, muestra un Aliado de tu mano para mostrar 3 cartas de la parte superior de tu Mazo Castillo. Luego, pon un Aliado de la misma raza en tu mano y baraja el resto.",
+    "descripcion": "Cuando entra en juego, muestra un Aliado de tu mano para mostrar 3 cartas de la parte superior de tu Mazo Castillo. Luego, pon un Aliado de la misma raza en tu mano y baraja el resto.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHandAndResolve",
+          "prompt": "Habilidad de Cáliz Maldito: Muestra un Aliado de tu mano para ver el Mazo Castillo.",
+          "mainEffect": {
+            "type": "revealAndChooseConditional",
+            "count": 3,
+            "choice": {
+              "query": {
+                "raza": {
+                  "fromContext": "revealedAlly.raza"
+                },
+                "type": "Aliado"
+              },
+              "prompt": "Elige un Aliado de la misma raza que la carta mostrada para poner en tu mano.",
+              "optional": true,
+              "destination": "hand"
+            },
+            "fromZone": "mazoCastillo",
+            "unselected": "shuffleBack"
+          },
+          "rememberAs": "revealedAlly",
+          "revealQuery": {
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, muestra un Aliado de tu mano para mostrar 3 cartas de la parte superior de tu Mazo Castillo. Luego, pon un Aliado de la misma raza en tu mano y baraja el resto.",
+        "id_habilidad": "caliz_maldito_reveal_search"
+      }
+    ]
+  },
+  {
+    "id": 732,
+    "nombre": "Danza de Sangre",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/danza_de_sangre.webp",
+    "habilidad_texto_descriptivo": "No puede ser Anulado. Destruye un Aliado de fuerza 3 o menos o una carta de coste 3 o más.",
+    "descripcion": null,
+    "expansion": "Dracula",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "description": "No puede ser Anulado.",
+        "id_habilidad": "danza_sangre_un-annullable"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Danza de Sangre: Elige un efecto.",
+          "options": [
+            {
+              "id": "danza_sangre_strength_limit",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado de fuerza 3 o menos para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado",
+                    "fuerza": {
+                      "value": 3,
+                      "operator": "<="
+                    }
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir un Aliado de fuerza 3 o menos."
+            },
+            {
+              "id": "danza_sangre_cost_limit",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige una carta de coste 3 o más para destruir.",
+                "target": {
+                  "query": {
+                    "notType": "Oro",
+                    "coste_oro": {
+                      "value": 3,
+                      "operator": ">="
+                    }
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir una carta de coste 3 o más."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado de fuerza 3 o menos o una carta de coste 3 o más.",
+        "id_habilidad": "danza_sangre_destruction_choice"
+      }
+    ]
+  },
+  {
+    "id": 2311,
+    "nombre": "Baron de Gortz",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/nuevasCartas/MYL-1718.webp",
+    "habilidad_texto_descriptivo": "Los Aliados oponentes pierden 2 a la fuerza. En tu Fase de Vigilia, si Barón de Gortz está en tu Cementerio, puedes destruir un Aliado que controles para ponerlo en tu Mano. Sólo puedes activar un Barón de Gortz por turno.",
+    "descripcion": "Los Aliados oponentes pierden 2 a la fuerza. En tu Fase de Vigilia, si Barón de Gortz está en tu Cementerio, puedes destruir un Aliado que controles para ponerlo en tu Mano. Sólo puedes activar un Barón de Gortz por turno.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Los Aliados oponentes pierden 2 a la fuerza.",
+        "id_habilidad": "baron_gortz_debuff"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Barón de Gortz: Elige un Aliado que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si Barón de Gortz está en tu Cementerio, puedes destruir un Aliado que controles para ponerlo en tu Mano. Sólo puedes activar un Barón de Gortz por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "baron_gortz_recursion"
+      }
+    ]
+  },
+  {
+    "id": 2320,
+    "nombre": "Sarcofago Santuario",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1727.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este Oro para que tus Aliados Drácula ganen 1 a la fuerza hasta la Fase Final. Si este Oro está en tu Cementerio y controlas un Aliado Drácula, puedes subirlo a tu Mano. Sólo puedes subir un Sarcófago Santuario a tu Mano por turno.",
+    "descripcion": "Puedes pagar este Oro para que tus Aliados Drácula ganen 1 a la fuerza hasta la Fase Final. Si este Oro está en tu Cementerio y controlas un Aliado Drácula, puedes subirlo a tu Mano. Sólo puedes subir un Sarcófago Santuario a tu Mano por turno.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Dracula"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Puedes pagar este Oro para que tus Aliados Drácula ganen 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "sarcofago_santuario_buff"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Dracula"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si este Oro está en tu Cementerio y controlas un Aliado Drácula, puedes subirlo a tu Mano. Sólo puedes subir un Sarcófago Santuario a tu Mano por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "sarcofago_santuario_recursion"
+      }
+    ]
+  },
+  {
+    "id": 2312,
+    "nombre": "Renfield",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevasCartas/MYL-1719.webp",
+    "habilidad_texto_descriptivo": "Cuando Rendfiel entra en juego, puedes buscar un Aliado Drácula en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+    "descripcion": "Cuando Rendfiel entra en juego, puedes buscar un Aliado Drácula en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Habilidad de Renfield: Busca un Aliado Dracula en tu Mazo Castillo o Cementerio y ponlo en tu Mano.",
+          "options": [
+            {
+              "id": "search_deck_dracula",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Dracula"
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "search_graveyard_dracula",
+              "zone": "cementerio",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Dracula"
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "putInHand",
+            "count": 1
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Rendfiel entra en juego, puedes buscar un Aliado Dracula en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+        "id_habilidad": "renfield_tutor_dracula"
+      }
+    ]
+  },
+  {
+    "id": 2310,
+    "nombre": "Jonathan Harker",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1716.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir a Jonathan Harker para Anular un Tótem o robar 1 carta de tu Mazo Castillo.",
+    "descripcion": "Puedes destruir a Jonathan Harker para Anular un Tótem o robar 1 carta de tu Mazo Castillo.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "abismo_annul",
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes Destruir este Tótem para anular un Aliado Oponente.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruir a Jonathan Harker para robar 1 carta de tu Mazo Castillo.",
+        "id_habilidad": "jonathan_harker_draw"
+      }
+    ]
+  },
+  {
+    "id": 733,
+    "nombre": "Van Helsing PB",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/van_helsing.webp",
+    "habilidad_texto_descriptivo": "Van Hellsing puede atacar cuando entra en juego. Tus demás Aliados de Raza Caballero ganan 1 a la fuerza y no pueden ser barajados.",
+    "descripcion": null,
+    "expansion": "Dracula",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "van_helsing_furia"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Tus demas Aliados de Raza Caballero ganan 1 a la fuerza.",
+        "id_habilidad": "van_helsing_knight_buff"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "cannotBeShuffled"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Tus demas Aliados de Raza Caballero no pueden ser barajados.",
+        "id_habilidad": "van_helsing_protection"
+      }
+    ]
+  },
+  {
+    "id": 2352,
+    "nombre": "Aconito",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1761.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir 1 Oro de tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": "Cuando entra en juego, puedes elegir 1 Oro de tu Cementerio y ponerlo en tu Mano.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Aconito: Elige 1 Oro de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir 1 Oro de tu Cementerio y ponerlo en tu Mano.",
+        "id_habilidad": "aconito_recursion"
+      }
+    ]
+  },
+  {
+    "id": 2351,
+    "nombre": "Pacto de Lobos",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-1760.webp",
+    "habilidad_texto_descriptivo": "Elige un coste. Las cartas de ese coste pierden su habilidad y son barajadas.",
+    "descripcion": "Elige un coste. Las cartas de ese coste pierden su habilidad y son barajadas.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "selectAnnulAndShuffle",
+          "prompt": "Elige una carta en juego. Todas las cartas con su mismo coste seran anuladas y barajadas.",
+          "matchProperty": "coste_oro",
+          "selectionQuery": {
+            "type": "*",
+            "zone": "field",
+            "controller": "any"
+          },
+          "targetController": "any"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un coste. Las cartas de ese coste pierden su habilidad y son barajadas.",
+        "id_habilidad": "pacto_de_lobos_mass_shuffle"
+      }
+    ]
+  },
+  {
+    "id": 2365,
+    "nombre": "Farkasember",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevasCartas/MYL-1780.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando entra en juego, elige hasta 3 Aliados de tu Cementerio y barájalos en tu Mazo Castillo. Luego, roba 1 carta.",
+    "descripcion": "Puede atacar cuando entra en juego. Cuando entra en juego, elige hasta 3 Aliados de tu Cementerio y barájalos en tu Mazo Castillo. Luego, roba 1 carta.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "farkasember_furia"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Habilidad de Farkasember: Elige hasta 3 Aliados de tu Cementerio para barajar en tu Mazo.",
+          "minCount": 0,
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cuando entra en juego, elige hasta 3 Aliados de tu Cementerio y barajalos en tu Mazo Castillo. Luego, roba 1 carta.",
+        "id_habilidad": "farkasember_enter_play"
+      }
+    ]
+  },
+  {
+    "id": 2350,
+    "nombre": "Colierul Lupilor",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1759.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mover este Oro a tu Zona de Oro Pagado para que el próximo Aliado que juegues este turno no pueda ser Anulado.",
+    "descripcion": "Cuando entra en juego, puedes mover este Oro a tu Zona de Oro Pagado para que el próximo Aliado que juegues este turno no pueda ser Anulado.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Colierul Lupilor: ¿Quieres mover este Oro a tu Zona de Oro Pagado para que el próximo Aliado que juegues este turno no pueda ser Anulado?",
+          "options": [
+            {
+              "id": "activate_colierul",
+              "action": {
+                "then": {
+                  "effect": {
+                    "type": "grantToNextPlayed",
+                    "query": {
+                      "type": "Aliado"
+                    },
+                    "duration": "endOfTurn",
+                    "keywords": [
+                      "cannotBeAnnulled"
+                    ]
+                  }
+                },
+                "type": "moveSelfToZone",
+                "destination": "paidGold"
+              },
+              "description": "Sí, pagar y proteger."
+            },
+            {
+              "id": "decline_colierul",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "colierul_lupilor_v_definitiva"
+      }
+    ]
+  },
+  {
+    "id": 2359,
+    "nombre": "Dejar la Tumba",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevasCartas/MYL-1771.webp",
+    "habilidad_texto_descriptivo": "Baraja 3 cartas de tu Cementerio en tu Mazo Castrillo. Si este Talismán está en tu Cementerio, puedes pagar 1 Oro y desterrarlo para robar 1 carta de tu Mazo Castillo.",
+    "descripcion": "Baraja 3 cartas de tu Cementerio en tu Mazo Castrillo. Si este Talismán está en tu Cementerio, puedes pagar 1 Oro y desterrarlo para robar 1 carta de tu Mazo Castillo.",
+    "expansion": "Dracula",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 3 cartas de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Si este Talismán está en tu Cementerio, puedes pagar 1 Oro y desterrarlo para robar 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 734,
+    "nombre": "Pricolici RE",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/pricolici.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Puede atacar cuando entra en juego. En la Fase Final, si hizo daño de combate al Mazo Castillo oponente, puedes buscar una carta en tu Mazo Castillo y ponerla en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Dracula",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "searchAndMove",
+          "prompt": "Elige una carta de tu Mazo Castillo para poner en tu Cementerio.",
+          "destination": "cementerio",
+          "searchQuery": {
+            "type": "*",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            }
+          ]
+        },
+        "description": "En la Fase Final, si hizo daño de combate al Mazo Castillo oponente, puedes buscar una carta en tu Mazo Castillo y ponerla en tu Cementerio.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1602,
+    "nombre": "Lanza de Aquiles",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl800.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Mientras esta Arma esté en juego, las cartas del Cementerio oponente pierden su habilidad.",
+    "descripcion": "El portador gana 2 a la fuerza. Mientras esta Arma esté en juego, las cartas del Cementerio oponente pierden su habilidad.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAllGraveyard",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras esta Arma esté en juego, las cartas del Cementerio oponente pierden su habilidad."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1058,
+    "nombre": "Isolda",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl81.webp",
+    "habilidad_texto_descriptivo": "En respuesta a la destrucción de uno de tus Caballeros, puedes desterrar a Isolda para salvarlo. ",
+    "descripcion": "En respuesta a la destrucción de uno de tus Caballeros, puedes desterrar a Isolda para salvarlo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio"
+          ]
+        },
+        "description": "En respuesta a la destrucción de uno de tus Caballeros, puedes desterrar a Isolda para salvarlo.",
+        "id_habilidad": "isolda_salvation",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Caballero",
+            "type": "Aliado",
+            "isOther": true
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1057,
+    "nombre": "Lady Rachel",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl79.webp",
+    "habilidad_texto_descriptivo": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente. ",
+    "descripcion": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado de raza Dragón oponente para destruir.",
+          "target": {
+            "query": {
+              "raza": "Dragon",
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente.",
+        "id_habilidad": "lady_rachel_destroy_dragon"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1276,
+    "nombre": "Espada de Caballero",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl377.webp",
+    "habilidad_texto_descriptivo": "Si el portador es de raza Caballero gana 2 a la fuerza. Si el portador hace daño al Mazo Castillo oponente, tu oponente no podrá barajar cartas en su Mazo Castillo en su próximo turno.",
+    "descripcion": "Si el portador es de raza Caballero gana 2 a la fuerza. Si el portador hace daño al Mazo Castillo oponente, tu oponente no podrá barajar cartas en su Mazo Castillo en su próximo turno.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToWielder"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "wielderIs",
+          "query": {
+            "raza": "Caballero"
+          }
+        },
+        "description": "Si el portador es de raza Caballero gana 2 a la fuerza.",
+        "id_habilidad": "espada_caballero_buff"
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "duration": "untilEndOfOpponentTurn",
+          "restriction": {
+            "type": "cannotShuffleFromGraveyard"
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si el portador hace daño al Mazo Castillo oponente, tu oponente no podrá barajar cartas de su Cementerio en su Mazo Castillo en su próximo turno.",
+        "id_habilidad": "espada_caballero_lock"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2172,
+    "nombre": "Jugar con las llamas",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1540.webp",
+    "habilidad_texto_descriptivo": "No se puede buscar cartas en cualquier Mazo Castillo por el resto del juego.",
+    "descripcion": "No se puede buscar cartas en cualquier Mazo Castillo por el resto del juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "duration": "permanent",
+          "restriction": {
+            "type": "cannotSearchDeck"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "No se puede buscar cartas en cualquier Mazo Castillo por el resto del juego.",
+        "id_habilidad": "jugar_con_llamas_global_lock"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 6289,
+    "nombre": "Gancanagh",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/gancanagh.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego o sea descartado de tu Mano, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una copia de Gancanagh de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Gancanagh"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano.",
+        "id_habilidad": "gancanagh_enter_play_tutor"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Gancanagh fue descartado. Elige una copia en tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Gancanagh"
+          }
+        },
+        "trigger": "activatable",
+        "description": "Cuando sea descartado de tu Mano, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano.",
+        "id_habilidad": "gancanagh_discard_tutor",
+        "listensForEvent": "onDiscardSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1950,
+    "nombre": "Artio",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1230.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, si sólo controlas Aliados de raza Desafiante, puedes descartar una carta de tu Mano para robar una carta.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, si sólo controlas Aliados de raza Desafiante, puedes descartar una carta de tu Mano para robar una carta.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Elige 1 carta de tu mano para descartar como coste.",
+            "optional": false
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Desafiante"
+              }
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, si sólo controlas Aliados de raza Desafiante, puedes descartar una carta de tu Mano para robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "artio_cycle_ability"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1197,
+    "nombre": "Jerusalen",
+    "tipo": "Totem",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/myl244.webp",
+    "habilidad_texto_descriptivo": "Mientras Jerusalén esté en juego, los jugadores se saltan la Fase de Agrupación.",
+    "descripcion": "Mientras Jerusalén esté en juego, los jugadores se saltan la Fase de Agrupación.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "skipPhase",
+            "phase": "Agrupacion"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Jerusalén esté en juego, los jugadores se saltan la Fase de Agrupación.",
+        "id_habilidad": "jerusalen_skip_regroup"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2142,
+    "nombre": "Saqqara",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1498.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Tótem para cancelar un Ataque oponente.",
+    "descripcion": "Puedes destruir este Tótem para cancelar un Ataque oponente.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "cancelAttackOrBlock",
+          "target": "all"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruir este Tótem para cancelar un Ataque oponente.",
+        "id_habilidad": "saqqara_cancel_attack",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 735,
+    "nombre": "Wep Renpet",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/webrenpet.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas uno o mas totem, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Wep Renpet: Controlas al menos un Tótem. ¿Deseas robar una carta?",
+          "options": [
+            {
+              "id": "wep_renpet_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "wep_renpet_draw_no",
+              "action": {},
+              "description": "No robar"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Totem"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando entra en juego, si controlas uno o mas totem, puedes robar una carta.",
+        "id_habilidad": "wep_renpet_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1986,
+    "nombre": "Asheru",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1309.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste. Mientras este Aliado esté en juego, este Tótem no puede salir del juego por habilidades o efectos oponentes.",
+    "descripcion": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste. Mientras este Aliado esté en juego, este Tótem no puede salir del juego por habilidades o efectos oponentes.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de coste 3 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          },
+          "remembersTarget": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste.",
+        "id_habilidad": "asheru_enter_play_tutor"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "fromContext": "rememberedTarget"
+          },
+          "keyword": "cannotLeavePlayByOpponent"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras este Aliado esté en juego, este Tótem no puede salir del juego por habilidades o efectos oponentes.",
+        "id_habilidad": "asheru_protection"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2181,
+    "nombre": "Kom Ombo",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1549.webp",
+    "habilidad_texto_descriptivo": "Única. El Daño Directo aumenta en 1.",
+    "descripcion": "Única. El Daño Directo aumenta en 1.",
+    "expansion": "Dominios de Ra",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "increaseMillDamage",
+          "value": 1
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "El Daño Directo aumenta en 1.",
+        "id_habilidad": "kom_ombo_mill_buff"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

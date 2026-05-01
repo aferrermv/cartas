@@ -60510,11 +60510,11 @@
   },
   {
     "id": 7280,
-    "nombre": "Fergus Mor MacEric",
+    "nombre": "Fergus",
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/fergusreal1511zon.webp",
-    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
     "descripcion": "Edición Especial Arte Alternativo",
     "expansion": "Hijos De Daana",
     "rareza": "Promo",
@@ -60528,38 +60528,39 @@
     "salud": null,
     "habilidades": [
       {
+        "phase": "Principal",
         "effect": {
-          "type": "grantKeyword",
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
           "target": {
             "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+              "type": "Aliado",
+              "isHighestStrength": true
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "unblockable"
+            "controller": "opponent"
+          }
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
-        "id_habilidad": "fergus_mor_unblockable_aura"
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "canAttackOnEnterPlay"
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
-        "id_habilidad": "fergus_mor_haste_aura"
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
       }
     ],
     "tier": "bajo"
@@ -62455,11 +62456,11 @@
   },
   {
     "id": 7319,
-    "nombre": "Fergus Mor MacEric",
+    "nombre": "Fergus",
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/ferguslegendaria1411zon.webp",
-    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
     "descripcion": "Edición Especial Arte Alternativo",
     "expansion": "Hijos De Daana",
     "rareza": "Promo",
@@ -62473,38 +62474,39 @@
     "salud": null,
     "habilidades": [
       {
+        "phase": "Principal",
         "effect": {
-          "type": "grantKeyword",
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
           "target": {
             "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+              "type": "Aliado",
+              "isHighestStrength": true
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "unblockable"
+            "controller": "opponent"
+          }
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
-        "id_habilidad": "fergus_mor_unblockable_aura"
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "raza": "Defensor",
-              "type": "Aliado"
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
             },
-            "isOther": true,
-            "controller": "self"
-          },
-          "keyword": "canAttackOnEnterPlay"
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
-        "trigger": "continuous",
-        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
-        "id_habilidad": "fergus_mor_haste_aura"
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
       }
     ],
     "tier": "alto"

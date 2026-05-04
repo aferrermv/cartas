@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.3",
+    "pack_version": "2.4.4",
     "habilidades": []
   },
   {
@@ -48465,13 +48465,15 @@
         "costs": [
           {
             "type": "chooseOne",
+            "canCancel": false,
             "prompt": "Elige un coste para anular la habilidad de Nudo de Isis:",
             "options": [
               {
                 "id": "pay_gold_to_annul",
                 "action": {
                   "type": "payGold",
-                  "count": 2
+                  "count": 2,
+                  "canCancel": false
                 },
                 "description": "Pagar 2 Oros"
               },
@@ -48480,7 +48482,8 @@
                 "action": {
                   "type": "millCards",
                   "count": 3,
-                  "target": "self"
+                  "target": "self",
+                  "canCancel": false
                 },
                 "description": "Botar 3 cartas"
               }
@@ -58895,8 +58898,36 @@
         "description": "En tu fase de vigilia, destruye uno de tus oros para que un Aliado oponente tenga fuerza cero hasta el final del turno.",
         "id_habilidad": "vegetacion_animada_reduction",
         "play_condition": {
-          "type": "currentPhase",
-          "phase": "Principal"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Principal"
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "controller": "self",
+              "query": {
+                "type": "Oro",
+                "notKeyword": "indestructible",
+                "zone": [
+                  "goldReserve",
+                  "paidGold"
+                ]
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
         }
       }
     ],

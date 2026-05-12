@@ -3234,7 +3234,8 @@
           "type": "isResponseCard"
         },
         "effect": {
-          "type": "annulTriggeringTalisman"
+          "type": "annulTriggeringTalisman",
+          "visualEffect": "fesinlimiteAnnul"
         },
         "trigger": "onOpponentPlayTalisman"
       }

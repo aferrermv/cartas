@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.5",
+    "pack_version": "2.4.3",
     "habilidades": []
   },
   {
@@ -3206,6 +3206,37 @@
           "type": "annulTriggeringAlly"
         },
         "trigger": "onOpponentPlayAlly"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 48,
+    "nombre": "Fe sin Límite",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/gift/fesinlimiteabril/fesinlimitebase.webp",
+    "habilidad_texto_descriptivo": "Anula un Talismán oponente. Roba una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman"
       }
     ],
     "tier": "alto"
@@ -15257,7 +15288,39 @@
     "salud": null,
     "habilidades": [
       {
+        "id_habilidad": "lanza_ramses_on_damage",
+        "trigger": "onDealCombatDamageToDeck",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
         "effect": {
+          "type": "chooseAndShuffle",
+          "zone": "cementerio",
+          "prompt": "Habilidad de Lanza de Ramsés: Elige una carta de tu Cementerio para barajar.",
+          "options": [
+            {
+              "id": "shuffle_one",
+              "query": {
+                "type": "*"
+              },
+              "maxCount": 1,
+              "minCount": 1,
+              "description": "Barajar 1 carta de tu Cementerio"
+            }
+          ],
           "then": {
             "effect": {
               "type": "chooseAndBanish",
@@ -15273,28 +15336,9 @@
               "canCancel": true
             }
           },
-          "continueOnFail": true,
-          "type": "chooseAndShuffle",
-          "zone": "cementerio",
-          "prompt": "Elige una opción para la habilidad de Lanza de Ramsés.",
-          "options": [
-            {
-              "id": "shuffle_one",
-              "query": {
-                "type": "*"
-              },
-              "maxCount": 1,
-              "minCount": 1,
-              "description": "Barajar 1 carta de tu Cementerio"
-            }
-          ]
+          "continueOnFail": true
         },
-        "trigger": "onDealCombatDamageToDeck",
-        "condition": {
-          "type": "isPlayerTurn"
-        },
-        "description": "Cuando el portador haga daño al mazo castillo oponente, baraja una carta de tu Cementerio en tu Mazo Castillo. Luego, puedes desterrar una carta del cementerio oponente.",
-        "id_habilidad": "lanza_ramses_on_damage"
+        "description": "Cuando el portador haga daño al mazo castillo oponente, baraja una carta de tu Cementerio en tu Mazo Castillo. Luego, puedes desterrar una carta del cementerio oponente."
       }
     ]
   },
@@ -27099,7 +27143,7 @@
         "inherent": [
           "cannotAttack"
         ],
-        "descripcion": "No puede atacar normalmente."
+        "description": "No puede atacar normalmente."
       },
       {
         "costs": [
@@ -27110,7 +27154,8 @@
               "nombre": "Guerrero Fianna",
               "controller": "self"
             },
-            "multiplier": 1
+            "multiplier": 1,
+            "canCancel": false
           }
         ],
         "phase": "Principal",
@@ -27121,8 +27166,18 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
         },
         "descripcion": "Para declarar Atacante a Este Aliado debes pagar 1 Oro por cada Guerrero Fianna que controles.",
         "id_habilidad": "guerrero_fianna_pay_to_attack"
@@ -29892,7 +29947,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/nuevascartas/dragondeaire1009.webp",
-    "habilidad_texto_descriptivo": "Dragón del Aire puede atacar cuando entra en juego. ",
+    "habilidad_texto_descriptivo": "Imbloqueable, puede atacar cuando entra en juego, Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta",
     "descripcion": "Dragón del Aire puede atacar cuando entra en juego. ",
     "expansion": "Espada Sagrada",
     "rareza": "false",
@@ -29907,10 +29962,44 @@
     "habilidades": [
       {
         "inherent": [
+          "unblockable",
           "canAttackOnEnterPlay"
         ],
-        "descripcion": "Dragón del Aire puede atacar cuando entra en juego.",
-        "id_habilidad": "dragon_de_aire_carga"
+        "description": "Imbloqueable. Puede atacar cuando entra en juego.",
+        "id_habilidad": "dragon_de_aire_inherents"
+      },
+      {
+        "id_habilidad": "dragon_de_aire_draw",
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Dragon",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Dragón de Aire: ¿Deseas robar una carta?",
+          "options": [
+            {
+              "id": "dragon_de_aire_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "dragon_de_aire_draw_no",
+              "action": {},
+              "description": "No robar"
+            }
+          ]
+        },
+        "description": "Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta."
       }
     ]
   },
@@ -64191,5 +64280,53 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 2360,
+    "nombre": "Soteira",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1775.webp",
+    "habilidad_texto_descriptivo": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
+    "descripcion": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "targetPreventAndGrantBuff",
+          "prompt": "Elige un Aliado para prevenir su destrucción por combate y darle +1 de Fuerza permanentemente.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "controller": "self"
+            }
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onDestroyByCombat",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
+        "id_habilidad": "soteira_prevent_and_buff"
+      }
+    ]
   }
 ]

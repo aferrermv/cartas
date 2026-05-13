@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.5",
+    "pack_version": "2.4.7",
     "habilidades": []
   },
   {
@@ -29939,68 +29939,6 @@
         "trigger": "activatable_with_costs",
         "descripcion": "En guerra de Talismanes, puedes desterrar a Cornelius de York para destruir un Caballero oponente de igual o menor fuerza.",
         "id_habilidad": "cornelius_de_york_destroy"
-      }
-    ]
-  },
-  {
-    "id": 1009,
-    "nombre": "Dragon de Aire",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/nuevascartas/dragondeaire1009.webp",
-    "habilidad_texto_descriptivo": "Imbloqueable, puede atacar cuando entra en juego, Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta",
-    "descripcion": "Dragón del Aire puede atacar cuando entra en juego. ",
-    "expansion": "Espada Sagrada",
-    "rareza": "false",
-    "fecha_creacion": null,
-    "fuerza": 4,
-    "raza": "Dragon",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "unblockable",
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Imbloqueable. Puede atacar cuando entra en juego.",
-        "id_habilidad": "dragon_de_aire_inherents"
-      },
-      {
-        "id_habilidad": "dragon_de_aire_draw",
-        "trigger": "onDeclareAttack",
-        "condition": {
-          "type": "playerControls",
-          "query": {
-            "raza": "Dragon",
-            "type": "Aliado"
-          },
-          "amount": 2,
-          "comparison": "greaterOrEqual"
-        },
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Habilidad de Dragón de Aire: ¿Deseas robar una carta?",
-          "options": [
-            {
-              "id": "dragon_de_aire_draw_yes",
-              "action": {
-                "type": "drawCards",
-                "count": 1
-              },
-              "description": "Sí, robar 1 carta"
-            },
-            {
-              "id": "dragon_de_aire_draw_no",
-              "action": {},
-              "description": "No robar"
-            }
-          ]
-        },
-        "description": "Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta."
       }
     ]
   },
@@ -64287,7 +64225,7 @@
     "nombre": "Soteira",
     "tipo": "Oro",
     "coste_oro": null,
-    "imagen_url": "/img/nuevasCartas/MYL-1775.webp",
+    "imagen_url": "/img/store/cartas/myl1775.webp",
     "habilidad_texto_descriptivo": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
     "descripcion": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
     "expansion": "Helenica",
@@ -64328,6 +64266,1250 @@
         "description": "Si este Oro está en tu Reserva de Oros, puedes desterrarlo para prevenir que un Aliado que controles sea destruido por daño de combate. Si lo haces, ese Aliado gana 1 a la fuerza permanentemente.",
         "id_habilidad": "soteira_prevent_and_buff"
       }
-    ]
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 1211,
+    "nombre": "Caballero Templario",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/myl261.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, si tienes 3 copias de Caballero Templario en tu cementerio puedes ponerlos en tu línea de defensa sin pagar su coste.",
+    "descripcion": "En tu fase de vigilia, si tienes 3 copias de Caballero Templario en tu cementerio puedes ponerlos en tu línea de defensa sin pagar su coste.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "playAllCopiesFromGraveyard",
+          "prompt": "Elige las copias de Caballero Templario en tu Cementerio para jugarlas sin pagar sus costes.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameContains": "Caballero Templario"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Caballero Templario"
+              },
+              "amount": 3,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase Principal, si tienes 3 copias de Caballero Templario en tu Cementerio, puedes ponerlas en tu Línea de Defensa sin pagar sus costes.",
+        "oncePerTurn": true,
+        "id_habilidad": "caballero_templario_revive_copies"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1983,
+    "nombre": "Imoteph",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/myl1306.webp",
+    "habilidad_texto_descriptivo": "Única. Cuando entra en juego, nombra una carta. Esa carta y todas sus copias pierdan su Habilidad mientras este Aliado esté en juego. En tu Fase de Vigilia, una vez por turno, puedes pagar 2 Oros para buscar un Tótem en tu Mazo Castillo o en tu Cementerio y ponerlo en tu Mano. En respuesta a que este Aliado  salga del juego por una Habilidad oponente, puedes botar 3 cartas para prevenirlo.",
+    "descripcion": "Única. Cuando entra en juego, nombra una carta. Esa carta y todas sus copias pierdan su Habilidad mientras este Aliado esté en juego. En tu Fase de Vigilia, una vez por turno, puedes pagar 2 Oros para buscar un Tótem en tu Mazo Castillo o en tu Cementerio y ponerlo en tu Mano. En respuesta a que este Aliado  salga del juego por una Habilidad oponente, puedes botar 3 cartas para prevenirlo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "nameAndAnull",
+          "prompt": "Nombra una carta. Esa carta y todas sus copias pierden su Habilidad mientras este Aliado esté en juego.",
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, nombra una carta. Esa carta y todas sus copias pierden su Habilidad mientras este Aliado esté en juego.",
+        "id_habilidad": "imoteph_annul_on_enter"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Tótem de tu Mazo Castillo o Cementerio para poner en tu Mano.",
+          "options": [
+            {
+              "id": "search_deck",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Totem"
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "search_graveyard",
+              "zone": "cementerio",
+              "query": {
+                "type": "Totem"
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 2 Oros para buscar un Tótem en tu Mazo Castillo o en tu Cementerio y ponerlo en tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "imoteph_tutor_totem"
+      },
+      {
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 3,
+            "prompt": "Bota 3 cartas de tu Mazo Castillo para prevenir que Imoteph salga del juego.",
+            "target": "self"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "isCausedByOpponentAbility"
+        },
+        "description": "En respuesta a que este Aliado salga del juego por una Habilidad oponente, puedes botar 3 cartas para prevenirlo.",
+        "id_habilidad": "imoteph_prevent_leave"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2001,
+    "nombre": "Barca Dorada",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1333.webp",
+    "habilidad_texto_descriptivo": "Baraja un Aliado que controles para buscar un Aliado de igual coste en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "descripcion": "Baraja un Aliado que controles para buscar un Aliado de igual coste en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "shuffleAllyAndPlayMatchingCost",
+          "isFree": true,
+          "prompt": "Elige un Aliado que controles para barajarlo en tu Mazo Castillo. Luego, busca un Aliado de igual coste en tu Mazo Castillo y juégalo sin pagar su coste.",
+          "canCancel": true,
+          "searchZone": "mazoCastillo",
+          "destinationZone": "defense",
+          "searchTargetQuery": {
+            "type": "Aliado"
+          },
+          "allyToShuffleQuery": {
+            "type": "Aliado",
+            "controller": "self"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Baraja un Aliado que controles para buscar un Aliado de igual coste en tu Mazo Castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "barca_dorada_effect"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1966,
+    "nombre": "Espada Radiante",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1266.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Una vez por turno, puedes desterrar una carta de un Cementerio. Si esta carta está en tu Cementerio y controlas a Cuchulain, puedes jugarla pagando su coste.",
+    "descripcion": "El portador gana 1 a la fuerza. Una vez por trno, puedes desterrar una carta de un Cementerio. Si esta carta está en tu Cementerio y controlas a Cuchulain, puedes jugarla pagando su coste.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes desterrar una carta de un Cementerio.",
+        "oncePerTurn": true,
+        "id_habilidad": "espada_radiante_banish_graveyard"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "playSelfAsWeapon"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "nombre": "Cuchulain"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si esta carta está en tu Cementerio y controlas a Cuchulain, puedes jugarla pagando 2 de oro.",
+        "id_habilidad": "espada_radiante_graveyard_play"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1827,
+    "nombre": "Hijos de Plata",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1070.webp",
+    "habilidad_texto_descriptivo": "Busca un Talismán de coste 2 o menos en tu Mazo Castillo y ponlo en tu Mano.",
+    "descripcion": "Busca un Talismán de coste 2 o menos en tu Mazo Castillo y ponlo en tu Mano.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Busca un Talismán de coste 2 o menos en tu Mazo Castillo y ponlo en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Talisman",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca un Talismán de coste 2 o menos en tu Mazo Castillo y ponlo en tu Mano.",
+        "id_habilidad": "hijos_de_plata_tutor"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2167,
+    "nombre": "Cadena Espiritual",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1535.webp",
+    "habilidad_texto_descriptivo": "Envía todas las cartas desde tu Destierro hacia tu Cementerio.",
+    "descripcion": "Envía todas las cartas desde tu Destierro hacia tu Cementerio.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "moveAllBanishToGraveyard"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Envía todas las cartas desde tu Destierro hacia tu Cementerio.",
+        "id_habilidad": "cadena_espiritual_move_all"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1670,
+    "nombre": "Dama Blanca",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl895.webp",
+    "habilidad_texto_descriptivo": "Si Dama Blanca es destruida, puedes poner todas las cartas de tu Zona de Destierro en tu Cementerio.",
+    "descripcion": "Si Dama Blanca es destruida, puedes poner todas las cartas de tu Zona de Destierro en tu Cementerio.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "moveAllBanishToGraveyard"
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Si Dama Blanca es destruida, puedes poner todas las cartas de tu Zona de Destierro en tu Cementerio.",
+        "id_habilidad": "dama_blanca_banish_to_graveyard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 736,
+    "nombre": "Cuna de Dragones",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cunadedrags.webp",
+    "habilidad_texto_descriptivo": "Unica. Baraja 3 cartas de tu Cementerio en tu Mazo Castillo. Luego, puedes robar hasta 2 cartas.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Habilidad de Cuna de Dragones: ¿Cuántas cartas quieres robar?",
+              "options": [
+                {
+                  "id": "draw_2",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 2
+                  },
+                  "description": "Robar 2 cartas"
+                },
+                {
+                  "id": "draw_1",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Robar 1 carta"
+                },
+                {
+                  "id": "no_draw",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Cuna de Dragones: Elige 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "description": "Baraja 3 cartas de tu Cementerio en tu Mazo Castillo. Luego, puedes robar hasta 2 cartas.",
+        "id_habilidad": "cuna_dragones_2_main",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "*"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 737,
+    "nombre": "Talsoi",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/taisol.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes barajar hasta 2 cartas Goblin de tu cementerio en tu mazo Castillo, si lo haces, este Aliado gana 1 a la fuerza y es imbloqueable hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "query": {
+              "nameContains": "Goblin"
+            },
+            "prompt": "Habilidad de Talsoi: Elige hasta 2 cartas Goblin de tu Cementerio para barajar.",
+            "maxCount": 2,
+            "minCount": 1,
+            "canCancel": true
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToSelf",
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "nameContains": "Goblin"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes barajar hasta 2 cartas Goblin de tu cementerio en tu mazo Castillo, si lo haces, este Aliado gana 1 a la fuerza y es imbloqueable hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "talsoi_2_vigilia"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 738,
+    "nombre": "Milano Negro",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/milanonegro.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2,
+            "prompt": "Paga 2 Oros para transformar a Milano Negro."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "milanoNegroTransform",
+          "duration": "endOfTurn",
+          "transformTo": {
+            "tipo": "Aliado",
+            "fuerza": 2,
+            "coste_oro": 2,
+            "canAttackOnEnterPlay": true
+          },
+          "addAbilities": [
+            {
+              "effect": {
+                "type": "addMarkerToSelf",
+                "marker": "dealtCombatDamageThisTurn"
+              },
+              "trigger": "onDealCombatDamageToDeck",
+              "isHidden": true,
+              "id_habilidad": "milano_negro_set_marker"
+            },
+            {
+              "phase": "Final",
+              "effect": {
+                "type": "chooseOne",
+                "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
+                "options": [
+                  {
+                    "id": "banish_self_graveyard",
+                    "action": {
+                      "type": "chooseAndBanish",
+                      "count": 2,
+                      "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
+                      "target": {
+                        "zone": "cementerio",
+                        "query": {
+                          "type": "*"
+                        },
+                        "controller": "self"
+                      },
+                      "minCount": 0
+                    },
+                    "description": "Tu Cementerio"
+                  },
+                  {
+                    "id": "banish_opponent_graveyard",
+                    "action": {
+                      "type": "chooseAndBanish",
+                      "count": 2,
+                      "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
+                      "target": {
+                        "zone": "cementerio",
+                        "query": {
+                          "type": "*"
+                        },
+                        "controller": "opponent"
+                      },
+                      "minCount": 0
+                    },
+                    "description": "Cementerio Oponente"
+                  }
+                ]
+              },
+              "trigger": "activatable",
+              "condition": {
+                "type": "and",
+                "conditions": [
+                  {
+                    "type": "isInZone",
+                    "zone": "field"
+                  },
+                  {
+                    "type": "hasMarker",
+                    "marker": "dealtCombatDamageThisTurn"
+                  }
+                ]
+              },
+              "description": "Si este Aliado hizo daño de combate este turno, puedes desterrar hasta 2 cartas de un Cementerio.",
+              "oncePerTurn": true,
+              "id_habilidad": "milano_negro_final_activatable"
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "wasNotPlayedThisTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
+        "id_habilidad": "milano_negro_transform_main",
+        "canPayWithSelf": true
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "milano_negro_set_marker",
+        "isTemporaryAbility": true
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
+          "options": [
+            {
+              "id": "banish_self_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 2,
+                "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "self"
+                },
+                "minCount": 0
+              },
+              "description": "Tu Cementerio"
+            },
+            {
+              "id": "banish_opponent_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 2,
+                "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                },
+                "minCount": 0
+              },
+              "description": "Cementerio Oponente"
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            }
+          ]
+        },
+        "description": "Si este Aliado hizo daño de combate este turno, puedes desterrar hasta 2 cartas de un Cementerio.",
+        "oncePerTurn": true,
+        "id_habilidad": "milano_negro_final_activatable",
+        "isTemporaryAbility": true
+      },
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "isTemporaryAbility": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 739,
+    "nombre": "Soldado Goblin",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/soldadogoblin.webp",
+    "habilidad_texto_descriptivo": "Cuando es destruido, tu oponente destruye un Aliado que controle de coste 2 o menos. Luego, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar una carta por la habilidad de Soldado Goblin?",
+              "options": [
+                {
+                  "id": "soldado_goblin_draw_yes",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "soldado_goblin_draw_no",
+                  "action": {},
+                  "description": "No robar"
+                }
+              ]
+            },
+            "condition": {
+              "card": "resolvedCard",
+              "type": "cardMatchesQuery",
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          },
+          "type": "forceOpponentToDestroyAlly",
+          "prompt": "Soldado Goblin fue destruido. Debes elegir un Aliado de coste 2 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 2,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Cuando es destruido, tu oponente destruye un Aliado que controle de coste 2 o menos. Luego, puedes robar una carta.",
+        "id_habilidad": "soldado_goblin_on_destroyed"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 740,
+    "nombre": "Dragon de la Tormenta",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dragondelatormenta.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Aliado oponente en juego para que pierda 2 a la Fuerza mientras este Aliado este en juego. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 2 Oros para subirlo a tu Mano",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 2 a la Fuerza mientras el Dragón de la Tormenta esté en juego.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir un Aliado oponente en juego para que pierda 2 a la Fuerza mientras este Aliado este en juego.",
+        "id_habilidad": "dragon_tormenta_debuff"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 2 Oros para subirlo a tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "dragon_tormenta_recursion"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 741,
+    "nombre": "Grifo Sacro",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/grifosacro.webp",
+    "habilidad_texto_descriptivo": "Cuando sea destruido, puedes desterrarlo para buscar una copia de esta carta en tu Mazo Castillo y Jugarla sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "isFree": true,
+          "prompt": "Habilidad de Grifo Sacro: Elige una copia en tu Mazo Castillo para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "nombre": "Grifo Sacro"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Cuando sea destruido, puedes desterrarlo para buscar una copia de esta carta en tu Mazo Castillo y Jugarla sin pagar su coste.",
+        "id_habilidad": "grifo_sacro_on_destroyed"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 742,
+    "nombre": "Sir Gareth",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sirgareth.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. No tiene limite de armas. Jugar armas en este Aliado cuesta 1 Oro menos. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "noWeaponLimit"
+        ],
+        "description": "Imbloqueable. No tiene limite de armas.",
+        "id_habilidad": "sir_gareth_2_inherents"
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "description": "Jugar armas en este Aliado cuesta 1 Oro menos.",
+        "id_habilidad": "sir_gareth_2_cost_reduction"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 743,
+    "nombre": "Draco Lich",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dracolich.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego puedes elegir un Aliado Draco de coste 3 o menos de tu Cementerio y jugarlo sin pagar su coste. Ese aliado puede ser declarado atacante este turno y en la Fase Final destierralo. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "id_habilidad": "draco_lich_inherent"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Habilidad de Draco Lich: Elige un Aliado Draco de coste 3 o menos de tu Cementerio.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            },
+            "nameContains": "Draco"
+          },
+          "modifications": {
+            "addKeywords": [
+              "canAttackOnEnterPlay"
+            ]
+          },
+          "temporaryEffect": "banishAtEndOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego puedes elegir un Aliado Draco de coste 3 o menos de tu Cementerio y jugarlo sin pagar su coste. Ese aliado puede ser declarado atacante este turno y en la Fase Final destiérralo.",
+        "id_habilidad": "draco_lich_reanimate"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 744,
+    "nombre": "Draco Cometa",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/dracocometa.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando entra en juego, si solo controlas Aliados de raza Dragon, eliuje un Aliado oponente para que pierda su habilidad y no pueda atacar ni bloquear mientras Draco Cometa este en juego. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "draco_cometa_inherents"
+      },
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "prompt": "Elige un Aliado oponente para que pierda su habilidad y no pueda atacar ni bloquear mientras Draco Cometa esté en juego.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "whileInPlay",
+          "addKeywords": [
+            "cannotAttack",
+            "cannotBlock"
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Dragon"
+          }
+        },
+        "description": "Cuando entra en juego, si solo controlas Aliados de raza Dragon, elige un Aliado oponente para que pierda su habilidad y no pueda atacar ni bloquear mientras Draco Cometa este en juego.",
+        "id_habilidad": "draco_cometa_lockdown"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 749,
+    "nombre": "Draco Sangre",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dracosangre.webp",
+    "habilidad_texto_descriptivo": "Puede atacar el turno que entra en juego. Si controlas 3 o mas Aliados Draco, este aliado gana 1 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "draco_sangre2_haste"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Draco"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas 3 o mas Aliados Draco, este aliado gana 1 a la fuerza.",
+        "id_habilidad": "draco_sangre2_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 750,
+    "nombre": "Draco Siniestro",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/dracosiniestro.webp",
+    "habilidad_texto_descriptivo": "Puede atacar el turno que entra en juego. Cuando entra en juego, puedes descartar una carta de tu mano para robar una carta. Si descartaste un Aliado Draco, puedes robar una carta adicional. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "draco_siniestro_haste"
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Descarta una carta de tu mano para activar la habilidad de Draco Siniestro.",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "discardAndConditionalDraw",
+          "prompt": "Has descartado un Aliado Draco. ¿Deseas robar una carta adicional?",
+          "baseDraw": 1,
+          "bonusDraw": 1,
+          "bonusQuery": {
+            "type": "Aliado",
+            "nameContains": "Draco"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar una carta de tu mano para robar una carta. Si descartaste un Aliado Draco, puedes robar una carta adicional.",
+        "id_habilidad": "draco_siniestro_discard_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 1009,
+    "nombre": "Dragon de Aire",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragondeaire1009.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable, puede atacar cuando entra en juego, Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta",
+    "descripcion": "Dragón del Aire puede atacar cuando entra en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Imbloqueable. Puede atacar cuando entra en juego.",
+        "id_habilidad": "dragon_de_aire_inherents"
+      },
+      {
+        "id_habilidad": "dragon_de_aire_draw",
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Dragon",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Dragón de Aire: ¿Deseas robar una carta?",
+          "options": [
+            {
+              "id": "dragon_de_aire_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "dragon_de_aire_draw_no",
+              "action": {},
+              "description": "No robar"
+            }
+          ]
+        },
+        "description": "Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta."
+      }
+    ],
+    "tier": "bajo"
   }
 ]

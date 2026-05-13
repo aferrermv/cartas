@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.7",
+    "pack_version": "2.4.8",
     "habilidades": []
   },
   {
@@ -60571,7 +60571,7 @@
     "id": 7280,
     "nombre": "Fergus",
     "tipo": "Aliado",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/store/cartas/fergusreal1511zon.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
     "descripcion": "Edición Especial Arte Alternativo",
@@ -62517,7 +62517,7 @@
     "id": 7319,
     "nombre": "Fergus",
     "tipo": "Aliado",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/store/cartas/ferguslegendaria1411zon.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
     "descripcion": "Edición Especial Arte Alternativo",
@@ -64910,7 +64910,10 @@
           "conditions": [
             {
               "type": "isInZone",
-              "zone": "goldReserve"
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
             },
             {
               "type": "wasNotPlayedThisTurn"

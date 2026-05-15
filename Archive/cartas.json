@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.8",
+    "pack_version": "2.4.9",
     "habilidades": []
   },
   {
@@ -65511,6 +65511,468 @@
           ]
         },
         "description": "Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 751,
+    "nombre": "Draco Espino",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dracoespino.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea destruido, tus aliados Draco ganan 1 a la fuerza permanentemente.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "draco_espino_haste"
+      },
+      {
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Draco"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Cuando sea destruido, tus aliados Draco ganan 1 a la fuerza permanentemente.",
+        "id_habilidad": "draco_espino_death_trigger"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 754,
+    "nombre": "Draco Zafiro",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dracozafiro.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Puedes destruir este Aliado para prevenir que otro Aliado Draco salga del juego por una habilidad oponente. Luego Ese aliado gana 2 a la fuerza Permanentemente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "id_habilidad": "draco_zafiro_haste"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "buff": {
+                "stat": "fuerza",
+                "value": 2
+              },
+              "type": "grantBuffToTarget",
+              "target": "triggeringCard",
+              "duration": "permanent"
+            }
+          },
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "description": "Puedes destruir este Aliado para prevenir que otro Aliado Draco salga del juego por una habilidad oponente. Luego Ese aliado gana 2 a la fuerza Permanentemente.",
+        "id_habilidad": "draco_zafiro_protection_and_buff",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "isOther": true,
+            "nameContains": "Draco",
+            "excludeReason": "combat"
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "requireOpponentTrigger": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 752,
+    "nombre": "Sir Launfal",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirlaunfal.webp",
+    "habilidad_texto_descriptivo": "Tus demas Aliados Sir oueden atacar cuando entran en juego y ganan 1 a la fuerza. Si este aliado esta en tu Cementerio, puedes desterrarlo para que un aliado en juego gane 1 a la fuerza hasta la fase final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Sir"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus demas Aliados Sir ganan 1 a la fuerza.",
+        "id_habilidad": "sir_launfal_aura_stats"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Sir"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "description": "Tus demas Aliados Sir pueden atacar cuando entran en juego.",
+        "id_habilidad": "sir_launfal_aura_haste"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Habilidad de Sir Launfal: Elige un aliado en juego para que gane 1 a la fuerza hasta la fase final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Si este aliado esta en tu Cementerio, puedes desterrarlo para que un aliado en juego gane 1 a la fuerza hasta la fase final.",
+        "id_habilidad": "sir_launfal_graveyard_buff"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 745,
+    "nombre": "Nayade",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/nayade.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes subir un Aliado de coste 1 de tu Cementerio a tu Mano. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "id_habilidad": "nayade_inherents"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Náyade: Elige un Aliado de coste 1 de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": 1
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes poner un Aliado de coste 1 de tu Cementerio a tu Mano.",
+        "id_habilidad": "nayade_enter_play_recycle"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 753,
+    "nombre": "Escudo Tryamour",
+    "tipo": "Arma",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/escudotryamoure.webp",
+    "habilidad_texto_descriptivo": "El portador gana 3 a la fuerza. cuando entra en juego, puedes buscar un Aliado de coste 3 o menos en tu Mazo Castillo y jugarlo sin Pagar su Coste.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 3,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "isFree": true,
+          "prompt": "Habilidad de Escudo Tryamour: Elige un Aliado de coste 3 o menos de tu Mazo Castillo para jugarlo sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Aliado de coste 3 o menos en tu Mazo Castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "escudo_tryamour_tutor"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 755,
+    "nombre": "Caballero Errante",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/caballeroerrante.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar un Aliado de un Cementerio, Luego puedes robar una carta. En tu Fase de Vigilia, si tienes 3 o mas Aliados en tu Zona de Destierro puedes elegir un Aliado que entro en juego este turno para que pueda atacar este turno. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Caballero Errante: ¿Quieres desterrar un Aliado de un Cementerio para luego robar una carta?",
+          "options": [
+            {
+              "id": "activate_banish_draw",
+              "action": {
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                },
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige un Aliado de cualquier Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Desterrar un Aliado y robar 1 carta"
+            },
+            {
+              "id": "decline_banish_draw",
+              "action": {},
+              "description": "No activar"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "any"
+        },
+        "description": "Cuando entra en juego, puedes desterrar un Aliado de un Cementerio, Luego puedes robar una carta.",
+        "id_habilidad": "caballero_errante_enter_play_banish_draw"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado que entró en juego este turno para que pueda atacar este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "wasPlayedThisTurn": true
+            },
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInBanish",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 3,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si tienes 3 o mas Aliados en tu Zona de Destierro puedes elegir un Aliado que entro en juego este turno para que pueda atacar este turno.",
+        "oncePerTurn": true,
+        "id_habilidad": "caballero_errante_haste_grant"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 756,
+    "nombre": "Sir Dinadan",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/sirdinadan.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. En tu Fase de Vigilia, una vez por turno y si este Aliado porta una o mas Armas, puedes elegir otro de tus Aliados de Raza Caballero para que sea imbloqueable hasta la fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable.",
+        "id_habilidad": "sir_dinadan_unblockable"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Habilidad de Sir Dinadan: Elige otro Aliado Caballero para que sea Imbloqueable hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasWeaponEquipped"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno y si este Aliado porta una o mas Armas, puedes elegir otro de tus Aliados de Raza Caballero para que sea imbloqueable hasta la fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "sir_dinadan_grant_unblockable"
       }
     ],
     "tier": "bajo"

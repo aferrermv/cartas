@@ -66027,7 +66027,7 @@
     "nombre": "Stoorn Worm",
     "tipo": "Aliado",
     "coste_oro": 4,
-    "imagen_url": "/img/nuevascartas/stoornworm.webp",
+    "imagen_url": "/img/store/cartas/stoornworm.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si lo hace, en tu Fase Final Destruyelo.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -66084,6 +66084,7 @@
         "id_habilidad": "stoorn_worm_self_destruct",
         "resolvesInstantly": true
       }
-    ]
+    ],
+    "tier": "bajo"
   }
 ]

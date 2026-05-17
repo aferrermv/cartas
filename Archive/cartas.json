@@ -1460,7 +1460,7 @@
   },
   {
     "id": 15,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/aliados/dragondemagma15.webp",
@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.4.9",
+    "pack_version": "2.5.0",
     "habilidades": []
   },
   {
@@ -9830,6 +9830,8 @@
           "type": "searchAndShuffleIntoDeck",
           "zone": "cementerio",
           "count": 4,
+          "minCount": 0,
+          "canCancel": true,
           "query": {
             "or": [
               {
@@ -37352,7 +37354,11 @@
           "type": "annulTriggeringAbility"
         },
         "trigger": "onOpponentActivateAbility",
-        "descripcion": "Cancela una habilidad activada o disparada de una carta oponente. Luego, tu oponente debe descartar una carta de su mano.",
+        "condition": {
+          "type": "triggeringCardIsType",
+          "cardType": "Aliado"
+        },
+        "descripcion": "Cancela una habilidad activada o disparada de una carta aliado oponente. Luego, tu oponente debe descartar una carta de su mano.",
         "id_habilidad": "maldicion_danaan_annul_activated_ability"
       },
       {
@@ -39398,6 +39404,8 @@
           "type": "searchAndShuffleIntoDeck",
           "zone": "cementerio",
           "count": 4,
+          "minCount": 0,
+          "canCancel": true,
           "query": {
             "or": [
               {
@@ -40042,7 +40050,7 @@
   },
   {
     "id": 7028,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmaalt.webp",
@@ -40079,7 +40087,7 @@
   },
   {
     "id": 7029,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmaalternativo.webp",
@@ -43580,7 +43588,7 @@
   },
   {
     "id": 7087,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmazombie.webp",
@@ -45454,7 +45462,7 @@
   },
   {
     "id": 7121,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmacarloko1.webp",
@@ -45491,7 +45499,7 @@
   },
   {
     "id": 7122,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmacarloko2.webp",
@@ -45528,7 +45536,7 @@
   },
   {
     "id": 7123,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmacarloko3.webp",
@@ -60023,6 +60031,15 @@
           }
         },
         "trigger": "onDealCombatDamageToDeck",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "controller": "opponent"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "description": "Si hace daño al Mazo Castillo oponente, éste debe destruir a su elección uno de sus Aliados y debe botar 3 cartas.",
         "id_habilidad": "gladius_damage_effect"
       }
@@ -60384,7 +60401,7 @@
   },
   {
     "id": 7276,
-    "nombre": "Dragón de Magma",
+    "nombre": "Dragon de Magma",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/store/cartas/dragondemagmareal911zon.webp",
@@ -64485,16 +64502,44 @@
           "Guerra de Talismanes"
         ],
         "effect": {
-          "type": "chooseAndBanish",
-          "count": 1,
-          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
-          "target": {
-            "zone": "cementerio",
-            "query": {
-              "type": "*"
+          "type": "chooseOne",
+          "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
+          "options": [
+            {
+              "id": "banish_self_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "self"
+                },
+                "minCount": 0
+              },
+              "description": "Tu Cementerio"
             },
-            "controller": "opponent"
-          }
+            {
+              "id": "banish_opponent_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                },
+                "minCount": 0
+              },
+              "description": "Cementerio Oponente"
+            }
+          ]
         },
         "trigger": "activatable",
         "condition": {
@@ -64749,8 +64794,8 @@
               "nameContains": "Goblin"
             },
             "prompt": "Habilidad de Talsoi: Elige hasta 2 cartas Goblin de tu Cementerio para barajar.",
-            "maxCount": 2,
-            "minCount": 1,
+            "count": 2,
+            "minCount": 0,
             "canCancel": true
           }
         ],
@@ -65976,5 +66021,69 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 757,
+    "nombre": "Stoorn Worm",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevascartas/stoornworm.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si lo hace, en tu Fase Final Destruyelo.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "stoorn_worm_haste"
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "stoorn_worm_attacked_on_entry",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "isHidden": true,
+        "condition": {
+          "type": "wasPlayedThisTurn"
+        },
+        "description": "Rastrea si atacó el mismo turno que entró.",
+        "id_habilidad": "stoorn_worm_attack_tracker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "destroySelf"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "stoorn_worm_attacked_on_entry"
+            }
+          ]
+        },
+        "description": "Si lo hace, en tu Fase Final Destrúyelo.",
+        "id_habilidad": "stoorn_worm_self_destruct",
+        "resolvesInstantly": true
+      }
+    ]
   }
 ]

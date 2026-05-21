@@ -66086,5 +66086,1354 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 758,
+    "nombre": "Abhartach",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/abhartach.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishAndBanishCopiesFromDeck",
+          "prompt": "Habilidad de Abhartach: Elige un Aliado o Tótem oponente para desterrar y eliminar sus copias del Mazo Castillo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+        "id_habilidad": "abhartach_banish_and_copies"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 759,
+    "nombre": "Crom Erebus",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/cromerebus.webp",
+    "habilidad_texto_descriptivo": "No puede bloquear. Cuando entra en juego, tu oponente destierra tantas cartas de la parte superior de su Mazo Castillo como Aliados Crom controles. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBlock"
+        ],
+        "description": "No puede bloquear.",
+        "id_habilidad": "crom_erebus_cannot_block"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self",
+              "nameContains": "Crom"
+            }
+          },
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, tu oponente destierra tantas cartas de la parte superior de su Mazo Castillo como Aliados Crom controles.",
+        "id_habilidad": "crom_erebus_banish_on_enter"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 760,
+    "nombre": "Crom Tigernmas",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cromtigermas.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado bloqueador. Cuando entra en juego, puedes robar una carta. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 3 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBlock"
+        ],
+        "description": "No puede ser declarado bloqueador.",
+        "id_habilidad": "crom_tigernmas_cannot_block"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "optional": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes robar una carta.",
+        "id_habilidad": "crom_tigernmas_draw"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 3
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 3 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "crom_tigernmas_graveyard_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 761,
+    "nombre": "Dame Tryamour",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/dametriamour.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar un Alado Faerie de tu Cementerio y jugarlo sin pagar su coste. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable.",
+        "id_habilidad": "dame_tryamour_unblockable"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "isFree": true,
+          "prompt": "Habilidad de Dame Tryamour: Elige un Aliado Faerie de tu Cementerio para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Faerie",
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Alado Faerie de tu Cementerio y jugarlo sin pagar su coste.",
+        "id_habilidad": "dame_tryamour_enter_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 762,
+    "nombre": "Danza Sidhe",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/danzasidhe.webp",
+    "habilidad_texto_descriptivo": "Roba 2 cartas. Luego, descarta 2 cartas. Si esta carta esta en tu Cementerio y controlas Aliados Sidhe, puedes pagar 1 Oro para ponerla al fondo de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Roba 2 cartas. Luego, descarta 2 cartas.",
+        "id_habilidad": "danza_sidhe_draw_discard"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 1
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToBottomOfDeck"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Sidhe"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si esta carta esta en tu Cementerio y controlas Aliados Sidhe, puedes pagar 1 Oro para ponerla al fondo de tu Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "danza_sidhe_graveyard_recycle"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 763,
+    "nombre": "Escudo Sidhe",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/escudosidhe.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes descartar una carta de tu Mano para que un Aliado que controles gane tanta fuerza como coste tenga esa carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 0,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Habilidad de Escudo Sidhe: Elige una carta de tu mano para descartar como coste.",
+            "optional": false
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "grantBuffFromDiscardedCost",
+          "prompt": "Elige un Aliado que controles para que gane fuerza.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes descartar una carta de tu Mano para que un Aliado que controles gane tanta fuerza como coste tenga esa carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "escudo_sidhe_discard_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 764,
+    "nombre": "Fand Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/fandsidhe.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes descartar hasta 2 cartas de tu Mano. Por cada carta descartada, puedes barajar una carta oponente en juego que no sea Oro. Tus Aliados Sidhe ganan 1 a la fuerza. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable.",
+        "id_habilidad": "fand_sidhe_unblockable"
+      },
+      {
+        "effect": {
+          "type": "discardToShuffleOpponentCards",
+          "prompt": "Habilidad de Fand Sidhe: Elige cuántas cartas descartar de tu mano para barajar cartas oponentes.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "maxCount": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar hasta 2 cartas de tu Mano. Por cada carta descartada, puedes barajar una carta oponente en juego que no sea Oro.",
+        "id_habilidad": "fand_sidhe_discard_shuffle"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Sidhe"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus Aliados Sidhe ganan 1 a la fuerza.",
+        "id_habilidad": "fand_sidhe_aura"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 765,
+    "nombre": "Fear Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/fearsidhe.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar el coste de un Aliado Sidhe de tu Cementerio para jugarlo sin pagar su coste. Si este Aliado es descartado por una habilidad, puedes barajar 2 cartas de tu Cementerio en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "selectFromGraveyardAndPlayPayingGoldCost",
+          "prompt": "Elige un Aliado Sidhe de tu Cementerio para pagar su coste y jugarlo.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameContains": "Sidhe"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar el coste de un Aliado Sidhe de tu Cementerio para jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "fear_sidhe_resurrection"
+      },
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Fear Sidhe fue descartado. Elige 2 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "description": "Si este Aliado es descartado por una habilidad, puedes barajar 2 cartas de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "fear_sidhe_on_discard",
+        "listensForEvent": "onDiscardSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 766,
+    "nombre": "Flidais",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/flidais.webp",
+    "habilidad_texto_descriptivo": "Puedes barajar este aliado en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "flidais_annul_ability_on_activate",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentActivateAbility",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar este aliado en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "id": "flidais_annul_ability_on_play_ally",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar este aliado en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "id": "flidais_annul_ability_on_play_weapon",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar este aliado en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "id": "flidais_annul_ability_on_play_totem",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar este aliado en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 767,
+    "nombre": "Glaistig",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/glaistig.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes decartar una carta de tu Mano para que este y otro Aliado Sidhe ganen 1 a la fuerza hasta la fase final. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 1 de oro para subirlo a tu Mano.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "buffTargetAndSelf",
+          "prompt": "Elige otro Aliado Sidhe para buffear.",
+          "target": {
+            "query": {
+              "tipo": "Aliado",
+              "zone": "field",
+              "isOther": true,
+              "nameContains": "Sidhe"
+            }
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "tipo": "Aliado",
+                "zone": "field",
+                "nameIsNot": "Glaistig",
+                "nameContains": "Sidhe"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "id_habilidad": "glaistig_buff"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 1
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 1 de oro para subirlo a tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "glaistig_recursion"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 768,
+    "nombre": "Gronw Pebyr",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/gronwpebyr.webp",
+    "habilidad_texto_descriptivo": "Gana 1 a la Fuerza por cada Totem en juego. Si controlas 1 o mas Totem puede atacar cuando entra en juego y es imbloqueable. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Totem",
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ]
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "description": "Gana 1 a la Fuerza por cada Totem en juego.",
+        "id_habilidad": "gronw_pebyr_power_buff"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Totem",
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ]
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas 1 o mas Totem, es imbloqueable.",
+        "id_habilidad": "gronw_pebyr_unblockable_continuous"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Totem",
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ]
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas 1 o mas Totem, puede atacar cuando entra en juego.",
+        "id_habilidad": "gronw_pebyr_haste_continuous"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 769,
+    "nombre": "Leanan Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/leanansidhe.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Solo puede atacar si controlas 2 o mas Aliados Sidhe. Si es descartada de tu Mano, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable.",
+        "id_habilidad": "leanan_sidhe_unblockable"
+      },
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "descripcion": "Solo puede atacar si controlas 2 o mas Aliados Sidhe.",
+        "id_habilidad": "leanan_sidhe_cannot_attack"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackThisTurn"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "tipo": "Aliado",
+            "zone": "field",
+            "nameContains": "Sidhe"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Solo puede atacar si controlas 2 o mas Aliados Sidhe.",
+        "id_habilidad": "leanan_sidhe_enable_attack"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "description": "Si es descartada de tu Mano, puedes robar 1 carta.",
+        "id_habilidad": "leanan_sidhe_discard_draw",
+        "listensForEvent": "onDiscardSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 770,
+    "nombre": "Mordred",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/mordred.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando es declarado atacante, debe ser bloqueado por un Aliado oponente a tu eleccion. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "mordred_haste"
+      },
+      {
+        "effect": {
+          "type": "forceOpponentAllyToBlock",
+          "prompt": "Elige un Aliado oponente para que bloquee a Mordred.",
+          "target": {
+            "zone": [
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": false
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando es declarado atacante, debe ser bloqueado por un Aliado oponente a tu eleccion.",
+        "id_habilidad": "mordred_force_block"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 771,
+    "nombre": "Orna",
+    "tipo": "Arma",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/orna.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza y es Imbloqueable. Cuando el portador sea declarado atacante, tu oponente destierra la primera carta de su Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "description": "El portador es Imbloqueable.",
+        "id_habilidad": "orna_unblockable_wielder"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando el portador sea declarado atacante, tu oponente destierra la primera carta de su Mazo Castillo.",
+        "id_habilidad": "orna_attack_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 772,
+    "nombre": "Siabhra Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/siabhrasidhe.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. En tu fase Final, una vez por turno y si descartaste 1 o mas cartas este turno, puedes robar 1 carta. Solo puedes disparar un Siabhra Sidhe por turno. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable.",
+        "id_habilidad": "siabhra_sidhe_unblockable"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasMarker",
+              "marker": "discarded_this_turn"
+            }
+          ]
+        },
+        "description": "En tu fase Final, una vez por turno y si descartaste 1 o mas cartas este turno, puedes robar 1 carta. Solo puedes disparar un Siabhra Sidhe por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "siabhra_sidhe_draw"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 773,
+    "nombre": "Sidhe Guerrero",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sidheguerrero.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado bloqueador. Si esta carta es descartada de tu Mano, puedes robar una carta o pagar 1 Oro y jugarla sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBlock"
+        ],
+        "descripcion": "No puede ser declarado bloqueador.",
+        "id_habilidad": "sidhe_guerrero_cannot_block"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Sidhe Guerrero fue descartado. Elige una opción:",
+          "options": [
+            {
+              "id": "sidhe_guerrero_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar una carta"
+            },
+            {
+              "id": "sidhe_guerrero_play",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "payGold",
+                      "count": 1,
+                      "prompt": "Paga 1 Oro para jugar a Sidhe Guerrero desde tu Cementerio."
+                    }
+                  ],
+                  "effect": {
+                    "type": "playSelfFromGraveyardFree"
+                  }
+                }
+              },
+              "description": "Pagar 1 Oro y jugarla sin pagar su coste"
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "description": "Si esta carta es descartada de tu Mano, puedes robar una carta o pagar 1 Oro y jugarla sin pagar su coste.",
+        "id_habilidad": "sidhe_guerrero_on_discard",
+        "listensForEvent": "onDiscardSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 774,
+    "nombre": "Sinach",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sinach.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes botar la primera carta de tu Mazo Castillo. Si es un Oro, en vez de eso, ponlo en tu mano. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "revealAndChooseConditional",
+          "count": 1,
+          "choice": {
+            "query": {
+              "type": "Oro"
+            },
+            "prompt": "Si la carta es un Oro, ponla en tu mano. De lo contrario, irá al Cementerio.",
+            "optional": false,
+            "destination": "hand",
+            "opponentPrompt": "Tu oponente está revisando la primera carta de su Mazo Castillo."
+          },
+          "fromZone": "mazoCastillo",
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar la primera carta de tu Mazo Castillo. Si es un Oro, en vez de eso, ponlo en tu mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "sinach_vigilia_filter"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 776,
+    "nombre": "Tuan Mac Cairill",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/tuanmaccairill.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, descarta una carta de la Mano de tu oponente al Azar. Luego, tu oponente bota tantas cartas como coste tenga la carta descartada.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "fromContext": "discardedCard.coste_oro"
+              },
+              "target": "opponent"
+            }
+          },
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent",
+          "rememberAs": "discardedCard"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, descarta una carta de la Mano de tu oponente al Azar. Luego, tu oponente bota tantas cartas como coste tenga la carta descartada.",
+        "id_habilidad": "tuan_mac_cairill_discard_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 777,
+    "nombre": "Aillil Mac Mata",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/aillimacda.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado atacante, tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "aillil_mac_mata_haste"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando sea declarado atacante, tu oponente bota 1 carta.",
+        "id_habilidad": "aillil_mac_mata_attack_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 778,
+    "nombre": "Ambiorix",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ambiorix.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea Destruido, roba una carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "ambiorix2_haste"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Cuando sea Destruido, roba una carta.",
+        "id_habilidad": "ambiorix2_draw_on_destroyed"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 779,
+    "nombre": "Broche de Tara",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/brochedetara.webp",
+    "habilidad_texto_descriptivo": "Cuando uses este Oro para pagar el coste de un Aliado, tu oponente bota una carta. Solo puedes disparar un Broche de Tara por turno.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onBeingPaidForAlly",
+        "description": "Cuando uses este Oro para pagar el coste de un Aliado, tu oponente bota una carta. Solo puedes disparar un Broche de Tara por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "broche_de_tara_mill_on_pay",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 780,
+    "nombre": "Oro Feerico",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/orofeerico.webp",
+    "habilidad_texto_descriptivo": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de tu Mazo Castillo para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "oro_feerico_banish_tutor"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 781,
+    "nombre": "Patriarca del Bosque",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/patriarcadelbosque.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. En tu Fase de Vigilia, una vez por turno y si controlas uno o mas Aliados Druida, puedes pagar 1 Oro para barajar una carta de tu Mano en tu Mazo Castillo y robar una carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante.",
+        "id_habilidad": "patriarca_del_bosque_defender"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "shuffleFromHandAndDraw",
+          "prompt": "Elige una carta de tu mano para barajar en tu Mazo Castillo y robar una carta.",
+          "drawCount": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno y si controlas uno o mas Aliados Druida, puedes pagar 1 Oro para barajar una carta de tu Mano en tu Mazo Castillo y robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "patriarca_del_bosque_cycle"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 775,
+    "nombre": "totem sidhe",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/totemsidhe.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Totem Sidhe en juego. En tu Fase de Vigilia, una vez por turno, cada jugador descarta una carta de su Mano. Luego, cada jugador roba una carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes tener un Totem Sidhe en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "mutualDiscardThenDraw",
+          "drawCount": 1,
+          "discardCount": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, cada jugador descarta una carta de su Mano. Luego, cada jugador roba una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "totem_sidhe_vigilia_effect"
+      }
+    ],
+    "tier": "medio"
   }
 ]

@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.5.3",
+    "pack_version": "2.5.4",
     "habilidades": []
   },
   {
@@ -6207,7 +6207,7 @@
             {
               "type": "playerControls",
               "query": {
-                "race": "Faerie",
+                "raza": "Faerie",
                 "type": "Aliado",
                 "zone": [
                   "attack",
@@ -65873,69 +65873,100 @@
     "salud": null,
     "habilidades": [
       {
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Habilidad de Caballero Errante: ¿Quieres desterrar un Aliado de un Cementerio para luego robar una carta?",
-          "options": [
-            {
-              "id": "activate_banish_draw",
-              "action": {
-                "then": {
-                  "effect": {
-                    "type": "drawCards",
-                    "count": 1
-                  }
-                },
-                "type": "chooseAndBanish",
-                "count": 1,
-                "prompt": "Elige un Aliado de cualquier Cementerio para desterrar.",
-                "target": {
-                  "zone": "cementerio",
-                  "query": {
-                    "type": "Aliado"
-                  },
-                  "controller": "any"
-                }
-              },
-              "description": "Desterrar un Aliado y robar 1 carta"
-            },
-            {
-              "id": "decline_banish_draw",
-              "action": {},
-              "description": "No activar"
-            }
-          ]
-        },
+        "id_habilidad": "caballero_errante_enter_play_banish_draw",
         "trigger": "onEnterPlay",
         "condition": {
-          "type": "playerHasInGraveyard",
+          "type": "playerControls",
           "query": {
-            "type": "Aliado"
+            "type": "Aliado",
+            "zone": "cementerio"
           },
           "amount": 1,
           "comparison": "greaterOrEqual",
           "controller": "any"
         },
-        "description": "Cuando entra en juego, puedes desterrar un Aliado de un Cementerio, Luego puedes robar una carta.",
-        "id_habilidad": "caballero_errante_enter_play_banish_draw"
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Caballero Errante: Elige una opción:",
+          "options": [
+            {
+              "id": "banish_opponent",
+              "description": "Si, desterrar una carta del cementerio oponente para robar una carta",
+              "condition": {
+                "type": "playerControls",
+                "query": {
+                  "type": "Aliado",
+                  "zone": "cementerio"
+                },
+                "amount": 1,
+                "comparison": "greaterOrEqual",
+                "controller": "opponent"
+              },
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige un Aliado del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "opponent"
+                },
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "banish_mine",
+              "description": "Si, desterrar una carta de mi cementerio para robar una carta",
+              "condition": {
+                "type": "playerControls",
+                "query": {
+                  "type": "Aliado",
+                  "zone": "cementerio"
+                },
+                "amount": 1,
+                "comparison": "greaterOrEqual",
+                "controller": "self"
+              },
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige un Aliado de tu Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "self"
+                },
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "decline_banish_draw",
+              "description": "No Gracias",
+              "action": {}
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes desterrar un Aliado de un Cementerio, Luego puedes robar una carta."
       },
       {
+        "id_habilidad": "caballero_errante_haste_grant",
         "phase": "Principal",
-        "effect": {
-          "type": "grantKeywordToTarget",
-          "prompt": "Elige un Aliado que entró en juego este turno para que pueda atacar este turno.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": "Aliado",
-              "wasPlayedThisTurn": true
-            },
-            "controller": "self"
-          },
-          "keyword": "canAttackOnEnterPlay",
-          "duration": "endOfTurn"
-        },
         "trigger": "activatable",
+        "oncePerTurn": true,
         "condition": {
           "type": "and",
           "conditions": [
@@ -65953,9 +65984,21 @@
             }
           ]
         },
-        "description": "En tu Fase de Vigilia, si tienes 3 o mas Aliados en tu Zona de Destierro puedes elegir un Aliado que entro en juego este turno para que pueda atacar este turno.",
-        "oncePerTurn": true,
-        "id_habilidad": "caballero_errante_haste_grant"
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado que entró en juego este turno para que pueda atacar este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "wasPlayedThisTurn": true
+            },
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay",
+          "duration": "endOfTurn"
+        },
+        "description": "En tu Fase de Vigilia, si tienes 3 o mas Aliados en tu Zona de Destierro puedes elegir un Aliado que entro en juego este turno para que pueda atacar este turno."
       }
     ],
     "tier": "medio"
@@ -66240,7 +66283,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/dametriamour.webp",
-    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar un Alado Faerie de tu Cementerio y jugarlo sin pagar su coste. ",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar una copia de un aliado Pixie o de Morgana de tu Cementerio y jugarlo sin pagar su coste. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -66264,16 +66307,23 @@
         "effect": {
           "type": "searchAndPlayToDefense",
           "isFree": true,
-          "prompt": "Habilidad de Dame Tryamour: Elige un Aliado Faerie de tu Cementerio para jugar sin pagar su coste.",
+          "prompt": "Habilidad de Dame Tryamour: Elige a Pixie o Morgana de tu Cementerio para jugar sin pagar su coste.",
           "canCancel": true,
           "searchQuery": {
-            "raza": "Faerie",
+            "or": [
+              {
+                "nombre": "Pixie"
+              },
+              {
+                "nombre": "Morgana"
+              }
+            ],
             "type": "Aliado",
             "zone": "cementerio"
           }
         },
         "trigger": "onEnterPlay",
-        "description": "Cuando entra en juego, puedes buscar un Alado Faerie de tu Cementerio y jugarlo sin pagar su coste.",
+        "description": "Cuando entra en juego, puedes buscar una copia de un aliado Pixie o de Morgana de tu Cementerio y jugarlo sin pagar su coste.",
         "id_habilidad": "dame_tryamour_enter_play"
       }
     ],
@@ -66313,7 +66363,10 @@
           "type": "payCostForGraveyardAbility",
           "count": 1
         },
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "moveSelfToBottomOfDeck"
         },
@@ -66644,7 +66697,10 @@
             "count": 1
           }
         ],
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "buff": {
             "stat": "fuerza",
@@ -67288,7 +67344,7 @@
     "tipo": "Oro",
     "coste_oro": 0,
     "imagen_url": "/img/store/cartas/orofeerico.webp",
-    "habilidad_texto_descriptivo": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "habilidad_texto_descriptivo": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo pagando su coste.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -67307,19 +67363,20 @@
         },
         "phase": "Principal",
         "effect": {
-          "type": "searchAndPlayToTotem",
-          "prompt": "Elige un Tótem de tu Mazo Castillo para jugar sin pagar su coste.",
+          "type": "searchAndPlayPayingCost",
+          "prompt": "Elige un Tótem de tu Mazo Castillo para jugar pagando su coste.",
           "searchQuery": {
             "type": "Totem",
             "zone": "mazoCastillo"
-          }
+          },
+          "destinationZone": "field"
         },
         "trigger": "activatable",
         "condition": {
           "type": "isInZone",
           "zone": "goldReserve"
         },
-        "description": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo sin pagar su coste.",
+        "description": "Si este oro esta en tu Reserva de Oros, puedes desterrarlo para buscar un Totem en tu Mazo Castillo y jugarlo pagando su coste.",
         "id_habilidad": "oro_feerico_banish_tutor"
       }
     ],

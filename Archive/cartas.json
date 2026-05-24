@@ -19184,7 +19184,7 @@
     "tipo": "Talisman",
     "coste_oro": 1,
     "imagen_url": "/img/ra/furiairracional508.webp",
-    "habilidad_texto_descriptivo": "Si controlas 1 o mas Aliados Guerrero, puedes jugar este Talisman desde el cementerio pagando su coste, si lo haces, Destierralo. Un Alliado que controles gana 2 a llal fuerza e imbloqueable hasta la fase Final. ",
+    "habilidad_texto_descriptivo": "Si controlas 1 o mas Aliados Guerrero, puedes jugar este Talisman desde el cementerio pagando su coste, si lo haces, Destierralo. Un Alliado que controles gana 2 a la fuerza e imbloqueable hasta la fase Final. ",
     "descripcion": null,
     "expansion": "Dominios de Ra",
     "rareza": "Común",
@@ -43378,7 +43378,8 @@
               "notType": "Oro"
             },
             "controller": "any"
-          }
+          },
+          "requiresChoice": true
         },
         "trigger": "onEnterPlay"
       },
@@ -67432,6 +67433,1126 @@
         "description": "En tu Fase de Vigilia, una vez por turno, cada jugador descarta una carta de su Mano. Luego, cada jugador roba una carta.",
         "oncePerTurn": true,
         "id_habilidad": "totem_sidhe_vigilia_effect"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 783,
+    "nombre": "Casco Espartano",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cascoespartano.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cuando entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo. Pon una en tu Mano y la otra en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano. La otra irá a tu Cementerio.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 2,
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo. Pon una en tu Mano y la otra en tu Cementerio.",
+        "id_habilidad": "casco_espartano_enter_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 782,
+    "nombre": "Aracne",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/aracne.webp",
+    "habilidad_texto_descriptivo": "Indesterrable. Mientras este Aliado esté en tu linea de Defensa, tu oponente no puede barajar o jugar cartas de su Cementerio.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Indesterrable."
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "restriction": {
+            "type": "cannotShuffleFromGraveyard"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "description": "Mientras este Aliado esté en tu linea de Defensa, tu oponente no puede barajar cartas de su Cementerio."
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "restriction": {
+            "type": "cannotPlayFromGraveyard"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "description": "Mientras este Aliado esté en tu linea de Defensa, tu oponente no puede jugar cartas de su Cementerio."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 784,
+    "nombre": "Cerbero",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cerbero.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado Atacante. Las cartas de tu Cementerio no pueden ser desterradas por habilidades ni efectos Oponentes.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado Atacante."
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "restriction": {
+            "type": "cannotBanishFromGraveyard"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "description": "Mientras este Aliado esté en tu linea de Defensa, tu oponente no puede desterrar cartas de tu Cementerio."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 785,
+    "nombre": "Cuerno de la Bestia",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/cuernodelabestia.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar un Aliado de tu Mano para barajar 1 o 2 Aliados Minotauro de tu Cementerio en tu Mazo Castillo. Si este Oro esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado gane 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHandAndResolve",
+          "prompt": "Puedes mostrar un Aliado de tu mano para barajar 1 o 2 Aliados Minotauro de tu Cementerio en tu Mazo Castillo.",
+          "optional": true,
+          "mainEffect": {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "count": 2,
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Minotauro"
+            },
+            "prompt": "Elige hasta 2 Aliados Minotauro de tu Cementerio para barajar en tu Mazo Castillo.",
+            "minCount": 1,
+            "canCancel": true
+          },
+          "revealQuery": {
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mostrar un Aliado de tu Mano para barajar 1 o 2 Aliados Minotauro de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "cuerno_bestia_reveal_shuffle"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 1 a la fuerza hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Si este Oro esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado gane 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "cuerno_bestia_graveyard_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 786,
+    "nombre": "Doce Pruebas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/docepruebas.webp",
+    "habilidad_texto_descriptivo": "No puede ser Anulado. Un Aliado que controles gana 3 a la fuerza y es indesterrable permanentemente. Si controlas 2 o más Aliados Heroe, puedes jugar este Talismán desde tu Cementerio, si lo haces destierralo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "description": "No puede ser Anulado.",
+        "id_habilidad": "doce_pruebas2_inherent"
+      },
+      {
+        "effect": {
+          "type": "grantMultipleEffectsToTargets",
+          "prompt": "Elige un Aliado que controles para que gane 3 a la Fuerza y sea indesterrable permanentemente.",
+          "duration": "permanent",
+          "maxCount": 1,
+          "minCount": 1,
+          "baseEffects": [
+            {
+              "buff": {
+                "stat": "fuerza",
+                "value": 3
+              },
+              "type": "statBuff"
+            },
+            {
+              "type": "grantKeyword",
+              "keyword": "cannotBeBanished"
+            }
+          ],
+          "targetQuery": {
+            "type": "Aliado",
+            "zone": "field",
+            "controller": "self"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado que controles gana 3 a la fuerza y es indesterrable permanentemente.",
+        "id_habilidad": "doce_pruebas2_main"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "grantMultipleEffectsToTargets",
+          "prompt": "Elige un Aliado que controles para que gane 3 a la Fuerza y sea indesterrable permanentemente.",
+          "duration": "permanent",
+          "maxCount": 1,
+          "minCount": 1,
+          "baseEffects": [
+            {
+              "buff": {
+                "stat": "fuerza",
+                "value": 3
+              },
+              "type": "statBuff"
+            },
+            {
+              "type": "grantKeyword",
+              "keyword": "cannotBeBanished"
+            }
+          ],
+          "targetQuery": {
+            "type": "Aliado",
+            "zone": "field",
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Heroe",
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si controlas 2 o más Aliados Heroe, puedes jugar este Talismán desde tu Cementerio, si lo haces destierralo.",
+        "id_habilidad": "doce_pruebas2_graveyard"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 787,
+    "nombre": "Empusa",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/empusa.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, tu oponente bota 2 cartas. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, tu oponente bota 2 cartas.",
+        "oncePerTurn": true,
+        "id_habilidad": "empusa_mill"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 4
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "empusa_graveyard_play"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 788,
+    "nombre": "Eris",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/eris.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. CUando entra en juego, puedes descartar una carta de tu Mano para buscar un Aliado de raza Olimpico de coste 1 en tu Mazo y jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable.",
+        "id_habilidad": "eris_inherent"
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Habilidad de Eris: ¿Quieres descartar una carta de tu Mano para buscar un Olímpico de coste 1 en tu Mazo y jugarlo?",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de raza Olímpico de coste 1 de tu Mazo Castillo para jugar sin pagar su coste.",
+          "searchQuery": {
+            "cost": {
+              "value": 1,
+              "operator": "=="
+            },
+            "raza": "Olimpico",
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar una carta de tu Mano para buscar un Aliado de raza Olimpico de coste 1 en tu Mazo y jugarlo sin pagar su coste.",
+        "id_habilidad": "eris_enter_play_search"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 789,
+    "nombre": "Escudo de Atenea",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/escudodeatenea.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Puedes barajar esta carta en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentActivateAbility",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar esta carta en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "id_habilidad": "escudo_atenea2_annul_ability_on_activate",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar esta carta en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "id_habilidad": "escudo_atenea2_annul_ability_on_play_ally",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar esta carta en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "id_habilidad": "escudo_atenea2_annul_ability_on_play_weapon",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringAbility"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar esta carta en tu Mazo Castillo para cancelar la habilidad de una carta oponente que no sea oro.",
+        "id_habilidad": "escudo_atenea2_annul_ability_on_play_totem",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 790,
+    "nombre": "Jano",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/jano.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, genera 1 Oro para jugar Aliados o Totem. Cuando sale del juego, puedes subior una carta oponente que no sea Oro a la Mano de su dueño.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 1,
+          "isTemporary": true,
+          "restriction": {
+            "type": [
+              "Aliado",
+              "Totem"
+            ]
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, genera 1 Oro para jugar Aliados o Totem.",
+        "oncePerTurn": true,
+        "id_habilidad": "jano2_generate_gold"
+      },
+      {
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige una carta oponente en juego que no sea Oro para devolver a la mano de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, puedes subior una carta oponente que no sea Oro a la Mano de su dueño.",
+        "id_habilidad": "jano2_leave_play_bounce"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 791,
+    "nombre": "Leon de Nemea",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/leondenemea.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes descartar una carta de tu mano para que pueda atacar cuando entra en juego. Si en tu Cementerio tienes 3 o mas Aliados de raza Titan, este Aliado gana 2 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Habilidad de León de Nemea: ¿Quieres descartar una carta de tu mano para poder atacar este turno?",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar una carta de tu mano para que pueda atacar cuando entra en juego.",
+        "id_habilidad": "leon_nemea_haste"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "raza": "Titan",
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si en tu Cementerio tienes 3 o mas Aliados de raza Titan, este Aliado gana 2 a la fuerza.",
+        "id_habilidad": "leon_nemea_graveyard_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 792,
+    "nombre": "Orestes",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/orestes.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controllas menos Aliados que tu oponente, puede atacar cuando entra en juego. Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "controlsFewerAlliesThanOpponent"
+        },
+        "description": "Cuando entra en juego, si controlas menos Aliados que tu oponente, puede atacar cuando entra en juego.",
+        "id_habilidad": "orestes_haste"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta que no sea Talismán de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "cementerio",
+            "notType": "Talisman"
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano.",
+        "id_habilidad": "orestes_graveyard_retrieval"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 793,
+    "nombre": "Orfeo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/orfeo.webp",
+    "habilidad_texto_descriptivo": "Unica. Imbloqueable. Una vez por turno, puedes nombrar una carta. Luego, busca en el Mazo Castillo oponente una copia de la carta nombrada y destierrala.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "nameAndBanishFromDeck",
+          "prompt": "Nombra una carta. Luego, busca en el Mazo Castillo oponente una copia de la carta nombrada y destiérrala.",
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes nombrar una carta. Luego, busca en el Mazo Castillo oponente una copia de la carta nombrada y destierrala.",
+        "oncePerTurn": true,
+        "id_habilidad": "orfeo2_name_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 794,
+    "nombre": "Patroclo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/patroclo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra o salga del juego, tu oponente muestra la primera carta de su Mazo Castillo. Luego, tu oponente bota tantas cartas como coste tenia la carta mostrada.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealTopDeckAndResolve",
+          "mainEffect": {
+            "type": "millCards",
+            "count": {
+              "fromContext": "revealedCard.coste_oro"
+            },
+            "target": "opponent"
+          },
+          "rememberAs": "revealedCard",
+          "targetPlayer": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, muestra la primera carta del Mazo Castillo oponente. Luego, tu oponente bota tantas cartas como coste tenia la carta mostrada.",
+        "id_habilidad": "patroclo_enter_play_mill"
+      },
+      {
+        "effect": {
+          "type": "revealTopDeckAndResolve",
+          "mainEffect": {
+            "type": "millCards",
+            "count": {
+              "fromContext": "revealedCard.coste_oro"
+            },
+            "target": "opponent"
+          },
+          "rememberAs": "revealedCard",
+          "targetPlayer": "opponent"
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, muestra la primera carta del Mazo Castillo oponente. Luego, tu oponente bota tantas cartas como coste tenia la carta mostrada.",
+        "id_habilidad": "patroclo_leave_play_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 795,
+    "nombre": "Perros Tindalos",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/perrostindalos.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar este Talisman desde tu Cementerio, si lo haces destierralo. Un Aliado en juego gana 2 a la fuerza y es imbloqueable hasta el final del turno.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToTarget",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que gane 2 a la fuerza y sea imbloqueable.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado en juego gana 2 a la fuerza y es imbloqueable hasta el final del turno.",
+        "id_habilidad": "perros_tindalos2_main"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToTarget",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que gane 2 a la fuerza y sea imbloqueable.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Puedes jugar este Talisman desde tu Cementerio, si lo haces destierralo.",
+        "id_habilidad": "perros_tindalos2_graveyard"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 796,
+    "nombre": "Rey Midas",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/reymidas.webp",
+    "habilidad_texto_descriptivo": "Cuando un Oro entra en juego bajo tu control, puedes elegir que otro Aliado en juego gane 1 a la fuerza permanentemente. Cuando salga del juego, puedes buscar un Oro en tu Cementerio y ponerlo en tu mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige otro Aliado en juego para que gane 1 a la fuerza permanentemente.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "any"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cuando un Oro entra en juego bajo tu control, puedes elegir que otro Aliado en juego gane 1 a la fuerza permanentemente.",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "type": "Oro"
+        },
+        "triggeringPlayer": "self",
+        "id_habilidad": "rey_midas2_gold_buff"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro de tu Cementerio para ponerlo en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego, puedes buscar un Oro en tu Cementerio y ponerlo en tu mano.",
+        "id_habilidad": "rey_midas2_leave_play"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 797,
+    "nombre": "Toque de Midas",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/toquedemidas.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Elige un Oro de tu Reserva y ponlo en tu Cementerio. Luego elige otro Oro de tu Cementerio y ponlo en tu Reserva.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "midasGoldEffect",
+          "prompt": "Elige un Oro de tu Reserva para poner en tu Cementerio, luego elige otro Oro de tu Cementerio para poner en tu Reserva."
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando juegues este Talisman, destierralo. Elige un Oro de tu Reserva y ponlo en tu Cementerio. Luego elige otro Oro de tu Cementerio y ponlo en tu Reserva.",
+        "banishOnPlay": true,
+        "id_habilidad": "toque_de_midas_effect",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Oro",
+                "zone": [
+                  "goldReserve",
+                  "paidGold"
+                ],
+                "notKeyword": "indestructible"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "self"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "Oro"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 746,
+    "nombre": "Minotauro Colosal",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/minotaurocolosal.webp",
+    "habilidad_texto_descriptivo": "Indesterrable. Cuando entra en juego, destierra una carta oponente que no sea Oro de coste igual o menor a la cantidad de Cartas Minotauro que controles. Luego, puedes barajar hasta una carta de tu Cementerio en tu Mazo Castillo como coste tenga la carta Desterrada.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Indesterrable.",
+        "id_habilidad": "minotauro_colosal_inherent"
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": {
+                "fromContext": "lastTarget.coste_oro"
+              },
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+              "minCount": 0,
+              "canCancel": true
+            }
+          },
+          "type": "banishTarget",
+          "prompt": "Elige una carta oponente (que no sea Oro) para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "condition": {
+              "value": {
+                "query": {
+                  "zone": "field",
+                  "controller": "self",
+                  "nameContains": "Minotauro"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra una carta oponente que no sea Oro de coste igual o menor a la cantidad de Cartas Minotauro que controles. Luego, puedes barajar hasta tantas cartas de tu Cementerio en tu Mazo Castillo como coste tenga la carta Desterrada.",
+        "id_habilidad": "minotauro_colosal_banish_and_shuffle"
       }
     ],
     "tier": "medio"

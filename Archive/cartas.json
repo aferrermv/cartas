@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.5.6",
+    "pack_version": "2.5.5",
     "habilidades": []
   },
   {
@@ -68643,5 +68643,39 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 798,
+    "nombre": "La Moneda",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/nuevascartas/lamoneda.webp",
+    "habilidad_texto_descriptivo": "Unica. No puede ser anulado. Cuando juegues La Moneda, destierrala. Genera 1 Oro hasta la fase final.",
+    "descripcion": null,
+    "expansion": "Aegistcg",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": 1
+        },
+        "trigger": "onEnterPlay",
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "description": "Unica. No puede ser anulado. Cuando juegues La Moneda, destierrala. Genera 1 Oro hasta la fase final.",
+        "id_habilidad": "la_moneda_generate_gold",
+        "banishOnPlay": true
+      }
+    ]
   }
 ]

@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.5.5",
+    "pack_version": "2.5.6",
     "habilidades": []
   },
   {
@@ -3053,10 +3053,20 @@
         },
         "trigger": "onBeforeLeave",
         "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio",
-            "banish"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "banish"
+              ]
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
           ]
         },
         "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
@@ -18151,10 +18161,20 @@
         },
         "trigger": "onBeforeLeave",
         "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio",
-            "banish"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "banish"
+              ]
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
           ]
         },
         "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
@@ -41878,10 +41898,20 @@
         },
         "trigger": "onBeforeLeave",
         "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio",
-            "banish"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "banish"
+              ]
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
           ]
         },
         "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."

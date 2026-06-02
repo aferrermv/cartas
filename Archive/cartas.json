@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.5.9",
+    "pack_version": "2.6.0",
     "habilidades": []
   },
   {
@@ -7408,11 +7408,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -27400,7 +27403,7 @@
             "query": {
               "type": "Aliado"
             },
-            "controller": "self"
+            "controller": "any"
           },
           "duration": "endOfTurn"
         },
@@ -33276,7 +33279,10 @@
           "searchQuery": {
             "type": "Oro",
             "zone": "mazoCastillo",
-            "nameIsNot": "Dragones"
+            "nameIsNot": [
+              "Dragones",
+              "Faeries"
+            ]
           }
         },
         "trigger": "onEnterPlay",
@@ -33814,12 +33820,10 @@
       {
         "effect": {
           "type": "applyBuffToSelf",
-          "buff": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
           "duration": "endOfTurn"
         },
         "trigger": "onDeclareBlock",
@@ -37403,7 +37407,7 @@
         "effect": {
           "type": "grantKeyword",
           "target": "self",
-          "keyword": "canAttackThisTurn"
+          "keyword": "nowCanAttack"
         },
         "trigger": "continuous",
         "condition": {
@@ -60576,11 +60580,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -61714,11 +61721,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -61755,11 +61765,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -62783,11 +62796,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -66255,9 +66271,23 @@
       },
       {
         "effect": {
-          "type": "drawCards",
-          "count": 1,
-          "optional": true
+          "type": "chooseOne",
+          "prompt": "Habilidad de Crom Tigernmas: ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "crom_tigernmas_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "crom_tigernmas_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
         },
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, puedes robar una carta.",
@@ -68196,7 +68226,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/orestes.webp",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, si controllas menos Aliados que tu oponente, puede atacar cuando entra en juego. Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas menos Aliados que tu oponente, puede atacar cuando entra en juego. Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",
@@ -68673,7 +68703,7 @@
     "nombre": "Lago de la Vida",
     "tipo": "Totem",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/lagodelavida.webp",
+    "imagen_url": "/img/nuevascartas/lagodelavida.webp",
     "habilidad_texto_descriptivo": "Una vez por turno, puedes pagar 2 Oros o botar 3 cartas para destruir un Arma o Totem en juego.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -68740,15 +68770,14 @@
         "oncePerTurn": true,
         "id_habilidad": "lago_de_la_vida_destroy"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 799,
     "nombre": "Aaru",
     "tipo": "Totem",
     "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/aaru.webp",
+    "imagen_url": "/img/nuevascartas/aaru.webp",
     "habilidad_texto_descriptivo": "En la Fase Final. Si tu oponente declaro ataque este turno, debe destruir uno de sus Aliados declarados Atacantes.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -68806,15 +68835,14 @@
         "id_habilidad": "aaru_destroy_attacker",
         "resolvesInstantly": true
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 800,
     "nombre": "Aker",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/aker.webp",
+    "imagen_url": "/img/nuevascartas/aker.webp",
     "habilidad_texto_descriptivo": "Unica. Una vez por turno, puedes copiar la habilidad de una carta en juego que no sea Oro hasta la Fase Final.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -68854,15 +68882,14 @@
         "oncePerTurn": "byAbilityId",
         "id_habilidad": "aker_copy_ability"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 801,
     "nombre": "Aqen",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/aqen.webp",
+    "imagen_url": "/img/nuevascartas/aqen.webp",
     "habilidad_texto_descriptivo": "Indestructible. Puedes mover este Aliado a tu linea de Ataque para que un Aliado en juego pierda 1 a la fuerza hasta la Fase Final",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -68919,15 +68946,14 @@
         "id_habilidad": "aqen_move_debuff",
         "costPaidBeforeResponse": true
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 802,
     "nombre": "Ave Bennu",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/store/cartas/avebennu.webp",
+    "imagen_url": "/img/nuevascartas/avebennu.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar 3 oros para convertir este Oro en un Aliado de coste y fuerza 3 hasta la fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrarlo para buscar un Oro en tu Mazo Castillo y ponerlo en tu zona de Oro Pagado.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69023,15 +69049,14 @@
         "id_habilidad": "ave_bennu_transform_main",
         "canPayWithSelf": true
       }
-    ],
-    "tier": "alto"
+    ]
   },
   {
     "id": 803,
     "nombre": "Eurgeter I",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/eurgeteri.webp",
+    "imagen_url": "/img/nuevascartas/eurgeteri.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar 1 oro para que este u otro Aliado que controles sea Imbloqueable hasta la fase final.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69077,15 +69102,14 @@
         "description": "En tu Fase de Vigilia, puedes pagar 1 oro para que este u otro Aliado que controles sea Imbloqueable hasta la fase final.",
         "id_habilidad": "eurgeter_i_unblockable"
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 804,
     "nombre": "Hacha Solar",
     "tipo": "Arma",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/hachasolar.webp",
+    "imagen_url": "/img/nuevascartas/hachasolar.webp",
     "habilidad_texto_descriptivo": "Cuando el portador sea declarado Atacante, debe ser bloqueado este turno. Una vez por turno, puedes desterrar un Oro de tu Cementerio para barajar 2 cartas de tu Cementerio en tu Mazo Castillo.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69156,15 +69180,14 @@
         "oncePerTurn": true,
         "id_habilidad": "hacha_solar_recycle"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 805,
     "nombre": "Hemsut",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/hemsut.webp",
+    "imagen_url": "/img/nuevascartas/hemsut.webp",
     "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando entre o salga del juego, mira la mano de tu Oponente.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69203,15 +69226,14 @@
         "description": "Cuando salga del juego, mira la mano de tu Oponente.",
         "id_habilidad": "hemsut_view_hand_leave"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 806,
     "nombre": "Jentakus I",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/jentakus.webp",
+    "imagen_url": "/img/nuevascartas/jentakus.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Aliado de Raza Faraon en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69240,15 +69262,14 @@
         "description": "Cuando entra en juego, puedes buscar un Aliado de Raza Faraon en tu Mazo Castillo y ponerlo en tu Mano.",
         "id_habilidad": "jentakus_i_tutor"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 808,
     "nombre": "Merneith",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/merneith.webp",
+    "imagen_url": "/img/nuevascartas/merneith.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno y si tienes al menos 3 o menos cartas en tu Mano, puedes desterrar un Oro de tu Reserva de Oro para robar 2 cartas.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69303,15 +69324,14 @@
         "oncePerTurn": true,
         "id_habilidad": "merneith_banish_gold_draw"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 809,
     "nombre": "Merodeador de las Arenas",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/merodeadordelasarenas.webp",
+    "imagen_url": "/img/nuevascartas/merodeadordelasarenas.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Hasta dos veces por turno, puedes desterrar una carta de tu Cementerio para que este u otro Aliado que controles gane 1 a la fuerza hasta la Fase Final.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69385,15 +69405,14 @@
         "id_habilidad": "merodeador_arenas_buff",
         "twicePerTurn": true
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 810,
     "nombre": "Neferhetepes",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/neferhetepes.webp",
+    "imagen_url": "/img/nuevascartas/neferhetepes.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, mira la Mano de tu oponente y elige una carta que no sea Oro. Tu oponente no puede jugar la carta elegida mientras este Aliado este en juego. Si este Aliado es destruido, puedes robar 2 cartas.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69453,15 +69472,14 @@
         "description": "Si este Aliado es destruido, puedes robar 2 cartas.",
         "id_habilidad": "neferhetepes_on_destroyed"
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 811,
     "nombre": "Senenmut",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/senenmut.webp",
+    "imagen_url": "/img/nuevascartas/senenmut.webp",
     "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69511,15 +69529,14 @@
         "description": "Cuando sale del juego, puedes barajar tantas cartas de tu Cementerio en tu Mazo Castillo como fuerza tenga este Aliado.",
         "id_habilidad": "senenmut_leave_play_shuffle"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 812,
     "nombre": "Sheut",
     "tipo": "Talisman",
     "coste_oro": 1,
-    "imagen_url": "/img/store/cartas/sheut.webp",
+    "imagen_url": "/img/nuevascartas/sheut.webp",
     "habilidad_texto_descriptivo": "Anula una carta jugada sin pagar su coste. Luego destierra la carta Anulada.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69550,15 +69567,14 @@
           "type": "isResponseCard"
         }
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 813,
     "nombre": "Shezmu",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/shezmu.webp",
+    "imagen_url": "/img/nuevascartas/shezmu.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si este Aliado es bloqueado, gana 1 a la fuerza hasta la Fase Final. Cuando es Destruido, puedes buscar un Aliado de raza Eterno de coste 2 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69615,15 +69631,14 @@
         "description": "Cuando es Destruido, puedes buscar un Aliado de raza Eterno de coste 2 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
         "id_habilidad": "shezmu_destroy_tutor"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 814,
     "nombre": "Twosret",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/twosret.webp",
+    "imagen_url": "/img/nuevascartas/twosret.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes botar 2 cartas para generas 1 Oro para jugar Totem hasta la Fase Final. Gana 1 a la Fuerza por cada Totem de coste 2 o mas que controles.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69687,15 +69702,14 @@
         "description": "Gana 1 a la Fuerza por cada Totem de coste 2 o mas que controles.",
         "id_habilidad": "twosret_totem_buff"
       }
-    ],
-    "tier": "bajo"
+    ]
   },
   {
     "id": 815,
     "nombre": "Werin el Poseido",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/werinelposeido.webp",
+    "imagen_url": "/img/nuevascartas/werinelposeido.webp",
     "habilidad_texto_descriptivo": "No puede ser afectado por habilidades de Aliados oponentes. Cuando salga del juego, puedes buscar un Talisman en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
@@ -69730,15 +69744,14 @@
         "description": "Cuando salga del juego, puedes buscar un Talisman en tu Mazo Castillo y ponerlo en tu Mano.",
         "id_habilidad": "werin_leave_play_tutor"
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 748,
     "nombre": "Esparta",
     "tipo": "Totem",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/esparta.webp",
+    "imagen_url": "/img/nuevascartas/esparta.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener un Esparta en juego. En tu Fase de Vigilia, una vez por turno, puedes generar 2 oros para jugar Armas. Tus Aliados en juego que porten una o mas Armas ganan 2 a la Fuerza. ",
     "descripcion": null,
     "expansion": "Helenica",
@@ -69802,15 +69815,14 @@
         "description": "Tus Aliados en juego que porten una o mas Armas ganan 2 a la Fuerza.",
         "id_habilidad": "esparta2_weapon_buff"
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 816,
     "nombre": "Archimago",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/archimago.webp",
+    "imagen_url": "/img/nuevascartas/archimago.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes jugar un Talisman de coste 3 o menos de tu Cementerio sin pagar su coste, luego destierra ese Talisman.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -69843,15 +69855,14 @@
         "description": "Cuando entra en juego, puedes jugar un Talisman de coste 3 o menos de tu Cementerio sin pagar su coste, luego destierra ese Talisman.",
         "id_habilidad": "archimago_play_talisman_graveyard"
       }
-    ],
-    "tier": "medio"
+    ]
   },
   {
     "id": 747,
     "nombre": "Conchobar",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/conchobar.webp",
+    "imagen_url": "/img/nuevascartas/conchobar.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando entra en juego, puedes mover hasta 2 Aliados oponentes de la Linea de Defensa a la Linea de Ataque. ",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -69891,7 +69902,6 @@
         "description": "Cuando entra en juego, puedes mover hasta 2 Aliados oponentes de la Linea de Defensa a la Linea de Ataque.",
         "id_habilidad": "conchobar_move_to_attack"
       }
-    ],
-    "tier": "medio"
+    ]
   }
 ]

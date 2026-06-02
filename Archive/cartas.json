@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.5.9",
+    "pack_version": "2.6.1",
     "habilidades": []
   },
   {
@@ -7408,11 +7408,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -27400,7 +27403,7 @@
             "query": {
               "type": "Aliado"
             },
-            "controller": "self"
+            "controller": "any"
           },
           "duration": "endOfTurn"
         },
@@ -33276,7 +33279,10 @@
           "searchQuery": {
             "type": "Oro",
             "zone": "mazoCastillo",
-            "nameIsNot": "Dragones"
+            "nameIsNot": [
+              "Dragones",
+              "Faeries"
+            ]
           }
         },
         "trigger": "onEnterPlay",
@@ -33814,12 +33820,10 @@
       {
         "effect": {
           "type": "applyBuffToSelf",
-          "buff": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
           "duration": "endOfTurn"
         },
         "trigger": "onDeclareBlock",
@@ -37403,7 +37407,7 @@
         "effect": {
           "type": "grantKeyword",
           "target": "self",
-          "keyword": "canAttackThisTurn"
+          "keyword": "nowCanAttack"
         },
         "trigger": "continuous",
         "condition": {
@@ -60576,11 +60580,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -61714,11 +61721,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -61755,11 +61765,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -62783,11 +62796,14 @@
             "source": "property",
             "property": "fuerza"
           },
+          "minCount": {
+            "source": "property",
+            "property": "fuerza"
+          },
           "query": {
             "type": "*"
           },
-          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
-          "canCancel": true
+          "prompt": "Elige {count} cartas de tu Cementerio para barajar en tu Mazo."
         },
         "trigger": "activatable",
         "condition": {
@@ -66255,9 +66271,23 @@
       },
       {
         "effect": {
-          "type": "drawCards",
-          "count": 1,
-          "optional": true
+          "type": "chooseOne",
+          "prompt": "Habilidad de Crom Tigernmas: ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "crom_tigernmas_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "crom_tigernmas_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
         },
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, puedes robar una carta.",
@@ -68196,7 +68226,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/orestes.webp",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, si controllas menos Aliados que tu oponente, puede atacar cuando entra en juego. Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas menos Aliados que tu oponente, puede atacar cuando entra en juego. Cada vez que haga daño de combate, sube una carta que no sea Talisman de tu Cementerio a tu Mano",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",

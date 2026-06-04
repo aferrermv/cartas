@@ -3274,6 +3274,7 @@
       {
         "effect": {
           "type": "targetAndPlaceOnTop",
+          "visualEffect": "foceaeffect",
           "target": {
             "query": {
               "notType": "Oro"

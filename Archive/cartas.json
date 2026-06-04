@@ -3253,6 +3253,60 @@
     "tier": "alto"
   },
   {
+    "id": 50,
+    "nombre": "Focea",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/gift/foceamayo/foceabase.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, pon al tope del mazo castillo de su dueño una carta oponente en juego que no sea oro. En guerra de talismanes puedes destruir este tótem para robar dos cartas, luego descarta una de tu mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Focea: Elige una carta oponente en juego (que no sea Oro) para poner en el tope de su mazo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
     "id": 30,
     "nombre": "Plaga",
     "tipo": "Talisman",

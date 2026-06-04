@@ -69978,5 +69978,78 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 2158,
+    "nombre": "Nuh",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/nuh.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo o Cementerio y jugarla sin pagar su coste en un Aliado que esté en tu Línea de Defensa.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo o Cementerio y jugarla sin pagar su coste en un Aliado que esté en tu Línea de Defensa.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Nuh: Elige de dónde buscar el Arma.",
+          "options": [
+            {
+              "id": "nuh_search_deck",
+              "action": {
+                "type": "searchAndPlayFree",
+                "prompt": "Busca un Arma en tu Mazo Castillo para jugarla en un Aliado en tu Línea de Defensa.",
+                "searchQuery": {
+                  "type": "Arma",
+                  "zone": "mazoCastillo"
+                },
+                "playTargetQuery": {
+                  "type": "Aliado",
+                  "zone": "defense",
+                  "controller": "self"
+                }
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "nuh_search_graveyard",
+              "action": {
+                "type": "searchAndPlayFree",
+                "prompt": "Busca un Arma en tu Cementerio para jugarla en un Aliado en tu Línea de Defensa.",
+                "searchQuery": {
+                  "type": "Arma",
+                  "zone": "cementerio"
+                },
+                "playTargetQuery": {
+                  "type": "Aliado",
+                  "zone": "defense",
+                  "controller": "self"
+                }
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo o Cementerio y jugarla sin pagar su coste en un Aliado que esté en tu Línea de Defensa.",
+        "oncePerTurn": true,
+        "id_habilidad": "nuh_tutor_weapon_defense"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

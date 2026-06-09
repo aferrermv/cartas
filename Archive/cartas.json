@@ -17652,7 +17652,9 @@
               "type": "isDestinationZone",
               "zones": [
                 "cementerio",
-                "mazoCastillo"
+                "mazoCastillo",
+                "hand",
+                "banish"
               ]
             },
             {
@@ -26856,7 +26858,7 @@
     "tipo": "Talisman",
     "coste_oro": 1,
     "imagen_url": "/img/nuevasporagregar/raza.webp",
-    "habilidad_texto_descriptivo": "Anula un totem. \n",
+    "habilidad_texto_descriptivo": "Anula un totem.",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",
@@ -27241,7 +27243,7 @@
         "phase": "Principal",
         "effect": {
           "type": "grantKeywordToSelf",
-          "keyword": "canAttackThisTurn",
+          "keyword": "nowCanAttack",
           "duration": "endOfTurn"
         },
         "trigger": "activatable_with_costs",
@@ -29911,6 +29913,12 @@
             "count": 1
           }
         ],
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "notType": "Oro"
+          }
+        },
         "effect": {
           "type": "redirectAndMill",
           "prompt": "Elige un nuevo objetivo para el efecto del oponente.",
@@ -38529,7 +38537,7 @@
         "effect": {
           "type": "grantKeyword",
           "target": "self",
-          "keyword": "canAttackThisTurn"
+          "keyword": "nowCanAttack"
         },
         "trigger": "continuous",
         "condition": {
@@ -40012,7 +40020,9 @@
               "type": "isDestinationZone",
               "zones": [
                 "cementerio",
-                "mazoCastillo"
+                "mazoCastillo",
+                "hand",
+                "banish"
               ]
             },
             {
@@ -40086,7 +40096,9 @@
               "type": "isDestinationZone",
               "zones": [
                 "cementerio",
-                "mazoCastillo"
+                "mazoCastillo",
+                "hand",
+                "banish"
               ]
             },
             {
@@ -48806,6 +48818,9 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
         "costs": [
           {
             "type": "discardSelf"
@@ -60665,7 +60680,7 @@
     "expansion": "Hijos De Daana",
     "rareza": "Promo",
     "fecha_creacion": null,
-    "fuerza": 2,
+    "fuerza": 1,
     "raza": "Defensor",
     "leyenda": null,
     "danio": null,
@@ -62617,7 +62632,7 @@
     "expansion": "Hijos De Daana",
     "rareza": "Promo",
     "fecha_creacion": null,
-    "fuerza": 2,
+    "fuerza": 1,
     "raza": "Defensor",
     "leyenda": null,
     "danio": null,
@@ -65581,7 +65596,7 @@
     "nombre": "Dragon de Aire",
     "tipo": "Aliado",
     "coste_oro": 4,
-    "imagen_url": "/img/store/cartas/dragondeaire1009.webp",
+    "imagen_url": "/img/store/cartas/dragondeaire109.webp",
     "habilidad_texto_descriptivo": "Imbloqueable, puede atacar cuando entra en juego, Cuando sea declarado atacante, si controlas 2 o mas Aliados de Raza Dragon puedes robar una carta",
     "descripcion": "Dragón del Aire puede atacar cuando entra en juego. ",
     "expansion": "Espada Sagrada",
@@ -68152,7 +68167,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/jano.webp",
-    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, genera 1 Oro para jugar Aliados o Totem. Cuando sale del juego, puedes subior una carta oponente que no sea Oro a la Mano de su dueño.",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, genera 1 Oro para jugar Aliados o Totem. Cuando sale del juego, puedes subir una carta oponente que no sea Oro a la Mano de su dueño.",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",
@@ -68344,6 +68359,9 @@
     "salud": null,
     "habilidades": [
       {
+        "inherent": [
+          "unblockable"
+        ],
         "phase": [
           "Principal",
           "Guerra de Talismanes"
@@ -70011,7 +70029,8 @@
                 "prompt": "Busca un Arma en tu Mazo Castillo para jugarla en un Aliado en tu Línea de Defensa.",
                 "searchQuery": {
                   "type": "Arma",
-                  "zone": "mazoCastillo"
+                  "zone": "mazoCastillo",
+                  "nameIsNot": "Colosos Hititas"
                 },
                 "playTargetQuery": {
                   "type": "Aliado",
@@ -70028,7 +70047,8 @@
                 "prompt": "Busca un Arma en tu Cementerio para jugarla en un Aliado en tu Línea de Defensa.",
                 "searchQuery": {
                   "type": "Arma",
-                  "zone": "cementerio"
+                  "zone": "cementerio",
+                  "nameIsNot": "Colosos Hititas"
                 },
                 "playTargetQuery": {
                   "type": "Aliado",

@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.4",
+    "pack_version": "2.6.5",
     "habilidades": []
   },
   {
@@ -3588,6 +3588,10 @@
               "zones": [
                 "cementerio",
                 "mazoCastillo"
+              ],
+              "excludeMethods": [
+                "placedOnBottom",
+                "placedOnTop"
               ]
             },
             {
@@ -4026,7 +4030,8 @@
                 "count": 1,
                 "isTemporary": true,
                 "restriction": {
-                  "type": "Totem"
+                  "type": "Totem",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para jugar un Tótem."
@@ -4219,7 +4224,8 @@
                 "count": 2,
                 "isTemporary": true,
                 "restriction": {
-                  "type": "Arma"
+                  "type": "Arma",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 2 Oros para jugar Armas"
@@ -4232,7 +4238,8 @@
                 "isTemporary": true,
                 "restriction": {
                   "race": "Caballero",
-                  "type": "Aliado"
+                  "type": "Aliado",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para jugar Caballeros"
@@ -5930,7 +5937,8 @@
           "count": 2,
           "isTemporary": true,
           "restriction": {
-            "type": "Totem"
+            "type": "Totem",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -9221,7 +9229,8 @@
           "isTemporary": true,
           "restriction": {
             "raza": "Dragon",
-            "type": "Aliado"
+            "type": "Aliado",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -22802,7 +22811,8 @@
           "isTemporary": true,
           "restriction": {
             "raza": "Titan",
-            "type": "Aliado"
+            "type": "Aliado",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -33230,6 +33240,7 @@
           "count": 2,
           "isTemporary": true,
           "restriction": {
+            "usage": "playOnly",
             "type": "Aliado",
             "raza": "Eterno",
             "coste_oro": {
@@ -37977,7 +37988,8 @@
                 "count": 1,
                 "isTemporary": true,
                 "restriction": {
-                  "type": "Totem"
+                  "type": "Totem",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para Tótem"
@@ -37990,7 +38002,8 @@
                 "isTemporary": true,
                 "restriction": {
                   "raza": "Sacerdote",
-                  "type": "Aliado"
+                  "type": "Aliado",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para Aliados Sacerdote"
@@ -39323,7 +39336,25 @@
         "effect": {
           "type": "annulTriggeringTalisman"
         },
-        "trigger": "onOpponentPlayTalisman"
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
       }
     ],
     "tier": "bajo"
@@ -39351,7 +39382,25 @@
         "effect": {
           "type": "annulTriggeringTalisman"
         },
-        "trigger": "onOpponentPlayTalisman"
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
       }
     ],
     "tier": "bajo"
@@ -40235,6 +40284,10 @@
               "zones": [
                 "cementerio",
                 "mazoCastillo"
+              ],
+              "excludeMethods": [
+                "placedOnBottom",
+                "placedOnTop"
               ]
             },
             {
@@ -43759,7 +43812,8 @@
                 "count": 1,
                 "isTemporary": true,
                 "restriction": {
-                  "type": "Totem"
+                  "type": "Totem",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para jugar un Tótem."
@@ -51467,7 +51521,7 @@
           "type": "isInZone",
           "zone": "field"
         },
-        "description": "Una vez por turno, en tu Fase Principal, puedes generar 2 Oros para jugar cartas de tipo Tótem.",
+        "description": "Una vez por turno, en tu Fase Principal, puedes generar 2 Oros para jugar o activar cartas de tipo Tótem.",
         "oncePerTurn": true
       },
       {
@@ -54062,7 +54116,8 @@
                 "count": 1,
                 "isTemporary": true,
                 "restriction": {
-                  "type": "Totem"
+                  "type": "Totem",
+                  "usage": "playOnly"
                 }
               },
               "description": "Generar 1 Oro para jugar un Tótem."
@@ -54883,7 +54938,8 @@
           "count": 2,
           "isTemporary": true,
           "restriction": {
-            "type": "Totem"
+            "type": "Totem",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -55800,7 +55856,25 @@
         "effect": {
           "type": "annulTriggeringTalisman"
         },
-        "trigger": "onOpponentPlayTalisman"
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
       }
     ],
     "tier": "alto"
@@ -56393,7 +56467,8 @@
           "count": 2,
           "isTemporary": true,
           "restriction": {
-            "type": "Totem"
+            "type": "Totem",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -68190,7 +68265,8 @@
             "type": [
               "Aliado",
               "Totem"
-            ]
+            ],
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",
@@ -69754,7 +69830,8 @@
           "count": 1,
           "isTemporary": true,
           "restriction": {
-            "type": "Totem"
+            "type": "Totem",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable_with_costs",
@@ -69872,7 +69949,8 @@
           "count": 2,
           "isTemporary": true,
           "restriction": {
-            "type": "Arma"
+            "type": "Arma",
+            "usage": "playOnly"
           }
         },
         "trigger": "activatable",

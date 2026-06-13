@@ -70149,5 +70149,1357 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 1367,
+    "nombre": "Ptolomeo",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/ptolomeo.webp",
+    "habilidad_texto_descriptivo": "Durante el turno que Ptolomeo entra en juego, tus Aliados de raza Héroe son imbloqueables. ",
+    "descripcion": "Durante el turno que Ptolomeo entra en juego, tus Aliados de raza Héroe son imbloqueables. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "wasPlayedThisTurn"
+            }
+          ]
+        },
+        "descripcion": "Durante el turno que Ptolomeo entra en juego, tus Aliados de raza Héroe son imbloqueables.",
+        "id_habilidad": "ptolomeo_unblockable_heroes"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1579,
+    "nombre": "Piritoo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/piritoo.webp",
+    "habilidad_texto_descriptivo": "Piritoo puede atacar cuando entra en juego. Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final. Si controlas a Teseo de Atenas, ambos son Imbloqueables.",
+    "descripcion": "Piritoo puede atacar cuando entra en juego. Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final. Si controlas a Teseo de Atenas, ambos son Imbloqueables.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Piritoo puede atacar cuando entra en juego.",
+        "id_habilidad": "piritoo_charge"
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerAttackedWith",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado",
+            "isOther": true
+          }
+        },
+        "description": "Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "piritoo_attack_buff"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nombre": "Teseo de Atenas"
+          }
+        },
+        "description": "Si controlas a Teseo de Atenas, Piritoo es Imbloqueable.",
+        "id_habilidad": "piritoo_teseo_unblockable_self"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "nombre": "Teseo de Atenas"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nombre": "Teseo de Atenas"
+          }
+        },
+        "description": "Si controlas a Teseo de Atenas, él también es Imbloqueable.",
+        "id_habilidad": "piritoo_teseo_unblockable_partner"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1576,
+    "nombre": "Ariadna",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ariadna.webp",
+    "habilidad_texto_descriptivo": "Cuando Ariadna entra en juego, puedes buscar un Oro o un Arma de coste 2 o menos en tu Cementerio y ponerla en tu mano.",
+    "descripcion": "Cuando Ariadna entra en juego, puedes buscar un Oro o un Arma de coste 2 o menos en tu Cementerio y ponerla en tu mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro o un Arma de coste 2 o menos de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "or": [
+              {
+                "type": "Oro"
+              },
+              {
+                "type": "Arma"
+              }
+            ],
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Ariadna entra en juego, puedes buscar un Oro o un Arma de coste 2 o menos en tu Cementerio y ponerla en tu mano.",
+        "id_habilidad": "ariadna_enter_play_tutor"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1574,
+    "nombre": "Gran Tridente",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/grantridente.webp",
+    "habilidad_texto_descriptivo": "Cuando Gran Tridente entra en juego, elige un Aliado oponente para que no pueda bloquear este turno. En tu Fase de Vigilia, una vez por turno, puedes elegir un Aliado en juego para que gane o pierda 1 a la fuerza permanentemente.",
+    "descripcion": "Cuando Gran Tridente entra en juego, elige un Aliado oponente para que no pueda bloquear este turno. En tu Fase de Vigilia, una vez por turno, puedes elegir un Aliado en juego para que gane o pierda 1 a la fuerza permanentemente.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado oponente para que no pueda bloquear este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "keyword": "cannotBlock",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Gran Tridente entra en juego, elige un Aliado oponente para que no pueda bloquear este turno.",
+        "id_habilidad": "gran_tridente_cannot_block"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto para Gran Tridente:",
+          "options": [
+            {
+              "id": "buff_plus_1",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": 1
+                },
+                "type": "grantBuffToTarget",
+                "prompt": "Elige un Aliado para que gane 1 a la fuerza permanentemente.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "any"
+                },
+                "duration": "permanent"
+              },
+              "description": "Un Aliado gana 1 a la fuerza"
+            },
+            {
+              "id": "buff_minus_1",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": -1
+                },
+                "type": "grantBuffToTarget",
+                "prompt": "Elige un Aliado para que pierda 1 a la fuerza permanentemente.",
+                "target": {
+                  "query": {
+                    "type": "Aliado",
+                    "base_fuerza": {
+                      "value": 0,
+                      "operator": ">"
+                    }
+                  },
+                  "controller": "any"
+                },
+                "duration": "permanent"
+              },
+              "description": "Un Aliado pierde 1 a la fuerza"
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes elegir un Aliado en juego para que gane o pierda 1 a la fuerza permanentemente.",
+        "oncePerTurn": true,
+        "id_habilidad": "gran_tridente_buff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1582,
+    "nombre": "Camino hacia Atenas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/caminohaciaatenas.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar Camino hacia Atenas en tu Fase de Vigilia. Busca un Aliado de coste 3 o más en tu Mazo Castillo y ponlo en tu mano.",
+    "descripcion": "Sólo puedes jugar Camino hacia Atenas en tu Fase de Vigilia. Busca un Aliado de coste 3 o más en tu Mazo Castillo y ponlo en tu mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de coste 3 o más en tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 3,
+              "operator": ">="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Sólo puedes jugar Camino hacia Atenas en tu Fase de Vigilia. Busca un Aliado de coste 3 o más en tu Mazo Castillo y ponlo en tu mano.",
+        "id_habilidad": "camino_hacia_atenas_tutor",
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1581,
+    "nombre": "Mar de Almas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/mardealmas.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talismán, destiérralo. Sólo puedes jugar Mar de Almas si controlas dos o más Aliados de una misma raza. Elige un Aliado de tu Cementerio y ponlo en tu mano.",
+    "descripcion": "Cuando juegues este Talismán, destiérralo. Sólo puedes jugar Mar de Almas si controlas dos o más Aliados de una misma raza. Elige un Aliado de tu Cementerio y ponlo en tu mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de tu Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando juegues este Talismán, destiérralo. Sólo puedes jugar Mar de Almas si controlas dos o más Aliados de una misma raza. Elige un Aliado de tu Cementerio y ponlo en tu mano.",
+        "banishOnPlay": true,
+        "id_habilidad": "mar_de_almas_recycle_ally",
+        "play_condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1296,
+    "nombre": "Apolo",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/apolo.webp",
+    "habilidad_texto_descriptivo": "Mientras Apolo esté en juego, los Aliados oponentes no podrán modificar su fuerza.",
+    "descripcion": "Mientras Apolo esté en juego, los Aliados oponentes no podrán modificar su fuerza.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyRestriction",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "restriction": {
+            "type": "cannotModifyStrength"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Apolo esté en juego, los Aliados oponentes no podrán modificar su fuerza.",
+        "id_habilidad": "apolo_strength_lock"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1497,
+    "nombre": "Coliseo",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/coliseo.webp",
+    "habilidad_texto_descriptivo": "Mientras tengas Coliseo en juego, en respuesta a declarar tu ataque, puedes robar una carta por cada Aliado atacante.",
+    "descripcion": "Mientras tengas Coliseo en juego, en respuesta a declarar tu ataque, puedes robar una carta por cada Aliado atacante.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Ataque",
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "attack",
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "attack"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Mientras tengas Coliseo en juego, en respuesta a declarar tu ataque, puedes robar una carta por cada Aliado atacante.",
+        "oncePerTurn": true,
+        "id_habilidad": "coliseo_draw_per_attacker"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1565,
+    "nombre": "El Don de Clio",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/eldondeclio.webp",
+    "habilidad_texto_descriptivo": "Mira las primeras cuatro cartas de tu Mazo Castillo. Elige una de ellas y ponla en tu Mano, luego elige otra para ponerla en la parte superior de tu Mazo Castillo y envia el resto a tu Cementerio.",
+    "descripcion": "Mira las primeras cuatro cartas de tu Mazo Castillo. Elige una de ellas y ponla en tu Mano, luego elige otra para ponerla en la parte superior de tu Mazo Castillo y envia el resto a tu Cementerio.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "lookAndDistribute",
+          "count": 4,
+          "fromZone": "mazoCastillo",
+          "destinations": [
+            {
+              "zone": "hand",
+              "prompt": "Elige una carta para poner en tu mano."
+            },
+            {
+              "zone": "mazoCastillo",
+              "prompt": "Elige una carta para poner en la parte superior de tu Mazo Castillo.",
+              "position": "top"
+            },
+            {
+              "zone": "cementerio",
+              "prompt": "Las cartas restantes irán a tu Cementerio.",
+              "remainder": true
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Mira las primeras cuatro cartas de tu Mazo Castillo. Elige una de ellas y ponla en tu Mano, luego elige otra para ponerla en la parte superior de tu Mazo Castillo y envia el resto a tu Cementerio.",
+        "id_habilidad": "el_don_de_clio_distribute"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1301,
+    "nombre": "Aristoteles",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/aristoteles.webp",
+    "habilidad_texto_descriptivo": "En respuesta a declarar tu ataque, si Aristóteles no es declarado atacante, descarta 1 carta oponente al azar. ",
+    "descripcion": "En respuesta a declarar tu ataque, si Aristóteles no es declarado atacante, descarta 1 carta oponente al azar. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "isPassive": true,
+        "descripcion": "En respuesta a declarar tu ataque, si Aristóteles no es declarado atacante, descarta 1 carta oponente al azar.",
+        "id_habilidad": "aristoteles_passive_discard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1338,
+    "nombre": "Casco de Hades",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/cascodehades.webp",
+    "habilidad_texto_descriptivo": "En respuesta a declarar tu ataque, si el portador de Casco de Hades no es declarado atacante, tu oponente debe botar tantas cartas como fuerza tenga el portador. Carta única. ",
+    "descripcion": "En respuesta a declarar tu ataque, si el portador de Casco de Hades no es declarado atacante, tu oponente debe botar tantas cartas como fuerza tenga el portador. Carta única. ",
+    "expansion": "Helenica",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millByWielderStrength",
+          "target": "opponent"
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "hasWielder"
+            },
+            {
+              "type": "wielderIs",
+              "query": {
+                "zone": "defense"
+              }
+            }
+          ]
+        },
+        "isPassive": true,
+        "descripcion": "En respuesta a declarar tu ataque, si el portador de Casco de Hades no es declarado atacante, tu oponente debe botar tantas cartas como fuerza tenga el portador.",
+        "id_habilidad": "casco_hades_mill_not_attacking"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1501,
+    "nombre": "Ataque de Anibal",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ataquedeanibal.webp",
+    "habilidad_texto_descriptivo": "Destruye uno de tus Aliados de raza Héroe, y tu oponente debe botar 6 cartas.",
+    "descripcion": "Destruye uno de tus Aliados de raza Héroe, y tu oponente debe botar 6 cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "destroyTarget",
+          "count": 1,
+          "target": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "message": "Coste de Ataque de Aníbal: Elige uno de tus Aliados de raza Héroe para destruir."
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 6,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destruye uno de tus Aliados de raza Héroe, y tu oponente debe botar 6 cartas.",
+        "id_habilidad": "ataque_anibal_sacrifice_mill",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1473,
+    "nombre": "Totem de Equidna",
+    "tipo": "Totem",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/totemdeequidna.webp",
+    "habilidad_texto_descriptivo": "Mientras Tótem de Equidna está en juego, todas las Armas y demás Tótem pierden su habilidad. ",
+    "descripcion": "Mientras Tótem de Equidna está en juego, todas las Armas y demás Tótem pierden su habilidad. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAllMatching",
+          "target": {
+            "query": {
+              "type": [
+                "Arma",
+                "Totem"
+              ]
+            },
+            "isOther": true,
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Mientras Tótem de Equidna está en juego, todas las Armas y demás Tótem pierden su habilidad.",
+        "id_habilidad": "totem_de_equidna_annul_aura"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1415,
+    "nombre": "Mercenario Hoplita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/mercenariohoplita.webp",
+    "habilidad_texto_descriptivo": "En Guerra de Talismánes Mercenario Hoplita puede duplicar su fuerza. Si lo hace, al finalizar el turno debe ser destruido. ",
+    "descripcion": "En Guerra de Talismánes Mercenario Hoplita puede duplicar su fuerza. Si lo hace, al finalizar el turno debe ser destruido. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "addMarkerToSelf",
+              "marker": "mustBeDestroyedInFinalPhase",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "doubleOwnStrength",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En Guerra de Talismánes Mercenario Hoplita puede duplicar su fuerza. Si lo hace, al finalizar el turno debe ser destruido.",
+        "oncePerTurn": true,
+        "id_habilidad": "mercenario_hoplita_double_strength"
+      },
+      {
+        "effect": {
+          "type": "destroySelf"
+        },
+        "trigger": "onPhaseStart",
+        "isHidden": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "mustBeDestroyedInFinalPhase"
+            }
+          ]
+        },
+        "id_habilidad": "mercenario_hoplita_destroy_consequence",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1339,
+    "nombre": "Martillo de Hefestos",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/martillodehefestos.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano. Mientras el portador de Martillo de Hefestos esté en tu linea de defensa tus demás Aliados ganan 1 a la fuerza.",
+    "descripcion": "Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano. Mientras el portador de Martillo de Hefestos esté en tu linea de defensa tus demás Aliados ganan 1 a la fuerza.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Arma de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+        "id_habilidad": "martillo_hefestos_tutor"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado",
+              "isNotWielder": true
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "descripcion": "Mientras el portador de Martillo de Hefestos esté en tu linea de defensa tus demás Aliados ganan 1 a la fuerza.",
+        "id_habilidad": "martillo_hefestos_aura"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1414,
+    "nombre": "Falange",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/falange.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, si tienes 3 Falange en juego, ganan 2 a la fuerza hasta el final del turno. ",
+    "descripcion": "En tu Fase de Vigilia, si tienes 3 Falange en juego, ganan 2 a la fuerza hasta el final del turno. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "nombre": "Falange"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "nombre": "Falange"
+              },
+              "amount": 3,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, si tienes 3 Falange en juego, ganan 2 a la fuerza hasta el final del turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "falange_pack_buff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1599,
+    "nombre": "Los Korybantes",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/loskorybantes.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando Los Korybantes entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano.",
+    "descripcion": "Imbloqueable. Cuando Los Korybantes entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Puedes buscar una copia de 'Los Korybantes' en tu Mazo Castillo para ponerla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Los Korybantes"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Los Korybantes entra en juego, puedes buscar una copia de esta carta en tu Mazo Castillo y ponerla en tu Mano.",
+        "id_habilidad": "los_korybantes_search_copy"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1554,
+    "nombre": "Delfos",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/delfos.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar a Delfos desde tu Cementerio. En tu Fase Final, puedes agrupar un Aliado que controles.",
+    "descripcion": "Puedes jugar a Delfos desde tu Cementerio. En tu Fase Final, puedes agrupar un Aliado que controles.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "descripcion": "Puedes jugar a Delfos desde tu Cementerio.",
+        "id_habilidad": "delfos_play_from_graveyard"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "chooseAndRegroup",
+          "prompt": "Elige un Aliado que controles para agruparlo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, puedes agrupar un Aliado que controles.",
+        "oncePerTurn": true,
+        "id_habilidad": "delfos_regroup_ally"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1600,
+    "nombre": "Ave Ardea",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/store/cartas/aveardea.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 2 de Oro para convertir a Ave Ardea en un Aliado de coste y fuerza 1 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes robar una carta.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes pagar 2 de Oro para convertir a Ave Ardea en un Aliado de coste y fuerza 1 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes robar una carta.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2,
+            "prompt": "Paga 2 Oros para convertir a Ave Ardea en Aliado."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "transformSelf",
+          "duration": "endOfTurn",
+          "transformTo": {
+            "tipo": "Aliado",
+            "fuerza": 1,
+            "coste_oro": 1,
+            "canAttackOnEnterPlay": true
+          },
+          "addAbilities": [
+            {
+              "effect": {
+                "type": "addMarkerToSelf",
+                "marker": "dealtCombatDamageThisTurn"
+              },
+              "trigger": "onDealCombatDamageToDeck",
+              "isHidden": true,
+              "id_habilidad": "ave_ardea_set_damage_marker"
+            },
+            {
+              "phase": "Final",
+              "effect": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "trigger": "activatable",
+              "condition": {
+                "type": "and",
+                "conditions": [
+                  {
+                    "type": "isInZone",
+                    "zone": "field"
+                  },
+                  {
+                    "type": "hasMarker",
+                    "marker": "dealtCombatDamageThisTurn"
+                  }
+                ]
+              },
+              "description": "Si Ave Ardea hizo daño al Mazo Castillo oponente, puedes robar una carta.",
+              "oncePerTurn": true,
+              "id_habilidad": "ave_ardea_draw_card_activatable"
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
+            },
+            {
+              "type": "wasNotPlayedThisTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 2 de Oro para convertir a Ave Ardea en un Aliado de coste y fuerza 1 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "ave_ardea_transform_main",
+        "canPayWithSelf": true
+      },
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "isTemporaryAbility": true
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "ave_ardea_set_damage_marker",
+        "isTemporaryAbility": true
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            }
+          ]
+        },
+        "description": "Si Ave Ardea hizo daño al Mazo Castillo oponente, puedes robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "ave_ardea_draw_card_activatable",
+        "isTemporaryAbility": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1400,
+    "nombre": "Espada de Infanteria",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadadeinfanteria.webp",
+    "habilidad_texto_descriptivo": "Su portador gana 2 a la fuerza y puede portar un arma extra. ",
+    "descripcion": "Su portador gana 2 a la fuerza y puede portar un arma extra. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "canEquipExtraWeapon"
+        },
+        "trigger": "continuous",
+        "description": "Su portador puede portar un arma extra.",
+        "id_habilidad": "espada_infanteria_extra_weapon"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1368,
+    "nombre": "Homero",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/homero.webp",
+    "habilidad_texto_descriptivo": "Cada vez que Homero entre y salga del juego, puedes buscar un oro en tu Mazo Castillo y ponerlo en tu mano. ",
+    "descripcion": "Cada vez que Homero entre y salga del juego, puedes buscar un oro en tu Mazo Castillo y ponerlo en tu mano. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando Homero entra en juego, puedes buscar un Oro en tu Mazo Castillo y ponerlo en tu mano.",
+        "id_habilidad": "homero_enter_play_tutor_oro"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando Homero sale del juego, puedes buscar un Oro en tu Mazo Castillo y ponerlo en tu mano.",
+        "id_habilidad": "homero_leave_play_tutor_oro"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1571,
+    "nombre": "Toro Castigador",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/torocastigador.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado en juego de coste 1 o menos.",
+    "descripcion": "Destruye un Aliado en juego de coste 1 o menos.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado en juego de coste 1 o menos para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "cost": {
+                "value": 1,
+                "operator": "<="
+              },
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado en juego de coste 1 o menos.",
+        "id_habilidad": "toro_castigador_destroy"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1552,
+    "nombre": "Crio",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/crio.webp",
+    "habilidad_texto_descriptivo": "Cuando un Aliado de raza Titán entre en juego y una vez por turno, puedes desterrar la carta superior de tu Mazo Castillo para que ese Aliado pueda ser declarado atacante este turno.",
+    "descripcion": "Cuando un Aliado de raza Titán entre en juego y una vez por turno, puedes desterrar la carta superior de tu Mazo Castillo para que ese Aliado pueda ser declarado atacante este turno.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 1,
+            "prompt": "¿Quieres desterrar la primera carta de tu Mazo Castillo para que este Aliado Titán pueda atacar este turno?",
+            "target": "self",
+            "destinationZone": "banish"
+          }
+        ],
+        "effect": {
+          "type": "grantKeywordToTriggeringCard",
+          "keyword": "canAttackOnEnterPlay",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "activeBoth": true,
+        "descripcion": "Cuando un Aliado de raza Titán entre en juego y una vez por turno, puedes desterrar la carta superior de tu Mazo Castillo para que ese Aliado pueda ser declarado atacante este turno.",
+        "id_habilidad": "crio_haste_titan",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "raza": "Titan",
+          "type": "Aliado"
+        },
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2176,
+    "nombre": "Destrozar la Mente",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/destrozarlamente.webp",
+    "habilidad_texto_descriptivo": "Nombra una carta que no sea Oro. Luego, mira la Mano de tu oponente y descártale todas las cartas de ese nombre.",
+    "descripcion": "Nombra una carta que no sea Oro. Luego, mira la Mano de tu oponente y descártale todas las cartas de ese nombre.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "nameAndDiscardFromHand",
+          "prompt": "Nombra una carta que no sea Oro. Luego, mira la Mano de tu oponente y descártale todas las cartas de ese nombre.",
+          "target": "opponent",
+          "nameQuery": {
+            "notType": "Oro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Nombra una carta que no sea Oro. Luego, mira la Mano de tu oponente y descártale todas las cartas de ese nombre.",
+        "id_habilidad": "destrozar_la_mente_effect"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

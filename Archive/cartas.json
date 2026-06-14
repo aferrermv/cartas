@@ -71501,5 +71501,1665 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 817,
+    "nombre": "Sacrificio de Tigernmas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sacrificiodetigernmas.webp",
+    "habilidad_texto_descriptivo": "Cada jugador destruye un Aliado que controle. Luego, si controlabas Aliados Chrom, puedes poner un Aliado de tu Cementerio en el tope de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "sacrificio_de_tigernmas_play_condition",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "self"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "mutualDestroyAllyThenSearchToPutInTop",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          },
+          "searchPrompt": "Si quieres, elige un Aliado de tu Cementerio para ponerlo en el tope de tu Mazo Castillo.",
+          "conditionQuery": {
+            "type": "Aliado",
+            "nameContains": "Crom"
+          },
+          "playerDestroyPrompt": "Elige un Aliado que controles para destruir.",
+          "opponentDestroyPrompt": "Tu oponente te obliga a destruir uno de tus Aliados."
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cada jugador destruye un Aliado que controle. Luego, si controlabas Aliados Chrom, puedes poner un Aliado de tu Cementerio en el tope de tu Mazo Castillo.",
+        "id_habilidad": "sacrificio_de_tigernmas_mutual_destroy"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 818,
+    "nombre": "Resplandor Sidhe",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/resplandorsidhe.webp",
+    "habilidad_texto_descriptivo": "Si controlas 2 o más Aliados de raza Desafiante, este Talisman no puede ser anulado. Elige entre subir un Aliado desafiante de tu cementerio a tu Mano o hasta 2 cartas Sidhe de tu Cementerio a tu Mano. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas 2 o más Aliados de raza Desafiante, este Talisman no puede ser anulado.",
+        "id_habilidad": "resplandor_sidhe_cannot_be_annulled"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto para Resplandor Sidhe:",
+          "options": [
+            {
+              "id": "resplandor_sidhe_desafiante",
+              "action": {
+                "type": "searchAndPutInHand",
+                "prompt": "Elige un Aliado de raza Desafiante de tu Cementerio para poner en tu mano.",
+                "searchQuery": {
+                  "raza": "Desafiante",
+                  "type": "Aliado",
+                  "zone": "cementerio"
+                }
+              },
+              "description": "Subir un Aliado Desafiante de tu Cementerio a tu Mano"
+            },
+            {
+              "id": "resplandor_sidhe_sidhe",
+              "action": {
+                "type": "searchAndPutInHand",
+                "count": 2,
+                "prompt": "Elige hasta 2 cartas Sidhe de tu Cementerio para poner en tu mano.",
+                "canCancel": true,
+                "searchQuery": {
+                  "zone": "cementerio",
+                  "nameContains": "Sidhe"
+                }
+              },
+              "description": "Subir hasta 2 cartas Sidhe de tu Cementerio a tu Mano"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Elige entre subir un Aliado desafiante de tu cementerio a tu Mano o hasta 2 cartas Sidhe de tu Cementerio a tu Mano.",
+        "id_habilidad": "resplandor_sidhe_main_effect"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 819,
+    "nombre": "Purificar Escencias",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/purificarescencias.webp",
+    "habilidad_texto_descriptivo": "Solo puedes jugar este Talisman en la Fase de Asignacion de daño. Reduce todo el daño a 0. Luego, puedes desterrar una carta del Cementerio oponente por cada Aliado que fue declarado atacante este turno.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "count": {
+                "type": "fromCardCount",
+                "query": {
+                  "type": "Aliado",
+                  "zone": "field",
+                  "controller": "any",
+                  "hasAttackedThisTurn": true
+                }
+              },
+              "prompt": "Puedes desterrar una carta del Cementerio oponente por cada Aliado atacante.",
+              "target": {
+                "zone": "cementerio",
+                "query": {
+                  "type": "*"
+                },
+                "controller": "opponent"
+              },
+              "minCount": 0,
+              "canCancel": true
+            }
+          },
+          "type": "reduceAllCombatDamageToZero"
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "descripcion": "Solo puedes jugar este Talisman en la Fase de Asignacion de daño. Reduce todo el daño a 0. Luego, puedes desterrar una carta del Cementerio oponente por cada Aliado que fue declarado atacante este turno.",
+        "id_habilidad": "purificar_escencias_2_effect",
+        "play_condition": {
+          "type": "isResponseCard"
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 820,
+    "nombre": "Piedras de Carnac",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/piedrasdecarnac.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes mover una carta de tu Mano en el fondo de tu Mazo Castillo. Luego, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Moviste una carta al fondo de tu mazo. ¿Quieres robar una carta?",
+              "options": [
+                {
+                  "id": "piedras_carnac_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "piedras_carnac_no_draw",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "searchAndMoveToBottom",
+          "zone": "hand",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Mano para poner en el fondo de tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes mover una carta de tu Mano en el fondo de tu Mazo Castillo. Luego, puedes robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "piedras_de_carnac_cycle"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 821,
+    "nombre": "Neftis",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/neftis.webp",
+    "habilidad_texto_descriptivo": "En tu Fase Final, puedes agrupar este Aliado. Si es el unico Aliado declarado bloqueador, duplica su fuerza hasta la Fase Final. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupSelf"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, puedes agrupar este Aliado.",
+        "oncePerTurn": true,
+        "id_habilidad": "neftis2_regroup"
+      },
+      {
+        "effect": {
+          "type": "doubleOwnStrength",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareBlock",
+        "condition": {
+          "type": "playerBlockedWith",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "equal"
+        },
+        "descripcion": "Si es el unico Aliado declarado bloqueador, duplica su fuerza hasta la Fase Final.",
+        "id_habilidad": "neftis2_double_strength_block"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 822,
+    "nombre": "Jarha",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/jarha.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes subir otro Aliado que controles a tu Mano para barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
+          },
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige otro Aliado que controles para subirlo a tu Mano.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Cuando entra en juego, puedes subir otro Aliado que controles a tu Mano para barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "jarha2_enter_play"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 824,
+    "nombre": "Gusano de Limerick",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/gusanodelimerick.webp",
+    "habilidad_texto_descriptivo": "Si controlas uno o mas Aliados Crom, este Aliado puede atacar cuando entra en juego. En tu Fase Final, si este Aliado fue declarado atacante este turno y no fue bloqueado, gana 1 a la fuerza permanentemente.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Crom"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas uno o mas Aliados Crom, este Aliado puede atacar cuando entra en juego.",
+        "id_habilidad": "gusano_limerick_haste_condition"
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "limerick_blocked",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onBeingBlocked",
+        "isHidden": true,
+        "id_habilidad": "gusano_limerick_block_tracker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "permanent"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "cardMatchesQuery",
+              "query": {
+                "hasAttackedThisTurn": true
+              }
+            },
+            {
+              "type": "hasMarker",
+              "marker": "limerick_blocked",
+              "negate": true
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, si este Aliado fue declarado atacante este turno y no fue bloqueado, gana 1 a la fuerza permanentemente.",
+        "id_habilidad": "gusano_limerick_unblocked_buff",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 825,
+    "nombre": "Garras de bronce",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/garrasdebronce.webp",
+    "habilidad_texto_descriptivo": "El portador gana 3 a la fuerza. Cuando el portador sea declarado atacante o bloqueador, es indestructible hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 3,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "indestructible",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando el portador sea declarado atacante, es indestructible hasta la Fase Final.",
+        "id_habilidad": "garras_bronce_indestructible_attack"
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "indestructible",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareBlock",
+        "descripcion": "Cuando el portador sea declarado bloqueador, es indestructible hasta la Fase Final.",
+        "id_habilidad": "garras_bronce_indestructible_block"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 826,
+    "nombre": "Cu Roi, el Mago",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/curoielmago.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, intercambia la fuerza de este Aliado con otro Aliado en juego permanentemente.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndSwapStrength",
+          "prompt": "Elige otro Aliado en juego para intercambiar su fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "any"
+          },
+          "duration": "permanent",
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, intercambia la fuerza de este Aliado con otro Aliado en juego permanentemente.",
+        "id_habilidad": "cu_roi_mago2_swap_strength"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 827,
+    "nombre": "BA",
+    "tipo": "Talisman",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/ba.webp",
+    "habilidad_texto_descriptivo": "Busca 3 cartas en el Mazo Castillo oponente con distinto nombre y destierralas. Roba 3 cartas.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 3
+            }
+          },
+          "type": "searchAndChooseToBanish",
+          "count": 3,
+          "prompt": "Elige 3 cartas con distinto nombre del Mazo Castillo oponente para desterrar.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent"
+          },
+          "uniqueSelectionBy": "nombre"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Busca 3 cartas en el Mazo Castillo oponente con distinto nombre y destierralas. Roba 3 cartas.",
+        "id_habilidad": "ba_banish_and_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 828,
+    "nombre": "Alejandro II",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/alejandroii.webp",
+    "habilidad_texto_descriptivo": "No puede ser anulado. Indestructible. Puede atacar cuando entra en juego.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled",
+          "indestructible",
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "No puede ser anulado. Indestructible. Puede atacar cuando entra en juego.",
+        "id_habilidad": "alejandro_ii2_inherents"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 829,
+    "nombre": "Voluntad de Caballero",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/voluntaddecaballero.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la fuerza hasta la Fase Final. En la Fase Final, si ese Aliado fue declarado atacante o bloqueador este turno, gana 1 a la fuerza permanentemente.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "then": {
+            "effect": {
+              "type": "addMarkerToTarget",
+              "marker": "voluntad_de_caballero_target",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado que controles gana 3 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "voluntad_de_caballero_on_enter_play"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "hasMarker": {
+                "name": "voluntad_de_caballero_target",
+                "uniqueSource": true
+              }
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "voluntad_de_caballero_active",
+          "uniqueSource": true
+        },
+        "description": "En la Fase Final, si ese Aliado fue declarado atacante o bloqueador este turno, gana 1 a la fuerza permanentemente.",
+        "id_habilidad": "voluntad_de_caballero_final_phase_buff",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ],
+        "resolvesAutomatically": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 830,
+    "nombre": "Totem del Draco",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/totemdeldraco.webp",
+    "habilidad_texto_descriptivo": "Tus Aliados Draco ganan 1 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Draco"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus Aliados Draco ganan 1 a la fuerza.",
+        "id_habilidad": "totem_del_draco2_draco_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 831,
+    "nombre": "Sarras",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sarras.webp",
+    "habilidad_texto_descriptivo": "Mientras este Totem este en juego, en cada Fase de Agrupacion, tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onEndOfTurn",
+        "description": "Al final de tu turno, tu oponente bota 1 carta.",
+        "id_habilidad": "arturo_end_of_turn_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 832,
+    "nombre": "Paso de las Termopilas",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/pasodelastermopilas.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Paso de las Termopilas en juego. En tu Fase Final, si uno o mas Aliados fueron destruidos este turno, tu oponente bota 3 cartas.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes tener un Paso de las Termopilas en juego.",
+        "id_habilidad": "paso_termopilas_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "alliesDestroyedThisTurn",
+              "amount": 1
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, si uno o mas Aliados fueron destruidos este turno, tu oponente bota 3 cartas.",
+        "oncePerTurn": true,
+        "id_habilidad": "paso_termopilas_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 833,
+    "nombre": "Hector",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hector.webp",
+    "habilidad_texto_descriptivo": "Este Aliado gana 1 a la fuerza por cada aliado en juego. Si controlas 3 o mas Aliados de raza Heroe, este Aliado es Imbloqueable.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Aliado",
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "descripcion": "Este Aliado gana 1 a la fuerza por cada aliado en juego.",
+        "id_habilidad": "hector2_strength_buff"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas 3 o mas Aliados de raza Heroe, este Aliado es Imbloqueable.",
+        "id_habilidad": "hector2_unblockable_condition"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 834,
+    "nombre": "Hechizo de Niebla",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/hechizodeniebla.webp",
+    "habilidad_texto_descriptivo": "Cancela el ataque o bloqueo de un Aliado oponente. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar 1 carta por el efecto de Hechizo de Niebla?",
+              "options": [
+                {
+                  "id": "hechizo_niebla_draw_yes",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "hechizo_niebla_draw_no",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "targetAndCancelAttackOrDefense",
+          "prompt": "Elige un Aliado oponente para cancelar su ataque o bloqueo.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cancela el ataque o bloqueo de un Aliado oponente. Luego, puedes robar 1 carta.",
+        "id_habilidad": "hechizo_niebla_cancel_combat"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 835,
+    "nombre": "Gigante de la Niebla",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/gigantedelaniebla.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. No puede ser agrupado a menos que pagues 3 Oros o destruyas otro Aliado que controles.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 8,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "cannotRegroup"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego. No puede ser agrupado normalmente.",
+        "id_habilidad": "gigante_niebla2_inherents"
+      },
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para agrupar a Gigante de la Niebla:",
+            "options": [
+              {
+                "id": "gigante_pay_gold",
+                "action": {
+                  "type": "payGold",
+                  "count": 3
+                },
+                "description": "Pagar 3 Oros"
+              },
+              {
+                "id": "gigante_destroy_ally",
+                "action": {
+                  "type": "destroyTarget",
+                  "count": 1,
+                  "prompt": "Elige otro Aliado que controles para destruir como coste.",
+                  "target": {
+                    "query": {
+                      "type": "Aliado",
+                      "isOther": true
+                    },
+                    "controller": "self"
+                  }
+                },
+                "description": "Destruir otro Aliado que controles"
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "regroupSelf"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "attack"
+        },
+        "descripcion": "Puedes pagas 3 Oros o destruir otro Aliado que controles para agrupar a este Aliado.",
+        "oncePerTurn": true,
+        "id_habilidad": "gigante_niebla2_regroup"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 836,
+    "nombre": "Espada Encantada",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadaencantada.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. El Daño de combate hecho por el portador al Mazo Castillo oponente es desterrado. En tu Fase de Vigilia, si esta carta esta en tu Cementerio y juegas un Aliado, puedes descartar una carta de tu Mano para ponerla en tu Mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "damageToBanish"
+        },
+        "trigger": "continuous",
+        "descripcion": "El Daño de combate hecho por el portador al Mazo Castillo oponente es desterrado.",
+        "id_habilidad": "espada_encantada_banish_damage"
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Elige una carta de tu mano para descartar como coste."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerPlayedCardThisTurn",
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, si esta carta esta en tu Cementerio y juegas un Aliado, puedes descartar una carta de tu Mano para ponerla en tu Mano.",
+        "id_habilidad": "espada_encantada_graveyard_return"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 837,
+    "nombre": "Espada Dragon",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/espadadragon.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Si el portador es un Dragon, es Imbloqueable. Puedes desterrar esta Arma para que una carta en juego que no sea Oro y todas sus copias pierdan su habilidad hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "wielderIs",
+          "query": {
+            "raza": "Dragon"
+          }
+        },
+        "descripcion": "Si el portador es un Dragon, es Imbloqueable.",
+        "id_habilidad": "espada_dragon2_unblockable_dragon"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "annulAbilityOnTargetAndCopies",
+          "prompt": "Elige una carta en juego que no sea Oro para que pierda su habilidad y también todas sus copias.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Puedes desterrar esta Arma para que una carta en juego que no sea Oro y todas sus copias pierdan su habilidad hasta la Fase Final.",
+        "id_habilidad": "espada_dragon2_annul_copies"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 838,
+    "nombre": "Energia Siniestra",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/energiasiniestra.webp",
+    "habilidad_texto_descriptivo": "Los jugadores roban cartas hasta tener 8 en su Mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawUntilHandSize",
+          "target": "allPlayers",
+          "targetHandSize": 8
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Los jugadores roban cartas hasta tener 8 en su Mano.",
+        "id_habilidad": "energia_siniestra_draw_until_8"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 839,
+    "nombre": "Dones de Gea",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/donesdegea.webp",
+    "habilidad_texto_descriptivo": "Si controlas a Gea esta carta no puede ser anulada. Ambos jugadores barajan una carta de su Cementerio en su Mazo Castillo. Luego, tu puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nombre": "Gea"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Si controlas a Gea esta carta no puede ser anulada.",
+        "id_habilidad": "dones_de_gea_cannot_be_annulled"
+      },
+      {
+        "effect": {
+          "type": "mutualGraveyardShuffleThenDraw",
+          "drawChoicePrompt": "Habilidad de Dones de Gea: ¿Deseas robar una carta?",
+          "playerShufflePrompt": "Habilidad de Dones de Gea: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "opponentShufflePrompt": "Habilidad de Dones de Gea: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Ambos jugadores barajan una carta de su Cementerio en su Mazo Castillo. Luego, tu puedes robar una carta.",
+        "id_habilidad": "dones_de_gea_mutual_shuffle"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 840,
+    "nombre": "Cegar el Mal",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cegarelmal.webp",
+    "habilidad_texto_descriptivo": "Elige entre destruir un Aliado en juego que no pueda ser declarado atacante o un Aliado oponente no pueda ser declarado bloqueador este turno.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado en juego que no pueda atacar o que no pueda bloquear para destruirlo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "or": [
+                {
+                  "inherent": "cannotAttack"
+                },
+                {
+                  "inherent": "cannotBlock"
+                }
+              ],
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destruye un Aliado en juego que no pueda ser declarado atacante o que no pueda ser declarado bloqueador.",
+        "id_habilidad": "cegar_el_mal_destroy"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 841,
+    "nombre": "Caronte",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/caronte.webp",
+    "habilidad_texto_descriptivo": "Al comienzo de la Fase de Vigilia oponente, tu oponente debe pagar un Oro. Cuando sale del juego, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "forceOpponentToPayGold",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isOpponentTurn"
+            }
+          ]
+        },
+        "descripcion": "Al comienzo de la Fase de Vigilia oponente, tu oponente debe pagar un Oro.",
+        "id_habilidad": "caronte2_force_pay_gold",
+        "resolvesInstantly": true
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Caronte: ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "caronte2_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "caronte2_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando sale del juego, puedes robar una carta.",
+        "id_habilidad": "caronte2_leave_play_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 842,
+    "nombre": "Cambiar de Forma",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cambiardeforma.webp",
+    "habilidad_texto_descriptivo": "Tus Aliados ganan 2 a la fuerza hasta la Fase Final. Roba 2 cartas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 2
+            }
+          },
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Tus Aliados ganan 2 a la fuerza hasta la Fase Final. Roba 2 cartas.",
+        "id_habilidad": "cambiar_de_forma2_buff_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 843,
+    "nombre": "Caballero Rojo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/caballerorojo.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado atacante, puedes elegir un Aliado oponente para que no pueda ser declarado bloqueador este turno.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "caballero_rojo_haste"
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado oponente para que no pueda ser declarado bloqueador este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "keyword": "cannotBlock",
+          "duration": "endOfTurn",
+          "canCancel": true
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando sea declarado atacante, puedes elegir un Aliado oponente para que no pueda ser declarado bloqueador este turno.",
+        "id_habilidad": "caballero_rojo_attack_trigger"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 844,
+    "nombre": "Aura Bendita",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/aurabendita.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar este Talisman desde el Cementerio, si lo haces destierralo. Hasta 3 Aliados declarados bloqueadores ganan 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToMultipleTargets",
+          "prompt": "Elige hasta 3 de tus Aliados bloqueadores para que ganen +1 a la fuerza.",
+          "target": {
+            "zone": "defense",
+            "query": {
+              "type": "Aliado",
+              "isBlocking": true
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn",
+          "maxCount": 3,
+          "minCount": 0,
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Hasta 3 Aliados declarados bloqueadores ganan 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "aura_bendita_main"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToMultipleTargets",
+          "prompt": "Elige hasta 3 de tus Aliados bloqueadores para que ganen +1 a la fuerza.",
+          "target": {
+            "zone": "defense",
+            "query": {
+              "type": "Aliado",
+              "isBlocking": true
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn",
+          "maxCount": 3,
+          "minCount": 0,
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "descripcion": "Puedes jugar este Talisman desde el Cementerio pagando su coste, si lo haces destiérralo.",
+        "id_habilidad": "aura_bendita_graveyard"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 845,
+    "nombre": "Ascenso Draco",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ascensodraco.webp",
+    "habilidad_texto_descriptivo": "Elige entre que lis Aliados oponentes pierdan 1 a l a fuerza por cada Aliado Draco que controles hasta la Fase Final o que tus Aliados de raza Dragon ganen 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Ascenso Draco: Elige un efecto.",
+          "options": [
+            {
+              "id": "ascenso_draco_debuff",
+              "action": {
+                "type": "reduceStrengthByControlledQueryCount",
+                "duration": "endOfTurn",
+                "targetQuery": {
+                  "type": "Aliado"
+                },
+                "queryToCount": {
+                  "type": "Aliado",
+                  "nameContains": "Draco"
+                },
+                "statToReduce": "fuerza",
+                "valuePerCount": 1,
+                "targetController": "opponent"
+              },
+              "description": "Aliados oponentes pierden 1 a la fuerza por cada Aliado Draco que controles"
+            },
+            {
+              "id": "ascenso_draco_buff",
+              "action": {
+                "type": "applyBuffToAllMatching",
+                "buffs": [
+                  {
+                    "stat": "fuerza",
+                    "value": 1
+                  }
+                ],
+                "target": {
+                  "query": {
+                    "raza": "Dragon",
+                    "type": "Aliado"
+                  },
+                  "controller": "self"
+                },
+                "duration": "endOfTurn"
+              },
+              "description": "Tus Aliados de raza Dragón ganan 1 a la fuerza"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Elige entre que los Aliados oponentes pierdan 1 a la fuerza por cada Aliado Draco que controles hasta la Fase Final o que tus Aliados de raza Dragon ganen 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "ascenso_draco_choice"
+      }
+    ],
+    "tier": "bajo"
   }
 ]

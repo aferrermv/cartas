@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.5",
+    "pack_version": "2.6.6",
     "habilidades": []
   },
   {
@@ -47621,6 +47621,1828 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 7326,
+    "nombre": "Anillos de Badbury",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/anillosdebadburycuatro.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes barajar una carta en juego que no sea oro en el mazo castillo de su dueño. Puedes destruir este tótem para desterrar dos cartas del cementerio oponente.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "canCancel": true,
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 2,
+          "prompt": "Elige dos cartas del cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7327,
+    "nombre": "Averix el Sabio",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/averixelsabioesmeralda.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes elegir una carta que no sea oro para que pierda su habilidad mientras esta carta esté en juego en tu fase final si controlas uno o más aliados druida puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "canCancel": true,
+          "target": {
+            "query": {
+              "type_not_in": [
+                "Oro"
+              ],
+              "isOther": true
+            },
+            "controller": "any"
+          },
+          "message": "Elige otra carta (que no sea Oro) para que pierda su habilidad mientras esta carta esté en juego.",
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "message": "Robas una carta por la habilidad de Averix el Sabio."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7328,
+    "nombre": "Biblioteca Eterna",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/bibliotecaeternabab.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, si Biblioteca Eterna está en tu Reserva de Oro, puedes desterrarla para robar 2 cartas.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "En tu Fase de Vigilia, si Biblioteca Eterna está en tu Reserva de Oro, puedes desterrarla para robar 2 cartas.",
+        "id_habilidad": "biblioteca_eterna_draw"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7329,
+    "nombre": "Caja de Pandora",
+    "tipo": "Oro",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cajadepandorared.webp",
+    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7330,
+    "nombre": "Carnwennan",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/carnwennanpurple.webp",
+    "habilidad_texto_descriptivo": "Si Carnwennan está en tu Reserva de Oros, puedes desterrarlo para que una carta oponente que no sea Oro pierda su habilidad hasta la Fase Final.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:58:02.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "message": "Elige una carta oponente (que no sea Oro) para que pierda su habilidad hasta la Fase Final.",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7331,
+    "nombre": "Ceangal An Fhanaigh",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ceangalanfhanaighbab.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+          "options": [
+            {
+              "id": "activate_ceangal",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "payTargetCostToDestroy",
+                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
+                      "target": {
+                        "query": {
+                          "notType": "Oro"
+                        },
+                        "controller": "any"
+                      },
+                      "canCancel": true
+                    }
+                  ],
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste y destruir."
+            },
+            {
+              "id": "decline_ceangal",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "ceangal_an_fhanaigh_main",
+        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7332,
+    "nombre": "Cerveza Verde",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/cervezanegrabab.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar este y otro oro que controles para que tu oponente destierre la primera carta de su mazo castillo. \n",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes pagar este y otro oro que controles para que tu oponente destierre la primera carta de su mazo castillo.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7333,
+    "nombre": "Clochafarmore",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/clochafarmorecuatro.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes desterrar este Oro para que un Aliado en juego gane 2 a la fuerza Permanentemente. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "salud": null,
+    "cantidad_generada": 1,
+    "habilidades": [
+      {
+        "id": "ofrenda_poder_activatable",
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que gane 2 a la fuerza permanentemente.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes desterrar este Oro para que un Aliado en juego gane 2 a la fuerza Permanentemente."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7334,
+    "nombre": "Corona de Arturo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/coronadearturobab.webp",
+    "habilidad_texto_descriptivo": "Mientras controles 2 o más Aliados, los Oros son indestructibles. Si Corona de Arturo está en tu Cementerio, puedes desterrarla para robar 1 carta de tu Mazo Castillo.",
+    "descripcion": "En Camelot amurallada la luna dormía suavemente; dentro, los nobles caballeros del Rey Arturo custodios de la corona que une a los reinos.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T10:32:00.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "any"
+          },
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "controllerHas",
+          "query": {
+            "type": "Aliado",
+            "count": {
+              "value": 2,
+              "operator": ">="
+            }
+          }
+        }
+      },
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7335,
+    "nombre": "Diadema Feerica",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/diademafeericacuatro.webp",
+    "habilidad_texto_descriptivo": "Solo puedes activar una Diadema Feerica por turno. Si controlas 2 o mas Aliados de la misma raza, puedes pagar Diadema Feerica para barajar una carta de tu cementerio en tu mazo castillo.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:31:30.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "paySelfAsCost"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "phase": [
+            "Principal",
+            "Guerra de Talismanes"
+          ],
+          "conditions": [
+            {
+              "type": "controllerHasAlliesOfSameRace",
+              "count": 2
+            },
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve"
+              ]
+            }
+          ]
+        },
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "diadema_feerica_recycle"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7336,
+    "nombre": "Escarabeo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/escarabeobab.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este oro y desterrar una carta de tu Cementerio para desterrar una carta del Cementerio oponente. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
+            "canCancel": false
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige una carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "zoneSizeMeetsMarkerValue",
+              "zone": "cementerio",
+              "marker": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Puedes pagar este oro y desterrar una carta de tu Cementerio para desterrar una carta del Cementerio oponente.",
+        "id_habilidad": "escarabeo_banish_cost_effect"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7337,
+    "nombre": "Focea",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/foceared.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, pon al tope del mazo castillo de su dueño una carta oponente en juego que no sea oro. En guerra de talismanes puedes destruir este tótem para robar dos cartas, luego descarta una de tu mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "visualEffect": "foceaeffect",
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Focea: Elige una carta oponente en juego (que no sea Oro) para poner en el tope de su mazo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7338,
+    "nombre": "Gea",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/geashogun.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, cada jugador baraja una carta de su Cementerio en su Mazo \nCastillo. Luego puedes robar una carta. Si Gea esta en tu Cementerio, puedes barajarla en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "gea_field_ability",
+        "phase": "Principal",
+        "effect": {
+          "type": "mutualGraveyardShuffleThenDraw",
+          "drawChoicePrompt": "Habilidad de Gea: ¿Deseas robar una carta?",
+          "playerShufflePrompt": "Habilidad de Gea: Elige una carta de tu Cementerio para barajar en tu Mazo.",
+          "opponentShufflePrompt": "Habilidad de Gea: Elige una carta de tu Cementerio para barajar en tu Mazo."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego puedes robar una carta.",
+        "oncePerTurn": true
+      },
+      {
+        "id": "gea_graveyard_ability",
+        "effect": {
+          "type": "shuffleSelf"
+        },
+        "trigger": "activatable",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Si Gea está en tu Cementerio, puedes barajarla en tu Mazo Castillo."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7339,
+    "nombre": "Gran Guardian",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/granguardiancuatro.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando juegues este Talisman, destierralo. Anula una carta oponente de coste 3  o menos que no sea Oro. Luego puedes desterrar otra carta del Cementerio oponente del mismo tipo que la carta anulada. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "target": {
+                "zone": "cementerio",
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "opponent"
+              },
+              "canCancel": true
+            }
+          },
+          "type": "annulTriggeringCardThen"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "notType": "Oro"
+          }
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "target": {
+                "zone": "cementerio",
+                "query": {
+                  "type": "Arma"
+                },
+                "controller": "opponent"
+              },
+              "canCancel": true
+            }
+          },
+          "type": "annulTriggeringCardThen"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "notType": "Oro"
+          }
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "target": {
+                "zone": "cementerio",
+                "query": {
+                  "type": "Totem"
+                },
+                "controller": "opponent"
+              },
+              "canCancel": true
+            }
+          },
+          "type": "annulTriggeringCardThen"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "notType": "Oro"
+          }
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "target": {
+                "zone": "cementerio",
+                "query": {
+                  "type": "Talisman"
+                },
+                "controller": "opponent"
+              },
+              "canCancel": true
+            }
+          },
+          "type": "annulTriggeringCardThen"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "notType": "Oro"
+          }
+        },
+        "banishOnPlay": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7340,
+    "nombre": "Heka",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/hekadorado.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para robar una carta extra en tu Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "heka_pay_for_draw",
+        "trigger": "activatable_with_costs",
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "addMarkerToPlayer",
+          "marker": "heka_draw_pending",
+          "uniqueSource": true,
+          "duration": "endOfTurn"
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para habilitar el robo de una carta en tu Fase Final."
+      },
+      {
+        "id_habilidad": "heka_final_phase_auto_draw",
+        "trigger": "onPhaseStart",
+        "phase": "Final",
+        "triggerZones": [
+          "field",
+          "graveyard",
+          "hand",
+          "deck",
+          "banish"
+        ],
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "heka_draw_pending",
+          "uniqueSource": true
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Pagaste el coste de Heka. ¿Quieres robar una carta extra?",
+          "options": [
+            {
+              "id": "heka_accept_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "heka_decline_draw",
+              "action": {},
+              "description": "No por ahora."
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "description": "En tu Fase Final, si pagaste el coste de Heka este turno, puedes robar una carta."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7341,
+    "nombre": "Herrero",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/herrerobab.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas. Si pierde la habilidad es destruido.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T21:03:01.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "activateSmithy"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "id_habilidad": "herrero_generate_gold"
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "destroySelf"
+        },
+        "condition": {
+          "type": "isAbilityAnnulled"
+        },
+        "description": "Si pierde su habilidad, es destruido.",
+        "id_habilidad": "herrero_self_destruct"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7342,
+    "nombre": "Ib-Muit",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ibmutbab.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "mutualGraveyardShuffleThenPayToDraw",
+          "drawCount": 1,
+          "shuffleCount": 1,
+          "drawChoicePrompt": "Habilidad de Ib-Muit: ¿Deseas pagar este oro para robar una carta?",
+          "playerShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar.",
+          "opponentShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar."
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+        "id_habilidad": "ib_muit_enter_play_sequence"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7343,
+    "nombre": "Ib-Muit",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ibmutmanga.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "mutualGraveyardShuffleThenPayToDraw",
+          "drawCount": 1,
+          "shuffleCount": 1,
+          "drawChoicePrompt": "Habilidad de Ib-Muit: ¿Deseas pagar este oro para robar una carta?",
+          "playerShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar.",
+          "opponentShufflePrompt": "Habilidad de Ib-Muit: Elige una carta de tu Cementerio para barajar."
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador baraja una carta de su Cementerio en su Mazo Castillo. Luego, puedes pagar este oro para robar 1 carta.",
+        "id_habilidad": "ib_muit_enter_play_sequence"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7344,
+    "nombre": "kilgharrah",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/kilgharrahpurple.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Kilgharrah en juego. Imbloqueable, puede atacar el turno que entra en juego. En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:56:46.000Z",
+    "fuerza": 6,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay",
+          "unique"
+        ],
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "count": 2,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Coste de Kilgharrah: Elige 2 cartas de tu Cementerio para barajar y poder robar 2 cartas.",
+            "canCancel": true
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "description": "En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+        "id_habilidad": "kilgharrah_draw"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7345,
+    "nombre": "Lady Calvaur",
+    "tipo": "Aliado",
+    "coste_oro": 7,
+    "imagen_url": "/img/store/cartas/ladycalvaurshogun.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, destierra hasta dos cartas oponente en juego que no sean Oro.\nEn tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes destruir un Aliado de raza Dragon que controles para ponerlo en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 7,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "banishTargetInModal",
+          "prompt": "Elige hasta 2 cartas oponentes en juego (que no sean Oro) para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "maxCount": 2,
+          "minCount": 0
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra hasta dos cartas oponente en juego que no sean Oro.",
+        "id_habilidad": "lady_calvaur_enter_play"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige un Aliado de raza Dragón que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "raza": "Dragon",
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Principal"
+            },
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Dragon",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes destruir un Aliado de raza Dragón que controles para ponerlo en tu Mano.",
+        "id_habilidad": "lady_calvaur_graveyard_return"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7346,
+    "nombre": "La Iliada",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/lailiadacuatro.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno puedes votar la carta superior de tu Mazo Castillo para que hasta el final del turno uno de tus aliados de raza titán gané 2 a la fuerza",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "millCards",
+          "count": 1
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige uno de tus Aliados Titán para que gane 2 a la fuerza hasta el final del turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "raza": "Titan",
+              "tipo": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7347,
+    "nombre": "La Odisea",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/laodiseacuatro.webp",
+    "habilidad_texto_descriptivo": "Única. Cuando la odisea entra en juego puedes mostrar las tres primeras cartas de tu Mazo Castillo Pon una en tu mano una en tu cementerio y la otra en el destierro",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "la_odisea_on_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Cuando La Odisea entra en juego, ¿quieres activar su habilidad?",
+          "options": [
+            {
+              "id": "activate_odisea",
+              "description": "Sí, mostrar 3 cartas y distribuirlas.",
+              "action": {
+                "type": "revealAndDistribute",
+                "count": 3,
+                "fromZone": "mazoCastillo",
+                "destinations": [
+                  {
+                    "zone": "hand",
+                    "prompt": "Selecciona la carta que irá a tu mano.",
+                    "opponentPrompt": "Tu oponente está eligiendo una carta para su mano."
+                  },
+                  {
+                    "zone": "cementerio",
+                    "prompt": "Selecciona la carta que irá a tu Cementerio.",
+                    "opponentPrompt": "Tu oponente está eligiendo una carta para su Cementerio."
+                  },
+                  {
+                    "zone": "banish",
+                    "prompt": "La carta restante irá al Destierro.",
+                    "opponentPrompt": "La carta restante ha sido desterrada."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "decline_odisea",
+              "description": "No, gracias.",
+              "action": {}
+            }
+          ]
+        },
+        "descripcion": "Única. Cuando la odisea entra en juego puedes mostrar las tres primeras cartas de tu Mazo Castillo. Pon una en tu mano, una en tu cementerio y la otra en el destierro."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7348,
+    "nombre": "Melchor",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/melchorshogun.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes bucar un Arma en tu Mazo Castillo y ponerla en tu Cementerio. Si lo haces, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Moviste un Arma al Cementerio. ¿Quieres robar una carta?",
+              "options": [
+                {
+                  "id": "melchor_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "melchor_no_draw",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "searchAndMove",
+          "prompt": "Puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Cementerio.",
+          "canCancel": true,
+          "destination": "cementerio",
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "condition": {
+          "type": "deckContains",
+          "query": {
+            "type": "Arma"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Cementerio. Si lo haces, puedes robar una carta.",
+        "id_habilidad": "melchor_tutor_and_draw"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7349,
+    "nombre": "Nacimiento de Pegaso",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/nacimientodepegasocuatro.webp",
+    "habilidad_texto_descriptivo": "Única. Mira las dos primeras cartas de tu Mazo Castillo puedes elegir dejarlas en la parte superior o inferior de tu Mazo Castillo. Luego, roba dos cartas",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChoose",
+          "prompt": "Ves las dos primeras cartas de tu mazo. Elige dónde dejarlas:",
+          "options": [
+            {
+              "id": "top",
+              "description": "Dejar en la parte superior"
+            },
+            {
+              "id": "bottom",
+              "description": "Mover al fondo del mazo"
+            }
+          ],
+          "drawCount": 2,
+          "viewCount": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7350,
+    "nombre": "Ofrenda a los Dioses",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ofrendaalosdiosescuatro.webp",
+    "habilidad_texto_descriptivo": "Si Ofrenda a los Dioses está en tu Reserva de oros, todos tus Aliados de Raza Olimpico Ganan 1 a la Fuerza",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Olimpico",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7351,
+    "nombre": "Renpet",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/renpetshogun.webp",
+    "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Renpet entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_enter_leave_effect"
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando Renpet sale del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_on_leave_effect"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7352,
+    "nombre": "Salmon Del Saber",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/salmondelsaberesmeralda.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puede barajar una carta de tu cementerio en tu Mazo Castillo. Si esta carta está en tu reserva puedes desterrarla para que un Aliado oponente no haga daño en tu Mazo Castillo este turno.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "targetAndPreventCombatDamage",
+          "prompt": "Elige un Aliado oponente para prevenir su daño de combate este turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7353,
+    "nombre": "Toro Apis",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/toroapisdorado.webp",
+    "habilidad_texto_descriptivo": "Indestructible. Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la fase Final",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": [
+                "Aliado",
+                "Oro"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Puedes pagar este Oro, para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "toro_apis_debuff"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7354,
+    "nombre": "Vinculo del Aullido",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/vinculodelaullidobab.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este y otro Oro para robar 2 cartas y descartar 1?",
+          "options": [
+            {
+              "id": "vinculo_activate",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "payGold",
+                      "count": 1
+                    }
+                  ],
+                  "effect": {
+                    "type": "drawThenDiscard",
+                    "drawCount": 2,
+                    "discardCount": 1
+                  },
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste y robar."
+            },
+            {
+              "id": "vinculo_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "vinculo_aullido_enter_play",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7355,
+    "nombre": "Vinculo del Aullido",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/vinculodelaullidomanga.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este y otro Oro para robar 2 cartas y descartar 1?",
+          "options": [
+            {
+              "id": "vinculo_activate",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "payGold",
+                      "count": 1
+                    }
+                  ],
+                  "effect": {
+                    "type": "drawThenDiscard",
+                    "drawCount": 2,
+                    "discardCount": 1
+                  },
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste y robar."
+            },
+            {
+              "id": "vinculo_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "vinculo_aullido_enter_play",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este y otro Oro que controles para robar 2 cartas y descartar 1 carta de tu mano."
+      }
+    ],
+    "tier": "alto"
   },
   {
     "id": 1585,

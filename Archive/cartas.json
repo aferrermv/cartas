@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.6",
+    "pack_version": "2.6.7",
     "habilidades": []
   },
   {
@@ -18617,7 +18617,7 @@
                   "isOther": true,
                   "controller": "self"
                 },
-                "keyword": "canAttackThisTurn",
+                "keyword": "nowCanAttack",
                 "duration": "permanent"
               }
             }
@@ -38271,7 +38271,9 @@
                 "type": "Aliado"
               },
               "controller": "self"
-            }
+            },
+            "optional": true,
+            "canCancel": true
           }
         ],
         "effect": {
@@ -56847,7 +56849,7 @@
                   "isOther": true,
                   "controller": "self"
                 },
-                "keyword": "canAttackThisTurn",
+                "keyword": "nowCanAttack",
                 "duration": "permanent"
               },
               "description": "Permitir que otro Aliado ataque."
@@ -66947,8 +66949,7 @@
             {
               "type": "isInZone",
               "zone": [
-                "goldReserve",
-                "paidGold"
+                "goldReserve"
               ]
             },
             {

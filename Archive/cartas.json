@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.7",
+    "pack_version": "2.6.8",
     "habilidades": []
   },
   {
@@ -6598,6 +6598,7 @@
         "effect": {
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
+            "canCancel": true,
           "searchQuery": {
             "cost": {
               "value": 2,
@@ -16834,11 +16835,8 @@
       {
         "costs": [
           {
-            "max": 4,
-            "min": 1,
-            "type": "payVariableGold",
-            "prompt": "Elige cuánto Oro pagar (1 a 4). Tu oponente botará esa cantidad de cartas (x2 si controlas un Guerrero).",
-            "rememberAs": "goldPaidCount"
+            "type": "payGold",
+            "count": 1
           }
         ],
         "phase": [
@@ -16847,9 +16845,7 @@
         ],
         "effect": {
           "type": "millCards",
-          "count": {
-            "fromContext": "goldPaidCount"
-          },
+          "count": 1,
           "target": "opponent",
           "multiplier": {
             "value": 2,
@@ -16878,9 +16874,29 @@
             }
           ]
         },
-        "description": "Una vez por turno, puedes pagar hasta 4 Oros para que tu oponente bote esa cantidad de cartas. Si controlas un Aliado Guerrero, bota el doble de cartas en su lugar.",
-        "oncePerTurn": true,
+        "description": "Hasta cuatro veces por turno, puedes pagar 1 Oro para que tu oponente bote 1 carta. Si controlas un Aliado Guerrero, bota el doble de cartas en su lugar.",
+        "fourTimesPerTurn": true,
         "id_habilidad": "seti_mill_ability"
+      },
+      {
+        "trigger": "onDealCombatDamageToDeck",
+        "resolveInstantly": true,
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Guerrero"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas al menos 1 Aliado que contenga 'Guerrero' en su nombre, cuando este Aliado hace daño al Mazo Castillo oponente, bota 1 carta.",
+        "id_habilidad": "seti_on_damage_mill"
       }
     ]
   },
@@ -19131,8 +19147,7 @@
         "eventCondition": {
           "notType": "Oro"
         },
-        "listensForEvent": "onCardEnterPlay",
-        "triggeringPlayer": "opponent",
+        "listensForEvent": "onOpponentPlayCardFromHand",
         "resolvesInstantly": true
       }
     ]
@@ -20976,7 +20991,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+   "habilidades": [
       {
         "inherent": [
           "canAttackOnEnterPlay"
@@ -21020,11 +21035,25 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "indestructible",
+              "negate": true
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "cannotBeBanished",
+              "negate": true
+            }
+          ]
         },
-        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno.",
-        "oncePerTurn": true
+        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno."
       },
       {
         "effect": {
@@ -28849,6 +28878,11 @@
                 "raza": "Olimpico",
                 "type": "Aliado"
               }
+            },
+            {
+              "type": "playerHasInHand",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
             }
           ]
         },
@@ -39677,6 +39711,7 @@
         "effect": {
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
+            "canCancel": true,
           "searchQuery": {
             "cost": {
               "value": 2,
@@ -41063,6 +41098,11 @@
                 "raza": "Olimpico",
                 "type": "Aliado"
               }
+            },
+             {
+              "type": "playerHasInHand",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
             }
           ]
         },
@@ -42039,7 +42079,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+  "habilidades": [
       {
         "inherent": [
           "canAttackOnEnterPlay"
@@ -42083,11 +42123,25 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "indestructible",
+              "negate": true
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "cannotBeBanished",
+              "negate": true
+            }
+          ]
         },
-        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno.",
-        "oncePerTurn": true
+        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno."
       },
       {
         "effect": {
@@ -55436,8 +55490,7 @@
         "eventCondition": {
           "notType": "Oro"
         },
-        "listensForEvent": "onCardEnterPlay",
-        "triggeringPlayer": "opponent",
+        "listensForEvent": "onOpponentPlayCardFromHand",
         "resolvesInstantly": true
       }
     ],
@@ -60045,7 +60098,7 @@
     "id": 3331,
     "nombre": "Forma Voladora",
     "tipo": "Talisman",
-    "coste_oro": 5,
+    "coste_oro": 4,
     "imagen_url": "/img/primera_era/formavoladora.webp",
     "habilidad_texto_descriptivo": "Elije un numero. Las cartas en juego con Coste igual al numero elegido pierden su habilidad y son destruidas.",
     "descripcion": null,
@@ -61574,8 +61627,18 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+   "habilidades": [
       {
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Eterno",
+            "type": "Aliado",
+            "notKeyword": "indestructible"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "destroyTarget",
@@ -61585,7 +61648,8 @@
               "zone": "field",
               "query": {
                 "raza": "Eterno",
-                "type": "Aliado"
+                "type": "Aliado",
+                "notKeyword": "indestructible"
               },
               "controller": "self"
             }
@@ -62211,7 +62275,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+   "habilidades": [
       {
         "effect": {
           "type": "annulAllMatching",
@@ -62239,8 +62303,7 @@
         "eventCondition": {
           "notType": "Oro"
         },
-        "listensForEvent": "onCardEnterPlay",
-        "triggeringPlayer": "opponent",
+        "listensForEvent": "onOpponentPlayCardFromHand",
         "resolvesInstantly": true
       }
     ],
@@ -64454,8 +64517,7 @@
         "eventCondition": {
           "notType": "Oro"
         },
-        "listensForEvent": "onCardEnterPlay",
-        "triggeringPlayer": "opponent",
+        "listensForEvent": "onOpponentPlayCardFromHand",
         "resolvesInstantly": true
       }
     ],
@@ -68896,7 +68958,7 @@
         "effect": {
           "type": "grantKeyword",
           "target": "self",
-          "keyword": "canAttackThisTurn"
+          "keyword": "nowCanAttack"
         },
         "trigger": "continuous",
         "condition": {
@@ -72041,73 +72103,79 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Piritoo puede atacar cuando entra en juego.",
-        "id_habilidad": "piritoo_charge"
+   "habilidades": [
+    {
+      "inherent": [
+        "canAttackOnEnterPlay"
+      ],
+      "description": "Piritoo puede atacar cuando entra en juego.",
+      "id_habilidad": "piritoo_charge"
+    },
+    {
+      "effect": {
+        "buff": {
+          "stat": "fuerza",
+          "value": 1
+        },
+        "type": "applyBuffToSelf",
+        "duration": "endOfTurn"
       },
-      {
-        "effect": {
-          "buff": {
-            "stat": "fuerza",
-            "value": 1
-          },
-          "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+      "trigger": "onDeclareAttack",
+      "condition": {
+        "type": "playerAttackedWith",
+        "query": {
+          "raza": "Heroe",
+          "type": "Aliado",
+          "isOther": true
         },
-        "trigger": "onDeclareAttack",
-        "condition": {
-          "type": "playerAttackedWith",
-          "query": {
-            "raza": "Heroe",
-            "type": "Aliado",
-            "isOther": true
-          }
-        },
-        "description": "Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final.",
-        "id_habilidad": "piritoo_attack_buff"
+        "amount": 1,
+        "comparison": "greaterOrEqual"
       },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": "self",
-          "keyword": "unblockable"
-        },
-        "trigger": "continuous",
-        "condition": {
-          "type": "playerControls",
-          "query": {
-            "nombre": "Teseo de Atenas"
-          }
-        },
-        "description": "Si controlas a Teseo de Atenas, Piritoo es Imbloqueable.",
-        "id_habilidad": "piritoo_teseo_unblockable_self"
+      "description": "Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final.",
+      "id_habilidad": "piritoo_attack_buff"
+    },
+    {
+      "effect": {
+        "type": "grantKeyword",
+        "target": "self",
+        "keyword": "unblockable"
       },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": {
-            "query": {
-              "nombre": "Teseo de Atenas"
-            },
-            "controller": "self"
-          },
-          "keyword": "unblockable"
+      "trigger": "continuous",
+      "condition": {
+        "type": "playerControls",
+        "query": {
+          "nombre": "Teseo de Atenas"
         },
-        "trigger": "continuous",
-        "condition": {
-          "type": "playerControls",
+        "amount": 1,
+        "comparison": "greaterOrEqual"
+      },
+      "description": "Si controlas a Teseo de Atenas, Piritoo es Imbloqueable.",
+      "id_habilidad": "piritoo_teseo_unblockable_self"
+    },
+    {
+      "effect": {
+        "type": "grantKeyword",
+        "target": {
           "query": {
             "nombre": "Teseo de Atenas"
-          }
+          },
+          "controller": "self"
         },
-        "description": "Si controlas a Teseo de Atenas, él también es Imbloqueable.",
-        "id_habilidad": "piritoo_teseo_unblockable_partner"
-      }
-    ],
+        "keyword": "unblockable"
+      },
+      "trigger": "continuous",
+      "condition": {
+        "type": "playerControls",
+        "query": {
+          "nombre": "Teseo de Atenas"
+        },
+        "amount": 1,
+        "comparison": "greaterOrEqual"
+      },
+      "description": "Si controlas a Teseo de Atenas, él también es Imbloqueable.",
+      "id_habilidad": "piritoo_teseo_unblockable_partner"
+    }
+  ],
     "tier": "muy bajo"
   },
   {
@@ -74142,6 +74210,11 @@
           "target": "opponent"
         },
         "trigger": "onEndOfTurn",
+        "condition": {
+          "type": "playerDoesNotHaveRestriction",
+          "restrictionType": "skipPhase",
+          "phase": "Agrupacion"
+        },
         "description": "Al final de tu turno, tu oponente bota 1 carta.",
         "id_habilidad": "arturo_end_of_turn_mill"
       }

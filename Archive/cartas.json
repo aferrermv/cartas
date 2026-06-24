@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.8",
+    "pack_version": "2.6.9",
     "habilidades": []
   },
   {
@@ -6598,7 +6598,7 @@
         "effect": {
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
-            "canCancel": true,
+          "canCancel": true,
           "searchQuery": {
             "cost": {
               "value": 2,
@@ -20991,7 +20991,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-   "habilidades": [
+    "habilidades": [
       {
         "inherent": [
           "canAttackOnEnterPlay"
@@ -39711,7 +39711,7 @@
         "effect": {
           "type": "searchAndPutInHand",
           "prompt": "Elige un Aliado de raza Sombra de coste 2 o menos de tu Cementerio para poner en tu mano.",
-            "canCancel": true,
+          "canCancel": true,
           "searchQuery": {
             "cost": {
               "value": 2,
@@ -41099,7 +41099,7 @@
                 "type": "Aliado"
               }
             },
-             {
+            {
               "type": "playerHasInHand",
               "amount": 1,
               "comparison": "greaterOrEqual"
@@ -42079,7 +42079,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-  "habilidades": [
+    "habilidades": [
       {
         "inherent": [
           "canAttackOnEnterPlay"
@@ -61627,7 +61627,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-   "habilidades": [
+    "habilidades": [
       {
         "play_condition": {
           "type": "playerControls",
@@ -62275,7 +62275,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-   "habilidades": [
+    "habilidades": [
       {
         "effect": {
           "type": "annulAllMatching",
@@ -72103,79 +72103,79 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-   "habilidades": [
-    {
-      "inherent": [
-        "canAttackOnEnterPlay"
-      ],
-      "description": "Piritoo puede atacar cuando entra en juego.",
-      "id_habilidad": "piritoo_charge"
-    },
-    {
-      "effect": {
-        "buff": {
-          "stat": "fuerza",
-          "value": 1
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Piritoo puede atacar cuando entra en juego.",
+        "id_habilidad": "piritoo_charge"
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
         },
-        "type": "applyBuffToSelf",
-        "duration": "endOfTurn"
-      },
-      "trigger": "onDeclareAttack",
-      "condition": {
-        "type": "playerAttackedWith",
-        "query": {
-          "raza": "Heroe",
-          "type": "Aliado",
-          "isOther": true
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerAttackedWith",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
         },
-        "amount": 1,
-        "comparison": "greaterOrEqual"
+        "description": "Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "piritoo_attack_buff"
       },
-      "description": "Cuando Piritoo es declarado atacante con otro Aliado de raza Héroe gana 1 a la fuerza hasta la Fase Final.",
-      "id_habilidad": "piritoo_attack_buff"
-    },
-    {
-      "effect": {
-        "type": "grantKeyword",
-        "target": "self",
-        "keyword": "unblockable"
-      },
-      "trigger": "continuous",
-      "condition": {
-        "type": "playerControls",
-        "query": {
-          "nombre": "Teseo de Atenas"
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "unblockable"
         },
-        "amount": 1,
-        "comparison": "greaterOrEqual"
-      },
-      "description": "Si controlas a Teseo de Atenas, Piritoo es Imbloqueable.",
-      "id_habilidad": "piritoo_teseo_unblockable_self"
-    },
-    {
-      "effect": {
-        "type": "grantKeyword",
-        "target": {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
           "query": {
             "nombre": "Teseo de Atenas"
           },
-          "controller": "self"
+          "amount": 1,
+          "comparison": "greaterOrEqual"
         },
-        "keyword": "unblockable"
+        "description": "Si controlas a Teseo de Atenas, Piritoo es Imbloqueable.",
+        "id_habilidad": "piritoo_teseo_unblockable_self"
       },
-      "trigger": "continuous",
-      "condition": {
-        "type": "playerControls",
-        "query": {
-          "nombre": "Teseo de Atenas"
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "nombre": "Teseo de Atenas"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable"
         },
-        "amount": 1,
-        "comparison": "greaterOrEqual"
-      },
-      "description": "Si controlas a Teseo de Atenas, él también es Imbloqueable.",
-      "id_habilidad": "piritoo_teseo_unblockable_partner"
-    }
-  ],
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nombre": "Teseo de Atenas"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas a Teseo de Atenas, él también es Imbloqueable.",
+        "id_habilidad": "piritoo_teseo_unblockable_partner"
+      }
+    ],
     "tier": "muy bajo"
   },
   {
@@ -75057,5 +75057,597 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 2141,
+    "nombre": "Mastabas",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/mastabas.webp",
+    "habilidad_texto_descriptivo": "Los Aliados Imbloqueables tienen fuerza 0.",
+    "descripcion": "Los Aliados Imbloqueables tienen fuerza 0.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "set_strength": 0
+            }
+          ],
+          "target": {
+            "zone": "attack",
+            "query": {
+              "type": "Aliado",
+              "keyword": "unblockable"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Los Aliados Imbloqueables que esten en la linea de ataque. tienen fuerza 0.",
+        "id_habilidad": "mastabas_set_strength_0"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2218,
+    "nombre": "Piramide Curvada",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/piramidecurvada.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes mostrar una carta de tu Cementerio y ponerla en la parte inferior de tu Mazo Castillo.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes mostrar una carta de tu Cementerio y ponerla en la parte inferior de tu Mazo Castillo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndMoveToBottom",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para poner en el fondo de tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta de tu Cementerio y ponerla en la parte inferior de tu Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "piramide_curvada_recycle"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2115,
+    "nombre": "Duelo en el Desierto",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dueloeneldesierto.webp",
+    "habilidad_texto_descriptivo": "Cada jugador baraja un Aliado que controle. Luego, si controlabas uno o más Aliados Guerrero, puedes robar 1 carta.",
+    "descripcion": "Cada jugador baraja un Aliado que controle. Luego, si controlabas uno o más Aliados Guerrero, puedes robar 1 carta.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1,
+              "prompt": "Controlas un Aliado Guerrero, ¿quieres robar una carta?",
+              "optional": true
+            },
+            "condition": {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Guerrero"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          },
+          "type": "mutualShuffleFromField",
+          "query": {
+            "type": "Aliado"
+          },
+          "playerPrompt": "Elige un Aliado que controles para barajar.",
+          "opponentPrompt": "Tu oponente te obliga a elegir un Aliado para barajar."
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cada jugador baraja un Aliado que controle. Luego, si controlabas uno o más Aliados Guerrero, puedes robar 1 carta.",
+        "id_habilidad": "duelo_desierto_shuffle_draw",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "self"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1029,
+    "nombre": "Dragon Dorado",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/dragondorado.webp",
+    "habilidad_texto_descriptivo": "Dragón Dorado puede ser jugado en cualquier momento para anular una carta. Carta Única. ",
+    "descripcion": "Dragón Dorado puede ser jugado en cualquier momento para anular una carta. Carta Única. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "descripcion": "Anula un Aliado que esté entrando en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "dragon_dorado_annul_ally"
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "descripcion": "Anula un Arma que esté entrando en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "dragon_dorado_annul_weapon"
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "descripcion": "Anula un Tótem que esté entrando en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "dragon_dorado_annul_totem"
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "descripcion": "Anula un Talismán que esté entrando en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "dragon_dorado_annul_talisman"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2044,
+    "nombre": "Ramla",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ramla.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, y si controlas otros 2 o más Aliados de raza Sacerdote y/o Tótem, puedes mostrar las primeras 3 cartas de tu Mazo Castillo, elegir un Tótem de ahí y jugarlo sin pagar su coste. Luego, baraja tu Mazo Castillo.",
+    "descripcion": "Cuando entra en juego, y si controlas otros 2 o más Aliados de raza Sacerdote y/o Tótem, puedes mostrar las primeras 3 cartas de tu Mazo Castillo, elegir un Tótem de ahí y jugarlo sin pagar su coste. Luego, baraja tu Mazo Castillo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealAndChooseConditional",
+          "count": 3,
+          "choice": {
+            "query": {
+              "type": "Totem"
+            },
+            "prompt": "Elige un Tótem para jugar sin pagar su coste.",
+            "optional": true,
+            "destination": "playToTotem"
+          },
+          "fromZone": "mazoCastillo",
+          "unselected": "shuffleBack",
+          "opponentPrompt": "Tu oponente está mostrando las 3 primeras cartas de su Mazo Castillo."
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "or": [
+              {
+                "raza": "Sacerdote",
+                "type": "Aliado",
+                "isOther": true
+              },
+              {
+                "type": "Totem"
+              }
+            ]
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Cuando entra en juego, y si controlas otros 2 o más Aliados de raza Sacerdote y/o Tótem, puedes mostrar las primeras 3 cartas de tu Mazo Castillo, elegir un Tótem de ahí y jugarlo sin pagar su coste. Luego, baraja tu Mazo Castillo.",
+        "id_habilidad": "ramla_play_totem_from_deck"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2177,
+    "nombre": "Islas filas",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/islasfilas.webp",
+    "habilidad_texto_descriptivo": "Única. Sólo se puede robar en la Fase Final.",
+    "descripcion": "Única. Sólo se puede robar en la Fase Final.",
+    "expansion": "Dominios de Ra",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotDraw"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "not",
+              "condition": {
+                "type": "currentPhase",
+                "phase": "Final"
+              }
+            }
+          ]
+        },
+        "descripcion": "Sólo se puede robar en la Fase Final.",
+        "id_habilidad": "islas_filas_draw_restriction"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2075,
+    "nombre": "Colosos de Menmon",
+    "tipo": "Totem",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/colososdemenmon.webp",
+    "habilidad_texto_descriptivo": "Mientras Colosos de Menmon esté en juego, en respuesta a finalizar un turno, puedes descartar 2 cartas para agrupar tus Oros.",
+    "descripcion": "Mientras Colosos de Menmon esté en juego, en respuesta a finalizar un turno, puedes descartar 2 cartas para agrupar tus Oros.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 2,
+            "prompt": "Descarta 2 cartas para agrupar tus oros."
+          }
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "regroupAllPaidGold"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, puedes descartar 2 cartas para agrupar tus oros.",
+        "oncePerTurn": true,
+        "id_habilidad": "colosos_de_menmon_regroup"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2053,
+    "nombre": "Can Seth",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/canseth.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de raza Eterno. Mira la Mano de tu oponente y descártale una carta.",
+    "descripcion": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de raza Eterno. Mira la Mano de tu oponente y descártale una carta.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewHandAndDiscard",
+          "prompt": "Mira la mano de tu oponente y elige una carta para descartar.",
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Sólo puedes jugar este Talismán si controlas 2 o más Aliados de raza Eterno. Mira la Mano de tu oponente y descártale una carta.",
+        "id_habilidad": "can_seth_discard",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Eterno",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2362,
+    "nombre": "Secretos del Chacal",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/secretosdelchacal.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talismán, destiérralo. Busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste.",
+    "descripcion": "Cuando juegues este Talismán, destiérralo. Busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de coste 3 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando juegues este Talismán, destiérralo. Busca un Tótem de coste 3 o menos en tu Cementerio y juégalo sin pagar su coste.",
+        "banishOnPlay": true,
+        "id_habilidad": "secretos_del_chacal_play_totem"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2135,
+    "nombre": "Baston de Hequet",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/bastondehequet.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Arma de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "baston_de_hequet_tutor"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2007,
+    "nombre": "Lanza de Osiris",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/lanzadeosiris.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cuando entra en juego, elige un Aliado oponente en juego para que no pueda atacar ni bloquear por el resto del juego.",
+    "descripcion": "El portador gana 2 a la fuerza. Cuando entra en juego, elige un Aliado oponente en juego para que no pueda atacar ni bloquear por el resto del juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyAuraKeywordsToTarget",
+          "prompt": "Elige un Aliado en juego para que no pueda atacar ni bloquear por el resto del juego.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "permanent",
+          "keywords": [
+            "cannotAttack",
+            "cannotBlock"
+          ],
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego elige un aliado en juego y este no podrá bloquear ni atacar por el resto del juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 717,
+    "nombre": "Nombre de Ra",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/nombredera.webp",
+    "habilidad_texto_descriptivo": "Preven que una carta que controles sea puesta o barajada en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onBeingShuffledOrPut",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "controller": "self"
+          }
+        },
+        "descripcion": "Preven que una carta que controles sea puesta o barajada en tu Mazo Castillo.",
+        "id_habilidad": "nombre_de_ra_prevent",
+        "eventCondition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "mazoCastillo"
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

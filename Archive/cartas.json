@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.6.9",
+    "pack_version": "2.7.0",
     "habilidades": []
   },
   {
@@ -4623,9 +4623,7 @@
           "target": {
             "zone": "field",
             "query": {
-              "not": {
-                "id": "self"
-              },
+             "isOther": true,
               "type": "Aliado"
             },
             "player": "self",
@@ -7097,7 +7095,7 @@
     "raza": null,
     "salud": null,
     "cantidad_generada": null,
-    "habilidades": [
+   "habilidades": [
       {
         "id": "pais_sin_luz_on_leave",
         "phase": "any",
@@ -7111,8 +7109,12 @@
         "trigger": "activatable",
         "description": "En respuesta a que uno de tus Aliados de raza Sombra sea destruido o desterrado, puedes robar tantas cartas como coste tenga el Aliado.",
         "eventCondition": {
+          "or": [
+            {
+              "type": "Aliado"
+            }
+          ],
           "raza": "Sombra",
-          "type": "Aliado",
           "destinationZone": [
             "cementerio",
             "banish"
@@ -12465,7 +12467,7 @@
     "expansion": "Mundo Gotico",
     "rareza": "Común",
     "fecha_creacion": null,
-    "fuerza": 5,
+    "fuerza": 4,
     "raza": "Licantropo",
     "leyenda": null,
     "danio": null,
@@ -20444,6 +20446,9 @@
     "salud": null,
     "habilidades": [
       {
+          "inherent": [
+          "canAttackOnEnterPlay"
+        ],
         "effect": {
           "type": "grantKeyword",
           "target": {
@@ -39841,9 +39846,7 @@
           "target": {
             "zone": "field",
             "query": {
-              "not": {
-                "id": "self"
-              },
+             "isOther": true,
               "type": "Aliado"
             },
             "player": "self",

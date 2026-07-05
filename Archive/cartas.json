@@ -640,7 +640,7 @@
     "nombre": "Goblin Stone",
     "tipo": "Totem",
     "coste_oro": 3,
-    "imagen_url": "/img/espada_sagrada/goblinstone130.png",
+    "imagen_url": "/img/espada_sagrada/goblinstone.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego puedes buscar una carta goblin en tu Mazo castillo y ponerla en tu mano mientras Goblin Stone esté en juego, tus Aliados de raza Faerie de coste 1 o menos ganan 1 a la fuerza.",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -792,7 +792,7 @@
                   "type": "oro"
                 },
                 {
-                  "race": "Faerie",
+                  "raza": "Faerie",
                   "type": "aliado"
                 }
               ]
@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.7.1",
+    "pack_version": "2.7.2",
     "habilidades": []
   },
   {
@@ -2852,6 +2852,10 @@
         },
         "effect": {
           "then": {
+            "condition": {
+              "type": "contextFlag",
+              "flag": "annulSuccess"
+            },
             "effect": {
               "type": "searchAndShuffleIntoDeck",
               "zone": "cementerio",
@@ -2870,6 +2874,10 @@
       {
         "effect": {
           "then": {
+            "condition": {
+              "type": "contextFlag",
+              "flag": "annulSuccess"
+            },
             "effect": {
               "type": "searchAndShuffleIntoDeck",
               "zone": "cementerio",
@@ -4623,7 +4631,7 @@
           "target": {
             "zone": "field",
             "query": {
-             "isOther": true,
+              "isOther": true,
               "type": "Aliado"
             },
             "player": "self",
@@ -7095,7 +7103,7 @@
     "raza": null,
     "salud": null,
     "cantidad_generada": null,
-   "habilidades": [
+    "habilidades": [
       {
         "id": "pais_sin_luz_on_leave",
         "phase": "any",
@@ -7537,7 +7545,7 @@
             {
               "type": "playerControls",
               "query": {
-                "race": "Heroe",
+                "raza": "Heroe",
                 "type": "Aliado"
               },
               "amount": 2,
@@ -20446,7 +20454,7 @@
     "salud": null,
     "habilidades": [
       {
-          "inherent": [
+        "inherent": [
           "canAttackOnEnterPlay"
         ],
         "effect": {
@@ -39846,7 +39854,7 @@
           "target": {
             "zone": "field",
             "query": {
-             "isOther": true,
+              "isOther": true,
               "type": "Aliado"
             },
             "player": "self",
@@ -54391,7 +54399,7 @@
             {
               "type": "playerControls",
               "query": {
-                "race": "Faerie",
+                "raza": "Faerie",
                 "type": "Aliado",
                 "zone": [
                   "attack",
@@ -67023,8 +67031,7 @@
           ]
         },
         "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
-        "id_habilidad": "milano_negro_transform_main",
-        "canPayWithSelf": true
+        "id_habilidad": "milano_negro_transform_main"
       },
       {
         "effect": {
@@ -75194,30 +75201,7 @@
         },
         "trigger": "onEnterPlay",
         "descripcion": "Cada jugador baraja un Aliado que controle. Luego, si controlabas uno o más Aliados Guerrero, puedes robar 1 carta.",
-        "id_habilidad": "duelo_desierto_shuffle_draw",
-        "play_condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual",
-              "controller": "self"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual",
-              "controller": "opponent"
-            }
-          ]
-        }
+        "id_habilidad": "duelo_desierto_shuffle_draw"
       }
     ],
     "tier": "muy bajo"
@@ -75635,6 +75619,7 @@
           "type": "prevent"
         },
         "trigger": "onBeingShuffledOrPut",
+        "triggeringPlayer": "opponent",
         "condition": {
           "type": "triggeringCardCondition",
           "query": {
@@ -75648,6 +75633,234 @@
           "zones": [
             "mazoCastillo"
           ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2071,
+    "nombre": "Beni Hassam",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/benihassam.webp",
+    "habilidad_texto_descriptivo": "No se puede declarar ataque ni puedes hacer que tu oponente bote cartas de su Mazo Castillo.",
+    "descripcion": "No se puede declarar ataque ni puedes hacer que tu oponente bote cartas de su Mazo Castillo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotDeclareAttack"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "self",
+          "restriction": {
+            "type": "cannotMill",
+            "target": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1286,
+    "nombre": "Principe Goblin",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/principegoblin.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes destruir otra carta Goblin que controles para que tu oponente bote dos cartas. Luego, puedes robar una carta.",
+    "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes destruir otra carta Goblin que controles para que tu oponente bote dos cartas. Luego, puedes robar una carta.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige otra carta Goblin que controles para destruir.",
+            "target": {
+              "query": {
+                "isOther": true,
+                "nameContains": "Goblin"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar una carta?",
+              "options": [
+                {
+                  "id": "principe_goblin_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "principe_goblin_no_draw",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "isOther": true,
+                "nameContains": "Goblin"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes destruir otra carta Goblin que controles para que tu oponente bote dos cartas. Luego, puedes robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "principe_goblin_sacrifice_mill_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1848,
+    "nombre": "Donn",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/donn.webp",
+    "habilidad_texto_descriptivo": "Donn tiene fuerza igual al número de Talismanes que haya en tu Cementerio.",
+    "descripcion": "Donn tiene fuerza igual al número de Talismanes que haya en tu Cementerio.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Talisman",
+            "zone": [
+              "cementerio"
+            ],
+            "controller": "self"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "descripcion": "Donn tiene fuerza igual al número de Talismanes que haya en tu Cementerio.",
+        "id_habilidad": "donn_strength_from_graveyard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1927,
+    "nombre": "Conall Cernach",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/conallcernach.webp",
+    "habilidad_texto_descriptivo": "Para jugarlo debes desterrar 2 Aliados de tu Cementerio. Cuando entra en juego, tu oponente bota 1 carta de tu Mazo Castillo.",
+    "descripcion": "Para jugarlo debes desterrar 2 Aliados de tu Cementerio. Cuando entra en juego, tu oponente bota 1 carta de tu Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 2,
+            "query": {
+              "type": "Aliado"
+            },
+            "prompt": "Para jugar a Conall Cernach, elige 2 Aliados de tu Cementerio para desterrar."
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Para jugarlo debes desterrar 2 Aliados de tu Cementerio. Cuando entra en juego, tu oponente bota 1 carta de su Mazo Castillo.",
+        "id_habilidad": "conall_cernach_play_cost_and_effect",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
         }
       }
     ],

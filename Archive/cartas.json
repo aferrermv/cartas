@@ -3315,6 +3315,93 @@
     ],
     "tier": "alto"
   },
+    {
+    "id": 51,
+    "nombre": "Forma de Lince",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/gift/formadelincejunio/formadelincebase.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final. Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forma_de_lince_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "effect": {
+              "type": "addMarkerToTarget",
+              "marker": "forma_de_lince_target",
+              "duration": "endOfTurn"
+            }
+          }
+        },
+        "description": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "forma_de_lince_final_phase_draw",
+        "trigger": "onPhaseStart",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "El Aliado afectado por Forma de Lince hizo daño. ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "forma_de_lince_draw_card",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "forma_de_lince_no_draw",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "forma_de_lince_can_draw",
+          "uniqueSource": true
+        },
+        "oncePerTurn": true,
+        "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
+      }
+    ]
+  },
   {
     "id": 30,
     "nombre": "Plaga",

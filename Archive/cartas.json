@@ -2778,7 +2778,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.7.3",
+    "pack_version": "2.7.4",
     "habilidades": []
   },
   {
@@ -20552,7 +20552,6 @@
               "raza": "Defensor",
               "type": "Aliado"
             },
-            "isOther": true,
             "controller": "self"
           },
           "keyword": "unblockable"

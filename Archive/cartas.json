@@ -2393,7 +2393,7 @@
     "tipo": "Oro",
     "coste_oro": 0,
     "imagen_url": "/img/oros/herrero24.webp",
-    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas. Si pierde la habilidad es destruido.",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -2417,17 +2417,6 @@
           "zone": "goldReserve"
         },
         "id_habilidad": "herrero_generate_gold"
-      },
-      {
-        "trigger": "continuous",
-        "effect": {
-          "type": "destroySelf"
-        },
-        "condition": {
-          "type": "isAbilityAnnulled"
-        },
-        "description": "Si pierde su habilidad, es destruido.",
-        "id_habilidad": "herrero_self_destruct"
       }
     ]
   },
@@ -2778,7 +2767,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.7.4",
+    "pack_version": "2.7.5",
     "habilidades": []
   },
   {
@@ -28009,7 +27998,7 @@
     "nombre": "Sidhes del Bosque",
     "tipo": "Talisman",
     "coste_oro": 5,
-    "imagen_url": "/img/nuevasporagregar/sidhesdelbosque702.webp",
+    "imagen_url": "/img/nuevasporagregar/sidhesdelbosque.webp",
     "habilidad_texto_descriptivo": "Busca un Aliado en el Mazo Castillo oponente y juegalo bajo tu control sin pagar su coste.",
     "descripcion": null,
     "expansion": "Hijos De Daana",
@@ -44189,7 +44178,7 @@
     "tipo": "Oro",
     "coste_oro": 0,
     "imagen_url": "/img/store/cartas/herreroalt.webp",
-    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas. Si pierde la habilidad es destruido.",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas.",
     "descripcion": "Edición Especial Arte Alternativo",
     "expansion": "Espada Sagrada",
     "rareza": "Promo",
@@ -44213,17 +44202,6 @@
           "zone": "goldReserve"
         },
         "id_habilidad": "herrero_generate_gold"
-      },
-      {
-        "trigger": "continuous",
-        "effect": {
-          "type": "destroySelf"
-        },
-        "condition": {
-          "type": "isAbilityAnnulled"
-        },
-        "description": "Si pierde su habilidad, es destruido.",
-        "id_habilidad": "herrero_self_destruct"
       }
     ],
     "tier": "bajo"
@@ -48746,7 +48724,7 @@
     "tipo": "Oro",
     "coste_oro": 0,
     "imagen_url": "/img/store/cartas/herrerobab.webp",
-    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas. Si pierde la habilidad es destruido.",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, Herrero genera 2 oros para jugar armas.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -48770,17 +48748,6 @@
           "zone": "goldReserve"
         },
         "id_habilidad": "herrero_generate_gold"
-      },
-      {
-        "trigger": "continuous",
-        "effect": {
-          "type": "destroySelf"
-        },
-        "condition": {
-          "type": "isAbilityAnnulled"
-        },
-        "description": "Si pierde su habilidad, es destruido.",
-        "id_habilidad": "herrero_self_destruct"
       }
     ],
     "tier": "alto"

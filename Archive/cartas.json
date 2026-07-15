@@ -3304,7 +3304,7 @@
     ],
     "tier": "alto"
   },
-    {
+  {
     "id": 51,
     "nombre": "Forma de Lince",
     "tipo": "Talisman",
@@ -3328,7 +3328,7 @@
         "trigger": "onEnterPlay",
         "effect": {
           "type": "grantBuffToTarget",
-           "visualEffect": "formadelinceskill",
+          "visualEffect": "formadelinceskill",
           "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
           "target": {
             "zone": "field",
@@ -49566,6 +49566,1513 @@
     "tier": "alto"
   },
   {
+    "id": 7356,
+    "nombre": "Achall",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/achallshogun5.webp",
+    "habilidad_texto_descriptivo": "Puedes mover este Aliado de tu línea de defensa a tu línea de ataque para barajar una carta de tu cementerio en tu Mazo Castillo o, sí controlas dos o más aliados puedes robar una carta y descartar una carta de tu mano.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "moveSelfToZoneAsCost",
+          "destination": "attack"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "options": [
+            {
+              "id": "shuffle",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 1,
+                "query": {
+                  "type": "*"
+                }
+              },
+              "description": "Baraja 1 carta de tu Cementerio en tu Mazo."
+            },
+            {
+              "id": "draw_discard",
+              "action": {
+                "type": "drawThenDiscard",
+                "drawCount": 1,
+                "discardCount": 1
+              },
+              "condition": {
+                "type": "playerControls",
+                "query": {
+                  "type": "Aliado"
+                },
+                "amount": 2,
+                "comparison": "greaterOrEqual"
+              },
+              "description": "Roba 1 carta y luego descarta 1 carta."
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "defense"
+        },
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7357,
+    "nombre": "Aulladores Grises",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/aulladoresgrisesshogun5.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que una de tus cartas que no sea Oro salga del juego por un efecto oponente, baraja una carta oponente del mismo tipo. Carta Única.",
+    "descripcion": "En respuesta a que una de tus cartas que no sea Oro salga del juego por un efecto oponente, baraja una carta oponente del mismo tipo. Carta Única.",
+    "expansion": "Espada Sagrada",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta oponente del mismo tipo para barajar.",
+          "target": {
+            "query": {
+              "type": {
+                "fromContext": "triggeringCard.tipo"
+              }
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "id_habilidad": "aulladores_grises_retaliate",
+        "eventCondition": {
+          "notType": "Oro",
+          "excludeReason": "combat"
+        },
+        "listensForEvent": "onCardLeavePlay",
+        "triggeringPlayer": "opponent"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7358,
+    "nombre": "Bodb Derg",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/bodbdergshogun5.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Bodb Derg en juego. Mientras este aliado este en jueg, tus Aliados de raza Desafiante ganan 1 a la fuerza. Si este Aliado sale del juego, puedes robar 2 cartas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Bodb Derg en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Desafiante",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras este Aliado esté en juego, tus Aliados de raza Desafiante ganan 1 a la Fuerza.",
+        "id_habilidad": "bodb_derg_lord_effect"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Bodb Derg ha salido del juego. ¿Quieres robar 2 cartas?",
+          "options": [
+            {
+              "id": "bodb_derg_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Sí, robar 2 cartas"
+            },
+            {
+              "id": "bodb_derg_no_draw",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "description": "Si este Aliado sale del juego, puedes robar 2 cartas.",
+        "id_habilidad": "bodb_derg_leave_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7359,
+    "nombre": "Cerveza Verde",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/cervezaverdeshogun5.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar este y otro oro que controles para que tu oponente destierre la primera carta de su mazo castillo. \n",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes pagar este y otro oro que controles para que tu oponente destierre la primera carta de su mazo castillo.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7360,
+    "nombre": "Cleopatra VII",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cleopatraviishogun5.webp",
+    "habilidad_texto_descriptivo": "Cuando Cleopatra VII entra en juego, nombra una raza. los Aliados de esa raza pierden su habilidad mientras Cleopatra VII esté en juego. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cleopatra_vii_choose_race",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOneAndApplyLingeringEffect",
+          "prompt": "Nombra una Raza. Los Aliados de esa Raza perderán su habilidad.",
+          "options": [
+            {
+              "id": "raza_caballero",
+              "description": "Caballero",
+              "value": "Caballero"
+            },
+            {
+              "id": "raza_dragon",
+              "description": "Dragón",
+              "value": "Dragon"
+            },
+            {
+              "id": "raza_faerie",
+              "description": "Faerie",
+              "value": "Faerie"
+            },
+            {
+              "id": "raza_titan",
+              "description": "Titán",
+              "value": "Titan"
+            },
+            {
+              "id": "raza_defensor",
+              "description": "Defensor",
+              "value": "Defensor"
+            },
+            {
+              "id": "raza_desafiante",
+              "description": "Desafiante",
+              "value": "Desafiante"
+            },
+            {
+              "id": "raza_sombra",
+              "description": "Sombra",
+              "value": "Sombra"
+            },
+            {
+              "id": "raza_heroe",
+              "description": "Héroe",
+              "value": "Heroe"
+            },
+            {
+              "id": "raza_olimpico",
+              "description": "Olímpico",
+              "value": "Olimpico"
+            },
+            {
+              "id": "raza_eterno",
+              "description": "Eterno",
+              "value": "Eterno"
+            },
+            {
+              "id": "raza_sacerdote",
+              "description": "Sacerdote",
+              "value": "Sacerdote"
+            }
+          ],
+          "duration": "whileInPlay",
+          "lingeringEffect": {
+            "type": "annulAllMatching",
+            "target": {
+              "query": {
+                "raza": {
+                  "fromContext": "chosenValue"
+                },
+                "type": "Aliado"
+              },
+              "isOther": true,
+              "controller": "any"
+            }
+          }
+        },
+        "habilidad_texto_descriptivo": "Cuando Cleopatra VII entra en juego, nombra una raza. Los Aliados de esa raza pierden su habilidad mientras Cleopatra VII esté en juego."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7361,
+    "nombre": "Corona del Dia",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/coronadeldiashogun5.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, cuando un Aliado de raza Olimpico entre en juego bajo tu control, puedes barajar una carta de tu Cementerio en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "activatable",
+        "askOncePerTurn": true,
+        "activeBoth": true,
+        "eventCondition": {
+          "raza": "Olimpico",
+          "type": "Aliado",
+          "isNotTemporaryResponse": true
+        },
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7362,
+    "nombre": "Djoser",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/djosershogun5.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "No tiene límite de Armas. Este Aliado gana 2 a la fuerza por cada Arma que porte. Las Armas jugadas en tus Aliados cuestan 1 oro menos. Una vez por turno, cuando un Arma entra en juego bajo tu control, puedes destruir un Aliado Oponente. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "noWeaponLimit"
+        ],
+        "description": "No tiene límite de Armas.",
+        "id_habilidad": "djoser_no_weapon_limit"
+      },
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Arma",
+            "source": "attachedCards"
+          },
+          "target": "self",
+          "multiplier": 2
+        },
+        "trigger": "continuous",
+        "description": "Gana +2 a la fuerza por cada Arma que porte.",
+        "id_habilidad": "djoser_strength_from_weapons"
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "description": "Las Armas jugadas en tus Aliados cuestan 1 oro menos.",
+        "id_habilidad": "djoser_weapon_cost_reduction"
+      },
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "description": "Una vez por turno, cuando un Arma entra en juego bajo tu control, puedes destruir un Aliado Oponente.",
+        "id_habilidad": "djoser_destroy_on_weapon_play",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "type": "Arma"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7363,
+    "nombre": "Escarabeo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/escarabeoshogun5.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este oro y desterrar una carta de tu Cementerio para desterrar una carta del Cementerio oponente. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
+            "canCancel": false
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige una carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "zoneSizeMeetsMarkerValue",
+              "zone": "cementerio",
+              "marker": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Puedes pagar este oro y desterrar una carta de tu Cementerio para desterrar una carta del Cementerio oponente.",
+        "id_habilidad": "escarabeo_banish_cost_effect"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7364,
+    "nombre": "Excalibur",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/excaliburshogun5.webp",
+    "habilidad_texto_descriptivo": "El portador de Excalibur gana 3 a la fuerza. Una vez por turno puedes descartar una de tu mano para que un Aliado que controles gane tanta fuerza hasta la fase final como coste tenga la carta descartada.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 3,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "excalibur_discard_buff",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Elige una carta de tu mano para descartar y dar fuerza a un Aliado.",
+            "optional": false
+          }
+        ],
+        "effect": {
+          "type": "grantBuffFromDiscardedCost",
+          "prompt": "Elige un Aliado que controles para que gane fuerza.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Una vez por turno puedes descartar una carta de tu mano para que un Aliado que controles gane tanta fuerza hasta la fase final como coste tenga la carta descartada."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7365,
+    "nombre": "Fergus Mor MacEric",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/fergusmormacericshogun5.webp",
+    "habilidad_texto_descriptivo": "Mientras Fergus Mor MacEric esté en juego, tus demas Aliados de raza Defensor son Imbloqueables y pueden atacar el turno que entran en juego. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor son Imbloqueables.",
+        "id_habilidad": "fergus_mor_unblockable_aura"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Defensor",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Fergus Mor MacEric esté en juego, tus demás Aliados de raza Defensor pueden atacar el turno que entran en juego.",
+        "id_habilidad": "fergus_mor_haste_aura"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7366,
+    "nombre": "Flechas de Lava",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/flechasdelavashogun5.webp",
+    "habilidad_texto_descriptivo": "Cancela el ataque oponente. Luego, tu oponente bota tantas cartas como fuerza tenga el Aliado de mayor fuerza que controle. \n",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millByStrongestOpponentAllyStrength",
+              "target": "opponent"
+            }
+          },
+          "type": "cancelAttackOrBlock",
+          "target": "all"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cancela el ataque oponente. Luego, tu oponente bota tantas cartas como fuerza tenga el Aliado de mayor fuerza que controle."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7367,
+    "nombre": "Ganimedes",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ganimedeshogun5.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juegoo, destruye una carta oponente en juego de coste igual o menos a la cantidad de aliados de raza Heroe que controles. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "target": {
+            "zone": "field",
+            "condition": {
+              "value": {
+                "query": {
+                  "raza": "Heroe",
+                  "tipo": "Aliado",
+                  "zone": "field",
+                  "controller": "self"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7368,
+    "nombre": "Guerreras Britanicas",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/guerrerasbritanicasshogun5.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado Atacante, gana 1 a la fuerza por cada otro Aliado en tu Linea de Ataque. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Aliado",
+            "zone": [
+              "attack"
+            ],
+            "isOther": true,
+            "controller": "self"
+          },
+          "target": "self",
+          "duration": "endOfTurn",
+          "multiplier": 1
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando sea declarado Atacante, gana 1 a la fuerza por cada otro Aliado en tu Linea de Ataque.",
+        "id_habilidad": "guerreras_britanicas_attack_buff"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7369,
+    "nombre": "Jacko The Green",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/jackothegreenshogun5.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "jacko_the_green_removal",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Jacko The Green: ¿Quieres destruir uno de tus Aliados de coste 2 o menos para destruir un Aliado oponente?",
+            "target": {
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              },
+              "controller": "self"
+            },
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando entra en juego, puedes destruir un Aliado de Coste 2 o Menos que controles para Destruir un Aliado oponente."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7370,
+    "nombre": "kilgharrah",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/kilgharrahshogun5.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Kilgharrah en juego. Imbloqueable, puede atacar el turno que entra en juego. En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:56:46.000Z",
+    "fuerza": 6,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay",
+          "unique"
+        ],
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "count": 2,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Coste de Kilgharrah: Elige 2 cartas de tu Cementerio para barajar y poder robar 2 cartas.",
+            "canCancel": true
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "description": "En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+        "id_habilidad": "kilgharrah_draw"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7371,
+    "nombre": "La Vision",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/lavisionshogun5.webp",
+    "habilidad_texto_descriptivo": "No puede ser Anulado. Mira las 4 primeras cartas del tope de tu Mazo Castillo, elige una y ponla en tu Mano. Luego Baraja el resto en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ]
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de las 4 que viste para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 4,
+          "unselected": "shuffleBack"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7372,
+    "nombre": "Melisende",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/melisendeshogun5.webp",
+    "habilidad_texto_descriptivo": "Melisende no puede ser bloqueado por Aliados de fuerza 3 o más. Cuando Melisende entra en juego puedes buscar una carta de aliado de raza CABALLERO en tu mazo castillo y ponerlo en la parte superior de tu Mazo Castillo.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:17:42.000Z",
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockableBy",
+          {
+            "condition": {
+              "type": "fuerza",
+              "value": 3,
+              "operator": ">="
+            }
+          }
+        ]
+      },
+      {
+        "effect": {
+          "type": "searchDeckAndPlaceOnTop",
+          "searchQuery": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7373,
+    "nombre": "Minotauro de Cartago",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/minotaurodecartagoshogun5.webp",
+    "habilidad_texto_descriptivo": "Minotauro de Cártago es indesterrable. Cuando entra en juego, puedes buscar un Aliado Minotauro de coste 2 o menos en tu Mazo Castillo o Cementerio y jugarlo sin pagar su coste. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Minotauro de Cártago es indesterrable.",
+        "id_habilidad": "minotauro_cartago_inherent"
+      },
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Aliado Minotauro de coste 2 o menos de tu Mazo o Cementerio para jugar sin pagar su coste.",
+          "options": [
+            {
+              "id": "search_deck",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                },
+                "nameContains": "Minotauro"
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "search_graveyard",
+              "zone": "cementerio",
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                },
+                "nameContains": "Minotauro"
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "playToDefense",
+            "isFree": true
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Aliado Minotauro de coste 2 o menos en tu Mazo Castillo o Cementerio y jugarlo sin pagar su coste.",
+        "id_habilidad": "minotauro_cartago_enter_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7374,
+    "nombre": "Nacer de la Muerte",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/nacerdelamuerteshogun5.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+    "descripcion": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "searchOpponentDeckAndPlay",
+          "prompt": "Elige un Aliado del Mazo Castillo oponente para jugar bajo tu control sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "controller": "opponent"
+          },
+          "destinationZone": "defense"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+        "id_habilidad": "nacer_de_la_muerte_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7375,
+    "nombre": "Nefertiti",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/nefertitishogun5.webp",
+    "habilidad_texto_descriptivo": "Cuando sale del juego, elije entre barajar 4 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 4 cartas.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Nefertiti: Elige un efecto.",
+          "options": [
+            {
+              "id": "nefertiti_shuffle",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 4,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 4 cartas de tu Cementerio para barajar en tu Mazo."
+              },
+              "description": "Barajar 4 cartas de tu Cementerio"
+            },
+            {
+              "id": "nefertiti_mill",
+              "action": {
+                "type": "millCards",
+                "count": 4,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota 4 cartas"
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, elije entre barajar 4 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 4 cartas."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7376,
+    "nombre": "Nuada Brazo de Plata",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/nuadabrazodeplatashogun5.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable, Puede atacar cuando entra en juego. Cuando hace daño al mazo castillo oponente, debes destruir uno de tus Aliados o botar 3 cartas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Imbloqueable, Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "nuada_set_damage_marker"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Nuada: Debes destruir uno de tus Aliados o botar 3 cartas.",
+          "options": [
+            {
+              "id": "nuada_destroy_ally",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado que controles para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "isOther": true,
+                  "controller": "self"
+                }
+              },
+              "condition": {
+                "type": "playerControls",
+                "query": {
+                  "type": "Aliado",
+                  "isOther": true
+                },
+                "amount": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "description": "Destruir uno de tus otros Aliados."
+            },
+            {
+              "id": "nuada_mill_cards",
+              "action": {
+                "type": "millCards",
+                "count": 3,
+                "target": "self"
+              },
+              "description": "Botar 3 cartas de tu Mazo."
+            }
+          ]
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "description": "Cuando hace daño al mazo castillo oponente, al inicio de la Fase Final, debes destruir uno de tus Aliados o botar 3 cartas.",
+        "oncePerTurn": true,
+        "id_habilidad": "nuada_end_of_turn_choice",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7377,
+    "nombre": "Oillipheist",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/oillipheistshogun5.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, mira las primeras 3 cartas del Mazo Castillo oponente. Elige una de esas cartas y destierrala. Luego tu oponente baraja su Mazo Castillo. \n",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "lookAtOpponentDeckAndChoose",
+          "count": 3,
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para desterrar.",
+            "optional": false,
+            "destination": "banish"
+          },
+          "unselected": "shuffleBack"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, mira las primeras 3 cartas del Mazo Castillo oponente. Elige una de esas cartas y destierrala. Luego tu oponente baraja su Mazo Castillo.",
+        "id_habilidad": "oillipheist_look_and_banish"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7378,
+    "nombre": "Ramses IX",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ramsesixshogun5.webp",
+    "habilidad_texto_descriptivo": "Cuando es declarado atacante, cada jugador bota 1 carta. Si entre esas cartas hay un Oro o un Aliado, tu oponente bota 2 cartas adicionales. \n",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 2,
+              "target": "opponent"
+            },
+            "condition": {
+              "type": "milledCardsMatchQuery",
+              "query": {
+                "or": [
+                  {
+                    "type": "Oro"
+                  },
+                  {
+                    "type": "Aliado"
+                  }
+                ]
+              }
+            }
+          },
+          "type": "massMill",
+          "count": 1,
+          "target": "allPlayers"
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando es declarado atacante, cada jugador bota 1 carta. Si entre esas cartas hay un Oro o un Aliado, tu oponente bota 2 cartas adicionales.",
+        "id_habilidad": "ramses_ix_on_attack"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7379,
+    "nombre": "Rea",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/reashogun5.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y solo una vez por turno Busca un Aliado de raza olímpico o titán en tu zona de destierro y ponlo en tu línea de defensa sin pagar su coste",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Olímpico o Titán de tu Destierro para jugar sin pagar su coste.",
+          "searchQuery": {
+            "raza": [
+              "Olímpico",
+              "Titan"
+            ],
+            "type": "Aliado",
+            "zone": "banish"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7380,
+    "nombre": "Ceilican Seelie",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/ceilianseelieshogun5webp.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano. Jugar Armas en este Aliado cuesta 1 Oro Menos.  ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Puedes buscar una copia de 'Ceilican Seelie' en tu Mazo Castillo para ponerla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Ceilican Seelie"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano."
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Jugar Armas en este Aliado cuesta 1 Oro menos."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",
@@ -75919,5 +77426,3763 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 3398,
+    "nombre": "Ogier el Danes",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/ogiereldanes2.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando hace daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true,
+        "id_habilidad": "ogier_el_danes_set_damage_marker"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Habilidad de Ogier el Danés: Elige una carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            },
+            {
+              "type": "playerControls",
+              "zone": "cementerio",
+              "query": {
+                "type": "*"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "Cuando hace daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "ogier_el_danes_banish_on_damage"
+      }
+    ]
+  },
+  {
+    "id": 3245,
+    "nombre": "Signy",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/signy2.webp",
+    "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu Mano y la otra en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano. La otra irá a tu Cementerio.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 2,
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu Mano y la otra en tu Cementerio.",
+        "id_habilidad": "signy_enter_play"
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano. La otra irá a tu Cementerio.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "viewCount": 2,
+          "unselected": "moveToGraveyard"
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu Mano y la otra en tu Cementerio.",
+        "id_habilidad": "signy_leave_play"
+      }
+    ]
+  },
+  {
+    "id": 3244,
+    "nombre": "Sigurd Ring",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/sigurdring.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en fuego, puedes buscar 2 Armas en tu Mazo Castillo, pon una en tu Mano y la otra en el Cementerio. Cada vez que juegues un Arma, puedes robar 1 carta",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndDistribute",
+          "count": 2,
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          },
+          "destinations": [
+            {
+              "zone": "hand",
+              "prompt": "Elige un Arma para poner en tu mano."
+            },
+            {
+              "zone": "cementerio",
+              "prompt": "La otra Arma irá a tu Cementerio."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar 2 Armas en tu Mazo Castillo, pon una en tu Mano y la otra en el Cementerio.",
+        "id_habilidad": "sigurd_ring_enter_play"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "description": "Cada vez que juegues un Arma, puedes robar 1 carta.",
+        "id_habilidad": "sigurd_ring_draw_on_weapon",
+        "eventCondition": {
+          "type": "Arma"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ]
+  },
+  {
+    "id": 3403,
+    "nombre": "Darmer",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/darmer3.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir entre barajar 3 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 3 cartas.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Darmer: Elige un efecto.",
+          "options": [
+            {
+              "id": "darmer_shuffle",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 3,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 3 cartas de tu Cementerio para barajar en tu Mazo.",
+                "minCount": 3,
+                "canCancel": false
+              },
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "query": {
+                  "type": "*"
+                },
+                "amount": 3,
+                "comparison": "greaterOrEqual"
+              },
+              "description": "Barajar 3 cartas de tu Cementerio"
+            },
+            {
+              "id": "darmer_mill",
+              "action": {
+                "type": "millCards",
+                "count": 3,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota 3 cartas"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir entre barajar 3 cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote 3 cartas.",
+        "id_habilidad": "darmer_enter_play"
+      }
+    ]
+  },
+  {
+    "id": 4581,
+    "nombre": "Nott",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/nott.webp",
+    "habilidad_texto_descriptivo": "Todos tus Barbaros ganan + 2 de fuerza mientras esta carta este en juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Barbaro",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Todos tus Barbaros ganan +2 de fuerza mientras esta carta este en juego.",
+        "id_habilidad": "nott_barbarian_lord_effect"
+      }
+    ]
+  },
+  {
+    "id": 3019,
+    "nombre": "Trivaldi",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/trivaldi.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego destruye un Aliado oponente de fuerza 3 o menos.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Habilidad de Trivaldi: Elige un Aliado oponente de fuerza 3 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego destruye un Aliado oponente de fuerza 3 o menos.",
+        "id_habilidad": "trivaldi_enter_play_destroy"
+      }
+    ]
+  },
+  {
+    "id": 3096,
+    "nombre": "Vikingo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/vikingo2.webp",
+    "habilidad_texto_descriptivo": "Única. Mientras este Aliado esté en juego, los jugadores no pueden jugar Talismanes.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras este Aliado esté en juego, los jugadores no pueden jugar Talismanes.",
+        "id_habilidad": "vikingo_talisman_lock"
+      }
+    ]
+  },
+  {
+    "id": 3554,
+    "nombre": "Bjorn Ragnarsson",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/bjornragnarsson.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Barbaro de fuerza 2 o menos en tu Castillo y ponlo en juego sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Bárbaro de fuerza 2 o menos de tu Mazo Castillo para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Barbaro",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "fuerza": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, busca un Barbaro de fuerza 2 o menos en tu Castillo y ponlo en juego sin pagar su coste.",
+        "id_habilidad": "bjorn_ragnarsson_tutor"
+      }
+    ]
+  },
+  {
+    "id": 3060,
+    "nombre": "Einheryar",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/einheryar2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye un Aliado que controle tu oponente.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Legendaria",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Habilidad de Einheryar: Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destruye un Aliado que controle tu oponente.",
+        "id_habilidad": "einheryar_enter_play_destroy"
+      }
+    ]
+  },
+  {
+    "id": 4164,
+    "nombre": "Arco de Ullr",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/arcodeullr.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la Fuerza. Cuando entra en juego, puedes buscar un Oro en tu Mazo Castillo y ponlo en juego. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Arco de Ullr: ¿Quieres buscar un Oro en tu Mazo y jugarlo?",
+          "options": [
+            {
+              "id": "arco_ullr_search_play",
+              "action": {
+                "then": {
+                  "effect": {
+                    "type": "chooseOne",
+                    "prompt": "¿Quieres robar una carta?",
+                    "options": [
+                      {
+                        "id": "arco_ullr_draw",
+                        "action": {
+                          "type": "drawCards",
+                          "count": 1
+                        },
+                        "description": "Sí, robar 1 carta."
+                      },
+                      {
+                        "id": "arco_ullr_no_draw",
+                        "action": {},
+                        "description": "No, gracias."
+                      }
+                    ]
+                  }
+                },
+                "type": "searchAndPlayGold",
+                "prompt": "Elige una carta de Oro de tu Mazo Castillo para poner en juego.",
+                "searchQuery": {
+                  "type": "Oro",
+                  "zone": "mazoCastillo"
+                }
+              },
+              "description": "Sí, buscar y jugar un Oro."
+            },
+            {
+              "id": "arco_ullr_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Oro en tu Mazo Castillo y ponlo en juego. Luego, puedes robar 1 carta.",
+        "id_habilidad": "arco_ullr_enter_play"
+      }
+    ]
+  },
+  {
+    "id": 3233,
+    "nombre": "Gram",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/gram2.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la Fuerza. Cuando entra en juego, destruye una carta en juego de Coste 3 o más.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Habilidad de Gram: Elige una carta en juego de Coste 3 o más para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "coste_oro": {
+                "value": 3,
+                "operator": ">="
+              }
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destruye una carta en juego de Coste 3 o más.",
+        "id_habilidad": "gram_destroy_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 5104,
+    "nombre": "Midgard",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/midgard.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un midgard en juego. Cuando entra en juego, puedes buscar un totem de coste 4 o menos en tu mazo castillo y jugarlo sin pagar su coste. En tu fase Final, puedes activar Midgard para agrupar a todos tus aliados en la linea de ataque.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de coste 4 o menos de tu Mazo para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 4,
+              "operator": "<=",
+              "nameIsNot": "Midgard"
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Solo puedes tener un Midgard en juego. Cuando entra en juego, puedes buscar un tótem de coste 4 o menos en tu mazo castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "midgard_unique_and_tutor",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupAllies",
+          "target": {
+            "zone": "attack",
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase Final, puedes activar \"Midgard\" para agrupar a todos tus aliados en la linea de ataque.",
+        "oncePerTurn": true,
+        "id_habilidad": "midgard_regroup_attackers"
+      }
+    ]
+  },
+  {
+    "id": 3737,
+    "nombre": "Hidromiel",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/hidromiel2.webp",
+    "habilidad_texto_descriptivo": "Baraja 3 cartas de tu Cementerio en tu Mazo Castillo. Luego, roba 2 cartas.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 2
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 3 cartas de tu Cementerio para barajar en tu Mazo.",
+          "minCount": 3,
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "*"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Baraja 3 cartas de tu Cementerio en tu Mazo Castillo. Luego, roba 2 cartas.",
+        "id_habilidad": "hidromiel_shuffle_draw"
+      }
+    ]
+  },
+  {
+    "id": 4095,
+    "nombre": "Fuente de Mimir",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/fuentedemimir.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta en juego que no sea Oro. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar 1 carta?",
+              "options": [
+                {
+                  "id": "fuente_mimir_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta."
+                },
+                {
+                  "id": "fuente_mimir_no_draw",
+                  "action": {},
+                  "description": "No, gracias."
+                }
+              ]
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige una carta en juego que no sea Oro para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye una carta en juego que no sea Oro. Luego, puedes robar 1 carta.",
+        "id_habilidad": "fuente_mimir_destroy_draw"
+      }
+    ]
+  },
+  {
+    "id": 4282,
+    "nombre": "Galdar",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/galdar.webp",
+    "habilidad_texto_descriptivo": "Copia el efecto de un Talismán en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "copyTalismanFrom",
+          "prompt": "Elige un Talismán de tu Cementerio para copiar su efecto.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "Talisman",
+              "nameIsNot": "Galdar"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Copia el efecto de un Talismán en tu Cementerio.",
+        "id_habilidad": "galdar_copy_talisman",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Talisman",
+            "nameIsNot": "Galdar"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3336,
+    "nombre": "Maelstrom",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/maelstrom3.webp",
+    "habilidad_texto_descriptivo": "Única. Nombra un tipo de carto que no sea Ora baraja todas las cartas en juego del tipo de carta nombrada.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Maelstrom: Elige un tipo de carta para barajar todas sus copias en juego.",
+          "options": [
+            {
+              "id": "maelstrom_shuffle_aliado",
+              "action": {
+                "type": "shuffleAllMatching",
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "any"
+              },
+              "description": "Barajar todos los Aliados"
+            },
+            {
+              "id": "maelstrom_shuffle_arma",
+              "action": {
+                "type": "shuffleAllMatching",
+                "query": {
+                  "type": "Arma"
+                },
+                "controller": "any"
+              },
+              "description": "Barajar todas las Armas"
+            },
+            {
+              "id": "maelstrom_shuffle_totem",
+              "action": {
+                "type": "shuffleAllMatching",
+                "query": {
+                  "type": "Totem"
+                },
+                "controller": "any"
+              },
+              "description": "Barajar todos los Tótems"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Nombra un tipo de carta que no sea Oro. Baraja todas las cartas en juego del tipo de carta nombrada.",
+        "id_habilidad": "maelstrom_shuffle_by_type"
+      }
+    ]
+  },
+  {
+    "id": 3012,
+    "nombre": "Ataud de Marfil",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/atauddemarfil.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Oro para que genere el doble por este turno.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "Puedes destruir este Oro para que genere 2 oros hasta el final del turno.",
+        "id_habilidad": "ataud_marfil_generate_gold"
+      }
+    ]
+  },
+  {
+    "id": 3093,
+    "nombre": "Codex Runicus",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/codexrunicus.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener un Codex Runicus en juego. Sí este Oro está en tu Reserva de Oro, puedes desterrarlo para poner un Aliado de Coste 2 o menos de tu Cementerio en tu Mano.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Sólo puedes tener un Codex Runicus en juego.",
+        "id_habilidad": "codex_runicus_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "goldReserve",
+            "paidGold"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de Coste 2 o menos de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Sí este Oro está en tu Reserva de Oro, puedes desterrarlo para poner un Aliado de Coste 2 o menos de tu Cementerio en tu Mano.",
+        "id_habilidad": "codex_runicus_tutor"
+      }
+    ]
+  },
+  {
+    "id": 4378,
+    "nombre": "Halatafl",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/halatafl2.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Oro para reducir a 0 la Fuerza de un Aliado en juego hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Legendaria",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para reducir su Fuerza a 0 hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "Puedes destruir este Oro para reducir a 0 la Fuerza de un Aliado en juego hasta la Fase Final.",
+        "id_habilidad": "halatafl_set_strength_zero"
+      }
+    ]
+  },
+  {
+    "id": 3779,
+    "nombre": "Horda Barbara",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/hordabarbara2.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno y si un Barbaro de coste 3 o mas entra en juego, puedes barajar un Barbaro de tu Cementario a tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "raza": "Barbaro",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado Bárbaro de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "raza": "Barbaro",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno y si un Barbaro de coste 3 o mas entra en juego, puedes barajar un Barbaro de tu Cementario a tu Mazo Castillo.",
+        "id_habilidad": "horda_barbara_recycle",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "raza": "Barbaro",
+          "type": "Aliado",
+          "coste_oro": {
+            "value": 3,
+            "operator": ">="
+          }
+        },
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ]
+  },
+  {
+    "id": 3114,
+    "nombre": "Knarr",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/knarr3.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar este Oro y barajar una carta de tu Mano para robar una carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "shuffleFromHandAsCost",
+            "count": 1,
+            "prompt": "Elige una carta de tu mano para barajar en tu Mazo."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar este Oro y barajar una carta de tu Mano para robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "knarr_shuffle_hand_draw"
+      }
+    ]
+  },
+  {
+    "id": 3297,
+    "nombre": "La Saga de Volsung",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/lasagadevolsung2.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar este Oro para generar 2 Oros para jugar Armas. Solo puedes activar un La Saga de Volsung por turno.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 2,
+          "isTemporary": true,
+          "restriction": {
+            "type": "Arma",
+            "usage": "playOnly"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "En tu Fase de Vigilia, puedes pagar este Oro para generar 2 Oros para jugar Armas. Solo puedes activar una La Saga de Volsung por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "saga_volsung_generate_gold"
+      }
+    ]
+  },
+  {
+    "id": 3011,
+    "nombre": "Piedra de Rok",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/piedraderok.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 Oros para buscar un Arma o Totem en tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Arma o Tótem de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": [
+              "Arma",
+              "Totem"
+            ],
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
+            },
+            {
+              "type": "playerHasGold",
+              "count": 3
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": [
+                  "Arma",
+                  "Totem"
+                ]
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 Oros para buscar un Arma o Totem en tu Cementerio y ponerlo en tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "piedra_rok_tutor"
+      }
+    ]
+  },
+  {
+    "id": 3412,
+    "nombre": "Torc Ardiente",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/torcardiente2.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este Oro y otro Oro que controles para desterrar 1 carta del Cementerio oponente. Sólo puedes activar un Torc Ardiente por turno.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Legendaria",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 2
+            }
+          ]
+        },
+        "description": "Puedes pagar este Oro y otro Oro que controles para desterrar 1 carta del Cementerio oponente. Sólo puedes activar un Torc Ardiente por turno.",
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "torc_ardiente_banish_graveyard"
+      }
+    ]
+  },
+  {
+    "id": 3338,
+    "nombre": "Armadura de Valkyria",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/armaduradevalkyria2.webp",
+    "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, puedes desterrarlo para prevenir que uno de tus Aliados sea destruido.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "id_habilidad": "armadura_valkyria_prevent",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "destinationZone": [
+              "cementerio"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, puedes desterrarlo para prevenir que uno de tus Aliados sea destruido."
+      }
+    ]
+  },
+  {
+    "id": 3547,
+    "nombre": "Lagertha",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/lagertha.webp",
+    "habilidad_texto_descriptivo": "Puedes desterrar este Aliado para prevenir que un Aliado que controles sea destruido o barajado.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "description": "Puedes desterrar este Aliado para prevenir que un Aliado que controles sea destruido o barajado.",
+        "id_habilidad": "lagertha_prevent",
+        "eventCondition": {
+          "type": "Aliado",
+          "isOther": true,
+          "controller": "self",
+          "destinationZone": [
+            "cementerio",
+            "mazoCastillo"
+          ]
+        },
+        "listensForEvent": "onAllyLeavePlay"
+      }
+    ]
+  },
+  {
+    "id": 3235,
+    "nombre": "Volsung",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/volsung3.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando es declarado atacante, si tienes 3 o mas Aliados Barbaro en juego, este Aliado gana 2 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Barbaro",
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando es declarado atacante, si tienes 3 o mas Aliados Barbaro en juego, este Aliado gana 2 a la Fuerza hasta la Fase Final.",
+        "id_habilidad": "volsung_attack_buff"
+      }
+    ]
+  },
+  {
+    "id": 3550,
+    "nombre": "Barbaro",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/barbaro.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener una copia de este Aliado en juego En tu Fase de Vigilia, una vez por turno, puedes hacer que tu oponente bote tantas cartas como Fuerza tenga este Aliado.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Sólo puedes tener una copia de este Aliado en juego.",
+        "id_habilidad": "barbaro_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "millByOwnStrength",
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes hacer que tu oponente bote tantas cartas como Fuerza tenga este Aliado.",
+        "oncePerTurn": true,
+        "id_habilidad": "barbaro_mill"
+      }
+    ]
+  },
+  {
+    "id": 3236,
+    "nombre": "Ivar Ragnarsson",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/ivarragnarsson2.webp",
+    "habilidad_texto_descriptivo": "Mientras este Aliado este en juego, tus demas Barbaros pueden atacar cuando entran en juego y ganan 1 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Barbaro",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Tus demas Barbaros pueden atacar cuando entran en juego.",
+        "id_habilidad": "ivar_ragnarsson_haste_aura"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Barbaro",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Tus demas Barbaros ganan 1 a la fuerza.",
+        "id_habilidad": "ivar_ragnarsson_strength_aura"
+      }
+    ]
+  },
+  {
+    "id": 3097,
+    "nombre": "Zapatos de Hierro",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/zapatosdehierro2.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la Fuerza. Cuando el portador es declarado atacante puedes elegir un Aliado en juego para que tenga Fuerza 0 hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que tenga Fuerza 0 hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn",
+          "canCancel": true
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando el portador es declarado atacante puedes elegir un Aliado en juego para que tenga Fuerza 0 hasta la Fase Final.",
+        "id_habilidad": "zapatos_hierro_set_strength_zero"
+      }
+    ]
+  },
+  {
+    "id": 3669,
+    "nombre": "Aetgir",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/aetgir.webp",
+    "habilidad_texto_descriptivo": "Su portador gana 2 a la Fuerza. Cuando entra en juego, elige un Aliado que controle tu oponente. Mientras esta Arma esté en juego, el Aliado elegido pierde su habilidad y no puede ser declarado atacante.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "prompt": "Elige un Aliado oponente. Mientras esta Arma esté en juego, pierde su habilidad y no puede atacar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "whileInPlay",
+          "addKeywords": [
+            "cannotAttack"
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, elige un Aliado que controle tu oponente. Mientras esta Arma esté en juego, el Aliado elegido pierde su habilidad y no puede ser declarado atacante."
+      }
+    ]
+  },
+  {
+    "id": 3098,
+    "nombre": "Karve",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/karve.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mirar la mano de tu oponente. Si esta en tu Reserva de Oros, puedes desterrar este Oro par amirar la Mano de tu oponente.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Cuando Karve entra en juego, ¿quieres mirar la mano de tu oponente?",
+          "options": [
+            {
+              "id": "karve_view_hand_yes",
+              "action": {
+                "type": "viewOpponentHand",
+                "prompt": "Mano del oponente"
+              },
+              "description": "Sí, mirar la mano"
+            },
+            {
+              "id": "karve_view_hand_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mirar la mano de tu oponente.",
+        "id_habilidad": "karve_enter_play_view_hand"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "viewOpponentHand",
+          "prompt": "Mano del oponente"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si esta en tu Reserva de Oros, puedes desterrar este Oro para mirar la Mano de tu oponente.",
+        "id_habilidad": "karve_reserve_view_hand"
+      }
+    ]
+  },
+  {
+    "id": 4301,
+    "nombre": "Brokk",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/brokk.webp",
+    "habilidad_texto_descriptivo": "Si es el primer Aliado que entra en juego bajo tu control durante la partida, puedes buscar 2 Oros en tu Mazo Castillo y ponerlos en tu Mano.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "count": 2,
+          "prompt": "Elige 2 Oros de tu Mazo para poner en tu mano.",
+          "searchQuery": {
+            "type": "Oro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isFirstTurn"
+            },
+            {
+              "type": "deckContains",
+              "query": {
+                "type": "Oro"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 3368,
+    "nombre": "Haugtrold",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/haugtrold.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Haugtrold en juego. Mientras Haugtrold este en juego, los Aliados Abominacion que controles ganan I a la Fuerza.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Haugtrold en juego.",
+        "id_habilidad": "haugtrold_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Abominacion",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Haugtrold este en juego, los Aliados Abominacion que controles ganan 1 a la Fuerza.",
+        "id_habilidad": "haugtrold_lord_effect"
+      }
+    ]
+  },
+  {
+    "id": 4087,
+    "nombre": "Surt",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/surt.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Tótem en juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Tótem en juego para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes destruir un Tótem en juego.",
+        "id_habilidad": "surt_destroy_totem"
+      }
+    ]
+  },
+  {
+    "id": 3880,
+    "nombre": "Aegir",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/aegir.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente para barajar en el Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true,
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+        "id_habilidad": "aegir_shuffle_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 3242,
+    "nombre": "Bruja Lobo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/brujalobo2.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes generar 2 Oros para jugar Abominaciones de Coste 4 o más. Una vez por turno, cuando juegues un Aliado de Coste 3 o más, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 2,
+          "isTemporary": true,
+          "restriction": {
+            "raza": "Abominacion",
+            "type": "Aliado",
+            "usage": "playOnly",
+            "coste_oro": {
+              "value": 4,
+              "operator": ">="
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes generar 2 Oros para jugar Abominaciones de Coste 4 o más.",
+        "oncePerTurn": true,
+        "id_habilidad": "bruja_lobo_gold_generation"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "description": "Una vez por turno, cuando juegues un Aliado de Coste 3 o más, puedes robar 1 carta.",
+        "id_habilidad": "bruja_lobo_draw_on_ally_play",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "coste_oro": {
+            "value": 3,
+            "operator": ">="
+          }
+        },
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ]
+  },
+  {
+    "id": 3241,
+    "nombre": "Fafnir",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/fafnir2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliado oponente que no sea Abominacion o Barbaro.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente (que no sea Abominación o Bárbaro) para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "raza": {
+                "not_in": [
+                  "Abominacion",
+                  "Barbaro"
+                ]
+              },
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes destruir un Aliado oponente que no sea Abominacion o Barbaro.",
+        "id_habilidad": "fafnir_destroy_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 3006,
+    "nombre": "Hel",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/hel.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, baraja 4 cartas de tu Cementerio en tu Mazo Castillo. Una vez por turno, puedes pagar 4 de Oro para barajar 4 cartas de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 4,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 4 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "minCount": 4,
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 4,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando entra en juego, baraja 4 cartas de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "hel_enter_play_shuffle"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 4
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 4,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 4 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "minCount": 4,
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 4,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno, puedes pagar 4 de Oro para barajar 4 cartas de tu Cementerio en tu Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "hel_activatable_shuffle"
+      }
+    ]
+  },
+  {
+    "id": 3307,
+    "nombre": "Skeljungur",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/skeljungur2.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase Final, elige entre subir este Aliado a la Mano de su dueño o desterrar las 2 primeras cartas de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Skeljungur: Elige un efecto.",
+          "options": [
+            {
+              "id": "skeljungur_return_to_hand",
+              "action": {
+                "type": "returnSelfToHand"
+              },
+              "description": "Subir a Skeljungur a tu mano."
+            },
+            {
+              "id": "skeljungur_banish_deck",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "self",
+                "destinationZone": "banish"
+              },
+              "description": "Desterrar las 2 primeras cartas de tu Mazo Castillo."
+            }
+          ]
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase Final, elige entre subir este Aliado a la Mano de su dueño o desterrar las 2 primeras cartas de tu Mazo Castillo.",
+        "id_habilidad": "skeljungur_final_phase_choice",
+        "resolvesInstantly": true
+      }
+    ]
+  },
+  {
+    "id": 3243,
+    "nombre": "Brunnmigi",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/brunnmigi2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca una Abominacion de coste 3 o menos en tu Mazo Castillo y juegala sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige una Abominación de coste 3 o menos de tu Mazo para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Abominacion",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, busca una Abominacion de coste 3 o menos en tu Mazo Castillo y juegala sin pagar su coste.",
+        "id_habilidad": "brunnmigi_tutor_on_enter"
+      }
+    ]
+  },
+  {
+    "id": 3375,
+    "nombre": "Fenrisulfr",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/fenrisulfr.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mostrar 1 Aliado de tu Mano para robar 2 Cartas. Mientras esté Aliado esté en juego los Oros en fuego pierden su habilidad.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de tu mano para mostrar y robar 2 cartas.",
+          "optional": true,
+          "alsoDraws": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego puedes mostrar 1 Aliado de tu Mano para robar 2 Cartas.",
+        "id_habilidad": "fenrisulfr_draw_on_enter"
+      },
+      {
+        "effect": {
+          "type": "annulAllMatching",
+          "target": {
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras esté Aliado esté en juego los Oros en juego pierden su habilidad.",
+        "id_habilidad": "fenrisulfr_gold_annul_aura"
+      }
+    ]
+  },
+  {
+    "id": 3056,
+    "nombre": "Vientos del Ragnarok",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/vientosdelragnarok2.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talismán, destiérralo. Cuando tu oponente juegue un Aliado, Tótem o Arma, puedes jugar este Talismán para que esa carta entre en juego sin su habilidad hasta que salga del juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Promocional",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "descripcion": "Anula la habilidad de un Aliado oponente que entra en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "vientos_ragnarok_annul_ally"
+      },
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "descripcion": "Anula la habilidad de un Tótem oponente que entra en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "vientos_ragnarok_annul_totem"
+      },
+      {
+        "effect": {
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "triggeringCard"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "descripcion": "Anula la habilidad de un Arma oponente que entra en juego.",
+        "banishOnPlay": true,
+        "id_habilidad": "vientos_ragnarok_annul_weapon"
+      }
+    ]
+  },
+  {
+    "id": 4652,
+    "nombre": "Matador de Gigantes",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/matadordegigantes.webp",
+    "habilidad_texto_descriptivo": "Todos tus Aliados doblan su fuerza, hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "doubleallAllyStrength",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2,
+              "operator": "multiply"
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Todos tus Aliados doblan su fuerza, hasta la Fase Final.",
+        "id_habilidad": "matador_gigantes_double_strength"
+      }
+    ]
+  },
+  {
+    "id": 4976,
+    "nombre": "Fuerza Abominable",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/fuerzaabominable.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar una Abominación de tu mano para mirar las 3 primeras cartas de tu mazo castillo y ordenarlas. Puedes destruir este Oro para que un Aliado oponente pierda 1 a la fuerza hasta el final del turno.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHand",
+          "query": {
+            "raza": "Abominacion",
+            "type": "Aliado"
+          },
+          "prompt": "Muestra una Abominación de tu mano para mirar y reordenar las 3 primeras cartas de tu mazo.",
+          "optional": true,
+          "onSuccess": {
+            "type": "lookAndReorderTopDeck",
+            "count": 3,
+            "prompt": "Mira las 3 primeras cartas de tu Mazo Castillo y reordénalas como quieras."
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mostrar una Abominación de tu mano para mirar las 3 primeras cartas de tu mazo castillo y ordenarlas.",
+        "id_habilidad": "fuerza_abominable_reorder_deck"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 1 a la fuerza hasta el final del turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "Puedes destruir este Oro para que un Aliado oponente pierda 1 a la fuerza hasta el final del turno.",
+        "id_habilidad": "fuerza_abominable_debuff"
+      }
+    ]
+  },
+  {
+    "id": 3301,
+    "nombre": "Langskib",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/langskib.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilía, puedes desterrar este Oro para elegir un Aliado que controle tu oponente. Ese Aliado no podrá ser declarado bloqueador este turno",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado oponente para que no pueda bloquear este turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "keyword": "cannotBlock",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "En tu Fase de Vigilía, puedes desterrar este Oro para elegir un Aliado que controle tu oponente. Ese Aliado no podrá ser declarado bloqueador este turno",
+        "id_habilidad": "langskib_cannot_block"
+      }
+    ]
+  },
+  {
+    "id": 3401,
+    "nombre": "Modranicht",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/modranicht.webp",
+    "habilidad_texto_descriptivo": "Única. Anula un Arma o Talismán de Coste 2 o menos.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "description": "Anula un Arma oponente de Coste 2 o menos.",
+        "id_habilidad": "modranicht_annul_weapon",
+        "play_condition": {
+          "type": "isResponseCard"
+        }
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "description": "Anula un Talismán oponente de Coste 2 o menos.",
+        "id_habilidad": "modranicht_annul_talisman",
+        "play_condition": {
+          "type": "isResponseCard"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3552,
+    "nombre": "Froldak",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/froldak.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar un Aliado Abominación de tu Mano para mirar las 4 primeras cartas de tu Mazo Castillo y devolverlas en cualquier orden.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHand",
+          "query": {
+            "raza": "Abominacion",
+            "type": "Aliado"
+          },
+          "prompt": "Muestra una Abominación de tu mano para mirar y reordenar las 4 primeras cartas de tu mazo.",
+          "optional": true,
+          "onSuccess": {
+            "type": "lookAndReorderTopDeck",
+            "count": 4,
+            "prompt": "Mira las 4 primeras cartas de tu Mazo Castillo y reordénalas como quieras."
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mostrar un Aliado Abominación de tu Mano para mirar las 4 primeras cartas de tu Mazo Castillo y devolverlas en cualquier orden.",
+        "id_habilidad": "froldak_reorder_deck"
+      }
+    ]
+  },
+  {
+    "id": 3071,
+    "nombre": "Draugar",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/draugar.webp",
+    "habilidad_texto_descriptivo": "Todos tus Abominaciones pueden atacar cuando entren en juego y mientras este Aliado este en juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Abominacion",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "trigger": "continuous",
+        "description": "Todos tus Abominaciones pueden atacar cuando entren en juego y mientras este Aliado este en juego.",
+        "id_habilidad": "draugar_abomination_haste_aura"
+      }
+    ]
+  },
+  {
+    "id": 3543,
+    "nombre": "Nanna",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/nanna.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Aliado para anular un Talisman.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruir este Aliado para anular un Talismán oponente.",
+        "id_habilidad": "nanna_annul_talisman",
+        "costPaidBeforeResponse": true
+      }
+    ]
+  },
+  {
+    "id": 4090,
+    "nombre": "Ullr",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/ullr.webp",
+    "habilidad_texto_descriptivo": "Al comienzo de tu Fase de Ataque, si este Aliado entro en juego este turno, puedes descartar una carta de tu Mano para que pueda ser declarado atacante este turno.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede atacar."
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Descarta una carta para que Ullr pueda atacar este turno."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Puedes descartar una carta de tu mano para que pueda atacar este turno.",
+        "oncePerTurn": true,
+        "id_habilidad": "ullr_enable_attack"
+      }
+    ]
+  },
+  {
+    "id": 3367,
+    "nombre": "Eostre",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/eostre.webp",
+    "habilidad_texto_descriptivo": "Puedes barajar este Aliado en el Mazo Castillo de su dueño para que un Aliado en juego. tenga fuerza 0 hasta la Fase Final. Cuando salga del juego, puedes robar 1 carta",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "shuffleSelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que su Fuerza sea 0 hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar este Aliado en el Mazo Castillo de su dueño para que un Aliado en juego tenga fuerza 0 hasta la Fase Final.",
+        "id_habilidad": "eostre_set_strength_zero"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Eostre ha salido del juego. ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "eostre_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "eostre_draw_no",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego, puedes robar 1 carta.",
+        "id_habilidad": "eostre_leave_play_draw"
+      }
+    ]
+  },
+  {
+    "id": 3537,
+    "nombre": "Hrist",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/hrist.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado de tu Cementerio pagando su Coste. Una vez por turno, puedes descartar una carta de tu Mano para robar l carta o para que este Aliado gane 2 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "paySelfCostFromGraveyard",
+          "baseCost": 2
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, puedes jugar este Aliado de tu Cementerio pagando su Coste.",
+        "id_habilidad": "hrist_graveyard_play"
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Descarta una carta para activar la habilidad de Hrist."
+          }
+        ],
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto para la habilidad de Hrist:",
+          "options": [
+            {
+              "id": "hrist_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta."
+            },
+            {
+              "id": "hrist_buff",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": 2
+                },
+                "type": "applyBuffToSelf",
+                "duration": "endOfTurn"
+              },
+              "description": "Este Aliado gana 2 a la Fuerza hasta la Fase Final."
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno, puedes descartar una carta de tu Mano para robar 1 carta o para que este Aliado gane 2 a la Fuerza hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "hrist_discard_choice"
+      }
+    ]
+  },
+  {
+    "id": 3238,
+    "nombre": "Loke",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/loke2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, copia la habilidad de un Aliado en tu Cementerio por el resto del juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "copyAbilityFromGY",
+          "prompt": "Elige un Aliado de tu Cementerio para copiar sus habilidades.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, copia la habilidad de un Aliado en tu Cementerio por el resto del juego.",
+        "id_habilidad": "loke_copy_ability"
+      }
+    ]
+  },
+  {
+    "id": 3878,
+    "nombre": "Sif",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/sif.webp",
+    "habilidad_texto_descriptivo": "Cuando es destruido, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente para barajar en el Mazo Castillo de su dueño.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "description": "Cuando es destruido, baraja un Aliado oponente en el Mazo Castillo de su dueño.",
+        "id_habilidad": "sif_on_destroyed"
+      }
+    ]
+  },
+  {
+    "id": 3299,
+    "nombre": "Magni",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/magni.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando es declarado atacante, gana 1 a la Fuerza hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes descartar 1 carta al azar de la Mano de tu oponente.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "magni_haste"
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "description": "Cuando es declarado atacante, gana 1 a la Fuerza hasta la Fase Final.",
+        "id_habilidad": "magni_attack_buff"
+      },
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo Castillo oponente, descártale una carta de la mano al azar.",
+        "id_habilidad": "galahad_damage_discard"
+      }
+    ]
+  },
+  {
+    "id": 3237,
+    "nombre": "Wotan",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/wotan2.webp",
+    "habilidad_texto_descriptivo": "Única.  En tu Fase de Vigilia, puedes jugar esta carta de tu Cementerio pagando su Coste. Cuando entra en juego, puedes buscar un Dios de Coste 2 o menos en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "paySelfCostFromGraveyard",
+          "baseCost": 3
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, puedes jugar esta carta de tu Cementerio pagando su Coste.",
+        "id_habilidad": "wotan_graveyard_play"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Dios de Coste 2 o menos de tu Mazo Castillo para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Dios",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Dios de Coste 2 o menos en tu Mazo Castillo y jugarlo sin pagar su coste.",
+        "id_habilidad": "wotan_tutor_god"
+      }
+    ]
+  },
+  {
+    "id": 3528,
+    "nombre": "Hodur",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/hodur2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño. Luego, hasta que salga del juego, Hodur copia la Fuerza base, el Coste, la Raza, el Nombre y gana la Habilidad del Aliado barajado. Mientras este Aliado esté en juego, el Aliado barajado y todas sus copias no pueden ser jugados por tu oponente.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "shuffleAndBecomeCopy",
+          "prompt": "Elige un Aliado oponente para barajar en su Mazo y copiar sus características.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "copyProperties": [
+            "fuerza_base",
+            "coste_oro",
+            "raza",
+            "nombre",
+            "habilidades"
+          ],
+          "remembersTarget": true,
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño. Luego, hasta que salga del juego, Hodur copia la Fuerza base, el Coste, la Raza, el Nombre y gana la Habilidad del Aliado barajado. Mientras este Aliado esté en juego, el Aliado barajado y todas sus copias no pueden ser jugados por tu oponente.",
+        "id_habilidad": "hodur_shuffle_and_copy"
+      }
+    ]
+  },
+  {
+    "id": 3819,
+    "nombre": "Thor",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/primera_era/thor2.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando entra en juego, destruye 2 Aliados oponentes",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTargetInModal",
+          "count": 2,
+          "prompt": "Habilidad de Thor: Elige 2 Aliados oponentes para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "minCount": 2,
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "controller": "opponent"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3100,
+    "nombre": "Vinland",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/vinland.webp",
+    "habilidad_texto_descriptivo": "Una vez en tu turno, puedes destruir un Aliado en juego de Fuerza 1 o menos.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado de Fuerza 1 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 1,
+                "operator": "<="
+              }
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez en tu turno, puedes destruir un Aliado en juego de Fuerza 1 o menos.",
+        "oncePerTurn": true,
+        "id_habilidad": "vinland_destroy_weak_ally"
+      }
+    ]
+  },
+  {
+    "id": 3890,
+    "nombre": "Forma de Lobo",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/formadelobo.webp",
+    "habilidad_texto_descriptivo": "Elige un Aliado que controles para que gane 3 a la fuerza y sea Imbloqueable hasta la Fase Final. En la Fase Final, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "addMarkerToPlayer",
+          "marker": "forma_lobo_pe_can_draw",
+          "duration": "endOfTurn",
+          "uniqueSource": true
+        },
+        "trigger": "onEnterPlay",
+        "isHidden": true,
+        "id_habilidad": "forma_lobo_pe_marker"
+      },
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToTarget",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un Aliado que controles para que gane 3 a la fuerza y sea Imbloqueable hasta la Fase Final.",
+        "id_habilidad": "forma_lobo_pe_on_enter_play"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Forma de Lobo: ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "forma_lobo_pe_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "forma_lobo_pe_draw_no",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "forma_lobo_pe_can_draw",
+          "uniqueSource": true
+        },
+        "description": "En la Fase Final, puedes robar una carta.",
+        "id_habilidad": "forma_lobo_pe_final_phase_draw",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3780,
+    "nombre": "Concilio de Dioses",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/conciliodedioses.webp",
+    "habilidad_texto_descriptivo": "Si esta en tu Reserva de Oros, puedes barajar este oro en tu Mazo Castillo y destruir un Dios que controles para barajar tantas cartas de tu Cementerio como Fuerza tenga el Dios destruido.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "shuffleSelf"
+          },
+          {
+            "type": "destroyTarget",
+            "prompt": "Elige un Dios que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "raza": "Dios",
+                "type": "Aliado"
+              },
+              "controller": "self"
+            },
+            "rememberAs": "destroyedGod"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "fromContext": "destroyedGod.fuerza"
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige hasta {count} cartas de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Dios",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Si esta en tu Reserva de Oros, puedes barajar este oro en tu Mazo Castillo y destruir un Dios que controles para barajar tantas cartas de tu Cementerio como Fuerza tenga el Dios destruido.",
+        "id_habilidad": "concilio_de_dioses_recycle"
+      }
+    ]
+  },
+  {
+    "id": 3039,
+    "nombre": "Vor",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/vor.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, cuando juegues un Talismán puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "any",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, cuando juegues un Talismán puedes robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "vor_draw_on_talisman_play",
+        "eventCondition": {
+          "type": "Talisman"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ]
+  },
+  {
+    "id": 3010,
+    "nombre": "Yord",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/yord.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener una Yord juego. Una vez por turno, cuando éste u otro Aliado Dios que controles sea destruido, puedes robar 1 carta. Luego, tu oponente bote 3 cartas.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        },
+        "phase": "any",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 3,
+              "target": "opponent"
+            }
+          },
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "description": "Una vez por turno, cuando éste u otro Aliado Dios que controles sea destruido, puedes robar 1 carta. Luego, tu oponente bota 3 cartas.",
+        "oncePerTurn": true,
+        "id_habilidad": "yord_on_god_destroyed",
+        "eventCondition": {
+          "raza": "Dios",
+          "type": "Aliado",
+          "destinationZone": "cementerio"
+        },
+        "listensForEvent": "onAllyLeavePlay"
+      }
+    ]
+  },
+  {
+    "id": 3762,
+    "nombre": "Meili",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/meili.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes destruir otro Dios que controles para destruir una carta oponente de coste igual o menor al Dios destruido.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "prompt": "Elige otro Dios que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "raza": "Dios",
+                "type": "Aliado",
+                "isOther": true
+              },
+              "controller": "self"
+            },
+            "rememberAs": "destroyedGodForMeili"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige una carta oponente para destruir.",
+          "target": {
+            "query": {
+              "notType": "Oro",
+              "coste_oro": {
+                "value": {
+                  "fromContext": "destroyedGodForMeili.coste_oro"
+                },
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Dios",
+                "type": "Aliado",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno, puedes destruir otro Dios que controles para destruir una carta oponente de coste igual o menor al Dios destruido.",
+        "oncePerTurn": true,
+        "id_habilidad": "meili_sacrifice_destroy"
+      }
+    ]
+  },
+  {
+    "id": 3134,
+    "nombre": "Tyr",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/tyr3.webp",
+    "habilidad_texto_descriptivo": "Cuando este aliado entra o sale del juego puedes buscar un Talisman en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Talismán de tu Mazo o Cementerio para poner en tu mano.",
+          "options": [
+            {
+              "id": "deck_talisman",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Desde el Mazo"
+            },
+            {
+              "id": "graveyard_talisman",
+              "zone": "cementerio",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando este aliado entra en juego puedes buscar un Talisman en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+        "id_habilidad": "tyr_tutor_enter_play"
+      },
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Talismán de tu Mazo o Cementerio para poner en tu mano.",
+          "options": [
+            {
+              "id": "deck_talisman",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Desde el Mazo"
+            },
+            {
+              "id": "graveyard_talisman",
+              "zone": "cementerio",
+              "query": {
+                "type": "Talisman"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando este aliado sale del juego puedes buscar un Talisman en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+        "id_habilidad": "tyr_tutor_leave_play"
+      }
+    ]
+  },
+  {
+    "id": 4527,
+    "nombre": "Esposas de los Furibundos",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/esposasdelosfuribundos.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado oponente de fuerza mayor a 3.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de fuerza mayor a 3 para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 3,
+                "operator": ">"
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado oponente de fuerza mayor a 3.",
+        "id_habilidad": "esposas_furibundos_destroy"
+      }
+    ]
+  },
+  {
+    "id": 3673,
+    "nombre": "Rapto de Idunn",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/raptodeidunn.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado que controles y gana el control de un Aliado oponente por el resto del juego.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "gainControlOfAlly",
+              "prompt": "Elige un Aliado oponente para ganar su control.",
+              "target": {
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "opponent"
+              },
+              "duration": "permanent",
+              "canCancel": true
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado que controles para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "maxCount": 1,
+          "minCount": 1,
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado que controles y gana el control de un Aliado oponente por el resto del juego.",
+        "id_habilidad": "rapto_de_idunn_effect",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "self"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        }
+      }
+    ]
   }
 ]

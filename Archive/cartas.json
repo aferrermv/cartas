@@ -2700,31 +2700,28 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "phase": "any",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
-        "description": "Cuando juegues un Aliado de Raza Dragón de coste 3 o más, puedes robar 1 carta.",
-        "eventCondition": {
-          "cost": {
-            "value": 3,
-            "operator": ">="
-          },
-          "raza": "Dragon",
-          "type": "Aliado"
-        },
-        "listensForEvent": "onAllyEnterPlay",
-        "triggeringPlayer": "self",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        }
+  {
+    "phase": "any",
+    "effect": {
+      "type": "drawCards",
+      "count": 1
+    },
+    "trigger": "activatable",
+    "listensForEvent": "onAllyEnterPlay",
+    "triggeringPlayer": "self",
+    "description": "Cuando juegues un Aliado de Raza Dragón de coste 3 o más, puedes robar 1 carta.",
+    "eventCondition": {
+      "cost": {
+        "operator": ">=",
+        "value": 3
       },
-      {
-        "phase": "any",
+      "type": "Aliado",
+      "raza": "Dragon"
+    },
+    "limit": 1
+  },
+  {
+   "phase": "any",
         "effect": {
           "type": "searchAndShuffleIntoDeck",
           "zone": "cementerio",
@@ -2735,19 +2732,18 @@
           "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo.",
           "canCancel": true
         },
-        "trigger": "activatable",
-        "description": "Cuando un Aliado de raza Dragón salga del juego, puedes barajar 1 carta de tu cementerio en tu mazo.",
-        "eventCondition": {
-          "raza": "Dragon",
-          "type": "Aliado"
-        },
-        "listensForEvent": "onAllyLeavePlay",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        }
+    "trigger": "activatable",
+    "listensForEvent": "onAllyLeavePlay",
+    "description": "Cuando un Aliado de raza Dragón salga del juego, puedes barajar 1 carta de tu cementerio en tu mazo castillo.",
+    "eventCondition": {
+      "type": "triggeringCardCondition",
+      "query": {
+        "type": "Aliado",
+        "raza": "Dragon"
       }
-    ]
+    }
+  }
+]
   },
   {
     "id": 40,
@@ -2767,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.7.6",
+    "pack_version": "2.7.7",
     "habilidades": []
   },
   {
@@ -11169,7 +11165,10 @@
             },
             {
               "type": "currentPhase",
-              "phase": "Principal"
+             "phase": [
+                "Principal",
+                "Guerra de Talismanes"
+              ]
             }
           ]
         },
@@ -23363,7 +23362,7 @@
           }
         },
         "listensForEvent": "onAllyLeavePlay",
-        "triggeringPlayer": "self",
+        "triggeringPlayer": "opponent",
         "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado que controles sea destruido o barajado por una habilidad oponente."
       },
       {
@@ -43615,7 +43614,7 @@
           }
         },
         "listensForEvent": "onAllyLeavePlay",
-        "triggeringPlayer": "self",
+        "triggeringPlayer": "opponent",
         "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Totem que controles sea destruido o barajado por una habilidad oponente."
       }
     ],

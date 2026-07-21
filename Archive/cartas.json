@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.7.8",
+    "pack_version": "2.7.9",
     "habilidades": []
   },
   {
@@ -30039,6 +30039,9 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
         "costs": [
           {
             "type": "payGold",

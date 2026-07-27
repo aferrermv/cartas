@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.8.1",
+    "pack_version": "2.8.2",
     "habilidades": []
   },
   {
@@ -51122,7 +51122,7 @@
         "id_habilidad": "acoris_banish_effect"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7382,
@@ -51169,7 +51169,7 @@
         "id_habilidad": "aine_reveal_and_banish"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7383,
@@ -51234,7 +51234,7 @@
         "description": "Tus demás Aliados de raza Eterno pueden atacar cuando entran en juego."
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7384,
@@ -51322,7 +51322,7 @@
         "habilidad_texto_descriptivo": "En tu fase final puedes agrupar tus cartas."
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7385,
@@ -51381,7 +51381,7 @@
         "oncePerTurn": true
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7386,
@@ -51440,7 +51440,7 @@
         "oncePerTurn": true
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7387,
@@ -51482,7 +51482,7 @@
         "description": "Indestructible. Cuando Haquika entra en juego, puedes elegir un Aliado oponente y ponerlo en tu Linea de Defensa. Si Haquika sale del juego, el Aliado vuelve a la linea de Defensa Oponente."
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7388,
@@ -51559,7 +51559,7 @@
         "id_habilidad": "kilgharrah_draw"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7389,
@@ -51628,7 +51628,7 @@
         "id_habilidad": "mago_merlin_tutor_talisman"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7390,
@@ -51685,7 +51685,7 @@
         "id_habilidad": "marco_antonio_talisman_lock"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7391,
@@ -51792,7 +51792,7 @@
         "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7392,
@@ -51863,7 +51863,7 @@
         "id_habilidad": "arturo_end_of_turn_mill"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7393,
@@ -51904,7 +51904,7 @@
         "trigger": "onDeclareAttack"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 7394,
@@ -51951,7 +51951,7 @@
         "id_habilidad": "nephre_ka_enter_play"
       }
     ],
-    "tier": "muy bajo"
+    "tier": "medio"
   },
   {
     "id": 1585,

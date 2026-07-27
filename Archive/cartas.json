@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.8.2",
+    "pack_version": "2.8.3",
     "habilidades": []
   },
   {
@@ -51954,6 +51954,163 @@
     "tier": "medio"
   },
   {
+    "id": 7395,
+    "nombre": "Goblin Maligno",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/goblinmalignoalt2.webp",
+    "habilidad_texto_descriptivo": "Carga: Puede atacar cuando entra en juego.\nAl declarar ataque gana 1 de fuerza por cada otra carta \"Goblin\" en juego.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ],
+            "isOther": true,
+            "nameContains": "Goblin"
+          },
+          "target": "self",
+          "duration": "endOfTurn",
+          "multiplier": 1
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuándo es declarado atacante gana 1 a la fuerza hasta la fase final por cada otra carta Goblin en juego.",
+        "id_habilidad": "goblin_maligno_attack_buff"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7396,
+    "nombre": "Sir Bedivere",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/sirbediveredorado.webp",
+    "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "bedivereEffect",
+          "prompt": "Nombra un Aliado. Si tu oponente lo tiene en su mano, puedes jugarlo sin pagar su coste."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7397,
+    "nombre": "Sir Bedivere",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/sirbedivereoverframe.webp",
+    "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "bedivereEffect",
+          "prompt": "Nombra un Aliado. Si tu oponente lo tiene en su mano, puedes jugarlo sin pagar su coste."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7398,
+    "nombre": "Sir Bedivere",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/sirbediveresamurai.webp",
+    "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "bedivereEffect",
+          "prompt": "Nombra un Aliado. Si tu oponente lo tiene en su mano, puedes jugarlo sin pagar su coste."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "habilidad_texto_descriptivo": "Mientras Sir Bedivere esté en juego, en tu fase de vigilia y una vez por turno, puedes nombrar un Aliado, si tu oponente lo tiene, lo puedes jugar en tu linea de defensa sin pagar su coste. Se considera uno de tus Aliados hasta que salga del juego."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",
@@ -72958,7 +73115,7 @@
     "nombre": "Rey Midas",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/reymidas.webp",
+    "imagen_url": "/img/store/cartas/reymidaspb.webp",
     "habilidad_texto_descriptivo": "Cuando un Oro entra en juego bajo tu control, puedes elegir que otro Aliado en juego gane 1 a la fuerza permanentemente. Cuando salga del juego, puedes buscar un Oro en tu Cementerio y ponerlo en tu mano.",
     "descripcion": null,
     "expansion": "Helenica",

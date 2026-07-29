@@ -52111,6 +52111,1024 @@
     "tier": "medio"
   },
   {
+    "id": 7399,
+    "nombre": "Atenas",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/atenasrelampago2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Oro o un Totem en tu Mazo Castillo y ponerlo en tu Mano. En tu Fase de vigilia, una vez por turno, puedes pagar 2 Oros para buscar una carta de tu Mazo Castillo y ponerla en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Busca un Oro o un Tótem en tu Mazo Castillo y ponlo en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": [
+              "Oro",
+              "Totem"
+            ],
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Oro o un Totem en tu Mazo Castillo y ponerlo en tu Mano."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Busca una carta en tu Mazo Castillo y ponla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "*",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de vigilia, una vez por turno, puedes pagar 2 Oros para buscar una carta de tu Mazo Castillo y ponerla en tu Mano.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7400,
+    "nombre": "Aton",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/atonrelampago3.webp",
+    "habilidad_texto_descriptivo": "Atón no puede ser anulado. Busca una carta de Oro en tu Mazo Castillo y ponla en tu mano. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta de Oro de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "description": "Busca una carta de Oro en tu Mazo castillo y ponla en tu mano. No puede ser anulado.",
+        "id_habilidad": "aton_main"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7401,
+    "nombre": "Avalon",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/avalonrelampago4.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+    "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": [
+                "attack",
+                "defense",
+                "support"
+              ],
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "field"
+          ]
+        },
+        "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes robar tantas cartas como Aliados tengas en juego.",
+        "oncePerTurn": true,
+        "id_habilidad": "avalon_draw_allies"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7402,
+    "nombre": "Bec de Corbin",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/becdecorbinrelampago5.webp",
+    "habilidad_texto_descriptivo": "El portador de Bec de Corbin gana 2 a la fuerza. Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo o Cementerio y ponerla en tu mano.",
+    "descripcion": "¿Me hablas de invasores? Pues que traigan su caballería, los vamos a estar esperando.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Ultra Rara",
+    "fecha_creacion": "2025-06-25T10:24:26.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Arma de tu Mazo o Cementerio para poner en tu mano.",
+          "options": [
+            {
+              "id": "deck_weapons",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Mazo"
+            },
+            {
+              "id": "graveyard_weapons",
+              "zone": "cementerio",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7403,
+    "nombre": "Bola de Fuego",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/boladefuegorelampago6.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta en juego, que no sea un oro.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "message": "Habilidad de Bola de Fuego: Elige una carta en juego que no sea Oro para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7404,
+    "nombre": "Bruja Anis",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/brujaanisvictoriosa7.webp",
+    "habilidad_texto_descriptivo": "Al final de tu turno. Si solo controlas aliados de raza \"Faerie\" puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Faerie"
+              }
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, si todos tus Aliados son de raza Faerie, puedes robar una carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "bruja_anis_draw_card_activatable"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7405,
+    "nombre": "Caja de Pandora",
+    "tipo": "Oro",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cajadepandorarelampago8.webp",
+    "habilidad_texto_descriptivo": "Sí Caja de Pandora está en tu reserva de oros puedes desterrarla y pagar un oro para anular un talismán oponente de coste 2 o menos",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "triggeringCardCondition",
+              "query": {
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7406,
+    "nombre": "Despertar",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/despertarrelampago10.webp",
+    "habilidad_texto_descriptivo": "Mira la Mano de tu oponente y descartale un Talisman. Luego tu ooponente puede elegir robar una carta, si lo hace, tu robas 2 cartas. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewHandAndDiscardThenOfferDraw",
+          "prompt": "Elige un Talismán de la mano de tu oponente para descartar.",
+          "targetQuery": {
+            "type": "Talisman"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7407,
+    "nombre": "Draig Ifanc",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/draigifancvictorioso11.webp",
+    "habilidad_texto_descriptivo": "Cuando Draig Ifanc entra en juego, puedes robar una carta. Si Draig Ifanc es destruido o barajado del juego y sólo controlabas Aliados Dragón, puedes buscar un oro en tu Mazo Castillo y ponerlo en juego.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:45:12.000Z",
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayGold",
+          "prompt": "Elige un Oro de tu Mazo para poner en juego.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo",
+            "nameIsNot": "Dragones"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "mazoCastillo"
+              ],
+              "excludeMethods": [
+                "placedOnBottom",
+                "placedOnTop"
+              ]
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Dragon"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7408,
+    "nombre": "Eter",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/etervictoriosa12.webp",
+    "habilidad_texto_descriptivo": "Cuanto Éter entra en juego, puedes poner un Aliado oponente en la parte superior del Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "prompt": "Elige un Aliado oponente para poner en la parte superior del Mazo Castillo de su dueño.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7409,
+    "nombre": "Ganimedes",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ganimedesvictorioso13.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juegoo, destruye una carta oponente en juego de coste igual o menos a la cantidad de aliados de raza Heroe que controles. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "target": {
+            "zone": "field",
+            "condition": {
+              "value": {
+                "query": {
+                  "raza": "Heroe",
+                  "tipo": "Aliado",
+                  "zone": "field",
+                  "controller": "self"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7410,
+    "nombre": "Guerrero Ptolemaico",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/guerreroptolemaicovictorioso14.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar un Aliado Guerrero o un Arma en tu Mazo Castillo y ponerlo en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado Guerrero o un Arma de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "or": [
+              {
+                "type": "Aliado",
+                "nameContains": "Guerrero"
+              },
+              {
+                "type": "Arma"
+              }
+            ],
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar un Aliado Guerrero o un Arma en tu Mazo Castillo y ponerlo en tu Mano."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7411,
+    "nombre": "Melchor",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/melchorvictorioso15.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes bucar un Arma en tu Mazo Castillo y ponerla en tu Cementerio. Si lo haces, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Moviste un Arma al Cementerio. ¿Quieres robar una carta?",
+              "options": [
+                {
+                  "id": "melchor_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "melchor_no_draw",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          },
+          "type": "searchAndMove",
+          "prompt": "Puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Cementerio.",
+          "canCancel": true,
+          "destination": "cementerio",
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "mazoCastillo"
+          }
+        },
+        "condition": {
+          "type": "deckContains",
+          "query": {
+            "type": "Arma"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar un Arma en tu Mazo Castillo y ponerla en tu Cementerio. Si lo haces, puedes robar una carta.",
+        "id_habilidad": "melchor_tutor_and_draw"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7412,
+    "nombre": "Nacer de la Muerte",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/nacerdelamuerterelampago16.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+    "descripcion": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "searchOpponentDeckAndPlay",
+          "prompt": "Elige un Aliado del Mazo Castillo oponente para jugar bajo tu control sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "controller": "opponent"
+          },
+          "destinationZone": "defense"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Busca en el Mazo Castillo oponente un Aliado y juégalo bajo tu control sin pagar su coste.",
+        "id_habilidad": "nacer_de_la_muerte_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7413,
+    "nombre": "Orcos",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/orcosvictorioso17.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Puede atacar cuando entra en juego. Cuando hace daño al Mazo Castillo oponente y controlas 2 o mas aliados de raza Sombra, puedes botar una carta para robar una carta. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "id": "orcos_set_damage_marker",
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "dealtCombatDamageThisTurn"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "isHidden": true
+      },
+      {
+        "cost": {
+          "type": "millCards",
+          "count": 1,
+          "prompt": "Bota la primera carta de tu Mazo Castillo para robar una carta.",
+          "target": "self"
+        },
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "dealtCombatDamageThisTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Sombra",
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7414,
+    "nombre": "Oseye",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/oseyevictoriosa18.webp",
+    "habilidad_texto_descriptivo": "Oseye no puede ser Anulado. Puede atacar cuando entra en juego. Puedes pagar el coste de Oseye para prevenir que sea destruida o desterrada subiendola a tu mano. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled",
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "cost": {
+          "type": "payGold",
+          "count": 2
+        },
+        "effect": {
+          "type": "returnSelfToHand"
+        },
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio",
+            "banish"
+          ]
+        },
+        "description": "Puedes pagar 2 Oros para prevenir que sea destruida o desterrada, subiéndola a tu mano.",
+        "id_habilidad": "oseye_salvation"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7415,
+    "nombre": "Rea",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/reavictoriosa19.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y solo una vez por turno Busca un Aliado de raza olímpico o titán en tu zona de destierro y ponlo en tu línea de defensa sin pagar su coste",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Olímpico o Titán de tu Destierro para jugar sin pagar su coste.",
+          "searchQuery": {
+            "raza": [
+              "Olímpico",
+              "Titan"
+            ],
+            "type": "Aliado",
+            "zone": "banish"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7416,
+    "nombre": "Renpet",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/renpetvictoriosa20.webp",
+    "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Renpet entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_enter_leave_effect"
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando Renpet sale del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_on_leave_effect"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7417,
+    "nombre": "Ceilican Seelie",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/ceilicanseelievictoriosa9webp.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano. Jugar Armas en este Aliado cuesta 1 Oro Menos.  ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Puedes buscar una copia de 'Ceilican Seelie' en tu Mazo Castillo para ponerla en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Ceilican Seelie"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar una copia de este Aliado en tu Mazo Castillo y ponerla en tu mano."
+      },
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Jugar Armas en este Aliado cuesta 1 Oro menos."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7418,
+    "nombre": "Amergin el Druida",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/amergineldruisavictorioso1webp.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes buscar un druida que no sea Amergin el Druida en tu cementerio y jugarlo sin pagar su coste en tu fase de vigilia una vez por turno puedes Elegir otro druida qué controles para que tú oponente bote tantas cartas como fuerza tenga ese Aliado",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "amergin_enter_play",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Druida de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameIsNot": "Amergin el Druida",
+            "nameContains": "Druida"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Aliado de nombre Druida que no sea Amergin el Druida en tu Cementerio y jugarlo sin pagar su coste en tu Línea de Defensa."
+      },
+      {
+        "id": "amergin_activatable_mill",
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseAllyAndMill",
+          "prompt": "Elige otro Aliado Druida que controles para la habilidad.",
+          "targetQuery": {
+            "type": "Aliado",
+            "zone": "field",
+            "nameContains": "Druida",
+            "isOther": true
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno, puedes elegir otro Aliado Druida que controles. Tu oponente bota tantas cartas como la fuerza de ese Aliado.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",
@@ -79824,6 +80842,7 @@
           "zone": "goldReserve"
         },
         "id_habilidad": "armadura_valkyria_prevent",
+        "requireOpponentTrigger": true,
         "eventCondition": {
           "type": "triggeringCardCondition",
           "query": {
@@ -79834,6 +80853,7 @@
           }
         },
         "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
         "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de Oros, puedes desterrarlo para prevenir que uno de tus Aliados sea destruido."
       }
     ]
@@ -79870,13 +80890,16 @@
         "description": "Puedes desterrar este Aliado para prevenir que un Aliado que controles sea destruido o barajado.",
         "id_habilidad": "lagertha_prevent",
         "eventCondition": {
-          "type": "Aliado",
-          "isOther": true,
-          "controller": "self",
-          "destinationZone": [
-            "cementerio",
-            "mazoCastillo"
-          ]
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "isOther": true,
+            "controller": "self",
+            "destinationZone": [
+              "cementerio",
+              "mazoCastillo"
+            ]
+          }
         },
         "listensForEvent": "onAllyLeavePlay"
       }
@@ -85570,6 +86593,355 @@
         "trigger": "onEnterPlay",
         "descripcion": "Cuando entra en juego, roba 2 cartas, luego, descarta una carta de tu Mano.",
         "id_habilidad": "espada_del_caos_draw_discard"
+      }
+    ]
+  },
+  {
+    "id": 847,
+    "nombre": "Dioxipe La Amazona",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/dioxiplelaamazona.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu Mano. En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Arma de tu Mazo Castillo o Cementerio para poner en tu Mano:",
+          "options": [
+            {
+              "id": "deck_weapons",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Mazo Castillo"
+            },
+            {
+              "id": "graveyard_weapons",
+              "zone": "cementerio",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "dioxipe_search_weapon",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu Mano."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "id_habilidad": "dioxipe_play_from_graveyard",
+        "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su coste."
+      }
+    ]
+  },
+  {
+    "id": 848,
+    "nombre": "Dory de Amazona",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/dorydeamazona.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Cuando entra en juego, tu oponente bota 1 carta por cada Aliado que controles.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "dory_amazona_mill",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente bota 1 carta por cada Aliado que controles."
+      }
+    ]
+  },
+  {
+    "id": 849,
+    "nombre": "Gyalino Mati",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/nuevascartas/gyalinomati.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner hasta 2 cartas de tu mano en la parte inferior de tu Mazo castillo para robar el mismo numero de cartas.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "placeFromHandToBottomAndDraw",
+          "prompt": "Elige hasta 2 cartas de tu mano para poner en la parte inferior de tu Mazo Castillo y robar esa misma cantidad.",
+          "maxCount": 2,
+          "minCount": 0,
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "gyalino_mati_bottom_draw",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner hasta 2 cartas de tu mano en la parte inferior de tu Mazo castillo para robar el mismo numero de cartas."
+      }
+    ]
+  },
+  {
+    "id": 850,
+    "nombre": "Kyria Minotauro",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/kyriaminotauro.webp",
+    "habilidad_texto_descriptivo": "Indesterrable. Cuando entra en juego o sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "id_habilidad": "kyria_inherent"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "cementerio",
+            "nameContains": "Minotauro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "kyria_enter_play",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "cementerio",
+            "nameContains": "Minotauro"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio"
+          ]
+        },
+        "id_habilidad": "kyria_leave_play",
+        "habilidad_texto_descriptivo": "Cuando sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 851,
+    "nombre": "Pale",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/pale.webp",
+    "habilidad_texto_descriptivo": "Muestra las 3 primeras cartas de tu Mazo Castillo. Puedes elegir de esas 3 un Aliado o Arma de coste 2 o menos y jugarlo sin pagar su coste. Luego Baraja el resto de cartas en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealTopAndPlayFree",
+          "count": 3,
+          "prompt": "Muestras las 3 primeras cartas de tu mazo. Elige un Aliado o Arma de coste 2 o menos para jugar sin pagar su coste:",
+          "canCancel": true,
+          "unselected": "shuffleBack",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "type": [
+              "Aliado",
+              "Arma"
+            ]
+          }
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "pale_reveal_play_free",
+        "habilidad_texto_descriptivo": "Muestra las 3 primeras cartas de tu Mazo Castillo. Puedes elegir de esas 3 un Aliado o Arma de coste 2 o menos y jugarlo sin pagar su coste. Luego Baraja el resto de cartas en tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 852,
+    "nombre": "Soteria",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/nuevascartas/soteriaaliado.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir este u otro aliado que controles para que gane o pierda 1 a la fuerza permanentemente. Si este Aliado esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Cuando Soteria entra en juego, elige una opción para un aliado que controles:",
+          "options": [
+            {
+              "id": "buff_plus_1",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": 1
+                },
+                "type": "grantBuffToTarget",
+                "prompt": "Elige este u otro aliado que controles para que gane 1 a la fuerza permanentemente:",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "self"
+                },
+                "duration": "permanent"
+              },
+              "description": "Gana 1 a la fuerza permanentemente"
+            },
+            {
+              "id": "buff_minus_1",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": -1
+                },
+                "type": "grantBuffToTarget",
+                "prompt": "Elige este u otro aliado que controles para que pierda 1 a la fuerza permanentemente:",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "self"
+                },
+                "duration": "permanent"
+              },
+              "description": "Pierde 1 a la fuerza permanentemente"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "soteria_on_enter_play",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir este u otro aliado que controles para que gane o pierda 1 a la fuerza permanentemente."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 2 a la fuerza hasta la Fase Final:",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "id_habilidad": "soteria_graveyard_ability",
+        "habilidad_texto_descriptivo": "Si este Aliado esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final."
       }
     ]
   }

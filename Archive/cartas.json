@@ -86601,7 +86601,7 @@
     "nombre": "Dioxipe La Amazona",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/dioxiplelaamazona.webp",
+    "imagen_url": "/img/store/cartas/dioxiplelaamazona.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu Mano. En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su coste.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86664,14 +86664,15 @@
         "id_habilidad": "dioxipe_play_from_graveyard",
         "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su coste."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 848,
     "nombre": "Dory de Amazona",
     "tipo": "Arma",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/dorydeamazona.webp",
+    "imagen_url": "/img/store/cartas/dorydeamazona.webp",
     "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Cuando entra en juego, tu oponente bota 1 carta por cada Aliado que controles.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86702,14 +86703,15 @@
         "id_habilidad": "dory_amazona_mill",
         "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente bota 1 carta por cada Aliado que controles."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 849,
     "nombre": "Gyalino Mati",
     "tipo": "Oro",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevascartas/gyalinomati.webp",
+    "imagen_url": "/img/store/cartas/gyalinomati.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner hasta 2 cartas de tu mano en la parte inferior de tu Mazo castillo para robar el mismo numero de cartas.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86735,14 +86737,15 @@
         "id_habilidad": "gyalino_mati_bottom_draw",
         "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner hasta 2 cartas de tu mano en la parte inferior de tu Mazo castillo para robar el mismo numero de cartas."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 850,
     "nombre": "Kyria Minotauro",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/kyriaminotauro.webp",
+    "imagen_url": "/img/store/cartas/kyriaminotauro.webp",
     "habilidad_texto_descriptivo": "Indesterrable. Cuando entra en juego o sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86796,14 +86799,15 @@
         "id_habilidad": "kyria_leave_play",
         "habilidad_texto_descriptivo": "Cuando sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 851,
     "nombre": "Pale",
     "tipo": "Talisman",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/pale.webp",
+    "imagen_url": "/img/store/cartas/pale.webp",
     "habilidad_texto_descriptivo": "Muestra las 3 primeras cartas de tu Mazo Castillo. Puedes elegir de esas 3 un Aliado o Arma de coste 2 o menos y jugarlo sin pagar su coste. Luego Baraja el resto de cartas en tu Mazo Castillo.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86839,14 +86843,15 @@
         "id_habilidad": "pale_reveal_play_free",
         "habilidad_texto_descriptivo": "Muestra las 3 primeras cartas de tu Mazo Castillo. Puedes elegir de esas 3 un Aliado o Arma de coste 2 o menos y jugarlo sin pagar su coste. Luego Baraja el resto de cartas en tu Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "medio"
   },
   {
     "id": 852,
     "nombre": "Soteria",
     "tipo": "Aliado",
     "coste_oro": 1,
-    "imagen_url": "/img/nuevascartas/soteriaaliado.webp",
+    "imagen_url": "/img/store/cartas/soteriaaliado.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir este u otro aliado que controles para que gane o pierda 1 a la fuerza permanentemente. Si este Aliado esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -86943,6 +86948,7 @@
         "id_habilidad": "soteria_graveyard_ability",
         "habilidad_texto_descriptivo": "Si este Aliado esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final."
       }
-    ]
+    ],
+    "tier": "medio"
   }
 ]

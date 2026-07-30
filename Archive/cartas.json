@@ -3393,7 +3393,7 @@
     "nombre": "Zagreus",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/gift/zagreuspromo/zagreuspromo.webp",
+    "imagen_url": "/img/gift/zagreuspromo/zagreusbase.webp",
     "habilidad_texto_descriptivo": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente, En tu Fase de Vigilia, si Zagreus esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste. ",
     "descripcion": null,
     "expansion": "Helenica",

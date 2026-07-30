@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.8.5",
+    "pack_version": "2.8.6",
     "habilidades": []
   },
   {
@@ -3385,6 +3385,61 @@
         },
         "oncePerTurn": true,
         "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "nombre": "Zagreus",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/gift/zagreuspromo/zagreuspromo.webm",
+    "habilidad_texto_descriptivo": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente, En tu Fase de Vigilia, si Zagreus esta en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "zagreus_annul",
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayAlly",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes barajar a Zagreus en tu Mazo Castillo para anular un Aliado oponente.",
+        "costPaidBeforeResponse": true
+      },
+      {
+        "id": "zagreus_graveyard_play",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 4
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si Zagreus está en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true
       }
     ]
   },

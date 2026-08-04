@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.8.8",
+    "pack_version": "2.8.9",
     "habilidades": []
   },
   {
@@ -53182,6 +53182,213 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 7419,
+    "nombre": "Biblioteca Eterna",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/bibliotecaeternamishi.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, si Biblioteca Eterna está en tu Reserva de Oro, puedes desterrarla para robar 2 cartas.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "En tu Fase de Vigilia, si Biblioteca Eterna está en tu Reserva de Oro, puedes desterrarla para robar 2 cartas.",
+        "id_habilidad": "biblioteca_eterna_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7420,
+    "nombre": "Corona de Arturo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/coronadearturomishi.webp",
+    "habilidad_texto_descriptivo": "Mientras controles 2 o más Aliados, los Oros son indestructibles. Si Corona de Arturo está en tu Cementerio, puedes desterrarla para robar 1 carta de tu Mazo Castillo.",
+    "descripcion": "En Camelot amurallada la luna dormía suavemente; dentro, los nobles caballeros del Rey Arturo custodios de la corona que une a los reinos.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T10:32:00.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "any"
+          },
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "controllerHas",
+          "query": {
+            "type": "Aliado",
+            "count": {
+              "value": 2,
+              "operator": ">="
+            }
+          }
+        }
+      },
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7421,
+    "nombre": "Figuras Negras",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/figurasnegrasmishi.webp",
+    "habilidad_texto_descriptivo": "Sí figuras negras está en tu reserva de oros puedes desterrarlo para que un oro en juego y todas sus copias pierdan su habilidad hasta la fase final",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "annulAbilityOnTargetAndCopies",
+          "prompt": "Elige un Oro oponente en juego para que él y todas sus copias pierdan su habilidad hasta la Fase Final.",
+          "target": {
+            "zone": [
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "tipo": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7422,
+    "nombre": "Salmon Del Saber",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/salmondelsabermishi.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puede barajar una carta de tu cementerio en tu Mazo Castillo. Si esta carta está en tu reserva puedes desterrarla para que un Aliado oponente no haga daño en tu Mazo Castillo este turno.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "cost": {
+          "type": "banishSelf"
+        },
+        "effect": {
+          "type": "targetAndPreventCombatDamage",
+          "prompt": "Elige un Aliado oponente para prevenir su daño de combate este turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        }
+      }
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1585,

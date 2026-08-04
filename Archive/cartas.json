@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.8.9",
+    "pack_version": "2.9.0",
     "habilidades": []
   },
   {
@@ -89774,7 +89774,7 @@
     "nombre": "Monte Olimpo",
     "tipo": "Totem",
     "coste_oro": 6,
-    "imagen_url": "/img/nuevasCartas/MYL-471.webp",
+    "imagen_url": "/img/store/cartas/myl471.webp",
     "habilidad_texto_descriptivo": "Mientras Monte Olimpo esté en juego, no puedes ser atacado. ",
     "descripcion": "Mientras Monte Olimpo esté en juego, no puedes ser atacado. ",
     "expansion": "Helenica",
@@ -89803,14 +89803,15 @@
         },
         "descripcion": "Mientras Monte Olimpo esté en juego, tu oponente no puede atacar."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1584,
     "nombre": "Maraton",
     "tipo": "Totem",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevasCartas/MYL-775.webp",
+    "imagen_url": "/img/store/cartas/myl775.webp",
     "habilidad_texto_descriptivo": "En tu Fase Final, si un Aliado que controlas porta un Arma e hizo daño al Mazo Castillo oponente este turno, destruye una carta oponente que no sea Oro.",
     "descripcion": "En tu Fase Final, si un Aliado que controlas porta un Arma e hizo daño al Mazo Castillo oponente este turno, destruye una carta oponente que no sea Oro.",
     "expansion": "Helenica",
@@ -89858,14 +89859,15 @@
         "oncePerTurn": true,
         "habilidad_texto_descriptivo": "En tu Fase Final, si un Aliado que controlas porta un Arma e hizo daño al Mazo Castillo oponente este turno, destruye una carta oponente que no sea Oro."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 2289,
     "nombre": "Pianjy",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevasCartas/MYL-1677.webp",
+    "imagen_url": "/img/store/cartas/myl1677.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir entre barajar dos cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote dos cartas de su Mazo Castillo.",
     "descripcion": "Cuando entra en juego, puedes elegir entre barajar dos cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote dos cartas de su Mazo Castillo.",
     "expansion": "Dominios de Ra",
@@ -89912,14 +89914,15 @@
         "trigger": "onEnterPlay",
         "descripcion": "Cuando entra en juego, puedes elegir entre barajar dos cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote dos cartas de su Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 2137,
     "nombre": "Dones del Nilo",
     "tipo": "Totem",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevasCartas/MYL-1493.webp",
+    "imagen_url": "/img/store/cartas/myl1493.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Aliado de coste 3 o menos o un Tótem de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": "Cuando entra en juego, puedes buscar un Aliado de coste 3 o menos o un Tótem de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
     "expansion": "Dominios de Ra",
@@ -89972,14 +89975,15 @@
         "trigger": "onEnterPlay",
         "descripcion": "Cuando entra en juego, puedes buscar un Aliado de coste 3 o menos o un Tótem de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1990,
     "nombre": "Kiya",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevasCartas/MYL-1315.webp",
+    "imagen_url": "/img/store/cartas/myl1315.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mirar las cuatro primeras cartas de tu Mazo Castillo y devolverlas en el orden que quieras. En tu Fase Final, puedes destruir este Aliado para robar 2 cartas.",
     "descripcion": "Cuando entra en juego, puedes mirar las cuatro primeras cartas de tu Mazo Castillo y devolverlas en el orden que quieras. En tu Fase Final, puedes destruir este Aliado para robar 2 cartas.",
     "expansion": "Dominios de Ra",
@@ -90023,14 +90027,15 @@
         "descripcion": "En tu Fase Final, puedes destruir este Aliado para robar 2 cartas.",
         "oncePerTurn": true
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1356,
     "nombre": "Temistocles",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevasCartas/MYL-494.webp",
+    "imagen_url": "/img/store/cartas/myl494.webp",
     "habilidad_texto_descriptivo": "Cuando Temístocles entra en juego, nombra una carta para que ella y todas sus copias pierdan su habilidad mientras Temístocles permanezca en juego. ",
     "descripcion": "Cuando Temístocles entra en juego, nombra una carta para que ella y todas sus copias pierdan su habilidad mientras Temístocles permanezca en juego. ",
     "expansion": "Helenica",
@@ -90053,14 +90058,15 @@
         "trigger": "onEnterPlay",
         "descripcion": "Cuando Temístocles entra en juego, nombra una carta para que ella y todas sus copias pierdan su habilidad mientras Temístocles permanezca en juego."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1418,
     "nombre": "Helena",
     "tipo": "Aliado",
     "coste_oro": 0,
-    "imagen_url": "/img/nuevasCartas/MYL-560.webp",
+    "imagen_url": "/img/store/cartas/myl560.webp",
     "habilidad_texto_descriptivo": "Para bajar Helena, debes destruir uno de tus Aliados de raza Héroe. ",
     "descripcion": "Para bajar Helena, debes destruir uno de tus Aliados de raza Héroe. ",
     "expansion": "Helenica",
@@ -90101,14 +90107,15 @@
         },
         "trigger": "onEnterPlay"
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1978,
     "nombre": "Tutankamon",
     "tipo": "Aliado",
     "coste_oro": 4,
-    "imagen_url": "/img/nuevasCartas/MYL-1299.webp",
+    "imagen_url": "/img/store/cartas/myl1299.webp",
     "habilidad_texto_descriptivo": "Hasta 6 veces por turno, puedes botar una carta de tu Mazo Castillo para que otro de tus Aliados gane 1 a la fuerza hasta la Fase Final.",
     "descripcion": "Hasta 6 veces por turno, puedes botar una carta de tu Mazo Castillo para que otro de tus Aliados gane 1 a la fuerza hasta la Fase Final.",
     "expansion": "Dominios de Ra",
@@ -90164,14 +90171,15 @@
         "sixTimesPerTurn": true,
         "habilidad_texto_descriptivo": "Hasta 6 veces por turno, puedes botar una carta de tu Mazo Castillo para que otro de tus Aliados gane 1 a la fuerza hasta la Fase Final."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 1320,
     "nombre": "Teleute",
     "tipo": "Talisman",
     "coste_oro": 4,
-    "imagen_url": "/img/nuevasCartas/MYL-448.webp",
+    "imagen_url": "/img/store/cartas/myl448.webp",
     "habilidad_texto_descriptivo": "Descarta 2 cartas de tu oponente al azar. ",
     "descripcion": "Descarta 2 cartas de tu oponente al azar. ",
     "expansion": "Helenica",
@@ -90194,14 +90202,15 @@
         "trigger": "onEnterPlay",
         "descripcion": "Descarta 2 cartas de tu oponente al azar."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 2307,
     "nombre": "Seshat",
     "tipo": "Aliado",
     "coste_oro": 4,
-    "imagen_url": "/img/nuevasCartas/MYL-1709.webp",
+    "imagen_url": "/img/store/cartas/myl1709.webp",
     "habilidad_texto_descriptivo": "Cuando Seshat entra en juego, puedes buscar un Arma en tu Mazo castillo o Cementerio y ponerlo en juego sin pagar su coste. Mientras esta Arma esté en juego, Seshat no puede salir del juego.",
     "descripcion": "Cuando Seshat entra en juego, puedes buscar un Arma en tu Mazo castillo o Cementerio y ponerlo en juego sin pagar su coste. Mientras esta Arma esté en juego, Seshat no puede salir del juego.",
     "expansion": "Dominios de Ra",
@@ -90270,6 +90279,7 @@
         "id_habilidad": "seshat_protection",
         "habilidad_texto_descriptivo": "Mientras esta Arma esté en juego, Seshat no puede salir del juego."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   }
 ]

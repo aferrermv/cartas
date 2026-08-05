@@ -3433,6 +3433,52 @@
       }
     ]
   },
+   {
+    "id": 53,
+    "nombre": "Aine",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/gift/aineamergincorffjulio/ainebase.webp",
+    "habilidad_texto_descriptivo": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
+          "optional": true
+        },
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
+        "id_habilidad": "aine_reveal_and_banish"
+      }
+    ]
+  },
   {
     "id": 30,
     "nombre": "Plaga",

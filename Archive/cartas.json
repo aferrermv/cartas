@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.0",
+    "pack_version": "2.9.1",
     "habilidades": []
   },
   {
@@ -2980,91 +2980,81 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
+  {
+    "inherent": [
+      "cannotBeAnnulled"
+    ],
+    "description": "No puede ser Anulado."
+  },
+  {
+    "costs": [
       {
-        "inherent": [
-          "cannotBeAnnulled"
-        ],
-        "description": "No puede ser Anulado."
-      },
-      {
-        "costs": [
+        "type": "chooseOne",
+        "prompt": "Elige el coste para la habilidad de Ra:",
+        "options": [
           {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Ra:",
-            "options": [
-              {
-                "id": "ra_destroy_ally_cost",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "prompt": "Elige un Aliado que controles para destruir como coste.",
-                  "target": {
-                    "query": {
-                      "type": "Aliado"
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado que controles"
-              },
-              {
-                "id": "ra_pay_gold_cost",
-                "action": {
-                  "type": "payGold",
-                  "count": 3
-                },
-                "description": "Pagar 3 Oros"
-              }
-            ]
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "type": "millCards",
-          "count": 5,
-          "target": "opponent"
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
-        "oncePerTurn": true
-      },
-      {
-        "cost": {
-          "type": "discardCard",
-          "count": 1,
-          "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
-        },
-        "effect": {
-          "type": "prevent"
-        },
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isDestinationZone",
-              "zones": [
-                "cementerio",
-                "banish"
-              ]
-            },
-            {
-              "type": "playerHasInHand",
+            "id": "ra_destroy_ally_cost",
+            "action": {
+              "type": "destroyTarget",
               "count": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+              "prompt": "Elige un Aliado que controles para destruir como coste.",
+              "target": {
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "self"
+              }
+            },
+            "description": "Destruir un Aliado que controles"
+          },
+          {
+            "id": "ra_pay_gold_cost",
+            "action": {
+              "type": "payGold",
+              "count": 3
+            },
+            "description": "Pagar 3 Oros"
+          }
+        ]
       }
-    ]
+    ],
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "effect": {
+      "type": "millCards",
+      "count": 5,
+      "target": "opponent"
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
+    "oncePerTurn": true
+  },
+  {
+    "cost": {
+      "type": "discardCard",
+      "count": 1,
+      "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
+    },
+    "effect": {
+      "type": "prevent"
+    },
+    "trigger": "onBeforeLeave",
+    "condition": {
+      "type": "isDestinationZone",
+      "zones": [
+        "cementerio",
+        "banish"
+      ]
+    },
+    "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+  }
+]
   },
   {
     "id": 46,
@@ -18321,91 +18311,81 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
+  {
+    "inherent": [
+      "cannotBeAnnulled"
+    ],
+    "description": "No puede ser Anulado."
+  },
+  {
+    "costs": [
       {
-        "inherent": [
-          "cannotBeAnnulled"
-        ],
-        "description": "No puede ser Anulado."
-      },
-      {
-        "costs": [
+        "type": "chooseOne",
+        "prompt": "Elige el coste para la habilidad de Ra:",
+        "options": [
           {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Ra:",
-            "options": [
-              {
-                "id": "ra_destroy_ally_cost",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "prompt": "Elige un Aliado que controles para destruir como coste.",
-                  "target": {
-                    "query": {
-                      "type": "Aliado"
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado que controles"
-              },
-              {
-                "id": "ra_pay_gold_cost",
-                "action": {
-                  "type": "payGold",
-                  "count": 3
-                },
-                "description": "Pagar 3 Oros"
-              }
-            ]
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "type": "millCards",
-          "count": 5,
-          "target": "opponent"
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
-        "oncePerTurn": true
-      },
-      {
-        "cost": {
-          "type": "discardCard",
-          "count": 1,
-          "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
-        },
-        "effect": {
-          "type": "prevent"
-        },
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isDestinationZone",
-              "zones": [
-                "cementerio",
-                "banish"
-              ]
-            },
-            {
-              "type": "playerHasInHand",
+            "id": "ra_destroy_ally_cost",
+            "action": {
+              "type": "destroyTarget",
               "count": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+              "prompt": "Elige un Aliado que controles para destruir como coste.",
+              "target": {
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "self"
+              }
+            },
+            "description": "Destruir un Aliado que controles"
+          },
+          {
+            "id": "ra_pay_gold_cost",
+            "action": {
+              "type": "payGold",
+              "count": 3
+            },
+            "description": "Pagar 3 Oros"
+          }
+        ]
       }
-    ]
+    ],
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "effect": {
+      "type": "millCards",
+      "count": 5,
+      "target": "opponent"
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
+    "oncePerTurn": true
+  },
+  {
+    "cost": {
+      "type": "discardCard",
+      "count": 1,
+      "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
+    },
+    "effect": {
+      "type": "prevent"
+    },
+    "trigger": "onBeforeLeave",
+    "condition": {
+      "type": "isDestinationZone",
+      "zones": [
+        "cementerio",
+        "banish"
+      ]
+    },
+    "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+  }
+]
   },
   {
     "id": 493,
@@ -42118,91 +42098,81 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
+  {
+    "inherent": [
+      "cannotBeAnnulled"
+    ],
+    "description": "No puede ser Anulado."
+  },
+  {
+    "costs": [
       {
-        "inherent": [
-          "cannotBeAnnulled"
-        ],
-        "description": "No puede ser Anulado."
-      },
-      {
-        "costs": [
+        "type": "chooseOne",
+        "prompt": "Elige el coste para la habilidad de Ra:",
+        "options": [
           {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Ra:",
-            "options": [
-              {
-                "id": "ra_destroy_ally_cost",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "prompt": "Elige un Aliado que controles para destruir como coste.",
-                  "target": {
-                    "query": {
-                      "type": "Aliado"
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado que controles"
-              },
-              {
-                "id": "ra_pay_gold_cost",
-                "action": {
-                  "type": "payGold",
-                  "count": 3
-                },
-                "description": "Pagar 3 Oros"
-              }
-            ]
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "type": "millCards",
-          "count": 5,
-          "target": "opponent"
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
-        "oncePerTurn": true
-      },
-      {
-        "cost": {
-          "type": "discardCard",
-          "count": 1,
-          "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
-        },
-        "effect": {
-          "type": "prevent"
-        },
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isDestinationZone",
-              "zones": [
-                "cementerio",
-                "banish"
-              ]
-            },
-            {
-              "type": "playerHasInHand",
+            "id": "ra_destroy_ally_cost",
+            "action": {
+              "type": "destroyTarget",
               "count": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+              "prompt": "Elige un Aliado que controles para destruir como coste.",
+              "target": {
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "self"
+              }
+            },
+            "description": "Destruir un Aliado que controles"
+          },
+          {
+            "id": "ra_pay_gold_cost",
+            "action": {
+              "type": "payGold",
+              "count": 3
+            },
+            "description": "Pagar 3 Oros"
+          }
+        ]
       }
     ],
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "effect": {
+      "type": "millCards",
+      "count": 5,
+      "target": "opponent"
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
+    "oncePerTurn": true
+  },
+  {
+    "cost": {
+      "type": "discardCard",
+      "count": 1,
+      "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
+    },
+    "effect": {
+      "type": "prevent"
+    },
+    "trigger": "onBeforeLeave",
+    "condition": {
+      "type": "isDestinationZone",
+      "zones": [
+        "cementerio",
+        "banish"
+      ]
+    },
+    "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+  }
+],
     "tier": "bajo"
   },
   {
@@ -51762,91 +51732,81 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
+  {
+    "inherent": [
+      "cannotBeAnnulled"
+    ],
+    "description": "No puede ser Anulado."
+  },
+  {
+    "costs": [
       {
-        "inherent": [
-          "cannotBeAnnulled"
-        ],
-        "description": "No puede ser Anulado."
-      },
-      {
-        "costs": [
+        "type": "chooseOne",
+        "prompt": "Elige el coste para la habilidad de Ra:",
+        "options": [
           {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Ra:",
-            "options": [
-              {
-                "id": "ra_destroy_ally_cost",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "prompt": "Elige un Aliado que controles para destruir como coste.",
-                  "target": {
-                    "query": {
-                      "type": "Aliado"
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado que controles"
-              },
-              {
-                "id": "ra_pay_gold_cost",
-                "action": {
-                  "type": "payGold",
-                  "count": 3
-                },
-                "description": "Pagar 3 Oros"
-              }
-            ]
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "type": "millCards",
-          "count": 5,
-          "target": "opponent"
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
-        "oncePerTurn": true
-      },
-      {
-        "cost": {
-          "type": "discardCard",
-          "count": 1,
-          "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
-        },
-        "effect": {
-          "type": "prevent"
-        },
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isDestinationZone",
-              "zones": [
-                "cementerio",
-                "banish"
-              ]
-            },
-            {
-              "type": "playerHasInHand",
+            "id": "ra_destroy_ally_cost",
+            "action": {
+              "type": "destroyTarget",
               "count": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+              "prompt": "Elige un Aliado que controles para destruir como coste.",
+              "target": {
+                "query": {
+                  "type": "Aliado"
+                },
+                "controller": "self"
+              }
+            },
+            "description": "Destruir un Aliado que controles"
+          },
+          {
+            "id": "ra_pay_gold_cost",
+            "action": {
+              "type": "payGold",
+              "count": 3
+            },
+            "description": "Pagar 3 Oros"
+          }
+        ]
       }
     ],
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "effect": {
+      "type": "millCards",
+      "count": 5,
+      "target": "opponent"
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "description": "Una vez por turno, puedes destruir un Aliado que controles o pagar 3 de oro para que tu oponente bote 5 cartas de su Mazo Castillo.",
+    "oncePerTurn": true
+  },
+  {
+    "cost": {
+      "type": "discardCard",
+      "count": 1,
+      "prompt": "Descarta una carta para prevenir que Ra sea destruido o desterrado."
+    },
+    "effect": {
+      "type": "prevent"
+    },
+    "trigger": "onBeforeLeave",
+    "condition": {
+      "type": "isDestinationZone",
+      "zones": [
+        "cementerio",
+        "banish"
+      ]
+    },
+    "description": "Puedes descartar una carta de tu mano para prevenir que este Aliado sea Destruido o Desterrado."
+  }
+],
     "tier": "medio"
   },
   {

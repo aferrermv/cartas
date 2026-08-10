@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.3",
+    "pack_version": "2.9.4",
     "habilidades": []
   },
   {
@@ -4490,6 +4490,14 @@
     "salud": null,
     "habilidades": [
       {
+          "condition": {
+      "type": "playerHasInHand",
+      "query": {
+        "type": "*"
+      },
+      "amount": 1,
+      "comparison": "greaterOrEqual"
+    },
         "costs": [
           {
             "type": "discardCard",
@@ -5756,8 +5764,26 @@
         },
         "trigger": "activatable",
         "condition": {
-          "type": "isInZone",
-          "zone": "goldReserve"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "tipo": "Aliado",
+                "fuerza": {
+                  "value": 3,
+                  "operator": ">="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "oncePerTurn": true,
         "play_limitation": {
@@ -18166,6 +18192,10 @@
     "salud": null,
     "habilidades": [
       {
+        "inherent": [
+          "cannotBeAnnulled",
+          "cannotBeCancelled"
+        ],
         "descripcion": "Para jugar a Montuhopet II, debes devolver a tu Mano uno de tus Aliados de raza Faraon.",
         "play_condition": {
           "type": "playerControls",
@@ -37055,38 +37085,36 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-      {
-        "effect": {
-          "type": "searchAndShuffleIntoDeck",
-          "zone": "cementerio",
-          "count": 1,
-          "query": {
-            "type": "*"
-          },
-          "prompt": "Un Aliado que controlas fue destruido. Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-          "canCancel": true
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "isInZone",
-          "zone": [
-            "goldReserve",
-            "paidGold"
-          ]
-        },
-        "descripcion": "Una vez por turno, si un Aliado que controles es destruido, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
-        "id_habilidad": "sakura_recycle_on_ally_destroyed",
-        "askOncePerTurn": true,
-        "eventCondition": {
-          "type": "Aliado",
-          "destinationZone": [
-            "cementerio"
-          ]
-        },
-        "listensForEvent": "onAllyLeavePlay",
-        "triggeringPlayer": "self"
-      }
-    ]
+  {
+    "effect": {
+      "type": "searchAndShuffleIntoDeck",
+      "zone": "cementerio",
+      "count": 1,
+      "query": {
+        "type": "*"
+      },
+      "prompt": "Un Aliado que controlas fue destruido. Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+      "canCancel": true
+    },
+    "trigger": "activatable",
+    "condition": {
+      "type": "isInZone",
+      "zone": [
+        "goldReserve",
+        "paidGold"
+      ]
+    },
+    "descripcion": "Una vez por turno, si un Aliado que controles es destruido, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "id_habilidad": "sakura_recycle_on_ally_destroyed",
+    "askOncePerTurn": true,
+    "eventCondition": {
+      "type": "wasMovedTo",
+      "zone": "cementerio"
+    },
+    "listensForEvent": "onAllyLeavePlay",
+    "triggeringPlayer": "self"
+  }
+]
   },
   {
     "id": 3449,
@@ -37257,88 +37285,58 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Elige un tipo de carta para buscar en el Mazo Castillo oponente.",
-          "options": [
-            {
-              "id": "jorogumo_search_ally",
-              "action": {
-                "type": "searchAndPutInHand",
-                "prompt": "Elige un Aliado del Mazo Castillo oponente para poner en tu mano.",
-                "searchQuery": {
-                  "type": "Aliado",
-                  "zone": "mazoCastillo",
-                  "controller": "opponent"
-                }
-              },
-              "description": "Buscar un Aliado"
-            },
-            {
-              "id": "jorogumo_search_weapon",
-              "action": {
-                "type": "searchAndPutInHand",
-                "prompt": "Elige un Arma del Mazo Castillo oponente para poner en tu mano.",
-                "searchQuery": {
-                  "type": "Arma",
-                  "zone": "mazoCastillo",
-                  "controller": "opponent"
-                }
-              },
-              "description": "Buscar un Arma"
-            },
-            {
-              "id": "jorogumo_search_totem",
-              "action": {
-                "type": "searchAndPutInHand",
-                "prompt": "Elige un Tótem del Mazo Castillo oponente para poner en tu mano.",
-                "searchQuery": {
-                  "type": "Totem",
-                  "zone": "mazoCastillo",
-                  "controller": "opponent"
-                }
-              },
-              "description": "Buscar un Tótem"
-            },
-            {
-              "id": "jorogumo_search_talisman",
-              "action": {
-                "type": "searchAndPutInHand",
-                "prompt": "Elige un Talismán del Mazo Castillo oponente para poner en tu mano.",
-                "searchQuery": {
-                  "type": "Talisman",
-                  "zone": "mazoCastillo",
-                  "controller": "opponent"
-                }
-              },
-              "description": "Buscar un Talismán"
-            },
-            {
-              "id": "jorogumo_search_gold",
-              "action": {
-                "type": "searchAndPutInHand",
-                "prompt": "Elige un Oro del Mazo Castillo oponente para poner en tu mano.",
-                "searchQuery": {
-                  "type": "Oro",
-                  "zone": "mazoCastillo",
-                  "controller": "opponent"
-                }
-              },
-              "description": "Buscar un Oro"
-            },
-            {
-              "id": "jorogumo_do_nothing",
-              "action": {},
-              "description": "No buscar nada"
-            }
-          ]
+  {
+    "effect": {
+      "type": "chooseOne",
+      "prompt": "Nombra un tipo de carta para mostrar del Mazo Castillo:",
+      "options": [
+        {
+          "id": "jorogumo_type_ally",
+          "action": {
+            "type": "revealUntilType",
+            "targetType": "Aliado"
+          },
+          "description": "Nombrar Aliado"
         },
-        "trigger": "onEnterPlay",
-        "descripcion": "Cuando entra en juego, elige un tipo de carta, busca en el mazo castillo oponente una carta de ese tipo y ponla en tu mano, luego baraja su mazo.",
-        "id_habilidad": "jorogumo_tutor_from_opponent_deck"
-      }
-    ]
+        {
+          "id": "jorogumo_type_weapon",
+          "action": {
+            "type": "revealUntilType",
+            "targetType": "Arma"
+          },
+          "description": "Nombrar Arma"
+        },
+        {
+          "id": "jorogumo_type_totem",
+          "action": {
+            "type": "revealUntilType",
+            "targetType": "Totem"
+          },
+          "description": "Nombrar Tótem"
+        },
+        {
+          "id": "jorogumo_type_talisman",
+          "action": {
+            "type": "revealUntilType",
+            "targetType": "Talisman"
+          },
+          "description": "Nombrar Talismán"
+        },
+        {
+          "id": "jorogumo_type_gold",
+          "action": {
+            "type": "revealUntilType",
+            "targetType": "Oro"
+          },
+          "description": "Nombrar Oro"
+        }
+      ]
+    },
+    "trigger": "onEnterPlay",
+    "descripcion": "Cuando entra en juego, nombra un tipo de carta. Muestra cartas de tu Mazo Castillo hasta mostrar una carta de ese tipo y ponla en tu Mano. Luego, baraja el resto.",
+    "id_habilidad": "jorogumo_reveal_until_type"
+  }
+]
   },
   {
     "id": 5052,
@@ -53398,6 +53396,651 @@
     "tier": "bajo"
   },
   {
+    "id": 7423,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganapoolparty.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7424,
+    "nombre": "Duque Godofredo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/duquegodofredobladek.webp",
+    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:24:45.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "continuous"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7425,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganaaniversario.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7426,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganadorada.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7427,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganafullart.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7428,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganalegendaria.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 7429,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganareal.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7430,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganashogun.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7431,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganazombie.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7432,
+    "nombre": "Rey Arturo Pendragon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/reyarturopendragonclasi.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Unica. Tus demas Aliados de raza Caballero ganan 2 a la Fuerza. Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste. En cada fase de Agrupacion tu oponente bota 2 cartas.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus demás Aliados de raza Caballero ganan 2 a la Fuerza.",
+        "id_habilidad": "arturo_lord_effect"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayAllyOrWeapon",
+          "prompt": "Elige un Aliado o Arma de coste 2 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste.",
+        "id_habilidad": "arturo_enter_play"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEndOfTurn",
+        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_end_of_turn_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",
@@ -54465,7 +55108,7 @@
         "activeOnAnyTurn": true
       }
     ],
-    "tier": "Alto"
+    "tier": "alto"
   },
   {
     "id": 720,
@@ -58679,7 +59322,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "cost": {
           "type": "banishSelf"
@@ -58704,8 +59347,26 @@
         },
         "trigger": "activatable",
         "condition": {
-          "type": "isInZone",
-          "zone": "goldReserve"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "tipo": "Aliado",
+                "fuerza": {
+                  "value": 3,
+                  "operator": ">="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "oncePerTurn": true,
         "play_limitation": {
@@ -61296,6 +61957,14 @@
     "salud": null,
     "habilidades": [
       {
+          "condition": {
+      "type": "playerHasInHand",
+      "query": {
+        "type": "*"
+      },
+      "amount": 1,
+      "comparison": "greaterOrEqual"
+    },
         "costs": [
           {
             "type": "discardCard",
@@ -62682,6 +63351,14 @@
     "salud": null,
     "habilidades": [
       {
+          "condition": {
+      "type": "playerHasInHand",
+      "query": {
+        "type": "*"
+      },
+      "amount": 1,
+      "comparison": "greaterOrEqual"
+    },
         "costs": [
           {
             "type": "discardCard",
@@ -62727,7 +63404,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "cost": {
           "type": "banishSelf"
@@ -62752,8 +63429,26 @@
         },
         "trigger": "activatable",
         "condition": {
-          "type": "isInZone",
-          "zone": "goldReserve"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "tipo": "Aliado",
+                "fuerza": {
+                  "value": 3,
+                  "operator": ">="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "oncePerTurn": true,
         "play_limitation": {
@@ -75501,7 +76196,8 @@
         "condition": {
           "type": "triggeringCardCondition",
           "query": {
-            "wasPlayedFree": true
+            "wasPlayedFree": true,
+             "notType": "Oro"
           }
         },
         "description": "Anula una carta jugada sin pagar su coste. Luego destierra la carta Anulada.",
@@ -83989,14 +84685,14 @@
     "id": 3284,
     "nombre": "Quetzalcoatl",
     "tipo": "Aliado",
-    "coste_oro": 6,
+    "coste_oro": 5,
     "imagen_url": "/img/primera_era/quetzalcoatl2.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego los jugadores descartan su Mano y roban 4 cartas.",
     "descripcion": null,
     "expansion": "El Reto",
     "rareza": "Rework",
     "fecha_creacion": null,
-    "fuerza": 5,
+    "fuerza": 6,
     "raza": "Dragon",
     "leyenda": null,
     "danio": null,
@@ -86485,32 +87181,32 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "descripcion": "No puede portar Armas.",
-        "id_habilidad": "gilgamesh_cannot_equip_weapon",
-        "restrictions": {
-          "cannotEquipWeapon": {
-            "query": {
-              "type": "Arma"
-            }
-          }
+  {
+    "descripcion": "No puede portar Armas.",
+    "id_habilidad": "gilgamesh_cannot_equip_weapon",
+    "restrictions": {
+      "cannotEquipWeapon": {
+        "query": {
+          "type": "Arma"
         }
-      },
-      {
-        "effect": {
-          "type": "grantKeyword",
-          "target": "self",
-          "keyword": "cannotLeavePlayByOpponent"
-        },
-        "trigger": "continuous",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "descripcion": "Solo puede salir del juego por daño de combate.",
-        "id_habilidad": "gilgamesh_leave_play_protection"
       }
-    ]
+    }
+  },
+  {
+    "effect": {
+      "type": "grantKeyword",
+      "target": "self",
+      "keyword": "cannotLeavePlay"
+    },
+    "trigger": "continuous",
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "descripcion": "Solo puede salir del juego por daño de combate.",
+    "id_habilidad": "gilgamesh_leave_play_protection"
+  }
+]
   },
   {
     "id": 3396,
@@ -87216,8 +87912,17 @@
         },
         "trigger": "activatable",
         "condition": {
-          "type": "isInZone",
-          "zone": "cementerio"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1
+            }
+          ]
         },
         "id_habilidad": "soteria_graveyard_ability",
         "habilidad_texto_descriptivo": "Si este Aliado esta en tu Cementerio, puedes pagar 1 Oro y desterrarlo para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final."
@@ -88349,7 +89054,7 @@
     "expansion": "Espiritu de Dragon",
     "rareza": "Real",
     "fecha_creacion": null,
-    "fuerza": 2,
+    "fuerza": 1,
     "raza": "Campeon",
     "leyenda": null,
     "danio": null,
@@ -89527,30 +90232,34 @@
     "durabilidad": 0,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "unblockable"
-        ],
-        "descripcion": "El portador es Imbloqueable."
-      },
-      {
-        "effect": {
-          "type": "chooseAndBanish",
-          "count": 2,
-          "prompt": "Elige 2 cartas del Cementerio oponente para desterrar.",
-          "target": {
-            "zone": "cementerio",
-            "query": {
-              "type": "*"
-            },
-            "controller": "opponent"
-          }
+    "habilidades":[
+  {
+    "effect": {
+      "type": "grantKeywordToWielder",
+      "keyword": "unblockable"
+    },
+    "trigger": "continuous",
+    "description": "El portador es Imbloqueable.",
+    "id_habilidad": "ruyi_jingu_bang_unblockable"
+  },
+  {
+    "effect": {
+      "type": "chooseAndBanish",
+      "count": 2,
+      "prompt": "Elige 2 cartas del Cementerio oponente para desterrar.",
+      "target": {
+        "zone": "cementerio",
+        "query": {
+          "type": "*"
         },
-        "trigger": "onDealCombatDamageToDeck",
-        "descripcion": "Cada vez que el portador haga daño al Mazo Castillo oponente, puedes desterrar 2 cartas del Cementerio oponente."
+        "controller": "opponent"
       }
-    ]
+    },
+    "trigger": "onDealCombatDamageToDeck",
+    "descripcion": "Cada vez que el portador haga daño al Mazo Castillo oponente, puedes desterrar 2 cartas del Cementerio oponente.",
+    "id_habilidad": "ruyi_jingu_bang_damage_banish"
+  }
+]
   },
   {
     "id": 865,

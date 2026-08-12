@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.4",
+    "pack_version": "2.9.5",
     "habilidades": []
   },
   {
@@ -3735,11 +3735,26 @@
     "salud": null,
     "habilidades": [
       {
+        "trigger": "onEnterPlay",
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "onEnterPlay"
+          "type": "chooseOne",
+          "prompt": "¿Deseas activar la habilidad de Draig Ifanc para robar una carta?",
+          "options": [
+            {
+              "id": "draig_ifanc_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "draig_ifanc_decline",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        }
       },
       {
         "effect": {
@@ -23430,7 +23445,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "effect": {
           "then": {
@@ -23470,6 +23485,10 @@
             "destinationZone": [
               "cementerio",
               "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
             ]
           }
         },
@@ -23495,6 +23514,10 @@
             "destinationZone": [
               "cementerio",
               "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
             ]
           }
         },
@@ -40464,11 +40487,26 @@
     "salud": null,
     "habilidades": [
       {
+        "trigger": "onEnterPlay",
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "onEnterPlay"
+          "type": "chooseOne",
+          "prompt": "¿Deseas activar la habilidad de Draig Ifanc para robar una carta?",
+          "options": [
+            {
+              "id": "draig_ifanc_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "draig_ifanc_decline",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        }
       },
       {
         "effect": {
@@ -43618,7 +43656,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "effect": {
           "then": {
@@ -43658,6 +43696,10 @@
             "destinationZone": [
               "cementerio",
               "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
             ]
           }
         },
@@ -43683,6 +43725,10 @@
             "destinationZone": [
               "cementerio",
               "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
             ]
           }
         },
@@ -52552,11 +52598,26 @@
     "salud": null,
     "habilidades": [
       {
+        "trigger": "onEnterPlay",
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "onEnterPlay"
+          "type": "chooseOne",
+          "prompt": "¿Deseas activar la habilidad de Draig Ifanc para robar una carta?",
+          "options": [
+            {
+              "id": "draig_ifanc_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "draig_ifanc_decline",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        }
       },
       {
         "effect": {
@@ -72610,7 +72671,6 @@
         "id_habilidad": "caballero_errante_haste_grant",
         "phase": "Principal",
         "trigger": "activatable",
-        "oncePerTurn": true,
         "condition": {
           "type": "and",
           "conditions": [
@@ -72635,11 +72695,12 @@
             "zone": "field",
             "query": {
               "type": "Aliado",
-              "wasPlayedThisTurn": true
+              "wasPlayedThisTurn": true,
+              "notKeyword": "canAttackThisTurn"
             },
             "controller": "self"
           },
-          "keyword": "canAttackOnEnterPlay",
+          "keyword": "canAttackThisTurn",
           "duration": "endOfTurn"
         },
         "description": "En tu Fase de Vigilia, si tienes 3 o mas Aliados en tu Zona de Destierro puedes elegir un Aliado que entro en juego este turno para que pueda atacar este turno."
@@ -83908,24 +83969,27 @@
         },
         "phase": "any",
         "effect": {
+          "type": "drawCards",
+          "count": 1,
           "then": {
             "effect": {
               "type": "millCards",
               "count": 3,
               "target": "opponent"
             }
-          },
-          "type": "drawCards",
-          "count": 1
+          }
         },
         "trigger": "activatable",
         "description": "Una vez por turno, cuando éste u otro Aliado Dios que controles sea destruido, puedes robar 1 carta. Luego, tu oponente bota 3 cartas.",
         "oncePerTurn": true,
         "id_habilidad": "yord_on_god_destroyed",
         "eventCondition": {
-          "raza": "Dios",
-          "type": "Aliado",
-          "destinationZone": "cementerio"
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "raza": "Dios",
+            "destinationZone": "cementerio"
+          }
         },
         "listensForEvent": "onAllyLeavePlay"
       }

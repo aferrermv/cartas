@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.5",
+    "pack_version": "2.9.6",
     "habilidades": []
   },
   {
@@ -4505,14 +4505,14 @@
     "salud": null,
     "habilidades": [
       {
-          "condition": {
-      "type": "playerHasInHand",
-      "query": {
-        "type": "*"
-      },
-      "amount": 1,
-      "comparison": "greaterOrEqual"
-    },
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
@@ -4665,7 +4665,7 @@
               "id": "search_deck",
               "zone": "mazoCastillo",
               "query": {
-                "race": "Titan",
+                "raza": "Titan",
                 "type": "Aliado"
               },
               "description": "Buscar en Mazo Castillo"
@@ -23445,7 +23445,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "effect": {
           "then": {
@@ -37108,36 +37108,36 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "type": "searchAndShuffleIntoDeck",
-      "zone": "cementerio",
-      "count": 1,
-      "query": {
-        "type": "*"
-      },
-      "prompt": "Un Aliado que controlas fue destruido. Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
-      "canCancel": true
-    },
-    "trigger": "activatable",
-    "condition": {
-      "type": "isInZone",
-      "zone": [
-        "goldReserve",
-        "paidGold"
-      ]
-    },
-    "descripcion": "Una vez por turno, si un Aliado que controles es destruido, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
-    "id_habilidad": "sakura_recycle_on_ally_destroyed",
-    "askOncePerTurn": true,
-    "eventCondition": {
-      "type": "wasMovedTo",
-      "zone": "cementerio"
-    },
-    "listensForEvent": "onAllyLeavePlay",
-    "triggeringPlayer": "self"
-  }
-]
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Un Aliado que controlas fue destruido. Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "descripcion": "Una vez por turno, si un Aliado que controles es destruido, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "sakura_recycle_on_ally_destroyed",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self"
+      }
+    ]
   },
   {
     "id": 3449,
@@ -37308,58 +37308,58 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "type": "chooseOne",
-      "prompt": "Nombra un tipo de carta para mostrar del Mazo Castillo:",
-      "options": [
-        {
-          "id": "jorogumo_type_ally",
-          "action": {
-            "type": "revealUntilType",
-            "targetType": "Aliado"
-          },
-          "description": "Nombrar Aliado"
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Nombra un tipo de carta para mostrar del Mazo Castillo:",
+          "options": [
+            {
+              "id": "jorogumo_type_ally",
+              "action": {
+                "type": "revealUntilType",
+                "targetType": "Aliado"
+              },
+              "description": "Nombrar Aliado"
+            },
+            {
+              "id": "jorogumo_type_weapon",
+              "action": {
+                "type": "revealUntilType",
+                "targetType": "Arma"
+              },
+              "description": "Nombrar Arma"
+            },
+            {
+              "id": "jorogumo_type_totem",
+              "action": {
+                "type": "revealUntilType",
+                "targetType": "Totem"
+              },
+              "description": "Nombrar Tótem"
+            },
+            {
+              "id": "jorogumo_type_talisman",
+              "action": {
+                "type": "revealUntilType",
+                "targetType": "Talisman"
+              },
+              "description": "Nombrar Talismán"
+            },
+            {
+              "id": "jorogumo_type_gold",
+              "action": {
+                "type": "revealUntilType",
+                "targetType": "Oro"
+              },
+              "description": "Nombrar Oro"
+            }
+          ]
         },
-        {
-          "id": "jorogumo_type_weapon",
-          "action": {
-            "type": "revealUntilType",
-            "targetType": "Arma"
-          },
-          "description": "Nombrar Arma"
-        },
-        {
-          "id": "jorogumo_type_totem",
-          "action": {
-            "type": "revealUntilType",
-            "targetType": "Totem"
-          },
-          "description": "Nombrar Tótem"
-        },
-        {
-          "id": "jorogumo_type_talisman",
-          "action": {
-            "type": "revealUntilType",
-            "targetType": "Talisman"
-          },
-          "description": "Nombrar Talismán"
-        },
-        {
-          "id": "jorogumo_type_gold",
-          "action": {
-            "type": "revealUntilType",
-            "targetType": "Oro"
-          },
-          "description": "Nombrar Oro"
-        }
-      ]
-    },
-    "trigger": "onEnterPlay",
-    "descripcion": "Cuando entra en juego, nombra un tipo de carta. Muestra cartas de tu Mazo Castillo hasta mostrar una carta de ese tipo y ponla en tu Mano. Luego, baraja el resto.",
-    "id_habilidad": "jorogumo_reveal_until_type"
-  }
-]
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, nombra un tipo de carta. Muestra cartas de tu Mazo Castillo hasta mostrar una carta de ese tipo y ponla en tu Mano. Luego, baraja el resto.",
+        "id_habilidad": "jorogumo_reveal_until_type"
+      }
+    ]
   },
   {
     "id": 5052,
@@ -43656,7 +43656,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "effect": {
           "then": {
@@ -59383,7 +59383,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "cost": {
           "type": "banishSelf"
@@ -62018,14 +62018,14 @@
     "salud": null,
     "habilidades": [
       {
-          "condition": {
-      "type": "playerHasInHand",
-      "query": {
-        "type": "*"
-      },
-      "amount": 1,
-      "comparison": "greaterOrEqual"
-    },
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
@@ -63412,14 +63412,14 @@
     "salud": null,
     "habilidades": [
       {
-          "condition": {
-      "type": "playerHasInHand",
-      "query": {
-        "type": "*"
-      },
-      "amount": 1,
-      "comparison": "greaterOrEqual"
-    },
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
@@ -63465,7 +63465,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "cost": {
           "type": "banishSelf"
@@ -76258,7 +76258,7 @@
           "type": "triggeringCardCondition",
           "query": {
             "wasPlayedFree": true,
-             "notType": "Oro"
+            "notType": "Oro"
           }
         },
         "description": "Anula una carta jugada sin pagar su coste. Luego destierra la carta Anulada.",
@@ -87245,32 +87245,32 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "descripcion": "No puede portar Armas.",
-    "id_habilidad": "gilgamesh_cannot_equip_weapon",
-    "restrictions": {
-      "cannotEquipWeapon": {
-        "query": {
-          "type": "Arma"
+      {
+        "descripcion": "No puede portar Armas.",
+        "id_habilidad": "gilgamesh_cannot_equip_weapon",
+        "restrictions": {
+          "cannotEquipWeapon": {
+            "query": {
+              "type": "Arma"
+            }
+          }
         }
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "cannotLeavePlay"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Solo puede salir del juego por daño de combate.",
+        "id_habilidad": "gilgamesh_leave_play_protection"
       }
-    }
-  },
-  {
-    "effect": {
-      "type": "grantKeyword",
-      "target": "self",
-      "keyword": "cannotLeavePlay"
-    },
-    "trigger": "continuous",
-    "condition": {
-      "type": "isInZone",
-      "zone": "field"
-    },
-    "descripcion": "Solo puede salir del juego por daño de combate.",
-    "id_habilidad": "gilgamesh_leave_play_protection"
-  }
-]
+    ]
   },
   {
     "id": 3396,
@@ -90296,34 +90296,34 @@
     "durabilidad": 0,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":[
-  {
-    "effect": {
-      "type": "grantKeywordToWielder",
-      "keyword": "unblockable"
-    },
-    "trigger": "continuous",
-    "description": "El portador es Imbloqueable.",
-    "id_habilidad": "ruyi_jingu_bang_unblockable"
-  },
-  {
-    "effect": {
-      "type": "chooseAndBanish",
-      "count": 2,
-      "prompt": "Elige 2 cartas del Cementerio oponente para desterrar.",
-      "target": {
-        "zone": "cementerio",
-        "query": {
-          "type": "*"
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "unblockable"
         },
-        "controller": "opponent"
+        "trigger": "continuous",
+        "description": "El portador es Imbloqueable.",
+        "id_habilidad": "ruyi_jingu_bang_unblockable"
+      },
+      {
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 2,
+          "prompt": "Elige 2 cartas del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "descripcion": "Cada vez que el portador haga daño al Mazo Castillo oponente, puedes desterrar 2 cartas del Cementerio oponente.",
+        "id_habilidad": "ruyi_jingu_bang_damage_banish"
       }
-    },
-    "trigger": "onDealCombatDamageToDeck",
-    "descripcion": "Cada vez que el portador haga daño al Mazo Castillo oponente, puedes desterrar 2 cartas del Cementerio oponente.",
-    "id_habilidad": "ruyi_jingu_bang_damage_banish"
-  }
-]
+    ]
   },
   {
     "id": 865,
@@ -91098,6 +91098,850 @@
           "type": "isResponseCard"
         },
         "listensForEvent": "onAllyLeavePlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3928,
+    "nombre": "Betty Parris",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/bettyparris.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, tu oponente descarta una carta de su Mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, tu oponente descarta una carta de su Mano."
+      }
+    ]
+  },
+  {
+    "id": 4809,
+    "nombre": "Elizabeth Bathory",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/elizabethbathory.webp",
+    "habilidad_texto_descriptivo": "No puede ser bloqueada por Aliados de fuerza 2 o menos. Cuando entra en juego puedes buscar un Vampiro en tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockableBy",
+          {
+            "condition": {
+              "type": "fuerza",
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        ],
+        "descripcion": "No puede ser bloqueada por Aliados de fuerza 2 o menos."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Vampiro de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Vampiro",
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego puedes buscar un Vampiro en tu Cementerio y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 4473,
+    "nombre": "Falsa Cautiva",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/falsacautiva.webp",
+    "habilidad_texto_descriptivo": "Al entrar en juego, destruye una de tus cartas Oro.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTargetInModal",
+          "count": 1,
+          "prompt": "Debes destruir una de tus cartas de Oro.",
+          "target": {
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "self"
+          },
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Al entrar en juego, destruye una de tus cartas Oro."
+      }
+    ]
+  },
+  {
+    "id": 3809,
+    "nombre": "Ghoul",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/ghoul.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador bota una carta de su Mazo Castillo. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
+          },
+          "type": "massMill",
+          "count": 1,
+          "target": "allPlayers"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, cada jugador bota una carta de su Mazo Castillo. Luego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 3047,
+    "nombre": "Jure Grando",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/juregrando.webp",
+    "habilidad_texto_descriptivo": "Si tu oponente controla un Aliado de Fuerza 4 o más, jugar esta carta te cuesta 1 Oro menos. Cuando sea declarado atacante, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "fuerza": {
+              "value": 4,
+              "operator": ">="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "opponent"
+        },
+        "descripcion": "Si tu oponente controla un Aliado de Fuerza 4 o más, jugar esta carta te cuesta 1 Oro menos."
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Jure Grando: ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "jure_grando_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "jure_grando_no_draw",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando sea declarado atacante, puedes robar 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 3619,
+    "nombre": "Lucy",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/lucy.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener una Lucy en juego. En tu Fase de Vigilia, una vez por turno y si tu oponente controla 2 o más Aliados, puedes elegir entre que tu oponente descarte una carta de su Mano o que bote una carta",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Sólo puedes tener una Lucy en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Lucy: Elige un efecto.",
+          "options": [
+            {
+              "id": "lucy_discard",
+              "action": {
+                "type": "discardRandomCard",
+                "count": 1,
+                "target": "opponent"
+              },
+              "description": "Tu oponente descarta una carta de su Mano."
+            },
+            {
+              "id": "lucy_mill",
+              "action": {
+                "type": "millCards",
+                "count": 1,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota una carta."
+            }
+          ]
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "controller": "opponent"
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno y si tu oponente controla 2 o más Aliados, puedes elegir entre que tu oponente descarte una carta de su Mano o que bote una carta.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 868,
+    "nombre": "Jacques St. Germain",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/jacquesgermain.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir un Aliado en juego de Coste 3 o menos. Luego botas tantas cartas como Coste tenga el Aliado destruido.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "fromContext": "lastTarget.coste_oro"
+              },
+              "target": "self"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Puedes destruir un Aliado de Coste 3 o menos. Si lo haces, botas cartas de tu Mazo Castillo igual a su coste.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes destruir un Aliado en juego de Coste 3 o menos. Luego botas tantas cartas como Coste tenga el Aliado destruido."
+      }
+    ]
+  },
+  {
+    "id": 3265,
+    "nombre": "Moroi",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/moroi2.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, cada vez que otro Vampiro que controles salga del juego, tu oponente descarta una carta de su Mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "descripcion": "Una vez por turno, cada vez que otro Vampiro que controles salga del juego, tu oponente descarta una carta de su Mano.",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Vampiro",
+            "type": "Aliado",
+            "isOther": true
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self"
+      }
+    ]
+  },
+  {
+    "id": 869,
+    "nombre": "Mercy Brown",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/mercybrown.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes botar 1 carta de tu Mazo Castillo para robar 1 carta. Cuando salga del juego, puedes poner un Aliado que no sea Mercy Brown de tu Cementerio en tu Mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Mercy Brown: ¿Quieres botar 1 carta para robar 1?",
+          "options": [
+            {
+              "id": "mercy_brown_mill_draw",
+              "action": {
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                },
+                "type": "millCards",
+                "count": 1,
+                "target": "self"
+              },
+              "description": "Sí, botar 1 y robar 1"
+            },
+            {
+              "id": "mercy_brown_no_action",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes botar 1 carta de tu Mazo Castillo para robar 1 carta."
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado que no sea Mercy Brown de tu Cementerio para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameIsNot": "Mercy Brown"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando salga del juego, puedes poner un Aliado que no sea Mercy Brown de tu Cementerio en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 6131,
+    "nombre": "Kelpie PE",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/kelpie.webp",
+    "habilidad_texto_descriptivo": "Un vampiro gana + 3 por este turno.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Vampiro para que gane +3 de fuerza este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "raza": "Vampiro",
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Un vampiro gana + 3 por este turno.",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Vampiro",
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "any"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3088,
+    "nombre": "Anfiptero",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/anfiptero.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes generar 1 Oro para jugar Aliados Dragón hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 1,
+          "isTemporary": true,
+          "restriction": {
+            "raza": "Dragon",
+            "type": "Aliado",
+            "usage": "playOnly"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes generar 1 Oro para jugar Aliados Dragón hasta la Fase Final.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 1536,
+    "nombre": "Los Caminos de Roma",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/myl695.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta oponente. Tu oponente bota 2 cartas.",
+    "descripcion": "Destruye una carta oponente. Tu oponente bota 2 cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 2,
+              "target": "opponent"
+            }
+          },
+          "type": "destroyTargetInModal",
+          "count": 1,
+          "prompt": "Elige una carta oponente en juego para destruir.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem",
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "minCount": 1,
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Destruye una carta oponente. Tu oponente bota 2 cartas."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1273,
+    "nombre": "Aliado Feerico",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl373.webp",
+    "habilidad_texto_descriptivo": "En respuesta a recibir daño, destruye un Aliado que controles para reducir a 0 el daño hecho a tu Mazo Castillo este turno.",
+    "descripcion": "En respuesta a recibir daño, destruye un Aliado que controles para reducir a 0 el daño hecho a tu Mazo Castillo este turno.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "reduceMillToZero"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado que controles para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "description": "En respuesta a recibir daño, destruye un Aliado que controles para reducir a 0 el daño hecho a tu Mazo Castillo este turno.",
+        "id_habilidad": "aliado_feerico_prevent_damage",
+        "sourcePlayer": "opponent",
+        "targetPlayer": "self",
+        "listensForEvent": "onBeingMilled"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1048,
+    "nombre": "Espada de Cristal",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl68.webp",
+    "habilidad_texto_descriptivo": "Su portador sólo puede ser un Faerie. Si tu oponente juega un Talismán, en respuesta puedes destruir Espada de Cristal para anularlo. ",
+    "descripcion": "Su portador sólo puede ser un Faerie. Si tu oponente juega un Talismán, en respuesta puedes destruir Espada de Cristal para anularlo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Su portador sólo puede ser un Faerie.",
+        "restrictions": {
+          "canEquipWeapon": {
+            "query": {
+              "raza": "Faerie"
+            }
+          }
+        },
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Faerie",
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "self"
+        }
+      },
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "annulTriggeringTalisman"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Si tu oponente juega un Talismán, en respuesta puedes destruir Espada de Cristal para anularlo.",
+        "id_habilidad": "espada_de_cristal_annul_talisman",
+        "costPaidBeforeResponse": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1942,
+    "nombre": "Bladud",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1218.webp",
+    "habilidad_texto_descriptivo": "mientras Bladud esté en juego, tus Aliados de coste 1 o menos ganan 1 a la fuerza.",
+    "descripcion": "mientras Bladud esté en juego, tus Aliados de coste 1 o menos ganan 1 a la fuerza.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 1,
+                "operator": "<="
+              }
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "mientras Bladud esté en juego, tus Aliados de coste 1 o menos ganan 1 a la fuerza."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1248,
+    "nombre": "Draigh Goch",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl302.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener un Draigh Goch en juego. Una vez por turno, puedes pagar 3 oros para destruir una carta en juego que no sea Oro o para que una carta en juego y todas sus copias pierdan su habilidad hasta la Fase Final.",
+    "descripcion": "Sólo puedes tener un Draigh Goch en juego. Una vez por turno, puedes pagar 3 oros para destruir una carta en juego que no sea Oro o para que una carta en juego y todas sus copias pierdan su habilidad hasta la Fase Final.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Sólo puedes tener un Draigh Goch en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Draigh Goch: Elige un efecto.",
+          "options": [
+            {
+              "id": "draigh_goch_destroy_card",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige una carta en juego que no sea Oro para destruir.",
+                "target": {
+                  "zone": "field",
+                  "query": {
+                    "notType": "Oro"
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir una carta en juego que no sea Oro."
+            },
+            {
+              "id": "draigh_goch_annul_ability",
+              "action": {
+                "type": "annulAbilityOnTargetAndCopies",
+                "prompt": "Elige una carta en juego para que ella y todas sus copias pierdan su habilidad hasta la Fase Final.",
+                "target": {
+                  "zone": "field",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "any"
+                },
+                "duration": "endOfTurn"
+              },
+              "description": "Una carta en juego y todas sus copias pierden su habilidad hasta la Fase Final."
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Una vez por turno, puedes pagar 3 oros para destruir una carta en juego que no sea Oro o para que una carta en juego y todas sus copias pierdan su habilidad hasta la Fase Final.",
+        "oncePerTurn": true
       }
     ],
     "tier": "muy bajo"

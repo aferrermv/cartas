@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.6",
+    "pack_version": "2.9.7",
     "habilidades": []
   },
   {
@@ -15327,7 +15327,6 @@
           "target": "opponent"
         },
         "trigger": "onEnterPlay",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -15354,7 +15353,6 @@
           "target": "opponent"
         },
         "trigger": "activatable_with_costs",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -24753,7 +24751,7 @@
         ],
         "effect": {
           "type": "grantKeywordToSelf",
-          "keyword": "canAttackThisTurn",
+          "keyword": "nowCanAttack",
           "duration": "endOfTurn"
         },
         "trigger": "activatable_with_costs",
@@ -33098,7 +33096,11 @@
           "type": "annulAbilityOnTargetAndCopies",
           "prompt": "Elige una carta en juego para que ella y todas sus copias pierdan su habilidad hasta la Fase Final.",
           "target": {
-            "zone": "field",
+            "zone": [
+              "field",
+              "goldReserve",
+              "paidGold"
+            ],
             "query": {
               "type": "*"
             },
@@ -36708,55 +36710,57 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
+  {
+    "costs": [
       {
-        "cost": {
-          "type": "destroySelf"
-        },
-        "effect": {
-          "type": "annulInModal",
-          "prompt": "Elige una carta en juego para anular su habilidad.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": [
-                "Aliado",
-                "Arma",
-                "Totem",
-                "Oro"
-              ]
-            }
-          },
-          "duration": "endOfTurn",
-          "canCancel": true
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": [
-            "goldReserve",
-            "paidGold"
-          ]
-        },
-        "descripcion": "Anula una carta en juego. Si no controlas Campeones, puedes pagar 2 oros para cancelar esto.",
-        "id_habilidad": "campeones_de_oriente_fix",
-        "opponentCanAnnul": {
-          "cost": {
-            "type": "payGold",
-            "count": 2
-          },
-          "prompt": "¿Pagar 2 Oros para cancelar la anulación?",
-          "condition": {
-            "type": "playerControls",
-            "query": {
-              "raza": "Campeon",
-              "type": "Aliado"
-            },
-            "amount": 0
-          }
-        }
+        "type": "destroySelf"
       }
-    ]
+    ],
+    "effect": {
+      "type": "annulInModal",
+      "prompt": "Elige una carta en juego para anular su habilidad.",
+      "target": {
+        "zone": "field",
+        "query": {
+          "type": [
+            "Aliado",
+            "Arma",
+            "Totem",
+            "Oro"
+          ]
+        }
+      },
+      "duration": "endOfTurn",
+      "canCancel": true
+    },
+    "trigger": "activatable_with_costs",
+    "condition": {
+      "type": "isInZone",
+      "zone": [
+        "goldReserve",
+        "paidGold"
+      ]
+    },
+    "descripcion": "Anula una carta en juego. Si no controlas Campeones, tu oponente puede pagar 2 oros para cancelar esto.",
+    "id_habilidad": "campeones_de_oriente_fix",
+    "opponentCanAnnul": {
+      "cost": {
+        "type": "payGold",
+        "count": 2
+      },
+      "prompt": "¿Pagar 2 Oros para cancelar la anulación?",
+      "condition": {
+        "type": "playerControls",
+        "query": {
+          "raza": "Campeon",
+          "type": "Aliado"
+        },
+        "amount": 0
+      }
+    }
+  }
+]
   },
   {
     "id": 3118,
@@ -47295,7 +47299,6 @@
           "target": "opponent"
         },
         "trigger": "onEnterPlay",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -47322,7 +47325,6 @@
           "target": "opponent"
         },
         "trigger": "activatable_with_costs",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -62083,7 +62085,7 @@
                   "type": "oro"
                 },
                 {
-                  "race": "Faerie",
+                  "raza": "Faerie",
                   "type": "aliado"
                 }
               ]
@@ -67403,7 +67405,6 @@
           "target": "opponent"
         },
         "trigger": "onEnterPlay",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -67430,7 +67431,6 @@
           "target": "opponent"
         },
         "trigger": "activatable_with_costs",
-        "resolvesInstantly": true,
         "inherent": [
           "cannotBeAnnulled"
         ],
@@ -80527,66 +80527,65 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Puede atacar cuando entra en juego."
+    "habilidades":[
+  {
+    "inherent": [
+      "canAttackOnEnterPlay"
+    ],
+    "description": "Puede atacar cuando entra en juego."
+  },
+  {
+    "effect": {
+      "type": "addMarkerToSelf",
+      "marker": "dealtCombatDamageThisTurn"
+    },
+    "trigger": "onDealCombatDamageToDeck",
+    "isHidden": true,
+    "id_habilidad": "ogier_el_danes_set_damage_marker"
+  },
+  {
+    "phase": "Final",
+    "effect": {
+      "type": "chooseAndBanish",
+      "count": 1,
+      "prompt": "Habilidad de Ogier el Danés: Elige una carta del Cementerio oponente para desterrar.",
+      "target": {
+        "zone": "cementerio",
+        "query": {
+          "type": "*"
+        },
+        "controller": "opponent"
       },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
+      "canCancel": true
+    },
+    "trigger": "activatable",
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        {
+          "type": "hasMarker",
           "marker": "dealtCombatDamageThisTurn"
         },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "ogier_el_danes_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "chooseAndBanish",
-          "count": 1,
-          "prompt": "Habilidad de Ogier el Danés: Elige una carta del Cementerio oponente para desterrar.",
-          "target": {
-            "zone": "cementerio",
-            "query": {
-              "type": "*"
-            },
-            "controller": "opponent"
+        {
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "query": {
+            "type": "*"
           },
-          "canCancel": true
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "zone": "cementerio",
-              "query": {
-                "type": "*"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual",
-              "controller": "opponent"
-            }
-          ]
-        },
-        "description": "Cuando hace daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
-        "oncePerTurn": true,
-        "id_habilidad": "ogier_el_danes_banish_on_damage"
-      }
-    ]
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      ]
+    },
+    "description": "Cuando hace daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
+    "oncePerTurn": true,
+    "id_habilidad": "ogier_el_danes_banish_on_damage"
+  }
+]
   },
   {
     "id": 3245,
@@ -87792,48 +87791,50 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "cannotBeBanished"
-        ],
-        "id_habilidad": "kyria_inherent"
-      },
-      {
-        "effect": {
-          "type": "searchAndPutInHand",
-          "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
-          "canCancel": true,
-          "searchQuery": {
-            "zone": "cementerio",
-            "nameContains": "Minotauro"
-          }
-        },
-        "trigger": "onEnterPlay",
-        "id_habilidad": "kyria_enter_play",
-        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
-      },
-      {
-        "effect": {
-          "type": "searchAndPutInHand",
-          "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
-          "canCancel": true,
-          "searchQuery": {
-            "zone": "cementerio",
-            "nameContains": "Minotauro"
-          }
-        },
-        "trigger": "onLeavePlay",
-        "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio"
-          ]
-        },
-        "id_habilidad": "kyria_leave_play",
-        "habilidad_texto_descriptivo": "Cuando sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
-      }
+    "habilidades":  [
+  {
+    "inherent": [
+      "cannotBeBanished"
     ],
+    "id_habilidad": "kyria_inherent"
+  },
+  {
+    "effect": {
+      "type": "searchAndPutInHand",
+      "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
+      "canCancel": true,
+      "searchQuery": {
+        "zone": "cementerio",
+        "nameContains": "Minotauro",
+        "isOther": true
+      }
+    },
+    "trigger": "onEnterPlay",
+    "id_habilidad": "kyria_enter_play",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
+  },
+  {
+    "effect": {
+      "type": "searchAndPutInHand",
+      "prompt": "Elige una carta Minotauro de tu Cementerio para poner en tu Mano.",
+      "canCancel": true,
+      "searchQuery": {
+        "zone": "cementerio",
+        "nameContains": "Minotauro",
+        "isOther": true
+      }
+    },
+    "trigger": "onLeavePlay",
+    "condition": {
+      "type": "isDestinationZone",
+      "zones": [
+        "cementerio"
+      ]
+    },
+    "id_habilidad": "kyria_leave_play",
+    "habilidad_texto_descriptivo": "Cuando sea Destruido, puedes poner una carta Minotauro de tu Cementerio en tu Mano."
+  }
+],
     "tier": "medio"
   },
   {
@@ -91352,45 +91353,52 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "descripcion": "Sólo puedes tener una Lucy en juego.",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "attack",
-            "defense"
-          ]
-        }
-      },
-      {
-        "phase": "Principal",
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Habilidad de Lucy: Elige un efecto.",
-          "options": [
-            {
-              "id": "lucy_discard",
-              "action": {
-                "type": "discardRandomCard",
-                "count": 1,
-                "target": "opponent"
-              },
-              "description": "Tu oponente descarta una carta de su Mano."
-            },
-            {
-              "id": "lucy_mill",
-              "action": {
-                "type": "millCards",
-                "count": 1,
-                "target": "opponent"
-              },
-              "description": "Tu oponente bota una carta."
-            }
-          ]
+   "habilidades": [
+  {
+    "descripcion": "Sólo puedes tener una Lucy en juego.",
+    "play_limitation": {
+      "type": "unique",
+      "scope": [
+        "attack",
+        "defense"
+      ]
+    }
+  },
+  {
+    "phase": "Principal",
+    "effect": {
+      "type": "chooseOne",
+      "prompt": "Habilidad de Lucy: Elige un efecto.",
+      "options": [
+        {
+          "id": "lucy_discard",
+          "action": {
+            "type": "discardRandomCard",
+            "count": 1,
+            "target": "opponent"
+          },
+          "description": "Tu oponente descarta una carta de su Mano."
         },
-        "trigger": "activatable",
-        "condition": {
+        {
+          "id": "lucy_mill",
+          "action": {
+            "type": "millCards",
+            "count": 1,
+            "target": "opponent"
+          },
+          "description": "Tu oponente bota una carta."
+        }
+      ]
+    },
+    "trigger": "activatable",
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        {
           "type": "playerControls",
           "query": {
             "type": "Aliado"
@@ -91398,11 +91406,14 @@
           "amount": 2,
           "comparison": "greaterOrEqual",
           "controller": "opponent"
-        },
-        "descripcion": "En tu Fase de Vigilia, una vez por turno y si tu oponente controla 2 o más Aliados, puedes elegir entre que tu oponente descarte una carta de su Mano o que bote una carta.",
-        "oncePerTurn": true
-      }
-    ]
+        }
+      ]
+    },
+    "descripcion": "En tu Fase de Vigilia, una vez por turno y si tu oponente controla 2 o más Aliados, puedes elegir entre que tu oponente descarte una carta de su Mano o que bote una carta.",
+    "oncePerTurn": true
+  }
+]
+
   },
   {
     "id": 868,

@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "2.9.9",
+    "pack_version": "3.0.0",
     "habilidades": []
   },
   {
@@ -14001,7 +14001,59 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": []
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "unique"
+        ],
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal"
+        ],
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "effect": {
+          "type": "playTalismanFromDeckFree",
+          "prompt": "Merlín: Elige un Talismán de coste 3 o menos de tu Mazo Castillo para jugarlo.",
+          "canCancel": true,
+          "banishAfterResolution": true,
+          "searchQuery": {
+            "type": "Talisman",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "operator": "<=",
+              "value": 3
+            }
+          }
+        },
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes pagar 3 de oro para jugar un Talisman de coste 3 o menos de tu Mazo Castillo. Luego destierra ese Talisman.",
+        "id_habilidad": "merlin_play_talisman_from_deck"
+      }
+    ]
   },
   {
     "id": 419,
@@ -54104,6 +54156,75 @@
     "tier": "muy bajo"
   },
   {
+    "id": 7433,
+    "nombre": "Mago Merlin",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/magomerlinog.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Mago Merlin en juego. En tu Fase Final, si controlas 2 o mas Aliados de coste 3 o más, puedes buscar un Talisman en tu Mazo Castillo y ponerlo en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Mago Merlin en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Talismán de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Talisman",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "cost": {
+                  "value": 3,
+                  "operator": ">="
+                },
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si controlas 2 o mas Aliados de coste 3 o más, puedes buscar un Talisman en tu Mazo Castillo y ponerlo en tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "mago_merlin_tutor_talisman"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",
@@ -93743,5 +93864,2312 @@
         "id_habilidad": "halfdan_ragnarsson_play_weapon_free_from_graveyard"
       }
     ]
+  },
+  {
+    "id": 1001,
+    "nombre": "Sir Gawein",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl4.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes, destierra a Sir Gawein para que no se puedan jugar Talismanes hasta el final del turno. ",
+    "descripcion": "En guerra de Talismanes, destierra a Sir Gawein para que no se puedan jugar Talismanes hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "activatable_with_costs",
+        "phase": "Guerra de Talismanes",
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "duration": "endOfTurn",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "descripcion": "En guerra de Talismanes, destierra a Sir Gawein para que no se puedan jugar Talismanes hasta el final del turno.",
+        "id_habilidad": "sir_gawein_banish_prevent_talismans"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1002,
+    "nombre": "Principe Valiant",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl8.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes, puedes destruir Príncipe Valiant para que tus Caballeros sean imbloqueables hasta el final del turno. ",
+    "descripcion": "En guerra de Talismanes, puedes destruir Príncipe Valiant para que tus Caballeros sean imbloqueables hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToAllMatching",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "unblockable",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia, puedes destruir Príncipe Valiant para que tus Caballeros sean imbloqueables hasta el final del turno.",
+        "id_habilidad": "principe_valiant_destroy_knights_unblockable"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1003,
+    "nombre": "Lady Dawn",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl9.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que uno de tus Caballeros sea destruido, puedes pagar 3 de oro o destruir a Lady Dawn para salvarlo. ",
+    "descripcion": "En respuesta a que uno de tus Caballeros sea destruido, puedes pagar 3 de oro o destruir a Lady Dawn para salvarlo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige una opción para salvar a tu Caballero:",
+            "options": [
+              {
+                "id": "pay_3_gold",
+                "action": {
+                  "type": "payGold",
+                  "count": 3
+                },
+                "description": "Pagar 3 de Oro"
+              },
+              {
+                "id": "destroy_lady_dawn",
+                "action": {
+                  "type": "destroySelf"
+                },
+                "description": "Destruir a Lady Dawn"
+              }
+            ]
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable_with_costs",
+        "descripcion": "En respuesta a que uno de tus Caballeros sea destruido, puedes pagar 3 de oro o destruir a Lady Dawn para salvarlo.",
+        "id_habilidad": "lady_dawn_save_knight",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Caballero",
+            "type": "Aliado",
+            "controller": "self",
+            "destinationZone": [
+              "cementerio"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1004,
+    "nombre": "El Obispo de Londinium",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl10.webp",
+    "habilidad_texto_descriptivo": "Cuando El Obispo De Londinium entra en juego, tu oponente bota 3 cartas. ",
+    "descripcion": "Cuando El Obispo De Londinium entra en juego, tu oponente bota 3 cartas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando El Obispo De Londinium entra en juego, tu oponente bota 3 cartas.",
+        "id_habilidad": "el_obispo_de_londinium_mill_3"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1010,
+    "nombre": "Dragon del Agua",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/myl21.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón del Agua entra en juego, los Dragones no pueden ser afectados por Talismanes hasta el final del turno. ",
+    "descripcion": "Cuando Dragón del Agua entra en juego, los Dragones no pueden ser afectados por Talismanes hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToAllMatching",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "raza": "Dragon",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "talismanImmunity",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Dragón del Agua entra en juego, los Dragones no pueden ser afectados por Talismanes hasta el final del turno.",
+        "id_habilidad": "dragon_del_agua_dragons_talisman_immunity"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1021,
+    "nombre": "Las Tres Hermanas",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl36.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes y una vez por turno, puedes pagar 2 de oro para que un aliado en juego vuelva a la mano. ",
+    "descripcion": "En guerra de Talismanes y una vez por turno, puedes pagar 2 de oro para que un aliado en juego vuelva a la mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige un Aliado en juego para devolver a la mano de su dueño.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "descripcion": "En guerra de Talismanes y una vez por turno, puedes pagar 2 de oro para que un aliado en juego vuelva a la mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "las_tres_hermanas_return"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1022,
+    "nombre": "El Poeta",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl37.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, nombra una carta para que no pueda ser jugada mientras El Poeta esté en juego. ",
+    "descripcion": "Cuando entra en juego, nombra una carta para que no pueda ser jugada mientras El Poeta esté en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "nameAndRestrictPlay",
+          "prompt": "Nombra una carta para que no pueda ser jugada mientras El Poeta esté en juego."
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, nombra una carta para que no pueda ser jugada mientras El Poeta esté en juego.",
+        "id_habilidad": "el_poeta_name_and_restrict_play"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1023,
+    "nombre": "Puck",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl38.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes y una vez por turno, puedes pagar 1 de oro para que un Aliado oponente no pueda bloquear o atacar durante este turno. ",
+    "descripcion": "En guerra de Talismanes y una vez por turno, puedes pagar 1 de oro para que un Aliado oponente no pueda bloquear o atacar durante este turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "applyAuraKeywordsToTarget",
+          "prompt": "Elige un Aliado oponente en juego para que no pueda atacar ni bloquear durante este turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn",
+          "keywords": [
+            "cannotAttack",
+            "cannotBlock"
+          ],
+          "canCancel": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes pagar 1 de oro para que un Aliado oponente no pueda bloquear o atacar durante este turno.",
+        "oncePerTurn": true,
+        "id_habilidad": "puck_prevent_attack_and_block"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1024,
+    "nombre": "Each Usige",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl39.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes pagar el Coste de Oro de una carta en tu Cementerio para barajarla en tu Mazo Castillo. ",
+    "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes pagar el Coste de Oro de una carta en tu Cementerio para barajarla en tu Mazo Castillo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "max": 10,
+            "min": 0,
+            "type": "payVariableGold",
+            "prompt": "Elige cuánto Oro pagar para la habilidad de Each Usige.",
+            "rememberAs": "paidCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "shuffleFromGraveyardByCostContext",
+          "prompt": "Elige una carta en tu Cementerio de coste igual o menor al oro pagado para barajar en tu Mazo Castillo.",
+          "operator": "<=",
+          "searchQuery": {},
+          "costContextProperty": "paidCost"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes pagar el Coste de Oro de una carta en tu Cementerio para barajarla en tu Mazo Castillo.",
+        "oncePerTurn": true,
+        "id_habilidad": "each_usige_pay_variable_cost_and_shuffle"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1025,
+    "nombre": "Ellyllon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl40.webp",
+    "habilidad_texto_descriptivo": "Cada vez que Ellyllon entre o salga del juego, tu oponente bota 2 cartas. ",
+    "descripcion": "Cada vez que Ellyllon entre o salga del juego, tu oponente bota 2 cartas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Ellyllon entra en juego, tu oponente bota 2 cartas.",
+        "id_habilidad": "ellyllon_enter_play_mill"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando Ellyllon sale del juego, tu oponente bota 2 cartas.",
+        "id_habilidad": "ellyllon_leave_play_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1060,
+    "nombre": "Sir Wesley",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl83.webp",
+    "habilidad_texto_descriptivo": "Sir Wesley no puede portar armas. ",
+    "descripcion": "Sir Wesley no puede portar armas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Sir Wesley no puede portar armas.",
+        "restrictions": {
+          "cannotEquipWeapon": {
+            "query": {
+              "tipo": "Arma"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1062,
+    "nombre": "Loth",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl85.webp",
+    "habilidad_texto_descriptivo": "Si Loth es tu único Aliado declarado atacante, no se pueden jugar Talismanes hasta el final del turno. ",
+    "descripcion": "Si Loth es tu único Aliado declarado atacante, no se pueden jugar Talismanes hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "duration": "endOfTurn",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "isOnlyAttacker"
+        },
+        "descripcion": "Si Loth es tu único Aliado declarado atacante, no se pueden jugar Talismanes hasta el final del turno.",
+        "id_habilidad": "loth_solo_attacker_lock_talismans"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1063,
+    "nombre": "Sir Baldwin",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl86.webp",
+    "habilidad_texto_descriptivo": "Si es destruido, puedes ver las 3 cartas superiores de tu mazo castillo y devolverlas en el orden que quieras. ",
+    "descripcion": "Si es destruido, puedes ver las 3 cartas superiores de tu mazo castillo y devolverlas en el orden que quieras. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Sir Baldwin fue destruido. ¿Quieres ver y reordenar las 3 primeras cartas de tu Mazo Castillo?",
+          "options": [
+            {
+              "id": "baldwin_reorder_yes",
+              "action": {
+                "type": "lookAndReorderTopDeck",
+                "count": 3,
+                "prompt": "Mira las 3 primeras cartas de tu Mazo Castillo y reordénalas como quieras."
+              },
+              "description": "Sí, ver y reordenar 3 cartas"
+            },
+            {
+              "id": "baldwin_reorder_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "descripcion": "Si es destruido, puedes ver las 3 cartas superiores de tu mazo castillo y devolverlas en el orden que quieras.",
+        "id_habilidad": "sir_baldwin_on_destroy_reorder"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1064,
+    "nombre": "Sir Lionel",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl87.webp",
+    "habilidad_texto_descriptivo": "En respuesta a finalizar tu turno, si Sir Lionel está en línea de ataque puedes agruparlo. ",
+    "descripcion": "En respuesta a finalizar tu turno, si Sir Lionel está en línea de ataque puedes agruparlo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "regroupSelf"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "attack"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "descripcion": "En respuesta a finalizar tu turno, si Sir Lionel está en línea de ataque puedes agruparlo.",
+        "oncePerTurn": true,
+        "id_habilidad": "sir_lionel_end_turn_regroup"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1066,
+    "nombre": "Sir Sagregor",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/myl89.webp",
+    "habilidad_texto_descriptivo": "Sir Sagregor no puede portar armas. ",
+    "descripcion": "Sir Sagregor no puede portar armas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 8,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Sir Sagregor no puede portar armas.",
+        "restrictions": {
+          "cannotEquipWeapon": {
+            "query": {
+              "tipo": "Arma"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1068,
+    "nombre": "Tortuga Dragon",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl91.webp",
+    "habilidad_texto_descriptivo": "Tortuga Dragón puede atacar cuando entra en juego. ",
+    "descripcion": "Tortuga Dragón puede atacar cuando entra en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1069,
+    "nombre": "Dragon Espia",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl92.webp",
+    "habilidad_texto_descriptivo": "Si Dragón Espía hace daño al mazo castillo oponente, puedes ver su mano. ",
+    "descripcion": "Si Dragón Espía hace daño al mazo castillo oponente, puedes ver su mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewOpponentHand",
+          "prompt": "Mano de tu oponente:"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "descripcion": "Si Dragón Espía hace daño al mazo castillo oponente, puedes ver su mano.",
+        "id_habilidad": "dragon_espia_damage_view_hand"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1070,
+    "nombre": "Darg, el Semi Dragon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl93.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y hasta 3 veces por turno, puedes pagar 1 de oro para que Darg, El Semi Dragón, gane + 1 a la fuerza hasta el final del turno. ",
+    "descripcion": "En tu fase de vigilia y hasta 3 veces por turno, puedes pagar 1 de oro para que Darg, El Semi Dragón, gane + 1 a la fuerza hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "applyBuffToSelf",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1
+            }
+          ]
+        },
+        "description": "En tu fase de vigilia y hasta 4 veces por turno, puedes pagar 1 de oro para que Darg, El Semi Dragón, gane +1 a la fuerza hasta el final del turno.",
+        "id_habilidad": "darg_buff_fuerza",
+        "fourTimesPerTurn": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1071,
+    "nombre": "Org, el Hechicero",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl94.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes, puedes pagar 2 de oro para que un Aliado oponente tenga fuerza 0 hasta el final del turno. ",
+    "descripcion": "En guerra de Talismanes, puedes pagar 2 de oro para que un Aliado oponente tenga fuerza 0 hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": [
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que tenga fuerza 0 hasta el final del turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 2
+            }
+          ]
+        },
+        "description": "En guerra de Talismanes, puedes pagar 2 de oro para que un Aliado oponente tenga fuerza 0 hasta el final del turno.",
+        "id_habilidad": "org_el_hechicero_zero_force"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1072,
+    "nombre": "Dragon Negro",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl95.webp",
+    "habilidad_texto_descriptivo": "Todos los Caballeros ganan - 1 a la fuerza, mientras Dragón Negro esté en juego. ",
+    "descripcion": "Todos los Caballeros ganan - 1 a la fuerza, mientras Dragón Negro esté en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Todos los Caballeros ganan - 1 a la fuerza, mientras Dragón Negro esté en juego.",
+        "id_habilidad": "dragon_negro_continuous_debuff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1077,
+    "nombre": "Serpentino",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl102.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes, puedes pagar 1 oro para que un Aliado oponente gane - 1 a la fuerza hasta el final del turno. ",
+    "descripcion": "En guerra de Talismanes, puedes pagar 1 oro para que un Aliado oponente gane - 1 a la fuerza hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "phase": [
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que gane -1 a la Fuerza hasta el final del turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1
+            }
+          ]
+        },
+        "description": "En guerra de Talismanes, puedes pagar 1 oro para que un Aliado oponente gane - 1 a la fuerza hasta el final del turno.",
+        "id_habilidad": "serpentino_debuff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1079,
+    "nombre": "Lord Elfo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl104.webp",
+    "habilidad_texto_descriptivo": "Gana + 1 a la fuerza, por cada Faerie que tengas en juego. ",
+    "descripcion": "Gana + 1 a la fuerza, por cada Faerie que tengas en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "raza": "Faerie",
+            "type": "Aliado",
+            "controller": "self"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "descripcion": "Gana + 1 a la fuerza, por cada Faerie que tengas en juego.",
+        "id_habilidad": "lord_elfo_faerie_buff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1081,
+    "nombre": "Banshee",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl108.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Aliado oponente para que no pueda atacar mientras Banshee esté en juego. ",
+    "descripcion": "Cuando entra en juego, puedes elegir un Aliado oponente para que no pueda atacar mientras Banshee esté en juego. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Elige un Aliado oponente para que no pueda atacar mientras Banshee esté en juego.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "keyword": "cannotAttack",
+          "duration": "whileInPlay"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes elegir un Aliado oponente para que no pueda atacar mientras Banshee esté en juego.",
+        "id_habilidad": "banshee_cannot_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1082,
+    "nombre": "Pooka",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl109.webp",
+    "habilidad_texto_descriptivo": "Cuando Pooka entra en juego, puedes buscar hasta 3 Faeries en tu cementerio y barajarlos en tu mazo castillo. ",
+    "descripcion": "Cuando Pooka entra en juego, puedes buscar hasta 3 Faeries en tu cementerio y barajarlos en tu mazo castillo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "query": {
+            "raza": "Faerie",
+            "type": "Aliado"
+          },
+          "prompt": "Elige hasta 3 cartas Faerie de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Pooka entra en juego, puedes buscar hasta 3 Faeries en tu cementerio y barajarlos en tu mazo castillo.",
+        "id_habilidad": "pooka_shuffle_faeries"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1083,
+    "nombre": "Elfo Oscuro",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl110.webp",
+    "habilidad_texto_descriptivo": "Cuando Elfo Oscuro entra en juego, roba 1 carta.",
+    "descripcion": "Cuando Elfo Oscuro entra en juego, roba 1 carta.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Elfo Oscuro entra en juego, roba 1 carta.",
+        "id_habilidad": "elfo_oscuro_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1085,
+    "nombre": "Lobos de Avalon",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl112.webp",
+    "habilidad_texto_descriptivo": "Cuando Lobos de Avalon entra en juego, puedes buscar otro Lobos de Avalon en tu mazo castillo y ponerlo en tu mano. ",
+    "descripcion": "Cuando Lobos de Avalon entra en juego, puedes buscar otro Lobos de Avalon en tu mazo castillo y ponerlo en tu mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Lobos de Avalon de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Lobos de Avalon"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Lobos de Avalon entra en juego, puedes buscar otro Lobos de Avalon en tu mazo castillo y ponerlo en tu mano.",
+        "id_habilidad": "lobos_de_avalon_search"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1086,
+    "nombre": "Kelpie",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl114.webp",
+    "habilidad_texto_descriptivo": "Cuando Kelpie entra en juego, uno de tus Dragones gana + 2 a la fuerza permanente y durante este turno se considera imbloqueable. ",
+    "descripcion": "Cuando Kelpie entra en juego, uno de tus Dragones gana + 2 a la fuerza permanente y durante este turno se considera imbloqueable. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "then": {
+            "effect": {
+              "type": "grantKeywordToTarget",
+              "target": {
+                "fromContext": "lastTarget"
+              },
+              "keyword": "unblockable",
+              "duration": "endOfTurn"
+            }
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige uno de tus Dragones para que gane +2 a la Fuerza permanente y sea Imbloqueable este turno.",
+          "target": {
+            "query": {
+              "raza": "Dragon",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Kelpie entra en juego, uno de tus Dragones gana + 2 a la fuerza permanente y durante este turno se considera imbloqueable.",
+        "id_habilidad": "kelpie_buff_unblockable"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1116,
+    "nombre": "Comisario",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl154.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, destierra a Comisario para que tu oponente no pueda robar en su turno. ",
+    "descripcion": "En tu fase de vigilia, destierra a Comisario para que tu oponente no pueda robar en su turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "duration": "untilEndOfOpponentTurn",
+          "restriction": {
+            "type": "cannotDraw"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu fase de vigilia, destierra a Comisario para que tu oponente no pueda robar en su siguiente turno.",
+        "id_habilidad": "comisario_banish_prevent_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1120,
+    "nombre": "Sir Lucan",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl159.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar otro Sir Lucan en tu mazo castillo y ponerlo en tu mano. ",
+    "descripcion": "Cuando entra en juego, puedes buscar otro Sir Lucan en tu mazo castillo y ponerlo en tu mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Sir Lucan de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Sir Lucan"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar otro Sir Lucan en tu mazo castillo y ponerlo en tu mano.",
+        "id_habilidad": "sir_lucan_search"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1121,
+    "nombre": "Sir Mador del Portal",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl160.webp",
+    "habilidad_texto_descriptivo": "Sólo puede bloquear. No puede portar armas. ",
+    "descripcion": "Sólo puede bloquear. No puede portar armas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "descripcion": "Sólo puede bloquear.",
+        "id_habilidad": "sir_mador_cannot_attack"
+      },
+      {
+        "descripcion": "No puede portar armas.",
+        "id_habilidad": "sir_mador_cannot_equip_weapon",
+        "restrictions": {
+          "cannotEquipWeapon": {
+            "query": {
+              "tipo": "Arma"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1123,
+    "nombre": "Sir Jason de la Sangre",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl162.webp",
+    "habilidad_texto_descriptivo": "Sir Jason de la Sangre puede atacar cuando entra en juego. Si es destruido, puedes robar una carta de tu Mazo Castillo.",
+    "descripcion": "Sir Jason de la Sangre puede atacar cuando entra en juego. Si es destruido, puedes robar una carta de tu Mazo Castillo.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Sir Jason de la Sangre puede atacar cuando entra en juego.",
+        "id_habilidad": "sir_jason_can_attack_on_enter"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "descripcion": "Si es destruido, puedes robar una carta de tu Mazo Castillo.",
+        "id_habilidad": "sir_jason_draw_on_destroyed"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1126,
+    "nombre": "Atha-Uk",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl166.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia, puedes destruir a Atha-Uk para desterrar 1 carta del cementerio oponente. ",
+    "descripcion": "En tu fase de vigilia, puedes destruir a Atha-Uk para desterrar 1 carta del cementerio oponente. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "En tu fase de vigilia, puedes destruir a Atha-Uk para desterrar 1 carta del cementerio oponente.",
+        "id_habilidad": "atha_uk_destroy_banish_graveyard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1129,
+    "nombre": "Dragon Nodriza",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl169.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar otra copia de Dragón Nodriza en tu mazo castillo y ponerla en tu mano. ",
+    "descripcion": "Cuando entra en juego, puedes buscar otra copia de Dragón Nodriza en tu mazo castillo y ponerla en tu mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Dragon Nodriza de tu Mazo Castillo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Dragon Nodriza"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar otra copia de Dragón Nodriza en tu mazo castillo y ponerla en tu mano.",
+        "id_habilidad": "dragon_nodriza_search"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1130,
+    "nombre": "Dragonel",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl170.webp",
+    "habilidad_texto_descriptivo": "Sólo puede bloquear. ",
+    "descripcion": "Sólo puede bloquear. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "descripcion": "Sólo puede bloquear.",
+        "id_habilidad": "dragonel_cannot_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1138,
+    "nombre": "Ciervo Sagrado",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl180.webp",
+    "habilidad_texto_descriptivo": "Cuando Ciervo Sagrado ataque, tus Aliados imbloqueables ganan + 1 a la fuerza hasta el final del turno. ",
+    "descripcion": "Cuando Ciervo Sagrado ataque, tus Aliados imbloqueables ganan + 1 a la fuerza hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToMultipleTargets",
+          "prompt": "Elige a tus Aliados imbloqueables para que ganen +1 a la Fuerza este turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "keyword": "unblockable"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn",
+          "maxCount": 99,
+          "minCount": 0
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando Ciervo Sagrado ataque, tus Aliados imbloqueables ganan + 1 a la fuerza hasta el final del turno.",
+        "id_habilidad": "ciervo_sagrado_on_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1145,
+    "nombre": "Boggart",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl188.webp",
+    "habilidad_texto_descriptivo": "Si Boggart es destruido, tu oponente elige entre botar 2 cartas de su mazo castillo o descartar 1 de su mano. ",
+    "descripcion": "Si Boggart es destruido, tu oponente elige entre botar 2 cartas de su mazo castillo o descartar 1 de su mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "opponentChoice",
+          "prompt": "Boggart ha sido destruido. Elige una opción:",
+          "options": [
+            {
+              "id": "boggart_mill",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "self"
+              },
+              "description": "Botar 2 cartas de tu Mazo Castillo"
+            },
+            {
+              "id": "boggart_discard",
+              "action": {
+                "type": "discardCard",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu mano para descartar.",
+                "optional": false
+              },
+              "description": "Descartar 1 carta de tu Mano"
+            }
+          ]
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "descripcion": "Si Boggart es destruido, tu oponente elige entre botar 2 cartas de su mazo castillo o descartar 1 de su mano.",
+        "id_habilidad": "boggart_on_destroyed_choice"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1213,
+    "nombre": "Basilio II Bulgaroktonos",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl263.webp",
+    "habilidad_texto_descriptivo": "Después de atacar es destruido.",
+    "descripcion": "Después de atacar es destruido.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "mustBeDestroyedInFinalPhase",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Si ataca debe ser destruido en la fase final.",
+        "id_habilidad": "basilio_ii_attack_marker"
+      },
+      {
+        "effect": {
+          "type": "destroySelf"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "mustBeDestroyedInFinalPhase"
+            }
+          ]
+        },
+        "descripcion": "Destruido en la Fase Final por haber atacado.",
+        "id_habilidad": "basilio_ii_destroy_in_final_phase",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1216,
+    "nombre": "Hermano Lazarus",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl266.webp",
+    "habilidad_texto_descriptivo": "Puedes Destruir a Hermano Lazarus para robar 2 cartas de tu Mazo Castillo.",
+    "descripcion": "Puedes Destruir a Hermano Lazarus para robar 2 cartas de tu Mazo Castillo.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Puedes Destruir a Hermano Lazarus para robar 2 cartas de tu Mazo Castillo.",
+        "id_habilidad": "hermano_lazarus_destroy_to_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1231,
+    "nombre": "Luis IX El Santo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl284.webp",
+    "habilidad_texto_descriptivo": "Luis IX El Santo puede atacar cuando entra en juego.",
+    "descripcion": "Luis IX El Santo puede atacar cuando entra en juego.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Luis IX El Santo puede atacar cuando entra en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1232,
+    "nombre": "Leonor de Aquitania",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl285.webp",
+    "habilidad_texto_descriptivo": "Cuando Leonor de Aquitania entra en juego, roba 1 carta.",
+    "descripcion": "Cuando Leonor de Aquitania entra en juego, roba 1 carta.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Leonor de Aquitania entra en juego, roba 1 carta.",
+        "id_habilidad": "leonor_de_aquitania_enter_play_draw"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1233,
+    "nombre": "Caballeria Pesada",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl286.webp",
+    "habilidad_texto_descriptivo": "Si en tu Fase de Vigilia tienes 3 copias de Caballería Pesada en juego, puedes destruirlas para que tu oponente bote 6 cartas.",
+    "descripcion": "Si en tu Fase de Vigilia tienes 3 copias de Caballería Pesada en juego, puedes destruirlas para que tu oponente bote 6 cartas.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyAllMatching",
+            "query": {
+              "type": "Aliado",
+              "nombre": "Caballeria Pesada"
+            },
+            "controller": "self"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": 6,
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nombre": "Caballeria Pesada",
+                "controller": "self"
+              },
+              "amount": 3,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Si en tu Fase de Vigilia tienes 3 copias de Caballería Pesada en juego, puedes destruirlas para que tu oponente bote 6 cartas.",
+        "id_habilidad": "caballeria_pesada_destroy_3_to_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1237,
+    "nombre": "Alejo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl290.webp",
+    "habilidad_texto_descriptivo": "Alejo se considera imbloqueable.",
+    "descripcion": "Alejo se considera imbloqueable.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Alejo se considera imbloqueable."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1238,
+    "nombre": "Curandera",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl291.webp",
+    "habilidad_texto_descriptivo": "Mientras Curandera esté en juego, tus cartas reducen en 1 su coste.",
+    "descripcion": "Mientras Curandera esté en juego, tus cartas reducen en 1 su coste.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {}
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Mientras Curandera esté en juego, tus cartas reducen en 1 su coste.",
+        "id_habilidad": "curandera_cost_reduction"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1289,
+    "nombre": "Goblins Navideños",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl395.webp",
+    "habilidad_texto_descriptivo": "Juega Goblins Navideños bajo el control de tu oponente. Al comienzo de tu Fase de Vigilia, bota dos cartas.",
+    "descripcion": "Juega Goblins Navideños bajo el control de tu oponente. Al comienzo de tu Fase de Vigilia, bota dos cartas.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Juega Goblins Navideños bajo el control de tu oponente.",
+        "id_habilidad": "goblins_navidenos_play_on_opponent_field",
+        "special_properties": [
+          {
+            "type": "playOnOpponentField",
+            "zone": "defense"
+          }
+        ]
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "self"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Al comienzo de tu Fase de Vigilia, bota dos cartas.",
+        "id_habilidad": "goblins_navidenos_mill_on_phase_start",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1278,
+    "nombre": "Y Ddraig Aur",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl380.webp",
+    "habilidad_texto_descriptivo": "Este Aliado gana 1 a la fuerza por cada Aliado de raza Dragón que controles.",
+    "descripcion": "Este Aliado gana 1 a la fuerza por cada Aliado de raza Dragón que controles.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "raza": "Dragon",
+            "type": "Aliado",
+            "controller": "self"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "descripcion": "Este Aliado gana 1 a la fuerza por cada Aliado de raza Dragón que controles.",
+        "id_habilidad": "y_ddraig_aur_gain_buff_per_dragon"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1279,
+    "nombre": "Aibell",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl381.webp",
+    "habilidad_texto_descriptivo": "Cuando Aibell sea declarado atacante, tus Aliados de raza Faerie de coste 1 o menos ganan 1 a la fuerza hasta la Fase Final.",
+    "descripcion": "Cuando Aibell sea declarado atacante, tus Aliados de raza Faerie de coste 1 o menos ganan 1 a la fuerza hasta la Fase Final.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Faerie",
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 1,
+                "operator": "<="
+              }
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareAttack",
+        "descripcion": "Cuando Aibell sea declarado atacante, tus Aliados de raza Faerie de coste 1 o menos ganan 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "aibell_attack_buff_faeries"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1287,
+    "nombre": "Dama Encantada",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl392.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador elige un Talismán de su Cementerio y lo pone en su Mano.",
+    "descripcion": "Cuando entra en juego, cada jugador elige un Talismán de su Cementerio y lo pone en su Mano.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "mutualSearchTalismanAndPutInHand",
+          "query": {
+            "type": "Talisman"
+          },
+          "playerPrompt": "Dama Encantada: Elige un Talismán de tu Cementerio para poner en tu Mano.",
+          "opponentPrompt": "Dama Encantada: Elige un Talismán de tu Cementerio para poner en tu Mano."
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, cada jugador elige un Talismán de su Cementerio y lo pone en su Mano.",
+        "id_habilidad": "dama_encantada_enter_play"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1259,
+    "nombre": "Fuath",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl337.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir a Fuath para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final.",
+    "descripcion": "Puedes destruir a Fuath para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Faerie",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para que pierda 2 a la fuerza.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            }
+          ]
+        },
+        "descripcion": "Puedes destruir a Fuath para que un Aliado oponente pierda 2 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "fuath_debuff_opponent_ally"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1254,
+    "nombre": "Rey Pescador",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl322.webp",
+    "habilidad_texto_descriptivo": "Cuando Rey Pescador entra en juego, roba tantas cartas de tu Mazo Castillo como Armas controles.",
+    "descripcion": "Cuando Rey Pescador entra en juego, roba tantas cartas de tu Mazo Castillo como Armas controles.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Arma",
+              "zone": "field",
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Rey Pescador entra en juego, roba tantas cartas de tu Mazo Castillo como Armas controles.",
+        "id_habilidad": "rey_pescador_draw_by_weapons"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1107,
+    "nombre": "Armadura Completa",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl143.webp",
+    "habilidad_texto_descriptivo": "El portador de Armadura Completa no puede ser afectado por habilidades de Aliados oponentes. ",
+    "descripcion": "El portador de Armadura Completa no puede ser afectado por habilidades de Aliados oponentes. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "opponentAllyImmunity"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador de Armadura Completa no puede ser afectado por habilidades de Aliados oponentes.",
+        "id_habilidad": "armadura_completa_opponent_ally_immunity"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1110,
+    "nombre": "Mandoble",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl147.webp",
+    "habilidad_texto_descriptivo": "El portador de Mandoble duplica su fuerza y para atacar debe pagar 2 de oro. ",
+    "descripcion": "El portador de Mandoble duplica su fuerza y para atacar debe pagar 2 de oro. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "doubleWielderStrength"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador de Mandoble duplica su fuerza.",
+        "id_habilidad": "mandoble_double_strength"
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "cannotAttack"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador de Mandoble no puede atacar.",
+        "id_habilidad": "mandoble_cannot_attack"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "nowCanAttack",
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase de Vigilia puedes pagar 2 oros para que el portador de Mandoble pueda atacar este turno.",
+        "oncePerTurn": true,
+        "id_habilidad": "mandoble_allow_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1176,
+    "nombre": "Espada Corta",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl222.webp",
+    "habilidad_texto_descriptivo": "Su portador gana + 1 a la fuerza y puede portar otra arma. ",
+    "descripcion": "Su portador gana + 1 a la fuerza y puede portar otra arma. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "canEquipExtraWeapon"
+        },
+        "trigger": "continuous",
+        "descripcion": "Su portador puede portar otra arma.",
+        "id_habilidad": "espada_corta_extra_weapon"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1177,
+    "nombre": "Alabarda",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl223.webp",
+    "habilidad_texto_descriptivo": "Destierra a Alabarda, para que su portador gane + 2 a la fuerza permanentemente. ",
+    "descripcion": "Destierra a Alabarda, para que su portador gane + 2 a la fuerza permanentemente. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "phase": [
+          "Principal"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToWielder",
+          "duration": "permanent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            }
+          ]
+        },
+        "descripcion": "Destierra a Alabarda, para que su portador gane + 2 a la fuerza permanentemente.",
+        "oncePerTurn": true,
+        "id_habilidad": "alabarda_banish_buff"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

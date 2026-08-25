@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.1",
+    "pack_version": "3.0.2",
     "habilidades": []
   },
   {
@@ -97410,5 +97410,86 @@
         "description": "Cuando entra en juego, puedes pagar este Oro para que el proximo Aliado que juegues este turno, pueda atacar cuando entra en juego. Luego, puedes elegir un Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final."
       }
     ]
+  },
+  {
+    "id": 1384,
+    "nombre": "Antropofagos",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl524.webp",
+    "habilidad_texto_descriptivo": "Un Aliado oponente en juego pasa a tu Línea de Defensa y al final del turno debe ser destruido. ",
+    "descripcion": "Un Aliado oponente en juego pasa a tu Línea de Defensa y al final del turno debe ser destruido. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente para ganar su control y colocarlo en tu Línea de Defensa.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "permanent",
+          "destinationZone": "defense",
+          "temporaryEffect": "destroyAtEndOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Un Aliado oponente en juego pasa a tu Línea de Defensa y al final del turno debe ser destruido."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1572,
+    "nombre": "Locura de Amor",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl759.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Gana el control de un Aliado oponente de coste 2 o menos hasta que salga del juego. Carta Única.",
+    "descripcion": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Gana el control de un Aliado oponente de coste 2 o menos hasta que salga del juego. Carta Única.",
+    "expansion": "Helenica",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente de coste 2 o menos para ganar su control.",
+          "target": {
+            "query": {
+              "cost": {
+                "value": 2,
+                "operator": "<="
+              },
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Gana el control de un Aliado oponente de coste 2 o menos hasta que salga del juego."
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

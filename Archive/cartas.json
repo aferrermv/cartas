@@ -2763,7 +2763,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.0",
+    "pack_version": "3.0.1",
     "habilidades": []
   },
   {
@@ -96944,5 +96944,471 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 4768,
+    "nombre": "Dagur",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/dagur2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Bárbaro que no sea Dagur en tu Mazo Castillo y ponlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Barbaro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Bárbaro que no sea Dagur de tu Mazo Castillo para poner en tu mano:",
+          "searchQuery": {
+            "raza": "Barbaro",
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "nameIsNot": [
+              "Dagur",
+              "Dagur 2"
+            ]
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, busca un Bárbaro que no sea Dagur en tu Mazo Castillo y ponlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 879,
+    "nombre": "Escudo",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/escudo.webp",
+    "habilidad_texto_descriptivo": "Su portador gana 1 a la fuerza. Cuando entra en juego, puedes buscar un aliado de coste 2 o menos desde tu cementerio y jugarlo sin pagar su coste. Luego bota 2 cartas.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefenseThenMill",
+          "prompt": "Puedes elegir un Aliado de coste 2 o menos en tu Cementerio para jugarlo sin pagar su coste:",
+          "canCancel": true,
+          "millCount": 2,
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un aliado de coste 2 o menos desde tu cementerio y jugarlo sin pagar su coste. Luego bota 2 cartas."
+      }
+    ]
+  },
+  {
+    "id": 880,
+    "nombre": "Wurm de Pantano",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/primera_era/wurmdepantano.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye todos los aliados en juego de Coste 3 o menos. Luego, tu oponente bota tantas cartas como Aliados bajo su control hayan sido destruidos por esta habilidad.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyAllMatchingThenMill",
+          "query": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "type": "Aliado"
+          },
+          "controller": "any"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destruye todos los aliados en juego de Coste 3 o menos. Luego, tu oponente bota tantas cartas como Aliados bajo su control hayan sido destruidos por esta habilidad."
+      }
+    ]
+  },
+  {
+    "id": 3345,
+    "nombre": "Monstruo del Lago",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/monstruodellago.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado bloqueador. Una vez en tu turno, puedes barajar una carta de tu Mano para barajar 1 caras de tu Cementerio el tu Mazo Castillo o para que tu oponente bote 2 cartas",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBlock"
+        ],
+        "description": "No puede ser declarado bloqueador."
+      },
+      {
+        "costs": [
+          {
+            "type": "shuffleFromHandAsCost",
+            "count": 1,
+            "prompt": "Elige una carta de tu mano para barajar en tu Mazo Castillo como coste."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto:",
+          "options": [
+            {
+              "id": "shuffle_from_graveyard",
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 3,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+                "minCount": 3
+              },
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "amount": 3,
+                "comparison": "greaterOrEqual"
+              },
+              "description": "Barajar 3 cartas de tu Cementerio en tu Mazo Castillo"
+            },
+            {
+              "id": "mill_opponent",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "opponent"
+              },
+              "description": "Tu oponente bota 2 cartas"
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes barajar una carta de tu Mano para barajar 3 cartas de tu cementerio en tu Mazo Castillo o que tu oponente bote 2 cartas.",
+        "oncePerTurn": true
+      }
+    ]
+  },
+  {
+    "id": 881,
+    "nombre": "Madre Wyrm",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/madrewyrm.webp",
+    "habilidad_texto_descriptivo": "Solo puede Bloquear Aliados de raza Dragon. Cuando entra en juego, si controlas 2 o mas Aliados, puedes buscar un Aliado de coste 2 en tu Mazo Castillo y jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canOnlyBlock",
+          {
+            "condition": {
+              "type": "raza",
+              "value": "Dragon"
+            }
+          }
+        ],
+        "description": "Solo puede Bloquear Aliados de raza Dragon."
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de coste 2 en tu Mazo Castillo para jugarlo sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "coste_oro": 2
+          }
+        },
+        "trigger": "onEnterPlay",
+        "optional": true,
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "zone": "field"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando entra en juego, si controlas 2 o mas Aliados, puedes buscar un Aliado de coste 2 en tu Mazo Castillo y jugarlo sin pagar su coste."
+      }
+    ]
+  },
+  {
+    "id": 882,
+    "nombre": "Lindwurm",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/lindwurm.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, tu oponente destierra la carta superior de su Mazo Castillo. Cada vez que este Aliado haga daño al Mazo Castillo oponente, tu oponente destierra la carta superior de su Mazo.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, tu oponente destierra la carta superior de su Mazo Castillo."
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cada vez que este Aliado haga daño al Mazo Castillo oponente, tu oponente destierra la carta superior de su Mazo."
+      }
+    ]
+  },
+  {
+    "id": 3496,
+    "nombre": "Circulo de Piedra",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/circulodepiedra.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye 2 cartas que controle tu oponente con el mismo Coste. Puedes destruir este Tótem para desterrar 1 carta del Cementerio oponente. Luego, si controlas 1 o más Aliados Faerie, destierra 1 carta adicional.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseAndDestroyMultipleBySharedProperty",
+          "count": 2,
+          "property": "coste_oro",
+          "prompt": "Elige 2 cartas oponentes del mismo coste para destruir.",
+          "target": {
+            "query": {
+              "type": [
+                "Aliado",
+                "Arma",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando entra en juego, destruye 2 cartas que controle tu oponente con el mismo Coste."
+      },
+      {
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "target": {
+            "zone": "cementerio",
+            "controller": "opponent"
+          },
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "then": {
+            "condition": {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "raza": "Faerie"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            "effect": {
+              "type": "chooseAndBanish",
+              "count": 1,
+              "target": {
+                "zone": "cementerio",
+                "controller": "opponent"
+              },
+              "prompt": "Elige 1 carta adicional del Cementerio oponente para desterrar por controlar un Aliado Faerie."
+            }
+          }
+        },
+        "description": "Puedes destruir este Tótem para desterrar 1 carta del Cementerio oponente. Luego, si controlas 1 o más Aliados Faerie, destierra 1 carta adicional del Cementerio oponente."
+      }
+    ]
+  },
+  {
+    "id": 883,
+    "nombre": "Joya de Baldung",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/joyadebaldung.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este Oro para que el proximo Aliado que juegues este turno, pueda atacar cuando entra en juego. Luego, puedes elegir un Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para que el próximo Aliado que juegues este turno pueda atacar al entrar en juego?",
+          "options": [
+            {
+              "id": "joya_baldung_pay",
+              "action": {
+                "then": {
+                  "effect": {
+                    "then": {
+                      "effect": {
+                        "buff": {
+                          "stat": "fuerza",
+                          "value": 2
+                        },
+                        "type": "grantBuffToTarget",
+                        "prompt": "Elige un Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final.",
+                        "target": {
+                          "query": {
+                            "type": "Aliado"
+                          },
+                          "controller": "self"
+                        },
+                        "duration": "endOfTurn",
+                        "canCancel": true
+                      }
+                    },
+                    "type": "grantToNextPlayed",
+                    "query": {
+                      "type": "Aliado"
+                    },
+                    "duration": "endOfTurn",
+                    "keywords": [
+                      "canAttackOnEnterPlay"
+                    ]
+                  }
+                },
+                "type": "paySelfAsCost"
+              },
+              "description": "Sí, pagar este Oro."
+            },
+            {
+              "id": "joya_baldung_decline",
+              "action": {
+                "buff": {
+                  "stat": "fuerza",
+                  "value": 2
+                },
+                "type": "grantBuffToTarget",
+                "prompt": "Elige un Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "self"
+                },
+                "duration": "endOfTurn",
+                "canCancel": true
+              },
+              "description": "No pagar este Oro."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes pagar este Oro para que el proximo Aliado que juegues este turno, pueda atacar cuando entra en juego. Luego, puedes elegir un Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final."
+      }
+    ]
   }
 ]

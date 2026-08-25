@@ -12561,7 +12561,8 @@
           "target": {
             "zone": "field",
             "query": {
-              "notType": "Oro"
+              "notType": "Oro",
+              "isOther": true
             },
             "controller": "any"
           }
@@ -96168,6 +96169,778 @@
         "descripcion": "Destierra a Alabarda, para que su portador gane + 2 a la fuerza permanentemente.",
         "oncePerTurn": true,
         "id_habilidad": "alabarda_banish_buff"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1026,
+    "nombre": "La Traicion de Lancelot",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl42.webp",
+    "habilidad_texto_descriptivo": "Destruye uno de tus Aliados para que tu oponente bote tantas cartas como fuerza tenga el Aliado.",
+    "descripcion": "Destruye uno de tus Aliados para que tu oponente bote tantas cartas como fuerza tenga el Aliado.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "prompt": "Elige uno de tus Aliados para destruir.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            },
+            "rememberAs": "sacrificedAlly"
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "fromContext": "sacrificedAlly.fuerza"
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye uno de tus Aliados para que tu oponente bote tantas cartas como fuerza tenga el Aliado.",
+        "id_habilidad": "la_traicion_de_lancelot_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1027,
+    "nombre": "Transmutacion",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl45.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y hasta el final del turno, tus Tótem pierden su habilidad y se consideran Aliados. En tu fase de ataque pueden ser declarados atacantes, con fuerza igual a su coste. ",
+    "descripcion": "En tu fase de vigilia y hasta el final del turno, tus Tótem pierden su habilidad y se consideran Aliados. En tu fase de ataque pueden ser declarados atacantes, con fuerza igual a su coste. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "totemsToAllies"
+        },
+        "trigger": "onEnterPlay",
+        "description": "En tu fase de vigilia y hasta el final del turno, tus Tótem pierden su habilidad y se consideran Aliados que pueden atacar este turno.",
+        "id_habilidad": "transmutacion_totems_to_allies"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1031,
+    "nombre": "La Mirada de Mordred",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl49.webp",
+    "habilidad_texto_descriptivo": "En respuesta a declarar tu bloqueo, tus Aliados en línea de ataque vuelven a la línea de defensa y pueden ser declarados bloqueadores. ",
+    "descripcion": "En respuesta a declarar tu bloqueo, tus Aliados en línea de ataque vuelven a la línea de defensa y pueden ser declarados bloqueadores. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "regroupAttackersAndGrantBlock"
+        },
+        "trigger": "onEnterPlay",
+        "description": "En tu fase de Bloqueo, tus Aliados en línea de ataque vuelven a la línea de defensa y pueden ser declarados bloqueadores.",
+        "id_habilidad": "la_mirada_de_mordred_regroup_and_grant_block"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1033,
+    "nombre": "Una",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl51.webp",
+    "habilidad_texto_descriptivo": "Juega a Una en guerra de Talismanes. Los jugadores descartan de su mano y roban la misma cantidad que tenían. Los 2 siguientes turnos no pueden declarar ataque. ",
+    "descripcion": "Juega a Una en guerra de Talismanes. Los jugadores descartan de su mano y roban la misma cantidad que tenían. Los 2 siguientes turnos no pueden declarar ataque. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Guerra de Talismanes",
+        "effect": {
+          "type": "unaEffect"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Juega a Una en guerra de Talismanes. Los jugadores descartan de su mano y roban la misma cantidad que tenían. Los 2 siguientes turnos no pueden declarar ataque.",
+        "id_habilidad": "una_hand_discard_redraw_and_restrict_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1034,
+    "nombre": "Ataque Sorpresa",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl53.webp",
+    "habilidad_texto_descriptivo": "En respuesta a resolver el daño, juega Ataque Sorpresa para que tu oponente reciba el mismo daño hecho a tu mazo castillo por uno de sus Aliados. ",
+    "descripcion": "En respuesta a resolver el daño, juega Ataque Sorpresa para que tu oponente reciba el mismo daño hecho a tu mazo castillo por uno de sus Aliados. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "ataqueSorpresaEffect",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "En respuesta a resolver el daño, juega Ataque Sorpresa para que tu oponente reciba el mismo daño hecho a tu mazo castillo por uno de sus Aliados.",
+        "id_habilidad": "ataque_sorpresa_mirror_damage"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1036,
+    "nombre": "Ataque de Aliento",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl55.webp",
+    "habilidad_texto_descriptivo": "En respuesta a resolver el daño, juega Ataque de Aliento para que tu oponente reciba el mismo daño hecho a tu mazo castillo. ",
+    "descripcion": "En respuesta a resolver el daño, juega Ataque de Aliento para que tu oponente reciba el mismo daño hecho a tu mazo castillo. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "effect": {
+          "type": "ataqueDeAlientoEffect"
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "En respuesta a resolver el daño, juega Ataque de Aliento para que tu oponente reciba el mismo daño hecho a tu mazo castillo.",
+        "id_habilidad": "ataque_de_aliento_mirror_total_damage"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1040,
+    "nombre": "Caballo Lunar",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl59.webp",
+    "habilidad_texto_descriptivo": "Mira la mano de tu oponente y descarta todos los aliados que tenga. ",
+    "descripcion": "Mira la mano de tu oponente y descarta todos los aliados que tenga. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewHandAndDiscardAllMatching",
+          "targetQuery": {
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1089,
+    "nombre": "Cuatro Fuertes Vientos",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl118.webp",
+    "habilidad_texto_descriptivo": "En respuesta a un ataque, es destruido el Aliado oponente de mayor fuerza. ",
+    "descripcion": "En respuesta a un ataque, es destruido el Aliado oponente de mayor fuerza. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isHighestStrength": true
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1090,
+    "nombre": "Congelar",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl121.webp",
+    "habilidad_texto_descriptivo": "En respuesta a un ataque, un Aliado oponente pierde su habilidad hasta el final del turno. ",
+    "descripcion": "En respuesta a un ataque, un Aliado oponente pierde su habilidad hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "prompt": "Elige un Aliado oponente para anular su habilidad hasta el final del turno.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1094,
+    "nombre": "Pergamino Magico",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl125.webp",
+    "habilidad_texto_descriptivo": "Busca un Talismán en tu mazo castillo y ponlo en tu mano. Tu oponente puede botar 3 cartas para anular Pergamino Mágico. ",
+    "descripcion": "Busca un Talismán en tu mazo castillo y ponlo en tu mano. Tu oponente puede botar 3 cartas para anular Pergamino Mágico. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Talismán de tu Mazo Castillo para poner en tu mano.",
+          "searchQuery": {
+            "type": "Talisman",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "millCards",
+            "count": 3
+          },
+          "prompt": "Tu oponente jugó Pergamino Mágico. ¿Quieres botar 3 cartas para anularlo?"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1097,
+    "nombre": "Knockers",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl131.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que porte un arma, gana + 2 a la fuerza hasta el final del turno. ",
+    "descripcion": "Un Aliado que porte un arma, gana + 2 a la fuerza hasta el final del turno. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado que porte un Arma para que gane +2 a la fuerza hasta el final del turno.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "hasWeaponEquipped": true
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1098,
+    "nombre": "Brownie",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl132.webp",
+    "habilidad_texto_descriptivo": "Descarta 2 de tu oponente al azar. Tu oponente roba 1 carta.",
+    "descripcion": "Descarta 2 de tu oponente al azar. Tu oponente roba 1 carta.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1,
+              "target": "opponent"
+            }
+          },
+          "type": "discardRandomCard",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1099,
+    "nombre": "Urisk",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/myl133.webp",
+    "habilidad_texto_descriptivo": "Cada jugador roba 2 cartas. ",
+    "descripcion": "Cada jugador roba 2 cartas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 2,
+              "target": "opponent"
+            }
+          },
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1162,
+    "nombre": "Gwyllion",
+    "tipo": "Talisman",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/myl207.webp",
+    "habilidad_texto_descriptivo": "Por dos turnos, los oponentes juegan mostrando su mano. ",
+    "descripcion": "Por dos turnos, los oponentes juegan mostrando su mano. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "duration": "2turns",
+          "turnsLeft": 2,
+          "restriction": {
+            "type": "playWithHandRevealed"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1243,
+    "nombre": "Gente Escorpion",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl296.webp",
+    "habilidad_texto_descriptivo": "Descarta 1 carta de la mano de tu oponente al azar.",
+    "descripcion": "Descarta 1 carta de la mano de tu oponente al azar.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1244,
+    "nombre": "Espejismo",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl297.webp",
+    "habilidad_texto_descriptivo": "En guerra de Talismanes, un aliado oponente tiene fuerza 0 hasta el final del turno.",
+    "descripcion": "En guerra de Talismanes, un aliado oponente tiene fuerza 0 hasta el final del turno.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado oponente para reducir su fuerza a 0 hasta el final del turno.",
+          "target": {
+            "query": {
+              "tipo": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Guerra de Talismanes"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1245,
+    "nombre": "Grito de Guerra",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl298.webp",
+    "habilidad_texto_descriptivo": "Tu oponente bota 2 cartas de su Mazo Castillo.",
+    "descripcion": "Tu oponente bota 2 cartas de su Mazo Castillo.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1277,
+    "nombre": "Purificar el Reino",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl379.webp",
+    "habilidad_texto_descriptivo": "Elige hasta dos Aliados oponentes para que pierdan 1 a la fuerza permanentemente. Carta Única.",
+    "descripcion": "Elige hasta dos Aliados oponentes para que pierdan 1 a la fuerza permanentemente. Carta Única.",
+    "expansion": "Espada Sagrada",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "type": "grantBuffToMultipleTargets",
+          "prompt": "Elige hasta dos Aliados oponentes para que pierdan 1 a la fuerza permanentemente.",
+          "target": {
+            "query": {
+              "tipo": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "permanent",
+          "maxCount": 2,
+          "minCount": 0
+        },
+        "trigger": "onEnterPlay",
+        "play_limitation": {
+          "type": "unique"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1261,
+    "nombre": "Aliento de Luz",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl345.webp",
+    "habilidad_texto_descriptivo": "Sólo pudes jugar Aliento de Luz si sólo controlas Aliados de raza Dragón. Destruye uno de tus Aliados para que tu oponente destierre una de sus cartas en juego que no sea Oro.",
+    "descripcion": "Sólo pudes jugar Aliento de Luz si sólo controlas Aliados de raza Dragón. Destruye uno de tus Aliados para que tu oponente destierre una de sus cartas en juego que no sea Oro.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "cost": {
+            "prompt": "Elige uno de tus Aliados para destruir como coste:",
+            "target": {
+              "query": {
+                "tipo": "Aliado"
+              },
+              "controller": "self"
+            }
+          },
+          "type": "destroyThenOpponentBanishes",
+          "action": {
+            "prompt": "Elige una de tus cartas en juego que no sea Oro para desterrar:",
+            "target": {
+              "query": {
+                "notType": "Oro"
+              },
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Dragon"
+              }
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "field"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "self"
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1250,
+    "nombre": "Merlin Atrapado",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl306.webp",
+    "habilidad_texto_descriptivo": "Cancela el Ataque oponente. Luego, tu oponente elige uno de sus Aliados y lo pone en la parte inferior del Mazo Castillo de su dueño.",
+    "descripcion": "Cancela el Ataque oponente. Luego, tu oponente elige uno de sus Aliados y lo pone en la parte inferior del Mazo Castillo de su dueño.",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "cancelAttackThenOpponentPlacesOnBottom",
+          "prompt": "Elige uno de tus Aliados para ponerlo en la parte inferior de tu Mazo Castillo:"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cancela el Ataque oponente. Luego, tu oponente elige uno de sus Aliados y lo pone en la parte inferior del Mazo Castillo de su dueño."
       }
     ],
     "tier": "muy bajo"

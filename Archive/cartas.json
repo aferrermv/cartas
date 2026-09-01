@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.3",
+    "pack_version": "3.0.4",
     "habilidades": []
   },
   {
@@ -90860,11 +90860,11 @@
               "query": {
                 "type": "Totem",
                 "coste_oro": {
-                  "value": 3,
+                  "value": 4,
                   "operator": "<="
                 }
               },
-              "description": "Buscar un Tótem de coste 3 o menos"
+              "description": "Buscar un Tótem de coste 4 o menos"
             }
           ],
           "canCancel": true,
@@ -97535,7 +97535,10 @@
             "type": "destroySelf"
           }
         ],
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "moveBottomCardToHand",
           "count": 1

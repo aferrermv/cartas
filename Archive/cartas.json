@@ -1725,7 +1725,8 @@
             },
             "controller": "opponent"
           },
-          "message": "Elige un Aliado oponente para barajar en su mazo."
+          "message": "Elige un Aliado oponente para barajar en su mazo.",
+          "requiresChoice": true
         },
         "trigger": "onEnterPlay"
       }
@@ -2763,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.2",
+    "pack_version": "3.0.3",
     "habilidades": []
   },
   {
@@ -97488,6 +97489,2001 @@
         },
         "trigger": "onEnterPlay",
         "description": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Gana el control de un Aliado oponente de coste 2 o menos hasta que salga del juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 884,
+    "nombre": "Akhet",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/akhet.png",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir una carta en juego que no sea Oro y ponerla en la parte inferior del Mazo Castillo de su dueño. Puedes destruir este Totem para poner la ultima carta de tu Mazo Castillo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnBottom",
+          "prompt": "Elige una carta en juego que no sea Oro para ponerla en la parte inferior del Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir una carta en juego que no sea Oro y ponerla en la parte inferior del Mazo Castillo de su dueño.",
+        "id_habilidad": "akhet_enter_play_bottom"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "moveBottomCardToHand",
+          "count": 1
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruir este Totem para poner la ultima carta de tu Mazo Castillo en tu Mano.",
+        "id_habilidad": "akhet_destroy_draw_bottom"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 885,
+    "nombre": "Amkh",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/amkh.png",
+    "habilidad_texto_descriptivo": "Puedes destruir este Oro para prevenir que una carta que controles sea barajada o puesta en el Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "onBeingShuffledOrPut",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "description": "Puedes destruir este Oro para prevenir que una carta que controles sea barajada o puesta en el Mazo Castillo.",
+        "id_habilidad": "amkh2_prevent_shuffle_or_put",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "controller": "self"
+          }
+        },
+        "triggeringPlayer": "opponent"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 886,
+    "nombre": "Artabano el Guerrero",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/artabanoelguerrero.png",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Aliado oponente de coste igual o menor a la cantidad de Aliados Guerrero que controles para que pierda su habilidad y sea destruido.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndDestroyTarget",
+          "prompt": "Elige un Aliado oponente de coste igual o menor a la cantidad de Aliados Guerrero que controles para que pierda su habilidad y sea destruido.",
+          "target": {
+            "zone": "field",
+            "condition": {
+              "value": {
+                "query": {
+                  "tipo": "Aliado",
+                  "zone": "field",
+                  "controller": "self",
+                  "nameContains": "Guerrero"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir un Aliado oponente de coste igual o menor a la cantidad de Aliados Guerrero que controles para que pierda su habilidad y sea destruido.",
+        "id_habilidad": "artabano_enter_play_annul_destroy"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 887,
+    "nombre": "Ataque a la Biblioteca",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/ataquealabiblioteca.png",
+    "habilidad_texto_descriptivo": "Si controlas menos Oros que tu oponente, este Talisman no puede ser Anulado. \nElige un Oro en juego para que pierda su habilidad y sea destruido. \n",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "condition": {
+          "type": "controlsFewerGoldThanOpponent"
+        }
+      },
+      {
+        "effect": {
+          "type": "annulAndDestroyInModal",
+          "prompt": "Elige un Oro oponente en juego para que pierda su habilidad y sea destruido.",
+          "target": {
+            "zone": [
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "type": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Si controlas menos Oros que tu oponente, este Talismán no puede ser Anulado. Elige un Oro oponente en juego para que pierda su habilidad y sea destruido."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 888,
+    "nombre": "Ayu del Viento ",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ayudelviento.png",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Totem en juego para que tu oponente bote tantas cartas como coste tenga ese Totem. En tu Fase de Vigilia, si este aliado esta en tu Cementerio y controlas 1 o mas Totem, puedes pagar 2 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "selectAndMill",
+          "prompt": "Elige un Totem en juego para que tu oponente bote tantas cartas como coste tenga ese Totem.",
+          "target": {
+            "zone": [
+              "totem"
+            ],
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "any"
+          },
+          "canCancel": true,
+          "millProperty": "coste_oro"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes elegir un Totem en juego para que tu oponente bote tantas cartas como coste tenga ese Totem."
+      },
+      {
+        "id": "ayu_del_viento_graveyard_play",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Totem"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si este aliado esta en tu Cementerio y controlas 1 o mas Totem, puedes pagar 2 Oros para jugarlo sin pagar su coste."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 889,
+    "nombre": "Busto Imperial",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/bustoimperial.png",
+    "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva, puedes destruirlo y pagar 2 Oros para que tu oponente bote 1 carta por cada Totem que controles.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Totem",
+              "zone": "field",
+              "controller": "self"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este Oro esta en tu Reserva, puedes destruirlo y pagar 2 Oros para que tu oponente bote 1 carta por cada Totem que controles.",
+        "canPayWithSelf": false
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 890,
+    "nombre": "Circulo de Renacimiento",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/circuloderenacimiento.png",
+    "habilidad_texto_descriptivo": "Elige un Aliado de coste 2 o menos de tu Cementerio y juegalo sin pagar su coste. Ese aliado pierde su habilidad por el resto del juego.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de coste 2 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "modifications": {
+            "annulAbility": true
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige un Aliado de coste 2 o menos de tu Cementerio y juegalo sin pagar su coste. Ese aliado pierde su habilidad permanentemente."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 891,
+    "nombre": "Dagi",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/dagi.png",
+    "habilidad_texto_descriptivo": "Indestructible. Cuando entra en juego, puedes desterrar una carta oponente en juego que no sea Oro, de coste igual o menor a la cantidad de Totem que controles. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige una carta oponente en juego (que no sea Oro) de coste igual o menor a la cantidad de Totem que controles para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "coste_oro": {
+                "value": {
+                  "type": "fromCardCount",
+                  "query": {
+                    "type": "Totem",
+                    "zone": "field",
+                    "controller": "self"
+                  }
+                },
+                "operator": "<="
+              },
+              "type_not_in": [
+                "Oro"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes desterrar una carta oponente en juego que no sea Oro, de coste igual o menor a la cantidad de Totem que controles."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 892,
+    "nombre": "Demonio de Piedra",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/demoniodepiedra.png",
+    "habilidad_texto_descriptivo": "Solo puedes jugar este Talisman en tu fase de Declaracion de Bloqueo. \nLos Aliados bloqueados pierden su habilidad y son Destruidos.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "destroyAllMatching",
+          "query": {
+            "type": "Aliado",
+            "isBlocked": true
+          },
+          "annulFirst": true,
+          "controller": "any"
+        },
+        "trigger": "activatable",
+        "description": "Solo puedes jugar este Talisman en tu fase de Declaracion de Bloqueo. Los Aliados bloqueados pierden su habilidad y son Destruidos.",
+        "listensForEvent": "onDeclareBlock"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 893,
+    "nombre": "Escudo de la Tormenta",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/escudodelatormenta.png",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza y puede portar un Arma adicional. Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "canEquipExtraWeapon"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador puede portar un Arma adicional.",
+        "id_habilidad": "escudo_de_la_tormenta3_extra_weapon"
+      },
+      {
+        "cost": {
+          "type": "shuffleWeaponAsCost",
+          "prompt": "Elige un Arma que controles para barajar en tu Mazo Castillo y prevenir que el portador salga del juego."
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "descripcion": "Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
+        "id_habilidad": "escudo_de_la_tormenta3_prevent_wielder_leave",
+        "eventCondition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "triggeringCardIsWielder"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Arma"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "listensForEvent": "onAllyLeavePlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 894,
+    "nombre": "Espada de Diamante",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadadediamante.png",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza y puede portar un Arma Adicional. Cuando el portador sea bloqueado, tu oponente bota tantas cartas como fuerza tenga el Aliado portador.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "canEquipExtraWeapon"
+        },
+        "trigger": "continuous",
+        "descripcion": "El portador puede portar un Arma adicional.",
+        "id_habilidad": "espada_de_diamante2_extra_weapon"
+      },
+      {
+        "effect": {
+          "type": "millByWielderStrength",
+          "target": "opponent"
+        },
+        "trigger": "onBeingBlocked",
+        "description": "Cuando el portador sea bloqueado, tu oponente bota tantas cartas como fuerza tenga el Aliado portador.",
+        "id_habilidad": "espada_de_diamante2_mill_on_blocked"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 895,
+    "nombre": "Hathor la Dorada",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/hathorladorada.png",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado atacante, si controlas 2 o mas Aliados de raza Eterno, puedes desterrar la ultima carta del Mazo Castillo oponente o desterrar una carta del Cementerio oponente.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "hathor_la_dorada_inherent"
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Hathor la Dorada: Elige un efecto:",
+          "options": [
+            {
+              "id": "banish_bottom_deck_opponent",
+              "action": {
+                "type": "banishFromDeck",
+                "count": 1,
+                "target": "opponent",
+                "position": "bottom"
+              },
+              "description": "Desterrar la última carta del Mazo Castillo oponente"
+            },
+            {
+              "id": "banish_opponent_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige una carta del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                }
+              },
+              "description": "Desterrar una carta del Cementerio oponente"
+            }
+          ]
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Eterno",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando sea declarado atacante, si controlas 2 o mas Aliados de raza Eterno, puedes desterrar la ultima carta del Mazo Castillo oponente o desterrar una carta del Cementerio oponente.",
+        "id_habilidad": "hathor_la_dorada_on_attack"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 896,
+    "nombre": "Hauron",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hauron.png",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando salga del juego, puedes jugar un Aliado que no pueda ser declarado atacante de coste 2 o menos de tu Cementerio sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante.",
+        "id_habilidad": "hauron_cannot_attack"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado que no pueda ser declarado atacante de coste 2 o menos de tu Cementerio para jugarlo sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "inherent": "cannotAttack",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego, puedes jugar un Aliado que no pueda ser declarado atacante de coste 2 o menos de tu Cementerio sin pagar su coste.",
+        "id_habilidad": "hauron_on_leave_play_reanimate"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 897,
+    "nombre": "Hipatia",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hipatia.png",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes convertur un Totem que controles en un Aliado Indestructible de fuerza igual a su coste hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "totemToAllyTarget",
+          "prompt": "Elige un Tótem que controles para convertirlo en Aliado Indestructible hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes convertir un Totem que controles en un Aliado Indestructible de fuerza igual a su coste hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "hipatia_totem_to_ally"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 898,
+    "nombre": "Horus en el viento",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/horusenelviento.png",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Horus en el viento en juego. Cuando entra en juego, puedes jugar un Talisman de coste 4 o menos de tu Cementerio sin pagar su coste. Luego, destierra ese Talisman.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Horus en el viento en juego.",
+        "id_habilidad": "horus_en_el_viento_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "playTalismanFromGraveyardFree",
+          "prompt": "Elige un Talismán de coste 4 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Talisman",
+            "coste_oro": {
+              "value": 4,
+              "operator": "<="
+            }
+          },
+          "banishAfterResolution": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Talisman de coste 4 o menos de tu Cementerio sin pagar su coste. Luego, destierra ese Talisman.",
+        "id_habilidad": "horus_en_el_viento_on_enter_play"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 899,
+    "nombre": "Kawit",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/kawit.png",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un oro en tu Mazo Castillo y ponerlo en tu Mano. Luego, si tienes igual o menor cantidad de oros en juego que tu oponente, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            },
+            "condition": {
+              "type": "controlsFewerOrEqualGoldThanOpponent"
+            }
+          },
+          "type": "searchAndPutInHand",
+          "count": 1,
+          "prompt": "Elige un Oro de tu Mazo Castillo para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un oro en tu Mazo Castillo y ponerlo en tu Mano. Luego, si tienes igual o menor cantidad de oros en juego que tu oponente, puedes robar 1 carta.",
+        "id_habilidad": "kawit2_on_enter_play"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 900,
+    "nombre": "Khababash",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/khababash.png",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes botar 1 carta para que otro aliado que controles gane 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 1
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige otro Aliado que controles para que gane 1 a la Fuerza hasta la Fase Final.",
+          "target": {
+            "query": {
+              "tipo": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar 1 carta para que otro aliado que controles gane 1 a la fuerza hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "khababash2_boost"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 901,
+    "nombre": "Kush el Guerrero",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/kushelguerrero.png",
+    "habilidad_texto_descriptivo": "Indesterrable. Cuando entra en juego, puedes jugar un Arma de coste 3 o menos de tu Mano sin pagar su coste. Una vez por turno, cuando un Arma entre en juego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Kush el Guerrero es Indesterrable."
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayFree",
+          "prompt": "Elige un Arma de coste 3 o menos de tu mano para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "hand",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Arma de coste 3 o menos de tu Mano sin pagar su coste.",
+        "id_habilidad": "kush_play_weapon_on_enter"
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "activatable",
+        "description": "Una vez por turno, cuando un Arma entre en juego, puedes robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "kush_draw_on_weapon_enter",
+        "askOncePerTurn": true,
+        "eventCondition": {
+          "type": "Arma"
+        },
+        "listensForEvent": "onCardEnterPlay"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 902,
+    "nombre": "Lanza de Horus",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/lanzadehorus.png",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Puedes desterrar esta Arma para barajar una carta de coste 3 o menos en juego que no sea Oro.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta de coste 3 o menos en juego que no sea Oro para barajar en el Mazo Castillo.",
+          "target": {
+            "query": {
+              "notType": "Oro",
+              "coste_oro": {
+                "value": 3,
+                "operator": "<="
+              }
+            }
+          },
+          "requiresChoice": true
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes desterrar esta Arma para barajar una carta de coste 3 o menos en juego que no sea Oro.",
+        "id_habilidad": "lanza_de_horus2_shuffle"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 903,
+    "nombre": "Luz del Saber",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/luzdelsaber.png",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Juega una carta que no sea Oro de tu Cementerio como si estuviera en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "selectFromGraveyardAndPlayPayingGoldCost",
+          "prompt": "Elige una carta que no sea Oro de tu Cementerio para jugar pagando su coste de oro.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "cementerio",
+            "notType": "Oro"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando juegues este Talisman, destierralo. Juega una carta que no sea Oro de tu Cementerio como si estuviera en tu Mano.",
+        "banishOnPlay": true,
+        "id_habilidad": "luz_del_saber_play_from_graveyard"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 904,
+    "nombre": "Ojos de Serpiente",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/ojosdeserpiente.png",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Elige entre que un Aliado oponente no pueda atacar permanentemente o que un Aliado oponente no pueda bloquear permanentemente.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige una opción para Ojos de Serpiente:",
+          "options": [
+            {
+              "id": "cannot_attack_option",
+              "action": {
+                "type": "grantKeywordToTarget",
+                "prompt": "Elige un Aliado oponente para que no pueda atacar permanentemente.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "opponent"
+                },
+                "keyword": "cannotAttack",
+                "duration": "permanent"
+              },
+              "description": "Un Aliado oponente no puede atacar permanentemente"
+            },
+            {
+              "id": "cannot_block_option",
+              "action": {
+                "type": "grantKeywordToTarget",
+                "prompt": "Elige un Aliado oponente para que no pueda bloquear permanentemente.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "opponent"
+                },
+                "keyword": "cannotBlock",
+                "duration": "permanent"
+              },
+              "description": "Un Aliado oponente no pueda bloquear permanentemente"
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando juegues este Talisman, destierralo. Elige entre que un Aliado oponente no pueda atacar permanentemente o que un Aliado oponente no pueda bloquear permanentemente.",
+        "banishOnPlay": true,
+        "id_habilidad": "ojos_de_serpiente2_effect"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 905,
+    "nombre": "Quemar los Templos",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/quemarlostemplos.png",
+    "habilidad_texto_descriptivo": "Todas las Armas y Totem en juego, pierden su habilidad y son desterradas. Por cada carta desterrada por esta habilidad, puedes barajar 1 carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndBanishMatchingThenShuffleFromGraveyard",
+          "prompt": "Puedes barajar cartas de tu Cementerio en tu Mazo Castillo.",
+          "targetQuery": {
+            "type_in": [
+              "Arma",
+              "Totem"
+            ]
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Todas las Armas y Totem en juego, pierden su habilidad y son desterradas. Por cada carta desterrada por esta habilidad, puedes barajar 1 carta de tu Cementerio en tu Mazo Castillo.",
+        "banishOnPlay": true,
+        "id_habilidad": "quemar_los_templos_effect"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 906,
+    "nombre": "Riton Aquemenida",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/ritoaquemenida2.png",
+    "habilidad_texto_descriptivo": "Puedes pagar 2 Oros y poner este Oro en el fondo de tu Mazo Castillo desde tu Reserva para buscar un Arma o Totem en tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "riton_aquemenida_effect",
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "moveSelfToBottomOfDeck"
+          }
+        ],
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Arma o Totem de tu Cementerio para poner en tu Mano.",
+          "searchQuery": {
+            "type": [
+              "Arma",
+              "Totem"
+            ],
+            "zone": "cementerio"
+          }
+        },
+        "description": "Puedes pagar 2 Oros y poner este Oro en el fondo de tu Mazo Castillo desde tu Reserva para buscar un Arma o Totem en tu Cementerio y ponerlo en tu Mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 907,
+    "nombre": "Sobek",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sobekrelatos2.png",
+    "habilidad_texto_descriptivo": "No puede atacar. En la Fase Final, si este Aliado esta en juego y fue declarado bloqueador este turno, destruye un Aliado oponente en juego.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ]
+      },
+      {
+        "effect": {
+          "type": "addMarkerToSelf",
+          "marker": "blockedThisTurn",
+          "duration": "endOfTurn"
+        },
+        "trigger": "onDeclareBlock",
+        "isHidden": true,
+        "id_habilidad": "sobek_block_trigger"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige un Aliado oponente en juego para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "controller": "opponent"
+            }
+          }
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasMarker",
+              "marker": "blockedThisTurn"
+            },
+            {
+              "type": "isOpponentTurn"
+            }
+          ]
+        },
+        "description": "En la Fase Final, si este Aliado esta en juego y fue declarado bloqueador este turno, destruye un Aliado oponente en juego.",
+        "id_habilidad": "sobek_destroy_on_end_turn_if_blocked"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 908,
+    "nombre": "Taposiris Magna",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/taposirismagna2.png",
+    "habilidad_texto_descriptivo": "Solo puedes tener un taposiris Magna en juego. No puede ser afectado por Talismanes oponentes. Cada vez que entre en juego un Totem bajo tu control, tu oponente bota tantas cartas como coste tenga ese Totem.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Taposiris Magna en juego.",
+        "id_habilidad": "taposiris_magna_unique",
+        "play_limitation": {
+          "type": "unique"
+        }
+      },
+      {
+        "inherent": [
+          "talismanImmunity"
+        ]
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "countFrom": {
+            "stat": "coste_oro",
+            "context": "triggeringCard"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cada vez que entre en juego un Totem bajo tu control, tu oponente bota tantas cartas como coste tenga ese Totem.",
+        "id_habilidad": "taposiris_magna_mill_on_totem_enter",
+        "eventCondition": {
+          "type": "Totem"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 909,
+    "nombre": "Templo Sombrio",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/templosombrio2.png",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Templo Sombrio en juego. En tu Fase de Vigilia, una vez por turno, puedes jugar un Aliado de tu Cementerio como si estuviera en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Templo Sombrio en juego.",
+        "id_habilidad": "templo_sombrio_unique",
+        "play_limitation": {
+          "type": "unique"
+        }
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "selectFromGraveyardAndPlayPayingGoldCost",
+          "prompt": "Elige un Aliado de tu Cementerio para jugar pagando su coste de oro.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isMyTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes jugar un Aliado de tu Cementerio como si estuviera en tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "templo_sombrio_play_ally_from_graveyard"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 910,
+    "nombre": "Tutankamon",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/tutankamonrework2.png",
+    "habilidad_texto_descriptivo": "Hasta cuatro veces por turno, puedes botar una carta para que este u otro Aliado que controles gane 1 a la fuerza hasta el final del turno. En tu Fase Final, si controlas 2 o mas Aliados de fuerza 3 o mas, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 1,
+            "target": "self"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige este u otro Aliado que controles para que gane 1 a la fuerza hasta el final del turno.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Hasta cuatro veces por turno, puedes botar una carta para que este u otro Aliado que controles gane 1 a la fuerza hasta el final del turno.",
+        "id_habilidad": "tutankamon3_mill_grant_strength",
+        "fourTimesPerTurn": true
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "target": "self"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isMyTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "fuerza": {
+                  "value": 3,
+                  "operator": ">="
+                }
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si controlas 2 o mas Aliados de fuerza 3 o mas, puedes robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "tutankamon3_draw_on_end_phase"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 911,
+    "nombre": "Wepwawet",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/wepwawet2.png",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno y si controlas 2 o mas Aliados de raza Eterno, puedes subir un Aliado de tu Cementerio a tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "wepwawet2_haste"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado de tu Cementerio para poner en tu mano.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isMyTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno y si controlas 2 o mas Aliados de raza Eterno, puedes subir un Aliado de tu Cementerio a tu Mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "wepwawet2_recovery"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 912,
+    "nombre": "Xerxes el Grande",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/xerxeselgrande.png",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Xerxes el Grande en juego. Puede atacar cuando entra en juego. Cuando entra en juego, puedes jugar un Aliado de coste 2 o menos desde tu Mazo Castillo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "unique"
+        ],
+        "description": "Solo puedes tener un Xerxes el Grande en juego. Puede atacar cuando entra en juego.",
+        "id_habilidad": "xerxes_inherent",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de coste 2 o menos de tu Mazo Castillo para poner en tu Línea de Defensa sin pagar su coste.",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Aliado de coste 2 o menos desde tu Mazo Castillo sin pagar su coste.",
+        "id_habilidad": "xerxes_play_ally_free_on_enter"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 913,
+    "nombre": "Zenodoto de Efeso",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/zenodotodeefeso.png",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio. En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "goldSwap",
+          "optional": true,
+          "canCancel": true,
+          "promptStep1": "Elige un Oro de tu Zona de Oro Pagado para intercambiar.",
+          "promptStep2": "Elige un Oro de tu Cementerio para poner en tu Zona de Oro Pagado."
+        },
+        "trigger": "onEnterPlay",
+        "optional": true,
+        "canCancel": true,
+        "description": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio.",
+        "id_habilidad": "zenodoto_gold_swap"
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "phase",
+        "optional": true,
+        "canCancel": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isMyTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Oro",
+                "zone": [
+                  "goldReserve",
+                  "paidGold"
+                ],
+                "isTemporary": false
+              },
+              "amount": 6,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta.",
+        "id_habilidad": "zenodoto_draw_final"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 916,
+    "nombre": "No Hablaras",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/nohablaras.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Elige un Aliado en juego para que no pueda atacar ni bloquear permanentemente.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyAuraKeywordsToTarget",
+          "prompt": "Elige un Aliado en juego para que no pueda atacar ni bloquear.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "permanent",
+          "keywords": [
+            "cannotAttack",
+            "cannotBlock"
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando juegues este Talisman, destierralo. Elige un Aliado en juego para que no pueda atacar ni bloquear permanentemente.",
+        "banishOnPlay": true,
+        "id_habilidad": "no_hablaras_banish_and_restrict"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 914,
+    "nombre": "Arbol Sagrado",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/arbolsagradop.png",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar este Oro y mover un Aliado que controles a la Linea de Defensa a la Linea de Ataque para que un Aliado oponente pierda su habilidad hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "moveOwnAllyToAttackAndAnnul",
+          "duration": "endOfTurn",
+          "promptStep1": "Elige un Aliado en tu Línea de Defensa para mover a la Línea de Ataque.",
+          "promptStep2": "Elige un Aliado oponente para que pierda su habilidad hasta la Fase Final."
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "defense"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar este Oro y mover un Aliado que controles a la Linea de Defensa a la Linea de Ataque para que un Aliado oponente pierda su habilidad hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "arbol_sagrado_move_and_annul"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 915,
+    "nombre": "San Patricio",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sanpatricio.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando este Aliado sea movido de tu Linea de Defensa a tu Linea de ataque por un efecto o una Habilidad de una Carta que controles, puedes destruir un Aliado oponente de fuerza 3 o menos.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de fuerza 3 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "fuerza": {
+                  "value": 3,
+                  "operator": "<="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "Cuando este Aliado sea movido de tu Linea de Defensa a tu Linea de ataque por un efecto o una Habilidad de una Carta que controles, puedes destruir un Aliado oponente de fuerza 3 o menos.",
+        "id_habilidad": "san_patricio_on_move_destroy",
+        "listensForEvent": "onBeingMoveSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1812,
+    "nombre": "Macha",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1048.webp",
+    "habilidad_texto_descriptivo": "Mientras Macha esté en juego, todos los Aliados en juego pierden sus modificadores de fuerza y son Indestructibles.",
+    "descripcion": "Mientras Macha esté en juego, todos los Aliados en juego pierden sus modificadores de fuerza y son Indestructibles.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyRestriction",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "restriction": {
+            "type": "cannotModifyStrength"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Macha esté en juego, todos los Aliados en juego pierden sus modificadores de fuerza.",
+        "id_habilidad": "macha_cannot_modify_strength"
+      },
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "keyword": "indestructible"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Macha esté en juego, todos los Aliados en juego son Indestructibles.",
+        "id_habilidad": "macha_indestructible_aura"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1655,
+    "nombre": "Tier-Na-Oge",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl878.webp",
+    "habilidad_texto_descriptivo": "Mientras Tier-na.oge esté en juego, tus Aliados Indestructibles no pueden ser desterrados.",
+    "descripcion": "Mientras Tier-na.oge esté en juego, tus Aliados Indestructibles no pueden ser desterrados.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "keyword": "indestructible"
+            },
+            "controller": "self"
+          },
+          "keyword": "cannotBeBanished"
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Mientras Tier-na.oge esté en juego, tus Aliados Indestructibles no pueden ser desterrados.",
+        "id_habilidad": "tier_na_oge_indestructible_banish_protection"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1724,
+    "nombre": "Roble Sagrado",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl954.webp",
+    "habilidad_texto_descriptivo": "El coste de tus Talismanes se reduce en 1",
+    "descripcion": "El coste de tus Talismanes se reduce en 1",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Talisman"
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "El coste de tus Talismanes se reduce en 1.",
+        "id_habilidad": "roble_sagrado_talisman_cost_reduction"
       }
     ],
     "tier": "muy bajo"

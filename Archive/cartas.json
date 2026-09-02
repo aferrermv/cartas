@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.4",
+    "pack_version": "3.0.5",
     "habilidades": []
   },
   {
@@ -5687,6 +5687,10 @@
           "type": "regroupAllies"
         },
         "trigger": "onDeclareBlock",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
         "description": "Si Figol el Druida es declarado bloqueador, todos los Aliados oponentes que fueron declarados atacantes, vuelven a la Línea de Defensa."
       }
     ]

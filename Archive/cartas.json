@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.5",
+    "pack_version": "3.0.6",
     "habilidades": []
   },
   {
@@ -6201,8 +6201,7 @@
           "keyword": "cannotBeBanished",
           "target": {
             "query": {
-              "type": "Oro",
-              "isOther": true
+              "type": "Oro"
             },
             "controller": "any"
           }
@@ -15603,26 +15602,6 @@
         "id_habilidad": "escudo_celestial_activatable"
       }
     ]
-  },
-  {
-    "id": 450,
-    "nombre": "Escudo de la Tormenta",
-    "tipo": "Arma",
-    "coste_oro": 3,
-    "imagen_url": "/img/ra/escudodelatormenta450.png",
-    "habilidad_texto_descriptivo": "El portadr de Escudo de la Tormenta gana 2 a la fuerza. En respuesta a que el portador salga del juego, Barajalo en tu mazo castilo. ",
-    "descripcion": null,
-    "expansion": "Dominios de Ra",
-    "rareza": "Común",
-    "fecha_creacion": null,
-    "fuerza": null,
-    "raza": null,
-    "leyenda": null,
-    "danio": 2,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": []
   },
   {
     "id": 451,
@@ -60559,8 +60538,7 @@
           "keyword": "cannotBeBanished",
           "target": {
             "query": {
-              "type": "Oro",
-              "isOther": true
+              "type": "Oro"
             },
             "controller": "any"
           }
@@ -62543,8 +62521,7 @@
           "keyword": "cannotBeBanished",
           "target": {
             "query": {
-              "type": "Oro",
-              "isOther": true
+              "type": "Oro"
             },
             "controller": "any"
           }

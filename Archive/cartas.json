@@ -3481,6 +3481,71 @@
     ],
     "tier": "alto"
   },
+   {
+    "id": 54,
+   "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/gift/Morganacronosagosto/morganabase.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. Una vez por turno, puedes destruir un Aliado que controles para destruir un Aliado oponente.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado",
+                "isOther": false
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Una vez por turno, puedes destruir un Aliado que controles para destruir un Aliado oponente.",
+        "oncePerTurn": true
+      }
+    ]
+  },
   {
     "id": 30,
     "nombre": "Plaga",
@@ -40720,7 +40785,7 @@
     "tipo": "Talisman",
     "coste_oro": 1,
     "imagen_url": "/img/store/cartas/fesinlimiteshogun.webp",
-    "habilidad_texto_descriptivo": "Anula un Talismán oponente. Roba una carta.",
+    "habilidad_texto_descriptivo": "Anula un Talismán oponente.",
     "descripcion": "Edición Especial Shogun",
     "expansion": "Espada Sagrada",
     "rareza": "Promo",

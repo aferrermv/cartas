@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.6",
+    "pack_version": "3.0.7",
     "habilidades": []
   },
   {
@@ -3481,13 +3481,13 @@
     ],
     "tier": "alto"
   },
-   {
+  {
     "id": 54,
-   "nombre": "Morgana",
+    "nombre": "Morgana",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/gift/Morganacronosagosto/morganabase.webp",
-   "visualEffect": "morganaSpecialEntrance",
+    "visualEffect": "morganaSpecialEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",
@@ -99538,5 +99538,587 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 917,
+    "nombre": "Wadjet la Protectora",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/wadjet.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si hace daño al Mazo Castillo oponente, puedes mirar las 3 primeras cartas de tu Mazo Castillo. ELige una y ponla en tu Mano y las demas ponlas al fondo de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu Mano. El resto irá al fondo de tu Mazo Castillo.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "notify": "private",
+          "fromZone": "mazoCastillo",
+          "viewCount": 3,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo Castillo oponente, puedes mirar las 3 primeras cartas de tu Mazo Castillo. Elige una y ponla en tu Mano y las demás ponlas al fondo de tu Mazo Castillo.",
+        "id_habilidad": "wadjet_look_top_choose_to_hand"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 918,
+    "nombre": "Tyet",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/tyet.webp",
+    "habilidad_texto_descriptivo": "Si este Oro está en tu Reserva, puedes desterrarlo y pagar 3 Oros para destruir un Aliado oponente. Luego, si controlas uno o más Aliados, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 3
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "Controlas uno o más Aliados. ¿Quieres robar 1 carta?",
+              "options": [
+                {
+                  "id": "tyet_draw_card",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "tyet_decline_draw",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            },
+            "condition": {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "description": "Si este Oro está en tu Reserva, puedes desterrarlo y pagar 3 Oros para destruir un Aliado oponente. Luego, si controlas uno o más Aliados, puedes robar 1 carta.",
+        "id_habilidad": "tyet_banish_destroy_draw"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 919,
+    "nombre": "Roxana de Bactria",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/roxanadebactria.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar un Aliado de raza Faraón de tu Mano para robar una carta. Cuando salga del juego, puedes buscar un Oro en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Faraon",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Faraón de tu mano para mostrar y robar una carta.",
+          "optional": true,
+          "alsoDraws": 1
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInHand",
+          "query": {
+            "raza": "Faraon",
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cuando entra en juego, puedes mostrar un Aliado de raza Faraón de tu Mano para robar una carta.",
+        "id_habilidad": "roxana_de_bactria_reveal_draw"
+      },
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Oro de tu Mazo Castillo o Cementerio para poner en tu Mano.",
+          "options": [
+            {
+              "id": "search_deck",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Oro"
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "search_graveyard",
+              "zone": "cementerio",
+              "query": {
+                "type": "Oro"
+              },
+              "description": "Buscar en Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego, puedes buscar un Oro en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+        "id_habilidad": "roxana_de_bactria_leave_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 920,
+    "nombre": "Robar el Fuego Solar",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/robarelfuegosolar.webp",
+    "habilidad_texto_descriptivo": "En respuesta a la Asignacion de daño, elige hasta 2 Aliados oponentes para que no hagan daño a tu Mazo Castillo este turno. Luego, puedes mirar las 3 primeras cartas de tu Mazo Castillo y ordenarlas.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "then": {
+            "type": "chooseOne",
+            "prompt": "¿Quieres mirar las 3 primeras cartas de tu Mazo Castillo y ordenarlas?",
+            "options": [
+              {
+                "id": "robar_fuego_reorder_yes",
+                "action": {
+                  "type": "lookAndReorderTopDeck",
+                  "count": 3,
+                  "prompt": "Mira las 3 primeras cartas de tu Mazo Castillo y reordénalas como quieras."
+                },
+                "description": "Sí, mirar y ordenar 3 cartas"
+              },
+              {
+                "id": "robar_fuego_reorder_no",
+                "action": {},
+                "description": "No, gracias"
+              }
+            ]
+          },
+          "type": "targetAndPreventCombatDamageMultiple",
+          "count": 2,
+          "prompt": "Elige un Aliado oponente atacante para prevenir su daño este turno (hasta 2):",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "description": "En respuesta a la Asignacion de daño, elige hasta 2 Aliados oponentes para que no hagan daño a tu Mazo Castillo este turno. Luego, puedes mirar las 3 primeras cartas de tu Mazo Castillo y ordenarlas.",
+        "id_habilidad": "robar_el_fuego_solar_prevent_and_reorder"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 921,
+    "nombre": "Nun del Abismo",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/nundelabismo.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando entra en juego, puedes destruir un Aliado que controles para desterrar un Aliado oponente de fuerza igual o menora la del Aliado destruido.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante."
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige un Aliado que controles para destruir como coste:",
+            "target": {
+              "query": {
+                "type": "Aliado",
+                "isOther": true
+              },
+              "controller": "self"
+            },
+            "optional": true,
+            "canCancel": true,
+            "rememberAs": "destroyedAllyForNun"
+          }
+        ],
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar de fuerza igual o menor a la del Aliado destruido:",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": {
+                  "fromContext": "destroyedAllyForNun.fuerza"
+                },
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes destruir un Aliado que controles para desterrar un Aliado oponente de fuerza igual o menor a la del Aliado destruido.",
+        "id_habilidad": "nun_del_abismo_sacrifice_to_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 922,
+    "nombre": "Madre del Sol",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/madredelsol.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talisman, destierralo. Copia la Habilidad de un Talisman del Cementerio oponente de coste 3 o menos.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "copyTalismanFrom",
+          "prompt": "Elige un Talismán de coste 3 o menos del Cementerio oponente para copiar su efecto.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "Talisman",
+              "coste_oro": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando juegues este Talisman, destierralo. Copia la Habilidad de un Talisman del Cementerio oponente de coste 3 o menos.",
+        "banishOnPlay": true,
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Talisman",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "opponent"
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 923,
+    "nombre": "Jueces Del Maat",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/juecesdelmaat.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes destruirlo para que un Aliado tenga fuerza 0 hasta la Fase Final. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 3 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "buff": {
+            "set_strength": 0
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado para que su Fuerza sea 0 hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes destruirlo para que un Aliado tenga fuerza 0 hasta la Fase Final.",
+        "oncePerTurn": true,
+        "id_habilidad": "jueces_del_maat_destroy_self_strength_zero"
+      },
+      {
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 3
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes pagar 3 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "jueces_del_maat_graveyard_play"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 924,
+    "nombre": "Dario III",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/dario3.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Imbloqueable. En tu Fase Final, si este Aliado fue declarado atacante este turno, puedes subirlo a tu Mano para desterrar una carta de un Cementerio o para robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "unblockable"
+        ],
+        "description": "Puede atacar cuando entra en juego. Imbloqueable."
+      },
+      {
+        "costs": [
+          {
+            "type": "returnSelfToHandAsCost"
+          }
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto para Darío III:",
+          "options": [
+            {
+              "id": "dario_iii_banish_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                }
+              },
+              "description": "Desterrar 1 carta de un Cementerio"
+            },
+            {
+              "id": "dario_iii_draw_card",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "cardMatchesQuery",
+              "query": {
+                "hasAttackedThisTurn": true
+              }
+            }
+          ]
+        },
+        "description": "En tu Fase Final, si este Aliado fue declarado atacante este turno, puedes subirlo a tu Mano para desterrar una carta de un Cementerio o para robar 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "dario_iii_final_phase_return_self"
+      }
+    ],
+    "tier": "alto"
   }
 ]

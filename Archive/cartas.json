@@ -3487,7 +3487,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/gift/Morganacronosagosto/morganabase.webp",
-   "visualEffect": "heavyEntrance",
+   "visualEffect": "morganaSpecialEntrance",
     "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
     "descripcion": null,
     "expansion": "Espada Sagrada",

@@ -3485,14 +3485,15 @@
     "id": 54,
    "nombre": "Morgana",
     "tipo": "Aliado",
-    "coste_oro": 3,
+    "coste_oro": 4,
     "imagen_url": "/img/gift/Morganacronosagosto/morganabase.webp",
-    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. Una vez por turno, puedes destruir un Aliado que controles para destruir un Aliado oponente.",
+   "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
     "descripcion": null,
-    "expansion": "El Reto",
-    "rareza": "Real",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
     "fecha_creacion": null,
-    "fuerza": 3,
+    "fuerza": 2,
     "raza": "Faerie",
     "leyenda": null,
     "danio": null,
@@ -3501,7 +3502,7 @@
     "salud": null,
     "habilidades": [
       {
-        "descripcion": "Solo puedes tener una Morgana en juego.",
+        "description": "Solo puedes tener una Morgana en juego.",
         "play_limitation": {
           "type": "unique",
           "scope": [
@@ -3518,8 +3519,7 @@
             "prompt": "Elige uno de tus Aliados para destruir como coste.",
             "target": {
               "query": {
-                "type": "Aliado",
-                "isOther": false
+                "type": "Aliado"
               },
               "controller": "self"
             }
@@ -3527,8 +3527,8 @@
         ],
         "phase": "Principal",
         "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado oponente para destruir.",
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
           "target": {
             "query": {
               "type": "Aliado"
@@ -3541,10 +3541,12 @@
           "type": "isInZone",
           "zone": "field"
         },
-        "descripcion": "Una vez por turno, puedes destruir un Aliado que controles para destruir un Aliado oponente.",
-        "oncePerTurn": true
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
       }
-    ]
+    ],
+    "tier": "bajo"
   },
   {
     "id": 30,

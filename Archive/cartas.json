@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.7",
+    "pack_version": "3.0.8",
     "habilidades": []
   },
   {
@@ -3538,8 +3538,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -13655,7 +13670,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "description": "Solo puedes tener una Morgana en juego.",
         "play_limitation": {
@@ -13693,8 +13708,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -20032,36 +20062,37 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "effect": {
-          "type": "destroyMultipleTargets",
-          "targets": [
-            {
-              "id": "self_allies",
-              "count": 2,
-              "query": {
-                "type": "Aliado"
-              },
-              "prompt": "Elige 2 de tus Aliados para destruir.",
-              "minCount": 2,
-              "controller": "self"
-            },
-            {
-              "id": "opponent_card",
-              "count": 1,
-              "query": {
-                "notType": "Oro"
-              },
-              "prompt": "Elige una carta oponente que no sea Oro para destruir.",
-              "minCount": 1,
-              "controller": "opponent"
-            }
-          ]
+  {
+    "effect": {
+      "type": "destroyMultipleTargets",
+      "canCancel": false,
+      "targets": [
+        {
+          "id": "self_allies",
+          "count": 2,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Elige 2 de tus Aliados para destruir.",
+          "minCount": 2,
+          "controller": "self"
         },
-        "trigger": "onEnterPlay",
-        "description": "Destruye 2 de tus Aliados y una carta oponente que no sea Oro."
-      }
-    ]
+        {
+          "id": "opponent_card",
+          "count": 1,
+          "query": {
+            "notType": "Oro"
+          },
+          "prompt": "Elige una carta oponente que no sea Oro para destruir.",
+          "minCount": 1,
+          "controller": "opponent"
+        }
+      ]
+    },
+    "trigger": "onEnterPlay",
+    "description": "Destruye 2 de tus Aliados y una carta oponente que no sea Oro."
+  }
+]
   },
   {
     "id": 520,
@@ -22468,7 +22499,10 @@
             "count": 1
           }
         ],
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "drawCards",
           "count": 1
@@ -24265,44 +24299,51 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-          "options": [
-            {
-              "id": "activate_ceangal",
-              "action": {
-                "type": "triggerAbility",
-                "ability": {
-                  "costs": [
-                    {
-                      "type": "paySelfAsCost"
+    "habilidades":[
+  {
+    "effect": {
+      "type": "chooseOne",
+      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+      "options": [
+        {
+          "id": "activate_ceangal",
+          "action": {
+            "type": "triggerAbility",
+            "ability": {
+              "costs": [
+                {
+                  "type": "paySelfAsCost"
+                },
+                {
+                  "type": "payTargetCost",
+                  "prompt": "Paga el coste de una carta en juego para destruirla",
+                  "target": {
+                    "query": {
+                      "notType": "Oro"
                     },
-                    {
-                      "type": "payTargetCostToDestroy",
-                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
-                      "target": {
-                        "query": {
-                          "notType": "Oro"
-                        },
-                        "controller": "any"
-                      },
-                      "canCancel": true
-                    }
-                  ],
-                  "trigger": "activatable_with_costs"
+                    "controller": "any"
+                  },
+                  "rememberAs": "preselectedTarget",
+                  "canCancel": true
+                }
+              ],
+              "effect": {
+                "type": "destroyTarget",
+                "target": {
+                  "fromContext": "preselectedTarget"
                 }
               },
-              "description": "Sí, pagar el coste y destruir."
-            },
-            {
-              "id": "decline_ceangal",
-              "action": {},
-              "description": "No, gracias."
+              "trigger": "activatable_with_costs"
             }
-          ]
+          },
+          "description": "Sí, pagar el coste y destruir."
+        },
+        {
+          "id": "decline_ceangal",
+          "action": {},
+          "description": "No, gracias."
+        }
+      ]
         },
         "trigger": "onEnterPlay",
         "id_habilidad": "ceangal_an_fhanaigh_main",
@@ -43991,50 +44032,57 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-          "options": [
-            {
-              "id": "activate_ceangal",
-              "action": {
-                "type": "triggerAbility",
-                "ability": {
-                  "costs": [
-                    {
-                      "type": "paySelfAsCost"
+    "habilidades":[
+  {
+    "effect": {
+      "type": "chooseOne",
+      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+      "options": [
+        {
+          "id": "activate_ceangal",
+          "action": {
+            "type": "triggerAbility",
+            "ability": {
+              "costs": [
+                {
+                  "type": "paySelfAsCost"
+                },
+                {
+                  "type": "payTargetCost",
+                  "prompt": "Paga el coste de una carta en juego para destruirla",
+                  "target": {
+                    "query": {
+                      "notType": "Oro"
                     },
-                    {
-                      "type": "payTargetCostToDestroy",
-                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
-                      "target": {
-                        "query": {
-                          "notType": "Oro"
-                        },
-                        "controller": "any"
-                      },
-                      "canCancel": true
-                    }
-                  ],
-                  "trigger": "activatable_with_costs"
+                    "controller": "any"
+                  },
+                  "rememberAs": "preselectedTarget",
+                  "canCancel": true
+                }
+              ],
+              "effect": {
+                "type": "destroyTarget",
+                "target": {
+                  "fromContext": "preselectedTarget"
                 }
               },
-              "description": "Sí, pagar el coste y destruir."
-            },
-            {
-              "id": "decline_ceangal",
-              "action": {},
-              "description": "No, gracias."
+              "trigger": "activatable_with_costs"
             }
-          ]
+          },
+          "description": "Sí, pagar el coste y destruir."
         },
-        "trigger": "onEnterPlay",
-        "id_habilidad": "ceangal_an_fhanaigh_main",
-        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
-      }
-    ],
+        {
+          "id": "decline_ceangal",
+          "action": {},
+          "description": "No, gracias."
+        }
+      ]
+    },
+    "trigger": "onEnterPlay",
+    "id_habilidad": "ceangal_an_fhanaigh_main",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+  }
+],
     "tier": "bajo"
   },
   {
@@ -48260,49 +48308,56 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-      {
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-          "options": [
-            {
-              "id": "activate_ceangal",
-              "action": {
-                "type": "triggerAbility",
-                "ability": {
-                  "costs": [
-                    {
-                      "type": "paySelfAsCost"
+  {
+    "effect": {
+      "type": "chooseOne",
+      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+      "options": [
+        {
+          "id": "activate_ceangal",
+          "action": {
+            "type": "triggerAbility",
+            "ability": {
+              "costs": [
+                {
+                  "type": "paySelfAsCost"
+                },
+                {
+                  "type": "payTargetCost",
+                  "prompt": "Paga el coste de una carta en juego para destruirla",
+                  "target": {
+                    "query": {
+                      "notType": "Oro"
                     },
-                    {
-                      "type": "payTargetCostToDestroy",
-                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
-                      "target": {
-                        "query": {
-                          "notType": "Oro"
-                        },
-                        "controller": "any"
-                      },
-                      "canCancel": true
-                    }
-                  ],
-                  "trigger": "activatable_with_costs"
+                    "controller": "any"
+                  },
+                  "rememberAs": "preselectedTarget",
+                  "canCancel": true
+                }
+              ],
+              "effect": {
+                "type": "destroyTarget",
+                "target": {
+                  "fromContext": "preselectedTarget"
                 }
               },
-              "description": "Sí, pagar el coste y destruir."
-            },
-            {
-              "id": "decline_ceangal",
-              "action": {},
-              "description": "No, gracias."
+              "trigger": "activatable_with_costs"
             }
-          ]
+          },
+          "description": "Sí, pagar el coste y destruir."
         },
-        "trigger": "onEnterPlay",
-        "id_habilidad": "ceangal_an_fhanaigh_main",
-        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
-      }
-    ],
+        {
+          "id": "decline_ceangal",
+          "action": {},
+          "description": "No, gracias."
+        }
+      ]
+    },
+    "trigger": "onEnterPlay",
+    "id_habilidad": "ceangal_an_fhanaigh_main",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+  }
+],
     "tier": "alto"
   },
   {
@@ -53619,8 +53674,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -53724,8 +53794,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -53791,8 +53876,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -53858,8 +53958,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -53925,8 +54040,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -53992,8 +54122,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -54059,8 +54204,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -54126,8 +54286,23 @@
         },
         "trigger": "activatable_with_costs",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
         },
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
@@ -98036,46 +98211,49 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "grantKeywordToWielder",
-          "keyword": "canEquipExtraWeapon"
+    "habilidades":[
+  {
+    "effect": {
+      "type": "grantKeywordToWielder",
+      "keyword": "canEquipExtraWeapon"
+    },
+    "trigger": "continuous",
+    "descripcion": "El portador puede portar un Arma adicional.",
+    "id_habilidad": "escudo_de_la_tormenta3_extra_weapon"
+  },
+  {
+    "cost": {
+      "type": "shuffleWeaponAsCost",
+      "isOther": true,
+      "canCancel": false,
+      "prompt": "Elige un Arma que controles para barajar en tu Mazo Castillo y prevenir que el portador salga del juego."
+    },
+    "effect": {
+      "type": "prevent"
+    },
+    "trigger": "activatable",
+    "descripcion": "Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
+    "id_habilidad": "escudo_de_la_tormenta3_prevent_wielder_leave",
+    "eventCondition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "triggeringCardIsWielder"
         },
-        "trigger": "continuous",
-        "descripcion": "El portador puede portar un Arma adicional.",
-        "id_habilidad": "escudo_de_la_tormenta3_extra_weapon"
-      },
-      {
-        "cost": {
-          "type": "shuffleWeaponAsCost",
-          "prompt": "Elige un Arma que controles para barajar en tu Mazo Castillo y prevenir que el portador salga del juego."
-        },
-        "effect": {
-          "type": "prevent"
-        },
-        "trigger": "activatable",
-        "descripcion": "Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
-        "id_habilidad": "escudo_de_la_tormenta3_prevent_wielder_leave",
-        "eventCondition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "triggeringCardIsWielder"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Arma"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "listensForEvent": "onAllyLeavePlay"
-      }
-    ],
+        {
+          "type": "playerControls",
+          "query": {
+            "type": "Arma",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      ]
+    },
+    "listensForEvent": "onAllyLeavePlay"
+  }
+],
     "tier": "medio"
   },
   {

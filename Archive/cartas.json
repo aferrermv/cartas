@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.7",
+    "pack_version": "3.0.8",
     "habilidades": []
   },
   {
@@ -100347,5 +100347,533 @@
         "id_habilidad": "hwarang_strength_buff"
       }
     ]
+  },
+  {
+    "id": 925,
+    "nombre": "Apolonio de Rodas",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/apolonioderodas.jpg",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar las 3 primeras cartas de tu Mazo Castillo y elegir un Oro para ponerlo en tu Mano. Si el Oro elegido es sin habilidad, en vez de eso puedes ponerlo en tu Oro Pagado. Luego, baraja el resto de cartas en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealAndChooseConditional",
+          "count": 3,
+          "choice": {
+            "query": {
+              "type": "Oro"
+            },
+            "prompt": "Elige un Oro de las 3 cartas mostradas (si es sin habilidad, irá a tu Oro Pagado).",
+            "optional": true,
+            "destination": "hand",
+            "opponentPrompt": "Tu oponente está mostrando las 3 primeras cartas de su Mazo Castillo.",
+            "conditionalDestination": {
+              "query": {
+                "hasAbilities": false
+              },
+              "destination": "paidGold"
+            }
+          },
+          "fromZone": "mazoCastillo",
+          "unselected": "shuffleBack"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mostrar las 3 primeras cartas de tu Mazo Castillo y elegir un Oro para ponerlo en tu Mano. Si el Oro elegido es sin habilidad, en vez de eso puedes ponerlo en tu Oro Pagado. Luego, baraja el resto de cartas en tu Mazo Castillo.",
+        "id_habilidad": "apolonio_de_rodas_reveal_gold"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 926,
+    "nombre": "Biblioteca Alexandrina",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/bibliotecaalexandrina.jpg",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Totem de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndChooseToGraveyard",
+          "count": 1,
+          "prompt": "Elige un Tótem de coste 3 o menos en tu Mazo Castillo para ponerlo en tu Cementerio.",
+          "searchQuery": {
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "type": "Totem",
+            "zone": "mazoCastillo",
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar un Totem de coste 3 o menos en tu Mazo Castillo y ponerlo en tu Cementerio.",
+        "oncePerTurn": true,
+        "id_habilidad": "biblioteca_alexandrina_search_totem"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 927,
+    "nombre": "Canto del Veneno",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cantodelveneno.jpg",
+    "habilidad_texto_descriptivo": "Cuando un Totem entre en juego bajo tu control, si esta carta esta en tu Cementerio, puedes barajarla en tu Mazo Castillo. Roba 2 cartas. Luego, destierra 1 carta de un Cementerio.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿De qué Cementerio quieres desterrar una carta?",
+              "options": [
+                {
+                  "id": "canto_enter_banish_opponent",
+                  "action": {
+                    "type": "chooseAndBanish",
+                    "count": 1,
+                    "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+                    "target": {
+                      "zone": "cementerio",
+                      "query": {
+                        "type": "*"
+                      },
+                      "controller": "opponent"
+                    }
+                  },
+                  "description": "Desterrar 1 carta del Cementerio oponente"
+                },
+                {
+                  "id": "canto_enter_banish_self",
+                  "action": {
+                    "type": "chooseAndBanish",
+                    "count": 1,
+                    "prompt": "Elige 1 carta de tu Cementerio para desterrar.",
+                    "target": {
+                      "zone": "cementerio",
+                      "query": {
+                        "type": "*"
+                      },
+                      "controller": "self"
+                    }
+                  },
+                  "description": "Desterrar 1 carta de tu Cementerio"
+                }
+              ]
+            }
+          },
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Roba 2 cartas. Luego, destierra 1 carta de un Cementerio."
+      },
+      {
+        "effect": {
+          "type": "shuffleSelf"
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "Cuando un Totem entre en juego bajo tu control, si esta carta esta en tu Cementerio, puedes barajarla en tu Mazo Castillo.",
+        "eventCondition": {
+          "type": "Totem"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 928,
+    "nombre": "Entra Alejandro",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/entrenaalejandro.jpg",
+    "habilidad_texto_descriptivo": "Gana el control de un Aliado oponente. Ese Aliado puede ser declarado atacante este turno y gana 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente para ganar su control hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn",
+          "modifications": {
+            "buffs": [
+              {
+                "stat": "fuerza",
+                "value": 1
+              }
+            ],
+            "addKeywords": [
+              "canAttackOnEnterPlay"
+            ]
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Gana el control de un Aliado oponente. Ese Aliado puede ser declarado atacante este turno y gana 1 a la fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 929,
+    "nombre": "Iuwlot del Veneno",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/iuwlotdelveneno.jpg",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar una carta del Cementerio oponente. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 2 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "canCancel": true,
+        "description": "Cuando entra en juego, puedes desterrar una carta del Cementerio oponente."
+      },
+      {
+        "id": "iuwlot_graveyard_play",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 2 Oros para jugarlo sin pagar su coste.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 930,
+    "nombre": "Juramento del Asesino",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/juramentodelasesino.jpg",
+    "habilidad_texto_descriptivo": "Busca un Aliado Guerrero en tu Cementerio y ponlo en tu Mano. Puedes jugar ese Aliado reduciendo su coste en 2 Oros. si lo haces, ese Aliado gana 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "searchToHandReduceCostAndBuff",
+          "prompt": "Elige un Aliado que contenga 'Guerrero' en su nombre de tu Cementerio para ponerlo en tu Mano.",
+          "duration": "endOfTurn",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameContains": "Guerrero"
+          },
+          "costReduction": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca un Aliado Guerrero en tu Cementerio y ponlo en tu Mano. Puedes jugar ese Aliado reduciendo su coste en 2 Oros. Si lo haces, ese Aliado gana 1 a la fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 931,
+    "nombre": "Kopis Alexandrino",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/kopisalexandrino.jpg",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cuando entra en juego, puedes buscar un Totem en tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Tótem de tu Cementerio para ponerlo en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Totem en tu Cementerio y ponerlo en tu Mano."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 932,
+    "nombre": "Licofron",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/licofron.jpg",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego, Imbloqueable. Cuando hace daño al Mazo Castillo oponente, puedes buscar un Oro sin Habilidad en tu Mazo Castillo o Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "unblockable"
+        ]
+      },
+      {
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Habilidad de Licofron: Elige dónde buscar un Oro sin Habilidad para poner en tu Mano.",
+          "options": [
+            {
+              "id": "search_deck_gold",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Oro",
+                "hasAbilities": false
+              },
+              "description": "Desde el Mazo Castillo"
+            },
+            {
+              "id": "search_graveyard_gold",
+              "zone": "cementerio",
+              "query": {
+                "type": "Oro",
+                "hasAbilities": false
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "putInHand",
+            "count": 1
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cuando hace daño al Mazo Castillo oponente, puedes buscar un Oro sin Habilidad en tu Mazo Castillo o Cementerio y ponerlo en tu Mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 933,
+    "nombre": "Nastasen",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/nastasen.jpg",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando hace daño al Mazo Castillo oponente, puedes jugar un Aliado de raza Faraon de coste 1 o menos de tu Cementerio sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Faraón de coste 1 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Faraon",
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 1,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cuando hace daño al Mazo Castillo oponente, puedes jugar un Aliado de raza Faraon de coste 1 o menos de tu Cementerio sin pagar su coste."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2152,
+    "nombre": "Fieras Domesticas",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1511.webp",
+    "habilidad_texto_descriptivo": "",
+    "descripcion": "",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": []
+  },
+  {
+    "id": 2153,
+    "nombre": "Hipopotamo Sagrado",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1512.webp",
+    "habilidad_texto_descriptivo": "",
+    "descripcion": "",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": []
+  },
+  {
+    "id": 2148,
+    "nombre": "Sarcofago Sagrado",
+    "tipo": "Oro",
+    "coste_oro": null,
+    "imagen_url": "/img/nuevasCartas/MYL-1506.webp",
+    "habilidad_texto_descriptivo": "",
+    "descripcion": "",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": []
   }
 ]

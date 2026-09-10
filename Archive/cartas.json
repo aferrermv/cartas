@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.0.8",
+    "pack_version": "3.0.7",
     "habilidades": []
   },
   {
@@ -13670,7 +13670,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "description": "Solo puedes tener una Morgana en juego.",
         "play_limitation": {
@@ -20062,37 +20062,37 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "type": "destroyMultipleTargets",
-      "canCancel": false,
-      "targets": [
-        {
-          "id": "self_allies",
-          "count": 2,
-          "query": {
-            "type": "Aliado"
-          },
-          "prompt": "Elige 2 de tus Aliados para destruir.",
-          "minCount": 2,
-          "controller": "self"
+      {
+        "effect": {
+          "type": "destroyMultipleTargets",
+          "canCancel": false,
+          "targets": [
+            {
+              "id": "self_allies",
+              "count": 2,
+              "query": {
+                "type": "Aliado"
+              },
+              "prompt": "Elige 2 de tus Aliados para destruir.",
+              "minCount": 2,
+              "controller": "self"
+            },
+            {
+              "id": "opponent_card",
+              "count": 1,
+              "query": {
+                "notType": "Oro"
+              },
+              "prompt": "Elige una carta oponente que no sea Oro para destruir.",
+              "minCount": 1,
+              "controller": "opponent"
+            }
+          ]
         },
-        {
-          "id": "opponent_card",
-          "count": 1,
-          "query": {
-            "notType": "Oro"
-          },
-          "prompt": "Elige una carta oponente que no sea Oro para destruir.",
-          "minCount": 1,
-          "controller": "opponent"
-        }
-      ]
-    },
-    "trigger": "onEnterPlay",
-    "description": "Destruye 2 de tus Aliados y una carta oponente que no sea Oro."
-  }
-]
+        "trigger": "onEnterPlay",
+        "description": "Destruye 2 de tus Aliados y una carta oponente que no sea Oro."
+      }
+    ]
   },
   {
     "id": 520,
@@ -24299,51 +24299,51 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":[
-  {
-    "effect": {
-      "type": "chooseOne",
-      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-      "options": [
-        {
-          "id": "activate_ceangal",
-          "action": {
-            "type": "triggerAbility",
-            "ability": {
-              "costs": [
-                {
-                  "type": "paySelfAsCost"
-                },
-                {
-                  "type": "payTargetCost",
-                  "prompt": "Paga el coste de una carta en juego para destruirla",
-                  "target": {
-                    "query": {
-                      "notType": "Oro"
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+          "options": [
+            {
+              "id": "activate_ceangal",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
                     },
-                    "controller": "any"
+                    {
+                      "type": "payTargetCost",
+                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "target": {
+                        "query": {
+                          "notType": "Oro"
+                        },
+                        "controller": "any"
+                      },
+                      "rememberAs": "preselectedTarget",
+                      "canCancel": true
+                    }
+                  ],
+                  "effect": {
+                    "type": "destroyTarget",
+                    "target": {
+                      "fromContext": "preselectedTarget"
+                    }
                   },
-                  "rememberAs": "preselectedTarget",
-                  "canCancel": true
-                }
-              ],
-              "effect": {
-                "type": "destroyTarget",
-                "target": {
-                  "fromContext": "preselectedTarget"
+                  "trigger": "activatable_with_costs"
                 }
               },
-              "trigger": "activatable_with_costs"
+              "description": "Sí, pagar el coste y destruir."
+            },
+            {
+              "id": "decline_ceangal",
+              "action": {},
+              "description": "No, gracias."
             }
-          },
-          "description": "Sí, pagar el coste y destruir."
-        },
-        {
-          "id": "decline_ceangal",
-          "action": {},
-          "description": "No, gracias."
-        }
-      ]
+          ]
         },
         "trigger": "onEnterPlay",
         "id_habilidad": "ceangal_an_fhanaigh_main",
@@ -44032,57 +44032,57 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":[
-  {
-    "effect": {
-      "type": "chooseOne",
-      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-      "options": [
-        {
-          "id": "activate_ceangal",
-          "action": {
-            "type": "triggerAbility",
-            "ability": {
-              "costs": [
-                {
-                  "type": "paySelfAsCost"
-                },
-                {
-                  "type": "payTargetCost",
-                  "prompt": "Paga el coste de una carta en juego para destruirla",
-                  "target": {
-                    "query": {
-                      "notType": "Oro"
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+          "options": [
+            {
+              "id": "activate_ceangal",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
                     },
-                    "controller": "any"
+                    {
+                      "type": "payTargetCost",
+                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "target": {
+                        "query": {
+                          "notType": "Oro"
+                        },
+                        "controller": "any"
+                      },
+                      "rememberAs": "preselectedTarget",
+                      "canCancel": true
+                    }
+                  ],
+                  "effect": {
+                    "type": "destroyTarget",
+                    "target": {
+                      "fromContext": "preselectedTarget"
+                    }
                   },
-                  "rememberAs": "preselectedTarget",
-                  "canCancel": true
-                }
-              ],
-              "effect": {
-                "type": "destroyTarget",
-                "target": {
-                  "fromContext": "preselectedTarget"
+                  "trigger": "activatable_with_costs"
                 }
               },
-              "trigger": "activatable_with_costs"
+              "description": "Sí, pagar el coste y destruir."
+            },
+            {
+              "id": "decline_ceangal",
+              "action": {},
+              "description": "No, gracias."
             }
-          },
-          "description": "Sí, pagar el coste y destruir."
+          ]
         },
-        {
-          "id": "decline_ceangal",
-          "action": {},
-          "description": "No, gracias."
-        }
-      ]
-    },
-    "trigger": "onEnterPlay",
-    "id_habilidad": "ceangal_an_fhanaigh_main",
-    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
-  }
-],
+        "trigger": "onEnterPlay",
+        "id_habilidad": "ceangal_an_fhanaigh_main",
+        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+      }
+    ],
     "tier": "bajo"
   },
   {
@@ -48308,56 +48308,56 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "type": "chooseOne",
-      "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
-      "options": [
-        {
-          "id": "activate_ceangal",
-          "action": {
-            "type": "triggerAbility",
-            "ability": {
-              "costs": [
-                {
-                  "type": "paySelfAsCost"
-                },
-                {
-                  "type": "payTargetCost",
-                  "prompt": "Paga el coste de una carta en juego para destruirla",
-                  "target": {
-                    "query": {
-                      "notType": "Oro"
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro para destruir una carta oponente?",
+          "options": [
+            {
+              "id": "activate_ceangal",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
                     },
-                    "controller": "any"
+                    {
+                      "type": "payTargetCost",
+                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "target": {
+                        "query": {
+                          "notType": "Oro"
+                        },
+                        "controller": "any"
+                      },
+                      "rememberAs": "preselectedTarget",
+                      "canCancel": true
+                    }
+                  ],
+                  "effect": {
+                    "type": "destroyTarget",
+                    "target": {
+                      "fromContext": "preselectedTarget"
+                    }
                   },
-                  "rememberAs": "preselectedTarget",
-                  "canCancel": true
-                }
-              ],
-              "effect": {
-                "type": "destroyTarget",
-                "target": {
-                  "fromContext": "preselectedTarget"
+                  "trigger": "activatable_with_costs"
                 }
               },
-              "trigger": "activatable_with_costs"
+              "description": "Sí, pagar el coste y destruir."
+            },
+            {
+              "id": "decline_ceangal",
+              "action": {},
+              "description": "No, gracias."
             }
-          },
-          "description": "Sí, pagar el coste y destruir."
+          ]
         },
-        {
-          "id": "decline_ceangal",
-          "action": {},
-          "description": "No, gracias."
-        }
-      ]
-    },
-    "trigger": "onEnterPlay",
-    "id_habilidad": "ceangal_an_fhanaigh_main",
-    "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
-  }
-],
+        "trigger": "onEnterPlay",
+        "id_habilidad": "ceangal_an_fhanaigh_main",
+        "habilidad_texto_descriptivo": "Cuando entra en juego puedes mover este Oro a tu Zona de Oro Pagado y pagar el coste de una carta en juego que no sea Oro para destruirla."
+      }
+    ],
     "tier": "alto"
   },
   {
@@ -98211,49 +98211,49 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":[
-  {
-    "effect": {
-      "type": "grantKeywordToWielder",
-      "keyword": "canEquipExtraWeapon"
-    },
-    "trigger": "continuous",
-    "descripcion": "El portador puede portar un Arma adicional.",
-    "id_habilidad": "escudo_de_la_tormenta3_extra_weapon"
-  },
-  {
-    "cost": {
-      "type": "shuffleWeaponAsCost",
-      "isOther": true,
-      "canCancel": false,
-      "prompt": "Elige un Arma que controles para barajar en tu Mazo Castillo y prevenir que el portador salga del juego."
-    },
-    "effect": {
-      "type": "prevent"
-    },
-    "trigger": "activatable",
-    "descripcion": "Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
-    "id_habilidad": "escudo_de_la_tormenta3_prevent_wielder_leave",
-    "eventCondition": {
-      "type": "and",
-      "conditions": [
-        {
-          "type": "triggeringCardIsWielder"
+    "habilidades": [
+      {
+        "effect": {
+          "type": "grantKeywordToWielder",
+          "keyword": "canEquipExtraWeapon"
         },
-        {
-          "type": "playerControls",
-          "query": {
-            "type": "Arma",
-            "isOther": true
-          },
-          "amount": 1,
-          "comparison": "greaterOrEqual"
-        }
-      ]
-    },
-    "listensForEvent": "onAllyLeavePlay"
-  }
-],
+        "trigger": "continuous",
+        "descripcion": "El portador puede portar un Arma adicional.",
+        "id_habilidad": "escudo_de_la_tormenta3_extra_weapon"
+      },
+      {
+        "cost": {
+          "type": "shuffleWeaponAsCost",
+          "isOther": true,
+          "canCancel": false,
+          "prompt": "Elige un Arma que controles para barajar en tu Mazo Castillo y prevenir que el portador salga del juego."
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "descripcion": "Puedes barajar un arma que controles en tu Mazo Castillo para prevenir que el portador salga del juego.",
+        "id_habilidad": "escudo_de_la_tormenta3_prevent_wielder_leave",
+        "eventCondition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "triggeringCardIsWielder"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Arma",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "listensForEvent": "onAllyLeavePlay"
+      }
+    ],
     "tier": "medio"
   },
   {
@@ -100298,5 +100298,54 @@
       }
     ],
     "tier": "alto"
+  },
+  {
+    "id": 3075,
+    "nombre": "Hwarang",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/Hwarang.webp",
+    "habilidad_texto_descriptivo": "Si controlas 3 o más Campeón, este Aliado gana 2 a la Fuerza.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Campeon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Campeon",
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas 3 o más Campeón, este Aliado gana 2 a la Fuerza.",
+        "id_habilidad": "hwarang_strength_buff"
+      }
+    ]
   }
 ]

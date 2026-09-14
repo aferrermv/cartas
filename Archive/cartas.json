@@ -97722,7 +97722,7 @@
     "tipo": "Totem",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/akhet.png",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir una carta en juego que no sea Oro y ponerla en la parte inferior del Mazo Castillo de su dueño. Puedes destruir este Totem para poner la ultima carta de tu Mazo Castillo en tu Mano.",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir una carta oponente en juego que no sea Oro y ponerla en la parte inferior del Mazo Castillo de su dueño. Puedes destruir este Totem para poner la ultima carta de tu Mazo Castillo en tu Mano.",
     "descripcion": null,
     "expansion": "Dominios de Ra",
     "rareza": "Común",
@@ -97744,7 +97744,7 @@
             "query": {
               "notType": "Oro"
             },
-            "controller": "any"
+            "controller": "opponent"
           },
           "canCancel": true
         },
@@ -103046,6 +103046,958 @@
           "comparison": "greaterOrEqual"
         },
         "description": "Cuando hace daño al Mazo Castillo oponente y controlas 1 o mas Armas, puedes destruir un Aliado en juego de Coste 3 o menos."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 4119,
+    "nombre": "Ambroce",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/ambroce.webp",
+    "habilidad_texto_descriptivo": "Cada vez que haga daño al Mazo Castillo oponente, puedes destruir un Tótem en juego.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Tótem en juego para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "any"
+          },
+          "canCancel": true
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cada vez que haga daño al Mazo Castillo oponente, puedes destruir un Tótem en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3620,
+    "nombre": "Bouda",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/bouda.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador bota 2 cartas de su Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "allPlayers"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador bota 2 cartas de su Mazo Castillo."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 3626,
+    "nombre": "Calixto",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/calixto.webp",
+    "habilidad_texto_descriptivo": "Mientras este Aliado este en juego, jugar Armas en tus Aliados Licántropo te cuesta 1 Oro menos.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "raza": "Licantropo",
+                "type": "Aliado"
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "description": "Mientras este Aliado este en juego, jugar Armas en tus Aliados Licántropo te cuesta 1 Oro menos."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4937,
+    "nombre": "Cachorro",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cachorro.webp",
+    "habilidad_texto_descriptivo": "Si tienes los 3 Cachorros en juego, el coste de los Licántropos se reduce a cero.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "raza": "Licantropo",
+              "type": "Aliado"
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -99
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nombre": "Cachorro"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si tienes los 3 Cachorros en juego, el coste de los Licántropos se reduce a cero."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3157,
+    "nombre": "Brazo Fuerte",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/brazofuerte.webp",
+    "habilidad_texto_descriptivo": "No tiene límite de Armas. Cada vez que este Aliado porte un Arma, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "noWeaponLimit"
+        ],
+        "description": "No tiene límite de Armas."
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "description": "Cada vez que este Aliado porte un Arma, puedes robar 1 carta.",
+        "eventCondition": {
+          "type": "Arma",
+          "attachedTo": "self"
+        },
+        "listensForEvent": "onCardEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3355,
+    "nombre": "Colmillo Sangriento",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/colmillosangriento.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes subir un Aliado que controle tu oponente de Coste 2 o menos a la Mano de su dueño.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige un Aliado oponente de Coste 2 o menos para subir a su mano.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense",
+              "support"
+            ],
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 2,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes subir un Aliado que controle tu oponente de Coste 2 o menos a la Mano de su dueño."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 945,
+    "nombre": "Coyote Rojo",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/coyoterojo.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando haga daño al Mazo Castillo Oponente, puedes subir un Aliado o Totem que controle tu oponente a la Mano de su dueño. Luego, descarta 1 carta de tu mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "discardCard",
+              "count": 1,
+              "prompt": "Descarta 1 carta de tu mano."
+            }
+          },
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige un Aliado o Tótem oponente para subir a su mano.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ],
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cuando haga daño al Mazo Castillo Oponente, puedes subir un Aliado o Totem que controle tu oponente a la Mano de su dueño. Luego, descarta 1 carta de tu mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 3156,
+    "nombre": "Fribert",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/fribert.webp",
+    "habilidad_texto_descriptivo": "Puedes destruirlo para generar tantos Oros como Licantropos controles, hasta el final del turno.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "raza": "Licantropo",
+              "type": "Aliado",
+              "controller": "self"
+            }
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes destruirlo para generar tantos Oros como Licantropos controles, hasta el final del turno."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3210,
+    "nombre": "Fenrir",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/fenrir2.webp",
+    "habilidad_texto_descriptivo": "Para que este Aliado sea declarado atacante, deben ser declarado atacantes otros 2 o más Aliado que controles.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "restriction": {
+            "type": "requiresOtherAttackers",
+            "amount": 2
+          }
+        },
+        "trigger": "onMoveToAttack",
+        "descripcion": "Fenrir solo puede ser declarado atacante si ya tienes al menos otros dos Aliados en tu Línea de Ataque.",
+        "id_habilidad": "fenrir_requires_other_attackers"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3153,
+    "nombre": "Guardia del Escudo",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/guardiadelescudo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, descarta una carta de tu mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "discardCard",
+          "count": 1,
+          "prompt": "Debes descartar 1 carta de tu mano.",
+          "optional": false
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, descarta una carta de tu mano.",
+        "id_habilidad": "guardia_del_escudo_enter_discard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4197,
+    "nombre": "Guevadan",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/guevadan.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, baraja tantas cartas de tu Cementerio en tu Mazo Castillo, como Licántropos controles.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "raza": "Licantropo",
+              "type": "Aliado",
+              "controller": "self"
+            }
+          },
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige tantas cartas de tu Cementerio para barajar en tu Mazo Castillo como Licántropos controles.",
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, baraja tantas cartas de tu Cementerio en tu Mazo Castillo, como Licántropos controles.",
+        "id_habilidad": "guevadan_enter_shuffle"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4365,
+    "nombre": "Hombre Lobo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hombrelobo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, el próximo Licántropo que juegues este turno reduce su Coste a 0.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "raza": "Licantropo",
+              "type": "Aliado"
+            }
+          },
+          "duration": "endOfTurn",
+          "singleUse": true,
+          "modification": {
+            "stat": "coste_oro",
+            "value": -99
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, el próximo Licántropo que juegues este turno reduce su Coste a 0.",
+        "id_habilidad": "hombre_lobo_reduce_cost"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4198,
+    "nombre": "Jauria",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/jauria.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Licántropo en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Aliado Licántropo de tu Mazo Castillo para ponerlo en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Licantropo",
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego, puedes buscar un Licántropo en tu Mazo Castillo y ponerlo en tu Mano.",
+        "id_habilidad": "jauria_tutor_enter_play"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4797,
+    "nombre": "Licantropo",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/licantropo.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes destruir un Licántropo que controles para que tu oponente bote tantas cartas de su Mazo Castillo como coste tenga el Aliado destruido.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "fromContext": "lastTarget.coste_oro"
+              },
+              "target": "opponent"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado Licántropo que controles para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "raza": "Licantropo",
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Licantropo",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Una vez por turno, puedes destruir un Licántropo que controles para que tu oponente bote tantas cartas de su Mazo Castillo como coste tenga el Aliado destruido.",
+        "oncePerTurn": true,
+        "id_habilidad": "licantropo_destroy_to_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3048,
+    "nombre": "Peter Stumpp",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/peterstumpp.webp",
+    "habilidad_texto_descriptivo": "No puede ser bloqueado por Aliados de Fuerza 3 o más. En tu Fase Final, puedes robar 1 carta. Luego, descarta 1 carta,",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockableBy",
+          {
+            "condition": {
+              "type": "fuerza",
+              "value": 3,
+              "operator": ">="
+            }
+          }
+        ],
+        "descripcion": "No puede ser bloqueado por Aliados de Fuerza 3 o más."
+      },
+      {
+        "phase": "Final",
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 1,
+          "discardCount": 1
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "descripcion": "En tu Fase Final, puedes robar 1 carta. Luego, descarta 1 carta.",
+        "oncePerTurn": true,
+        "id_habilidad": "peter_stumpp_final_phase_draw_discard"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 946,
+    "nombre": "Yee Naaldlooshii",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/yeenal.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Mientras tengas 3 o mas Aliados en tu Cementerio, gana 2 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Mientras tengas 3 o mas Aliados en tu Cementerio, gana 2 a la fuerza.",
+        "id_habilidad": "yee_naaldlooshii_gy_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 948,
+    "nombre": "Erchitu",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/erchitu.webp",
+    "habilidad_texto_descriptivo": "Mientras tengas 3 o más Aliados en tu Cementerio, gana 2 a la Fuerza. Si tienes 5 o más Aliados en tu Cementerio, puedes pagar 2 Oros y destruir este Aliado para barajar un Aliado de Coste 4 o menos que controle tu oponente en el Mazo Castillo de su dueño.\n\n",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Mientras tengas 3 o más Aliados en tu Cementerio, gana 2 a la Fuerza.",
+        "id_habilidad": "erchitu_gy_buff"
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          },
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado de Coste 4 o menos que controle tu oponente para barajar en el Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 4,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "requiresChoice": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 5,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Si tienes 5 o más Aliados en tu Cementerio, puedes pagar 2 Oros y destruir este Aliado para barajar un Aliado de Coste 4 o menos que controle tu oponente en el Mazo Castillo de su dueño.",
+        "id_habilidad": "erchitu_pay_destroy_shuffle_opponent"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 4941,
+    "nombre": "Titan Licantropo",
+    "tipo": "Aliado",
+    "coste_oro": 10,
+    "imagen_url": "/img/store/cartas/titanlicantropo.webp",
+    "habilidad_texto_descriptivo": "No puede ser bloqueado. Cuando entra en juego bota todas las cartas de tu mano al cementerio.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 12,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "descripcion": "No puede ser bloqueado."
+      },
+      {
+        "effect": {
+          "type": "massDiscard",
+          "target": "self"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando entra en juego bota todas las cartas de tu mano al cementerio.",
+        "id_habilidad": "titan_licantropo_enter_mass_discard"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 947,
+    "nombre": "Wechuge",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/wechuge.webp",
+    "habilidad_texto_descriptivo": "Mientras tengas 4 o mas Aliados en tu Cementerio, gana 2 a la fuerza. Una vez por turno, cuando un Aliado que controle tu oponente sea barajado, puedes buscar un oro o un Aliado en tu cementerio y ponerlo en tu mano.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 4,
+          "comparison": "greaterOrEqual"
+        },
+        "descripcion": "Mientras tengas 4 o mas Aliados en tu Cementerio, gana 2 a la fuerza.",
+        "id_habilidad": "wechuge_gy_buff"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Oro o un Aliado en tu Cementerio para ponerlo en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "or": [
+              {
+                "type": "Oro"
+              },
+              {
+                "type": "Aliado"
+              }
+            ],
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "activatable",
+        "descripcion": "Una vez por turno, cuando un Aliado que controle tu oponente sea barajado, puedes buscar un oro o un Aliado en tu cementerio y ponerlo en tu mano.",
+        "oncePerTurn": true,
+        "id_habilidad": "wechuge_on_opponent_ally_shuffled",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
+            ],
+            "destinationZone": "mazoCastillo"
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "opponent"
       }
     ],
     "tier": "bajo"

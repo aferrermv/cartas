@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.0",
+    "pack_version": "3.1.1",
     "habilidades": []
   },
   {
@@ -99338,58 +99338,46 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "effect": {
-          "type": "goldSwap",
-          "optional": true,
-          "canCancel": true,
-          "promptStep1": "Elige un Oro de tu Zona de Oro Pagado para intercambiar.",
-          "promptStep2": "Elige un Oro de tu Cementerio para poner en tu Zona de Oro Pagado."
+  {
+    "id_habilidad": "zenodoto_gold_swap",
+    "trigger": "onEnterPlay",
+    "optional": true,
+    "canCancel": true,
+    "effect": {
+      "type": "goldSwap",
+      "optional": true,
+      "canCancel": true,
+      "promptStep1": "Elige un Oro de tu Zona de Oro Pagado para intercambiar.",
+      "promptStep2": "Elige un Oro de tu Cementerio para poner en tu Zona de Oro Pagado."
+    },
+    "description": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio."
+  },
+  {
+    "id_habilidad": "zenodoto_draw_final",
+    "trigger": "activatable",
+    "phase": "Final",
+    "oncePerTurn": true,
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": "field"
         },
-        "trigger": "onEnterPlay",
-        "optional": true,
-        "canCancel": true,
-        "description": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio.",
-        "id_habilidad": "zenodoto_gold_swap"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "phase",
-        "optional": true,
-        "canCancel": true,
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "isMyTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Oro",
-                "zone": [
-                  "goldReserve",
-                  "paidGold"
-                ],
-                "isTemporary": false
-              },
-              "amount": 6,
-              "comparison": "greaterOrEqual"
-            }
-          ]
-        },
-        "description": "En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta.",
-        "id_habilidad": "zenodoto_draw_final"
-      }
-    ],
+        {
+          "type": "countGolds",
+          "amount": 6,
+          "comparison": "greaterOrEqual"
+        }
+      ]
+    },
+    "effect": {
+      "type": "drawCards",
+      "count": 1
+    },
+    "description": "En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta."
+  }
+],
     "tier": "bajo"
   },
   {
@@ -100821,7 +100809,7 @@
     "nombre": "Fieras Domesticas",
     "tipo": "Oro",
     "coste_oro": null,
-    "imagen_url": "/img/nuevasCartas/MYL-1511.webp",
+    "imagen_url": "/img/nuevascartas/MYL-1511.webp",
     "habilidad_texto_descriptivo": "",
     "descripcion": "",
     "expansion": "Dominios de Ra",
@@ -100841,7 +100829,7 @@
     "nombre": "Hipopotamo Sagrado",
     "tipo": "Oro",
     "coste_oro": null,
-    "imagen_url": "/img/nuevasCartas/MYL-1512.webp",
+    "imagen_url": "/img/nuevascartas/MYL-1512.webp",
     "habilidad_texto_descriptivo": "",
     "descripcion": "",
     "expansion": "Dominios de Ra",
@@ -100861,7 +100849,7 @@
     "nombre": "Sarcofago Sagrado",
     "tipo": "Oro",
     "coste_oro": null,
-    "imagen_url": "/img/nuevasCartas/MYL-1506.webp",
+    "imagen_url": "/img/nuevascartas/MYL-1506.webp",
     "habilidad_texto_descriptivo": "",
     "descripcion": "",
     "expansion": "Dominios de Ra",
@@ -103524,7 +103512,7 @@
     "imagen_url": "/img/store/cartas/hombrelobo.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, el próximo Licántropo que juegues este turno reduce su Coste a 0.",
     "descripcion": null,
-    "expansion": "El Reto",
+    "expansion": "Mundo Gotico",
     "rareza": "Ultra_real",
     "fecha_creacion": null,
     "fuerza": 1,

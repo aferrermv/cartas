@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.1",
+    "pack_version": "3.1.2",
     "habilidades": []
   },
   {
@@ -89124,7 +89124,10 @@
         "id_habilidad": "montura_de_dragon_draw"
       },
       {
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "targetAndGainStrengthByTargetCost",
           "prompt": "Elige un Aliado en juego para que el portador gane fuerza igual a su coste hasta la Fase Final.",

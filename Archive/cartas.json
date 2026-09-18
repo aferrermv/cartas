@@ -6079,7 +6079,16 @@
             "controller": "opponent"
           }
         },
-        "trigger": "onEnterPlay"
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "query": {
+            "type": "*"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
       },
       {
         "cost": {
@@ -7293,7 +7302,7 @@
     "cantidad_generada": 1,
     "habilidades": [
       {
-        "id": "presagio_oscuro_activatable",
+        "id_habilidad": "caldero_de_corff_banish_deck",
         "phase": "Final",
         "effect": {
           "type": "millCards",
@@ -7313,6 +7322,14 @@
               ]
             },
             {
+              "type": "playerAttackedWith",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
               "type": "playerControls",
               "query": {
                 "raza": "Sombra",
@@ -7326,7 +7343,7 @@
             }
           ]
         },
-        "description": "En tu Fase Final, si tienes 2 o más Aliados de raza Sombra en tu Línea de Ataque, puedes activar Presagio Oscuro para que tu oponente destierre la primera carta de su Mazo.",
+        "description": "En tu Fase Final, si atacaste este turno y tienes 2 o más Aliados de raza Sombra en tu Línea de Ataque, tu oponente destierra la primera carta de su Mazo.",
         "oncePerTurn": true
       }
     ]
@@ -24315,24 +24332,17 @@
                       "type": "paySelfAsCost"
                     },
                     {
-                      "type": "payTargetCost",
-                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "type": "payTargetCostToDestroy",
+                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
                       "target": {
                         "query": {
                           "notType": "Oro"
                         },
-                        "controller": "any"
+                        "controller": "opponent"
                       },
-                      "rememberAs": "preselectedTarget",
                       "canCancel": true
                     }
                   ],
-                  "effect": {
-                    "type": "destroyTarget",
-                    "target": {
-                      "fromContext": "preselectedTarget"
-                    }
-                  },
                   "trigger": "activatable_with_costs"
                 }
               },
@@ -31118,9 +31128,13 @@
         "descripcion": "Mientras este Aliado esté en juego, si un Aliado Sombra que controlas es destruido, tu oponente debe destruir un Aliado.",
         "id_habilidad": "wyrm_abismal_retaliate",
         "eventCondition": {
-          "raza": "Sombra",
-          "type": "Aliado",
-          "destinationZone": "cementerio"
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Sombra",
+            "type": "Aliado",
+            "destinationZone": "cementerio",
+            "isOther": true
+          }
         },
         "listensForEvent": "onAllyLeavePlay",
         "triggeringPlayer": "self"
@@ -43721,9 +43735,13 @@
         "descripcion": "Mientras este Aliado esté en juego, si un Aliado Sombra que controlas es destruido, tu oponente debe destruir un Aliado.",
         "id_habilidad": "wyrm_abismal_retaliate",
         "eventCondition": {
-          "raza": "Sombra",
-          "type": "Aliado",
-          "destinationZone": "cementerio"
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Sombra",
+            "type": "Aliado",
+            "destinationZone": "cementerio",
+            "isOther": true
+          }
         },
         "listensForEvent": "onAllyLeavePlay",
         "triggeringPlayer": "self"
@@ -44032,7 +44050,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+    "habilidades":  [
       {
         "effect": {
           "type": "chooseOne",
@@ -44048,24 +44066,17 @@
                       "type": "paySelfAsCost"
                     },
                     {
-                      "type": "payTargetCost",
-                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "type": "payTargetCostToDestroy",
+                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
                       "target": {
                         "query": {
                           "notType": "Oro"
                         },
-                        "controller": "any"
+                        "controller": "opponent"
                       },
-                      "rememberAs": "preselectedTarget",
                       "canCancel": true
                     }
                   ],
-                  "effect": {
-                    "type": "destroyTarget",
-                    "target": {
-                      "fromContext": "preselectedTarget"
-                    }
-                  },
                   "trigger": "activatable_with_costs"
                 }
               },
@@ -48307,7 +48318,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades": [
+    "habilidades":[
       {
         "effect": {
           "type": "chooseOne",
@@ -48323,24 +48334,17 @@
                       "type": "paySelfAsCost"
                     },
                     {
-                      "type": "payTargetCost",
-                      "prompt": "Paga el coste de una carta en juego para destruirla",
+                      "type": "payTargetCostToDestroy",
+                      "prompt": "Elige una carta oponente que no sea Oro para pagar su coste y destruirla.",
                       "target": {
                         "query": {
                           "notType": "Oro"
                         },
-                        "controller": "any"
+                        "controller": "opponent"
                       },
-                      "rememberAs": "preselectedTarget",
                       "canCancel": true
                     }
                   ],
-                  "effect": {
-                    "type": "destroyTarget",
-                    "target": {
-                      "fromContext": "preselectedTarget"
-                    }
-                  },
                   "trigger": "activatable_with_costs"
                 }
               },
@@ -58113,7 +58117,7 @@
     "cantidad_generada": 1,
     "habilidades": [
       {
-        "id": "presagio_oscuro_activatable",
+        "id_habilidad": "caldero_de_corff_banish_deck",
         "phase": "Final",
         "effect": {
           "type": "millCards",
@@ -58133,6 +58137,14 @@
               ]
             },
             {
+              "type": "playerAttackedWith",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
               "type": "playerControls",
               "query": {
                 "raza": "Sombra",
@@ -58146,7 +58158,7 @@
             }
           ]
         },
-        "description": "En tu Fase Final, si tienes 2 o más Aliados de raza Sombra en tu Línea de Ataque, puedes activar Presagio Oscuro para que tu oponente destierre la primera carta de su Mazo.",
+        "description": "En tu Fase Final, si atacaste este turno y tienes 2 o más Aliados de raza Sombra en tu Línea de Ataque, tu oponente destierra la primera carta de su Mazo.",
         "oncePerTurn": true
       }
     ],
@@ -61198,7 +61210,16 @@
             "controller": "opponent"
           }
         },
-        "trigger": "onEnterPlay"
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "query": {
+            "type": "*"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
       },
       {
         "cost": {

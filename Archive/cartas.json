@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.3",
+    "pack_version": "3.1.2",
     "habilidades": []
   },
   {
@@ -44050,7 +44050,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":  [
+    "habilidades": [
       {
         "effect": {
           "type": "chooseOne",
@@ -48318,7 +48318,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "habilidades":[
+    "habilidades": [
       {
         "effect": {
           "type": "chooseOne",
@@ -54454,6 +54454,889 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 7434,
+    "nombre": "Abhartach",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/abhartachdieciocho.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishAndBanishCopiesFromDeck",
+          "prompt": "Habilidad de Abhartach: Elige un Aliado o Tótem oponente para desterrar y eliminar sus copias del Mazo Castillo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+        "id_habilidad": "abhartach_banish_and_copies"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7435,
+    "nombre": "Afrodita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/afroditadieciocho.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseTypeAndViewTop",
+          "prompt": "Nombra un tipo de carta:",
+          "options": [
+            "Aliado",
+            "Arma",
+            "Totem"
+          ]
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7436,
+    "nombre": "Aine",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ainedieciocho.webp",
+    "habilidad_texto_descriptivo": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Desafiante",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Desafiante de tu mano para mostrar.",
+          "optional": true
+        },
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando Aine entra en juego, puedes mostrar un Aliado de raza Desafiante de tu Mano para desterrar un Aliado oponente.",
+        "id_habilidad": "aine_reveal_and_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7437,
+    "nombre": "Cultistas del Dragón",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/cultistasdeldragondieciocho.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir a Cultista del Dragón, para ver la mano de tu oponente y barajar en su mazo castillo una carta de Aliado de su mano.",
+    "descripcion": "Los seguidores del Culto del Dragón poseen ciertos conocimientos mágicos, revelados por sus amos, pero secretamente guardan poderosos hechizos fuera del alcance de sus celadores.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:44:08.000Z",
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cultistas_del_dragon_shuffle_hand",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "effect": {
+          "type": "viewOpponentHandAndShuffleTarget",
+          "prompt": "Habilidad de Cultistas del Dragón: Mira la mano de tu oponente y elige un Aliado para barajar en su Mazo.",
+          "targetQuery": {
+            "type": "Aliado"
+          },
+          "canCancel": true
+        },
+        "habilidad_texto_descriptivo": "Puedes destruir a Cultista del Dragón, para ver la mano de tu oponente y barajar en su mazo castillo una carta de Aliado de su mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7438,
+    "nombre": "Diadema Feerica",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/diademafeericadieciocho.webp",
+    "habilidad_texto_descriptivo": "Solo puedes activar una Diadema Feerica por turno. Si controlas 2 o mas Aliados de la misma raza, puedes pagar Diadema Feerica para barajar una carta de tu cementerio en tu mazo castillo.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:31:30.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "cost": {
+          "type": "paySelfAsCost"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "phase": [
+            "Principal",
+            "Guerra de Talismanes"
+          ],
+          "conditions": [
+            {
+              "type": "controllerHasAlliesOfSameRace",
+              "count": 2
+            },
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve"
+              ]
+            }
+          ]
+        },
+        "oncePerTurn": "byAbilityId",
+        "id_habilidad": "diadema_feerica_recycle"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7439,
+    "nombre": "Duque Godofredo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/duquegodofredodieciocho.webp",
+    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:24:45.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "continuous"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7440,
+    "nombre": "Fand Sidhe",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/fandsidhedieciocho.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, puedes descartar hasta 2 cartas de tu Mano. Por cada carta descartada, puedes barajar una carta oponente en juego que no sea Oro. Tus Aliados Sidhe ganan 1 a la fuerza. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable.",
+        "id_habilidad": "fand_sidhe_unblockable"
+      },
+      {
+        "effect": {
+          "type": "discardToShuffleOpponentCards",
+          "prompt": "Habilidad de Fand Sidhe: Elige cuántas cartas descartar de tu mano para barajar cartas oponentes.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "maxCount": 2
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar hasta 2 cartas de tu Mano. Por cada carta descartada, puedes barajar una carta oponente en juego que no sea Oro.",
+        "id_habilidad": "fand_sidhe_discard_shuffle"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Sidhe"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus Aliados Sidhe ganan 1 a la fuerza.",
+        "id_habilidad": "fand_sidhe_aura"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7441,
+    "nombre": "Ganimedes",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ganimedesdieciocho.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juegoo, destruye una carta oponente en juego de coste igual o menos a la cantidad de aliados de raza Heroe que controles. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "target": {
+            "zone": "field",
+            "condition": {
+              "value": {
+                "query": {
+                  "raza": "Heroe",
+                  "tipo": "Aliado",
+                  "zone": "field",
+                  "controller": "self"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7442,
+    "nombre": "Haquika",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/haquikadieciocho.webp",
+    "habilidad_texto_descriptivo": "Indestructible. Cuando Haquika entra en juego, puedes elegir un Aliado oponente y ponerlo en tu Linea de Defensa. Si Haquika sale del juego, el Aliado vuelve a la linea de Defensa Oponente. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "haquika_main_ability",
+        "inherent": [
+          "indestructible"
+        ],
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente para poner en tu Línea de Defensa.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "whileInPlay",
+          "destinationZone": "defense"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Indestructible. Cuando Haquika entra en juego, puedes elegir un Aliado oponente y ponerlo en tu Linea de Defensa. Si Haquika sale del juego, el Aliado vuelve a la linea de Defensa Oponente."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7443,
+    "nombre": "Merodeador de las Arenas",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/merodeadordelasarenasdieciocho.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Hasta dos veces por turno, puedes desterrar una carta de tu Cementerio para que este u otro Aliado que controles gane 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego.",
+        "id_habilidad": "merodeador_arenas_haste"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "effect": {
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado que controles para que gane 1 a la fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Hasta dos veces por turno, puedes desterrar una carta de tu Cementerio para que este u otro Aliado que controles gane 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "merodeador_arenas_buff",
+        "twicePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7444,
+    "nombre": "Minotauro",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/minotaurodieciocho.webp",
+    "habilidad_texto_descriptivo": "Minotauro gana 1 a la fuerza por cada Minotauro en juego.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "stat": "fuerza",
+          "type": "gainBuffFromCount",
+          "query": {
+            "type": "Aliado",
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any",
+            "nameContains": "Minotauro"
+          },
+          "target": "self",
+          "multiplier": 1
+        },
+        "trigger": "continuous",
+        "description": "Minotauro gana 1 a la fuerza por cada Minotauro en juego.",
+        "id_habilidad": "minotauro_strength_buff"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7445,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganadieciocho.webp",
+    "visualEffect": "morganaSpecialEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7446,
+    "nombre": "Renpet",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/renpetdieciocho.webp",
+    "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onEnterPlay",
+        "descripcion": "Cuando Renpet entra en juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_enter_leave_effect"
+      },
+      {
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu mano.",
+            "optional": false,
+            "destination": "hand"
+          },
+          "fromZone": "mazoCastillo",
+          "viewCount": 2,
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onLeavePlay",
+        "descripcion": "Cuando Renpet sale del juego, puedes mirar las 2 primeras cartas de tu Mazo Castillo, pon una en tu mano y la otra en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "renpet_on_leave_effect"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7447,
+    "nombre": "Rey Arturo Pendragon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/reyarturopendragondieciocho.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Unica. Tus demas Aliados de raza Caballero ganan 2 a la Fuerza. Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste. En cada fase de Agrupacion tu oponente bota 2 cartas.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus demás Aliados de raza Caballero ganan 2 a la Fuerza.",
+        "id_habilidad": "arturo_lord_effect"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayAllyOrWeapon",
+          "prompt": "Elige un Aliado o Arma de coste 2 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste.",
+        "id_habilidad": "arturo_enter_play"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEndOfTurn",
+        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_end_of_turn_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7448,
+    "nombre": "Tom Thumb",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/tomthumbdieciocho.webp",
+    "habilidad_texto_descriptivo": "Grito de Guerra: \nCuando Tom Thumb entra en juego puedes mostrar las 3 primeras cartas de tu mazo.\nSi alguna es de tipo \"Oro\" o un aliado de raza \"Faerie\" Puedes ponerla en tu mano y luego barajar tu mazo. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealAndChooseConditional",
+          "count": 3,
+          "choice": {
+            "query": {
+              "or": [
+                {
+                  "type": "oro"
+                },
+                {
+                  "raza": "Faerie",
+                  "type": "aliado"
+                }
+              ]
+            },
+            "prompt": "Elige un Oro o Aliado Faerie para añadir a tu mano. Puedes no elegir ninguna.",
+            "optional": true,
+            "destination": "hand",
+            "opponentPrompt": "Tu oponente está revisando las 3 primeras cartas de su Mazo Castillo."
+          },
+          "fromZone": "mazoCastillo",
+          "unselected": "shuffleBack"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuándo entra en juego puedes mostrar las tres primeras cartas de tu Mazo Castillo, si alguna es un Oro o un Aliado de raza Faerie puedes ponerla en tu mano, luego barajar el resto en tu Mazo Castillo."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7449,
+    "nombre": "Amergin el Druida",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/amegineldruidadieciocho.webp",
+    "habilidad_texto_descriptivo": "Cuándo entra en juego puedes buscar un druida que no sea Amergin el Druida en tu cementerio y jugarlo sin pagar su coste en tu fase de vigilia una vez por turno puedes Elegir otro druida qué controles para que tú oponente bote tantas cartas como fuerza tenga ese Aliado",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "amergin_enter_play",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Druida de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "nameIsNot": "Amergin el Druida",
+            "nameContains": "Druida"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes buscar un Aliado de nombre Druida que no sea Amergin el Druida en tu Cementerio y jugarlo sin pagar su coste en tu Línea de Defensa."
+      },
+      {
+        "id": "amergin_activatable_mill",
+        "phase": "Principal",
+        "effect": {
+          "type": "chooseAllyAndMill",
+          "prompt": "Elige otro Aliado Druida que controles para la habilidad.",
+          "targetQuery": {
+            "type": "Aliado",
+            "zone": "field",
+            "nameContains": "Druida",
+            "isOther": true
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Druida",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Una vez por turno, puedes elegir otro Aliado Druida que controles. Tu oponente bota tantas cartas como la fuerza de ese Aliado.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1585,
@@ -99362,46 +100245,46 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "id_habilidad": "zenodoto_gold_swap",
-    "trigger": "onEnterPlay",
-    "optional": true,
-    "canCancel": true,
-    "effect": {
-      "type": "goldSwap",
-      "optional": true,
-      "canCancel": true,
-      "promptStep1": "Elige un Oro de tu Zona de Oro Pagado para intercambiar.",
-      "promptStep2": "Elige un Oro de tu Cementerio para poner en tu Zona de Oro Pagado."
-    },
-    "description": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio."
-  },
-  {
-    "id_habilidad": "zenodoto_draw_final",
-    "trigger": "activatable",
-    "phase": "Final",
-    "oncePerTurn": true,
-    "condition": {
-      "type": "and",
-      "conditions": [
-        {
-          "type": "isInZone",
-          "zone": "field"
+      {
+        "id_habilidad": "zenodoto_gold_swap",
+        "trigger": "onEnterPlay",
+        "optional": true,
+        "canCancel": true,
+        "effect": {
+          "type": "goldSwap",
+          "optional": true,
+          "canCancel": true,
+          "promptStep1": "Elige un Oro de tu Zona de Oro Pagado para intercambiar.",
+          "promptStep2": "Elige un Oro de tu Cementerio para poner en tu Zona de Oro Pagado."
         },
-        {
-          "type": "countGolds",
-          "amount": 6,
-          "comparison": "greaterOrEqual"
-        }
-      ]
-    },
-    "effect": {
-      "type": "drawCards",
-      "count": 1
-    },
-    "description": "En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta."
-  }
-],
+        "description": "Cuando entra en juego, puedes elegir un Oro de tu Zona de Oro pagado y cambiarlo por un Oro de tu Cementerio."
+      },
+      {
+        "id_habilidad": "zenodoto_draw_final",
+        "trigger": "activatable",
+        "phase": "Final",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "countGolds",
+              "amount": 6,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "description": "En tu Fase Final, si controlas 6 o mas Oros, puedes robar 1 carta."
+      }
+    ],
     "tier": "bajo"
   },
   {

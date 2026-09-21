@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.4",
+    "pack_version": "3.1.5",
     "habilidades": []
   },
   {
@@ -15675,45 +15675,33 @@
     "salud": null,
     "habilidades": [
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "value": {
-            "from": "context",
-            "property": "damageDealtToDeck"
-          },
-          "marker": "damageDealtByWielder"
-        },
+        "id_habilidad": "escudo_celestial_on_damage",
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "escudo_celestial_add_marker"
-      },
-      {
-        "phase": "Final",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
         "effect": {
           "type": "shuffleFromGraveyardByDamageDealt",
           "query": {
             "type": "*"
           },
-          "marker": "damageDealtByWielder",
-          "prompt": "Elige cartas de tu Cementerio para barajar."
+          "canCancel": true,
+          "prompt": "Habilidad de Escudo Celestial: Elige cartas de tu Cementerio para barajar en tu Mazo Castillo."
         },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "damageDealtByWielder"
-            }
-          ]
-        },
-        "description": "En tu fase final, puedes barajar tantas cartas como daño haya hecho al Mazo castillo oponente el portador de Escudo Celestial.",
-        "oncePerTurn": true,
-        "id_habilidad": "escudo_celestial_activatable"
+        "description": "Cuando el portador haga daño al Mazo Castillo oponente, puedes barajar tantas cartas como daño haya hecho de tu Cementerio en tu Mazo Castillo."
       }
     ]
   },
@@ -15859,7 +15847,7 @@
             "value": 2
           },
           "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onDeclareAttack",
         "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
@@ -15926,14 +15914,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_attack",
@@ -15961,14 +15949,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_block",
@@ -16020,9 +16008,9 @@
                   "value": 1
                 },
                 "type": "applyBuffToSelf",
-                "duration": "endOfTurn"
+                "duration": "startOfFinalPhase"
               },
-              "description": "Guerrero Bereber gana +1 a la Fuerza."
+              "description": "Guerrero Bereber gana +1 a la Fuerza hasta la Fase Final."
             },
             {
               "id": "buff_other_warrior",
@@ -16045,7 +16033,7 @@
                   },
                   "controller": "self"
                 },
-                "duration": "endOfTurn"
+                "duration": "startOfFinalPhase"
               },
               "condition": {
                 "type": "playerControls",
@@ -16057,7 +16045,7 @@
                 "amount": 1,
                 "comparison": "greaterOrEqual"
               },
-              "description": "Otro Guerrero que controles gana +2 a la Fuerza."
+              "description": "Otro Guerrero que controles gana +2 a la Fuerza hasta la Fase Final."
             }
           ],
           "optional": true
@@ -17146,11 +17134,11 @@
             "effect": {
               "type": "addMarkerToSelf",
               "marker": "mustBeDestroyedInFinalPhase",
-              "duration": "endOfTurn"
+              "duration": "startOfFinalPhase"
             }
           },
           "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onDeclareAttack",
         "condition": {
@@ -23512,7 +23500,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn",
+          "duration": "startOfFinalPhase",
           "maxCount": 2,
           "minCount": 0
         },
@@ -43130,7 +43118,7 @@
             "value": 2
           },
           "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onDeclareAttack",
         "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
@@ -43190,7 +43178,7 @@
             "value": 2
           },
           "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onDeclareAttack",
         "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
@@ -43250,7 +43238,7 @@
             "value": 2
           },
           "type": "applyBuffToSelf",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onDeclareAttack",
         "description": "Si Tamis es declarado atacante, gana 2 a la fuerza hasta la fase Final.",
@@ -47286,14 +47274,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_attack",
@@ -47321,14 +47309,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_block",
@@ -47378,14 +47366,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_attack",
@@ -47413,14 +47401,14 @@
                       "value": 2
                     },
                     "type": "applyBuffToSelf",
-                    "duration": "endOfTurn"
+                    "duration": "startOfFinalPhase"
                   }
                 },
                 "type": "millCards",
                 "count": 1,
                 "target": "self"
               },
-              "description": "Sí, botar 1 carta y ganar +2 Fuerza."
+              "description": "Sí, botar 1 carta y ganar +2 Fuerza hasta la Fase Final."
             },
             {
               "id": "do_nothing_on_block",
@@ -54934,7 +54922,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable_with_costs",
         "condition": {
@@ -56573,7 +56561,7 @@
     "nombre": "Fundacion de Thebas",
     "tipo": "Talisman",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/fundaciondethebasbase.webp",
+    "imagen_url": "/img/nuevascartas/fundaciondethebas1.webp",
     "habilidad_texto_descriptivo": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado de raza Dragon en el Mazo Castillo oponente y desterrarlo.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -56605,10 +56593,9 @@
             "effect": {
               "type": "searchAndChooseToBanish",
               "count": 1,
-              "prompt": "Busca un Aliado de raza Dragón en el Mazo Castillo oponente para desterrar.",
+              "prompt": "Busca un Aliado en el Mazo Castillo oponente para desterrar.",
               "canCancel": true,
               "searchQuery": {
-                "raza": "Dragon",
                 "type": "Aliado",
                 "zone": "mazoCastillo",
                 "controller": "opponent"
@@ -56622,7 +56609,7 @@
           "type": "isInZone",
           "zone": "hand"
         },
-        "description": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado de raza Dragon en el Mazo Castillo oponente y desterrarlo."
+        "description": "En respuesta a la Fase de Asignacion de daño, juega Fundacion de Thebas para reducir el daño a cero y puedes buscar un Aliado en el Mazo Castillo oponente y desterrarlo."
       }
     ]
   },
@@ -67151,7 +67138,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "onEnterPlay",
         "description": "Cuando entra en juego, tus Aliados ganan 2 a la fuerza hasta la Fase Final.",
@@ -67358,20 +67345,11 @@
         },
         "trigger": "onAllyOrCardAffectedByOpponentAbility",
         "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "triggeringCardCondition",
-              "query": {
-                "raza": "Eterno",
-                "type": "Aliado"
-              }
-            }
-          ]
+          "type": "triggeringCardCondition",
+          "query": {
+            "raza": "Eterno",
+            "type": "Aliado"
+          }
         },
         "description": "En respuesta a que uno de tus Aliados de raza Eterno sea afectado por una Habilidad oponente, puedes desterrar a este Aliado para cancelar esa habilidad.",
         "id_habilidad": "knum_cancel_on_affected"
@@ -73265,6 +73243,7 @@
       {
         "effect": {
           "type": "searchAndPlayToDefense",
+          "canCancel": true,
           "prompt": "Habilidad de Draco Lich: Elige un Aliado Draco de coste 3 o menos de tu Cementerio.",
           "searchQuery": {
             "type": "Aliado",
@@ -77327,7 +77306,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable_with_costs",
         "condition": {
@@ -88929,22 +88908,22 @@
         "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu Mano."
       },
       {
-        "costs": [
-          {
-            "type": "payGold",
-            "count": 2
-          }
-        ],
+        "id": "dioxipe_play_from_graveyard",
+        "id_habilidad": "dioxipe_play_from_graveyard",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
         "phase": "Principal",
         "effect": {
           "type": "playSelfFromGraveyardFree"
         },
-        "trigger": "activatable_with_costs",
+        "trigger": "activatable",
         "condition": {
           "type": "isInZone",
           "zone": "cementerio"
         },
-        "id_habilidad": "dioxipe_play_from_graveyard",
+        "description": "En tu Fase de Vigilia, si Dioxipe La Amazona está en tu Cementerio, puedes pagar 2 Oros para jugarlo sin pagar su coste.",
         "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su coste."
       }
     ],
@@ -92190,7 +92169,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable_with_costs",
         "condition": {
@@ -99508,7 +99487,7 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable_with_costs",
         "condition": {
@@ -100046,7 +100025,7 @@
             "value": 1
           },
           "type": "grantBuffToTarget",
-          "prompt": "Elige este u otro Aliado que controles para que gane 1 a la fuerza hasta el final del turno.",
+          "prompt": "Elige este u otro Aliado que controles para que gane 1 a la fuerza hasta el comienzo de la Fase Final.",
           "target": {
             "zone": [
               "attack",
@@ -100057,14 +100036,14 @@
             },
             "controller": "self"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable_with_costs",
         "condition": {
           "type": "isInZone",
           "zone": "field"
         },
-        "description": "Hasta cuatro veces por turno, puedes botar una carta para que este u otro Aliado que controles gane 1 a la fuerza hasta el final del turno.",
+        "description": "Hasta cuatro veces por turno, puedes botar una carta para que este u otro Aliado que controles gane 1 a la fuerza hasta el comienzo de tu Fase Final.",
         "id_habilidad": "tutankamon3_mill_grant_strength",
         "fourTimesPerTurn": true
       },

@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.5",
+    "pack_version": "3.1.6",
     "habilidades": []
   },
   {
@@ -107174,7 +107174,7 @@
     "imagen_url": "/img/store/cartas/festinhuno.webp",
     "habilidad_texto_descriptivo": "Cada jugador sube una carta que controle que no sea Oro a la Mano de su dueño. Luego, si controlas 1 o más Aliados, puedes robar 1 carta.\n",
     "descripcion": null,
-    "expansion": "El Reto",
+    "expansion": "Espiritu de Dragon",
     "rareza": "Común",
     "fecha_creacion": null,
     "fuerza": null,

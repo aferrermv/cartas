@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.8",
+    "pack_version": "3.1.9",
     "habilidades": []
   },
   {
@@ -18464,7 +18464,7 @@
         "inherent": [
           "unblockable"
         ],
-        "description": "Imbloqueable."
+        "description": "Única. Imbloqueable."
       },
       {
         "id_habilidad": "nemty_destroy_to_shuffle",
@@ -18479,14 +18479,29 @@
               "zone": "field"
             },
             {
-              "type": "playerControls",
-              "controller": "opponent",
-              "query": {
-                "zone": "field",
-                "type": "Aliado"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
+              "type": "or",
+              "conditions": [
+                {
+                  "type": "playerControls",
+                  "controller": "opponent",
+                  "query": {
+                    "zone": "field",
+                    "type": "Aliado"
+                  },
+                  "amount": 1,
+                  "comparison": "greaterOrEqual"
+                },
+                {
+                  "type": "playerControls",
+                  "controller": "opponent",
+                  "query": {
+                    "zone": "field",
+                    "type": "Totem"
+                  },
+                  "amount": 1,
+                  "comparison": "greaterOrEqual"
+                }
+              ]
             }
           ]
         },
@@ -108473,6 +108488,669 @@
           "canAttackOnEnterPlay"
         ],
         "description": "Puede atacar cuando entra en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3459,
+    "nombre": "Feilian",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/feilian.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar este Aliado desde tu Cementerio pagando su Coste. Cuando este Aliado es declarado bloqueador, los Aliados que controle tu oponente pierden 1 la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Criaturas",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "feilian_play_from_graveyard",
+        "id_habilidad": "feilian_play_from_graveyard",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 3
+        },
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "description": "Puedes jugar este Aliado desde tu Cementerio pagando su Coste.",
+        "habilidad_texto_descriptivo": "Puedes jugar este Aliado desde tu Cementerio pagando su Coste."
+      },
+      {
+        "id_habilidad": "feilian_block_debuff_opponent",
+        "trigger": "onDeclareBlock",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "target": {
+            "controller": "opponent",
+            "query": {
+              "type": "Aliado"
+            }
+          },
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "duration": "endOfTurn"
+        },
+        "description": "Cuando este Aliado es declarado bloqueador, los Aliados que controle tu oponente pierden 1 la Fuerza hasta la Fase Final.",
+        "habilidad_texto_descriptivo": "Cuando este Aliado es declarado bloqueador, los Aliados que controle tu oponente pierden 1 la Fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3285,
+    "nombre": "Fu",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/fu.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, descarta una carta al azar de la Mano de tu oponente. Una vez por turno, cuando juegues un Aliado, tu oponente descarta 1 carta de su Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Criaturas",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "fu_enter_play_discard_random",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Cuando entra en juego, descarta una carta al azar de la Mano de tu oponente.",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, descarta una carta al azar de la Mano de tu oponente."
+      },
+      {
+        "id_habilidad": "fu_on_play_ally_opponent_discards",
+        "trigger": "activatable",
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "eventCondition": {
+          "type": "Aliado"
+        },
+        "effect": {
+          "type": "opponentChoice",
+          "prompt": "Habilidad de Fu: Tu oponente jugó un Aliado. Debes descartar 1 carta de tu Mano.",
+          "options": [
+            {
+              "id": "fu_discard_card",
+              "action": {
+                "type": "discardCard",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu Mano para descartar.",
+                "optional": false
+              },
+              "description": "Descartar 1 carta de tu Mano."
+            }
+          ]
+        },
+        "description": "Una vez por turno, cuando juegues un Aliado, tu oponente descarta 1 carta de su Mano.",
+        "habilidad_texto_descriptivo": "Una vez por turno, cuando juegues un Aliado, tu oponente descarta 1 carta de su Mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3700,
+    "nombre": "Jingwei",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/jingwei.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Arma o Tótem de Coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Criaturas",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "jingwei_search_weapon_or_totem",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "searchQuery": {
+            "type": [
+              "Arma",
+              "Totem",
+              "Tótem"
+            ],
+            "cost": {
+              "operator": "<=",
+              "value": 3
+            },
+            "zone": "mazoCastillo"
+          },
+          "count": 1,
+          "canCancel": true,
+          "prompt": "Elige un Arma o Tótem de Coste 3 o menos de tu Mazo Castillo para poner en tu Mano."
+        },
+        "description": "Cuando entra en juego, puedes buscar un Arma o Tótem de Coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano.",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Arma o Tótem de Coste 3 o menos en tu Mazo Castillo y ponerlo en tu Mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3970,
+    "nombre": "Tchi Yeu",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/tchiyeu.webp",
+    "habilidad_texto_descriptivo": "Para que pueda atacar debes pagar 1 Oro.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Criaturas",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede atacar normalmente."
+      },
+      {
+        "id": "tchi_yeu_pay_gold_to_attack",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Para que pueda atacar debes pagar 1 Oro.",
+        "habilidad_texto_descriptivo": "Para que pueda atacar debes pagar 1 Oro."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3456,
+    "nombre": "Basho Sen",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/bashosen.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la Fuerza. Cuando entra en juego, tu oponente descarta una carta de su Mano. Luego, si el portador es un Aliado Xian, puedes desterrar 1 carta de un Cementerio.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "basho_sen_on_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent",
+          "then": {
+            "condition": {
+              "type": "wielderIs",
+              "query": {
+                "raza": "Xian"
+              }
+            },
+            "effect": {
+              "type": "chooseAndBanish",
+              "count": 1,
+              "canCancel": true,
+              "prompt": "Habilidad de Basho Sen: Puedes desterrar 1 carta de un Cementerio.",
+              "target": {
+                "zone": "cementerio",
+                "controller": "any",
+                "query": {
+                  "type": "*"
+                }
+              }
+            }
+          }
+        },
+        "description": "Cuando entra en juego, tu oponente descarta una carta de su Mano. Luego, si el portador es un Aliado Xian, puedes desterrar 1 carta de un Cementerio.",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente descarta una carta de su Mano. Luego, si el portador es un Aliado Xian, puedes desterrar 1 carta de un Cementerio."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4435,
+    "nombre": "Kun",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/kun.webp",
+    "habilidad_texto_descriptivo": "Descarta una carta de tu Mano y descarta una carta de tu oponente al azar una vez en tu turno.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "kun_discard_and_opponent_discard_random",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Elige una carta de tu Mano para descartar."
+          }
+        ],
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Descarta una carta de tu Mano y descarta una carta de tu oponente al azar una vez en tu turno.",
+        "habilidad_texto_descriptivo": "Descarta una carta de tu Mano y descarta una carta de tu oponente al azar una vez en tu turno."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3341,
+    "nombre": "Shuai Jiao",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/shuaijiao3.webp",
+    "habilidad_texto_descriptivo": "Un Aliado de coste 4 o menos pierde su habilidad. Luego, destruye ese Aliado.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "shuai_jiao_annul_and_destroy",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "annulAndDestroyTarget",
+          "target": {
+            "controller": "any",
+            "query": {
+              "tipo": "Aliado",
+              "coste_oro": {
+                "operator": "<=",
+                "value": 4
+              }
+            }
+          },
+          "prompt": "Elige un Aliado de coste 4 o menos para quitarle su habilidad y destruirlo."
+        },
+        "description": "Un Aliado de coste 4 o menos pierde su habilidad. Luego, destruye ese Aliado.",
+        "habilidad_texto_descriptivo": "Un Aliado de coste 4 o menos pierde su habilidad. Luego, destruye ese Aliado."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4612,
+    "nombre": "Viaje Al Oeste",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/viajealoeste.webp",
+    "habilidad_texto_descriptivo": "Descarta una carta de tu Mano para que tu oponente se descarte de dos cartas de su Mano; esta carta no puede ser anulada.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "viaje_al_oeste_cannot_be_annulled",
+        "inherent": [
+          "cannotBeAnnulled",
+          "cannotBeCancelled"
+        ],
+        "description": "Esta carta no puede ser anulada."
+      },
+      {
+        "id_habilidad": "viaje_al_oeste_mutual_discard",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "discardCardToForceOpponentDiscard",
+          "playerDiscardCount": 1,
+          "opponentDiscardCount": 2,
+          "playerPrompt": "Descarta 1 carta de tu Mano para forzar al oponente a descartar 2 cartas.",
+          "opponentPrompt": "Habilidad de Viaje Al Oeste: Elige 2 cartas de tu Mano para descartar."
+        },
+        "description": "Descarta una carta de tu Mano para que tu oponente se descarte de dos cartas de su Mano; esta carta no puede ser anulada.",
+        "habilidad_texto_descriptivo": "Descarta una carta de tu Mano para que tu oponente se descarte de dos cartas de su Mano; esta carta no puede ser anulada."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3055,
+    "nombre": "Hamsa",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/hamsa.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar este Oro para mirar la primera carta de tu Mazo Castillo. Luego, pon esta carta en la parte superior o inferior de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Promocional",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "hamsa_view_top",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "goldReserve"
+        },
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "effect": {
+          "type": "viewTopAndChoose",
+          "prompt": "Miras la primera carta de tu Mazo Castillo. Elige dónde colocarla:",
+          "options": [
+            {
+              "id": "top",
+              "description": "Dejar en la parte superior"
+            },
+            {
+              "id": "bottom",
+              "description": "Poner en la parte inferior"
+            }
+          ],
+          "viewCount": 1
+        },
+        "description": "Puedes pagar este Oro para mirar la primera carta de tu Mazo Castillo. Luego, pon esta carta en la parte superior o inferior de tu Mazo Castillo.",
+        "habilidad_texto_descriptivo": "Puedes pagar este Oro para mirar la primera carta de tu Mazo Castillo. Luego, pon esta carta en la parte superior o inferior de tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3957,
+    "nombre": "Zhin Ren",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/zhinren.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Oro y pagar 2 Oros para descartar una carta al azar de la Mano de tu oponente.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "zhin_ren_destroy_to_discard_random",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "costs": [
+          {
+            "type": "destroySelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Puedes destruir este Oro y pagar 2 Oros para descartar una carta al azar de la Mano de tu oponente.",
+        "habilidad_texto_descriptivo": "Puedes destruir este Oro y pagar 2 Oros para descartar una carta al azar de la Mano de tu oponente."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 955,
+    "nombre": "Mullo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/mullo.webp",
+    "habilidad_texto_descriptivo": "Cuando es declarado atacante o bloqueador, puedes elegir que tu oponente descarte 1 carta de su Mano o desterrar 1 carta de un Cementerio. Si Este Aliado esta en tu Cementerio, puedes botar 2 cartas de tu Mazo Castillo para ponerlo en tu Mano",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "mullo_attack_choose_discard_or_banish",
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Mullo: Elige una opción",
+          "optional": true,
+          "options": [
+            {
+              "id": "opponent_discard",
+              "description": "Tu oponente descarta 1 carta de su Mano",
+              "action": {
+                "type": "forceOpponentDiscard",
+                "count": 1
+              }
+            },
+            {
+              "id": "banish_from_opponent_graveyard",
+              "description": "Desterrar 1 carta del Cementerio oponente",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta del Cementerio oponente para desterrar",
+                "target": {
+                  "zone": "cementerio",
+                  "controller": "opponent",
+                  "query": {
+                    "type": "*"
+                  }
+                }
+              }
+            },
+            {
+              "id": "banish_from_own_graveyard",
+              "description": "Desterrar 1 carta de tu Cementerio",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu Cementerio para desterrar",
+                "target": {
+                  "zone": "cementerio",
+                  "controller": "self",
+                  "query": {
+                    "type": "*"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "description": "Cuando es declarado atacante, puedes elegir que tu oponente descarte 1 carta de su Mano o desterrar 1 carta de un Cementerio.",
+        "habilidad_texto_descriptivo": "Cuando es declarado atacante, puedes elegir que tu oponente descarte 1 carta de su Mano o desterrar 1 carta de un Cementerio."
+      },
+      {
+        "id_habilidad": "mullo_block_choose_discard_or_banish",
+        "trigger": "onDeclareBlock",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Mullo: Elige una opción",
+          "optional": true,
+          "options": [
+            {
+              "id": "opponent_discard",
+              "description": "Tu oponente descarta 1 carta de su Mano",
+              "action": {
+                "type": "forceOpponentDiscard",
+                "count": 1
+              }
+            },
+            {
+              "id": "banish_from_opponent_graveyard",
+              "description": "Desterrar 1 carta del Cementerio oponente",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta del Cementerio oponente para desterrar",
+                "target": {
+                  "zone": "cementerio",
+                  "controller": "opponent",
+                  "query": {
+                    "type": "*"
+                  }
+                }
+              }
+            },
+            {
+              "id": "banish_from_own_graveyard",
+              "description": "Desterrar 1 carta de tu Cementerio",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu Cementerio para desterrar",
+                "target": {
+                  "zone": "cementerio",
+                  "controller": "self",
+                  "query": {
+                    "type": "*"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "description": "Cuando es declarado bloqueador, puedes elegir que tu oponente descarte 1 carta de su Mano o desterrar 1 carta de un Cementerio.",
+        "habilidad_texto_descriptivo": "Cuando es declarado bloqueador, puedes elegir que tu oponente descarte 1 carta de su Mano o desterrar 1 carta de un Cementerio."
+      },
+      {
+        "id_habilidad": "mullo_return_from_graveyard",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "returnSelfToHand"
+        },
+        "description": "Si este Aliado está en tu Cementerio, puedes botar 2 cartas de tu Mazo Castillo para ponerlo en tu Mano.",
+        "habilidad_texto_descriptivo": "Si este Aliado está en tu Cementerio, puedes botar 2 cartas de tu Mazo Castillo para ponerlo en tu Mano."
       }
     ],
     "tier": "muy bajo"

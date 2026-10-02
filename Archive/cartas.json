@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.1.9",
+    "pack_version": "3.2.0",
     "habilidades": []
   },
   {
@@ -13953,42 +13953,36 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
-      {
-        "trigger": "activatable_with_costs",
-        "phase": "Principal",
-        "effect": {
-          "type": "familiarCreatureResurrection",
-          "costs": [
-            {
-              "type": "discardCard",
-              "count": 1,
-              "prompt": "Elige 1 carta de tu mano para descartar como coste."
-            },
-            {
-              "type": "payGold",
-              "count": 2
-            }
-          ]
+    "habilidades":[
+  {
+    "phase": "Principal",
+    "effect": {
+      "type": "discardCardAndPayGoldToPlaySelfFromGraveyard",
+      "goldCost": 2,
+      "discardCount": 1,
+      "prompt": "Descarta 1 carta de tu Mano para jugar a Criatura Familiar desde tu Cementerio."
+    },
+    "trigger": "activatable",
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": "cementerio"
         },
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "cementerio"
-            },
-            {
-              "type": "allControlledAlliesAre",
-              "query": {
-                "raza": "Faerie"
-              }
-            }
-          ]
-        },
-        "description": "En tu Fase de Vigilia, si sólo controlas Aliados de raza Faerie, puedes descartar una carta y pagar 2 Oros para jugar Criatura Familiar desde el cementerio sin pagar su coste."
-      }
-    ]
+        {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Faerie"
+          }
+        }
+      ]
+    },
+    "description": "En tu Fase de Vigilia, si sólo controlas Aliados de raza Faerie, puedes descartar una carta y pagar 2 Oros para jugar Criatura Familiar desde el cementerio sin pagar su coste.",
+    "id_habilidad": "criatura_familiar_graveyard_play"
+  }
+]
+
   },
   {
     "id": 416,

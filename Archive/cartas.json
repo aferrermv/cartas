@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.2.3",
+    "pack_version": "3.2.4",
     "habilidades": []
   },
   {
@@ -4476,7 +4476,7 @@
           "prompt": "Habilidad de Reina Guinivere: Busca un Aliado Caballero en tu Mazo Castillo y ponlo en tu mano.",
           "canCancel": true,
           "searchQuery": {
-            "race": "Caballero",
+            "raza": "Caballero",
             "type": "Aliado",
             "zone": "mazoCastillo"
           }
@@ -10805,8 +10805,7 @@
           "type": "isInZone",
           "zone": "cementerio"
         },
-        "description": "En tu Fase de Vigilia, si Zagreus está en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste.",
-        "oncePerTurn": true
+        "description": "En tu Fase de Vigilia, si Zagreus está en tu Cementerio, puedes pagar 4 Oros para jugarlo sin pagar su coste."
       }
     ]
   },
@@ -13953,36 +13952,35 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":[
-  {
-    "phase": "Principal",
-    "effect": {
-      "type": "discardCardAndPayGoldToPlaySelfFromGraveyard",
-      "goldCost": 2,
-      "discardCount": 1,
-      "prompt": "Descarta 1 carta de tu Mano para jugar a Criatura Familiar desde tu Cementerio."
-    },
-    "trigger": "activatable",
-    "condition": {
-      "type": "and",
-      "conditions": [
-        {
-          "type": "isInZone",
-          "zone": "cementerio"
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "discardCardAndPayGoldToPlaySelfFromGraveyard",
+          "goldCost": 2,
+          "discardCount": 1,
+          "prompt": "Descarta 1 carta de tu Mano para jugar a Criatura Familiar desde tu Cementerio."
         },
-        {
-          "type": "allControlledAlliesAre",
-          "query": {
-            "raza": "Faerie"
-          }
-        }
-      ]
-    },
-    "description": "En tu Fase de Vigilia, si sólo controlas Aliados de raza Faerie, puedes descartar una carta y pagar 2 Oros para jugar Criatura Familiar desde el cementerio sin pagar su coste.",
-    "id_habilidad": "criatura_familiar_graveyard_play"
-  }
-]
-
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Faerie"
+              }
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si sólo controlas Aliados de raza Faerie, puedes descartar una carta y pagar 2 Oros para jugar Criatura Familiar desde el cementerio sin pagar su coste.",
+        "id_habilidad": "criatura_familiar_graveyard_play"
+      }
+    ]
   },
   {
     "id": 416,
@@ -54906,7 +54904,8 @@
             "query": {
               "type": "*"
             },
-            "prompt": "Elige una carta de tu Cementerio para desterrar como coste."
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
+            "canCancel": false
           }
         ],
         "phase": [
@@ -67377,7 +67376,7 @@
     "fuerza": null,
     "raza": null,
     "leyenda": null,
-    "danio": 2,
+    "danio": 1,
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
@@ -77291,7 +77290,8 @@
             "query": {
               "type": "*"
             },
-            "prompt": "Elige una carta de tu Cementerio para desterrar como coste."
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste.",
+            "canCancel": false
           }
         ],
         "phase": [
@@ -109145,6 +109145,55 @@
         },
         "description": "Si este Aliado está en tu Cementerio, puedes botar 2 cartas de tu Mazo Castillo para ponerlo en tu Mano.",
         "habilidad_texto_descriptivo": "Si este Aliado está en tu Cementerio, puedes botar 2 cartas de tu Mazo Castillo para ponerlo en tu Mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1513,
+    "nombre": "Escudo Romano",
+    "tipo": "Arma",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/myl668.webp",
+    "habilidad_texto_descriptivo": "Si el portador de Escudo Romano es destruido, genera tantos Oros como fuerza tenga.",
+    "descripcion": "Si el portador de Escudo Romano es destruido, genera tantos Oros como fuerza tenga.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "generateTemporaryGold",
+          "count": {
+            "source": "property",
+            "context": "wielder",
+            "property": "fuerza"
+          }
+        },
+        "resolvesInstantly": true,
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "eventCondition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "wasMovedTo",
+              "zone": "cementerio"
+            },
+            {
+              "type": "triggeringCardIsWielder"
+            }
+          ]
+        },
+        "description": "Si el portador de Escudo Romano es destruido, genera tantos Oros como fuerza tenga.",
+        "id_habilidad": "escudo_romano_gold_on_destroy"
       }
     ],
     "tier": "muy bajo"

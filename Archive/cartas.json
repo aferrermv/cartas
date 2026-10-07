@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.2.4",
+    "pack_version": "3.2.5",
     "habilidades": []
   },
   {
@@ -28984,7 +28984,8 @@
           "zone": "field"
         },
         "description": "En respuesta a que tu oponente juegue un Talismán, destierra a Duque Enrico Dandolo para anular a ese Talismán.",
-        "id_habilidad": "duque_enrico_dandolo_annul"
+        "id_habilidad": "duque_enrico_dandolo_annul",
+        "costPaidBeforeResponse": true
       }
     ]
   },

@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.2.5",
+    "pack_version": "3.2.4",
     "habilidades": []
   },
   {
@@ -3559,6 +3559,100 @@
         "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
         "oncePerTurn": true,
         "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+   {
+    "id": 55,
+   "nombre": "Ramses II",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/gift/ramsesseptiembre/ramsesbase.webp",
+    "visualEffect": "ramsesSpecialEntrance",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu proximo turno. Cuando este Aliado sea Bloqueado tu oponente bota tantas cartas como fuerza tenga Ramses II.",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Ramses II:",
+            "options": [
+              {
+                "id": "ramses_discard_cost",
+                "action": {
+                  "type": "discardCard",
+                  "count": 1,
+                  "prompt": "Descarta 1 carta de tu mano para activar la habilidad."
+                },
+                "description": "Descartar 1 carta de tu mano"
+              },
+              {
+                "id": "ramses_pay_gold_cost",
+                "action": {
+                  "type": "payGold",
+                  "count": 1
+                },
+                "description": "Pagar 1 Oro"
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "duration": "untilYourNextTurn",
+          "keywords": [
+            "indestructible",
+            "cannotBeBanished"
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "indestructible",
+              "negate": true
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "cannotBeBanished",
+              "negate": true
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno."
+      },
+      {
+        "effect": {
+          "type": "millByOwnStrength",
+          "target": "opponent"
+        },
+        "trigger": "onBeingBlocked",
+        "description": "Cuando este Aliado sea Bloqueado, tu oponente bota tantas cartas como fuerza tenga este Aliado."
       }
     ],
     "tier": "bajo"

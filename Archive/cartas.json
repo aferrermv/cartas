@@ -3563,9 +3563,9 @@
     ],
     "tier": "bajo"
   },
-   {
+  {
     "id": 55,
-   "nombre": "Ramses II",
+    "nombre": "Ramses II",
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/gift/ramsesseptiembre/ramsesbase.webp",
@@ -109292,5 +109292,1440 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 3823,
+    "nombre": "Ataque Dragon PE",
+    "tipo": "Talisman",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/ataquedragon.webp",
+    "habilidad_texto_descriptivo": "Destierra 2 Aliados en juego. Luego, destierra esta carta.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "playerControls",
+          "controller": "any",
+          "query": {
+            "type": "Aliado",
+            "zone": "field"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "banishTargetInModal",
+          "prompt": "Habilidad de Ataque Dragón: Elige 2 Aliados en juego para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "minCount": 2,
+          "maxCount": 2
+        },
+        "trigger": "onEnterPlay",
+        "banishOnPlay": true,
+        "description": "Destierra 2 Aliados en juego. Luego, destierra esta carta.",
+        "id_habilidad": "ataque_dragon_pe_banish"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 956,
+    "nombre": "Konpira Gongen",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/konpira.webp",
+    "habilidad_texto_descriptivo": "Cuando entre o salga del juego, puedes descartar una carta de tu Mano para que tu oponente bote tantas cartas de su Mazo Castillo como Coste tenga la carta descartada. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "optional": true,
+            "prompt": "Habilidad de Konpira Gongen: Puedes descartar una carta de tu Mano.",
+            "rememberAs": "discardedCard"
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "fromContext": "discardedCard.coste_oro"
+          },
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes descartar una carta de tu Mano para que tu oponente bote tantas cartas de su Mazo Castillo como Coste tenga la carta descartada. Luego, puedes robar 1 carta.",
+        "id_habilidad": "konpira_gongen_enter"
+      },
+      {
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "optional": true,
+            "prompt": "Habilidad de Konpira Gongen: Puedes descartar una carta de tu Mano.",
+            "rememberAs": "discardedCard"
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "fromContext": "discardedCard.coste_oro"
+          },
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          }
+        },
+        "trigger": "onLeavePlay",
+        "description": "Cuando sale del juego, puedes descartar una carta de tu Mano para que tu oponente bote tantas cartas de su Mazo Castillo como Coste tenga la carta descartada. Luego, puedes robar 1 carta.",
+        "id_habilidad": "konpira_gongen_leave"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 957,
+    "nombre": "Expulsion",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/expulsionpe.webp",
+    "habilidad_texto_descriptivo": "Destierra un Aliado en juego. Luego, busca las copias de ese Aliado en el Mazo Castillo oponente y destierralas.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishAndBanishCopiesFromDeck",
+          "message": "Habilidad de Expulsión: Elige un Aliado en juego para desterrar y eliminar sus copias del Mazo Castillo.",
+          "prompt": "Habilidad de Expulsión: Elige un Aliado en juego para desterrar y eliminar sus copias del Mazo Castillo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destierra un Aliado en juego. Luego, busca las copias de ese Aliado en el Mazo Castillo oponente y destierralas.",
+        "id_habilidad": "expulsion_pe_banish_copies"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3015,
+    "nombre": "Tradicion Viva",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/tradicionviva.webp",
+    "habilidad_texto_descriptivo": "Busca un Talisman que no sea Tradicion Viva en tu Mazo Castillo y juegalo sin pagar su Coste",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "playTalismanFromDeckFree",
+          "prompt": "Habilidad de Tradición Viva: Elige un Talismán que no sea Tradición Viva de tu Mazo Castillo para jugarlo sin pagar su Coste.",
+          "canCancel": false,
+          "searchQuery": {
+            "type": "Talisman",
+            "zone": "mazoCastillo",
+            "nameIsNot": "Tradicion Viva"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Busca un Talisman que no sea Tradicion Viva en tu Mazo Castillo y juegalo sin pagar su Coste.",
+        "id_habilidad": "tradicion_viva_play_talisman"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3009,
+    "nombre": "Cipactli",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/cipactli.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si hace daño al Mazo oponente, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Cipactli: ¿Deseas robar 1 carta?",
+          "options": [
+            {
+              "id": "cipactli_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "cipactli_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo oponente, puedes robar una carta.",
+        "id_habilidad": "cipactli_damage_draw"
+      }
+    ]
+  },
+  {
+    "id": 3289,
+    "nombre": "Amanozako",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/amazako.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, elige un Aliado que controle tu oponente, para que no pueda ser declarado atacante en su próximo turno.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "grantKeywordToTarget",
+          "prompt": "Habilidad de Amanozako: Elige un Aliado oponente para que no pueda ser declarado atacante en su próximo turno.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "keyword": "cannotAttack",
+          "duration": "untilEndOfOpponentTurn"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, elige un Aliado que controle tu oponente, para que no pueda ser declarado atacante en su próximo turno.",
+        "id_habilidad": "amanozako_cannot_attack"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3465,
+    "nombre": "Hachiman",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/hachiman.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye un Aliado oponente que no porte Arma.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Hachiman: Elige un Aliado oponente que no porte Arma para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "hasWeaponEquipped": false
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 5502,
+    "nombre": "Hotei",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hotei.webp",
+    "habilidad_texto_descriptivo": "Cada Kami gana + 1 de fuerza mientras este Aliado este en juego.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado",
+              "raza": "Kami"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Cada Kami gana + 1 de fuerza mientras este Aliado este en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 5505,
+    "nombre": "Iha Naga",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/ihanaga.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destruye un totem enemigo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Iha Naga: Elige un Tótem oponente para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4351,
+    "nombre": "Wendigo",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/wendigo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente bota 1 carta de su Mazo Castillo por cada Bestia que controles.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self",
+              "raza": "Bestia"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ]
+  },
+  {
+    "id": 3378,
+    "nombre": "Rey de los Osos",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/reydelososos.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado con habilidad \"No puede ser declarado atacante\" que controles para que tu oponente bote tantas cartas como Fuerza tenga el Aliado destruido.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige un Aliado con 'No puede ser declarado atacante' que controles para destruir.",
+            "target": {
+              "query": {
+                "type": "Aliado",
+                "inherent": "cannotAttack"
+              },
+              "controller": "self"
+            },
+            "rememberAs": "sacrificedAlly"
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "fromContext": "sacrificedAlly.fuerza"
+          },
+          "target": "opponent"
+        },
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "id_habilidad": "rey_de_los_osos_sacrifice_mill",
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado con habilidad \"No puede ser declarado atacante\" que controles para que tu oponente bote tantas cartas como Fuerza tenga el Aliado destruido."
+      }
+    ]
+  },
+  {
+    "id": 4784,
+    "nombre": "Kanillu",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/kanillu.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes jugar hasta dos aliados Bestia de coste 2 o menos de distinto nombre desde tu Mazo Castillo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlay2defense",
+          "prompt": "Elige hasta 2 Aliados Bestia de coste 2 o menos y de distinto nombre para jugar sin pagar su coste.",
+          "minCount": 0,
+          "maxCount": 2,
+          "canCancel": true,
+          "uniqueSelectionBy": "nombre",
+          "searchQuery": {
+            "type": "Aliado",
+            "raza": "Bestia",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ]
+  },
+  {
+    "id": 3425,
+    "nombre": "Pajaro Trueno",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/pajarotrueno.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Una vez por turno, si otro Aliado que controles fuera a ser destruido, puedes botar 2 cartas para prevenirlo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "cost": {
+          "type": "millCards",
+          "count": 2,
+          "target": "self"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "id_habilidad": "pajaro_trueno_prevent_ally_destruction",
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "isOther": true,
+            "controller": "self",
+            "destinationZone": [
+              "cementerio"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "descripcion": "Una vez por turno, si otro Aliado que controles fuera a ser destruido, puedes botar 2 cartas para prevenirlo."
+      }
+    ]
+  },
+  {
+    "id": 958,
+    "nombre": "Piasa",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/piasa.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando entra en juego, tu oponente bota 1 carta. Una vez poor turno, cuando otro Aliado Bestia entre en juego bajo tu control, tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ]
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "id_habilidad": "piasa_other_beast_mill",
+        "eventCondition": {
+          "raza": "Bestia",
+          "type": "Aliado",
+          "isOther": true
+        },
+        "listensForEvent": "onAllyEnterPlay",
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true,
+        "descripcion": "Una vez por turno, cuando otro Aliado Bestia entre en juego bajo tu control, tu oponente bota 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 3045,
+    "nombre": "Pantera Mishipeshu",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/panteramishipeshu.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas de tu Mazo Castillo como el Coste de una carta en juego para que esa carta pierda su habilidad hasta que salga del juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante."
+      },
+      {
+        "costs": [
+          {
+            "type": "selectAndPayCostByMill",
+            "prompt": "Elige una carta en juego para pagar tantas cartas de tu Castillo como su coste.",
+            "target": {
+              "zone": "field",
+              "controller": "any"
+            },
+            "canCancel": true
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "annulCardAbility",
+          "target": {
+            "fromContext": "targetCard"
+          },
+          "duration": "permanent"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true,
+        "id_habilidad": "pantera_mishipeshu_annul_cost_effect",
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas de tu Mazo Castillo como el Coste de una carta en juego para que esa carta pierda su habilidad hasta que salga del juego."
+      }
+    ]
+  },
+  {
+    "id": 3596,
+    "nombre": "Pihuchen",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/pihuchen.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar una Bestia de tu Mano para destruir una carta en juego que no sea Oro.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "raza": "Bestia",
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de raza Bestia de tu mano para mostrar.",
+          "optional": true
+        },
+        "effect": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige una carta en juego que no sea Oro para destruir.",
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          }
+        },
+        "description": "Cuando entra en juego, puedes mostrar una Bestia de tu Mano para destruir una carta en juego que no sea Oro.",
+        "id_habilidad": "pihuchen_reveal_destroy"
+      }
+    ]
+  },
+  {
+    "id": 959,
+    "nombre": "Katari",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/katari.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes jugar un Aliado que \"No peude ser declarado atacante\" de Coste 2 o menos de tu Cementerio sin pagar su Coste. En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas del Mazo Castillo oponente como Aliados con la habilidad \"no puede ser declarado atacante\" controles.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado con 'No puede ser declarado atacante' de Coste 2 o menos de tu Cementerio para poner en juego.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "inherent": "cannotAttack",
+            "cost": {
+              "operator": "<=",
+              "value": 2
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes jugar un Aliado que \"No puede ser declarado atacante\" de Coste 2 o menos de tu Cementerio sin pagar su Coste.",
+        "id_habilidad": "katari_revive_cannot_attack"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self",
+              "inherent": "cannotAttack"
+            }
+          },
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "id_habilidad": "katari_mill_by_cannot_attack_allies",
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas del Mazo Castillo oponente como Aliados con la habilidad \"no puede ser declarado atacante\" controles."
+      }
+    ]
+  },
+  {
+    "id": 3597,
+    "nombre": "Tue Tue",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/tuetue.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Tue Tue en tu Mazo Castillo y ponlo en tu Mano. Si controlas tres o mas Bestias, gana 2 a la fuerza.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige un Tue Tue de tu Mazo Castillo para poner en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "nombre": "Tue Tue"
+          }
+        },
+        "description": "Cuando entra en juego, busca un Tue Tue en tu Mazo Castillo y ponlo en tu Mano.",
+        "id_habilidad": "tue_tue_search"
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Bestia",
+            "zone": "field"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "description": "Si controlas tres o mas Bestias, gana 2 a la fuerza.",
+        "id_habilidad": "tue_tue_beast_buff"
+      }
+    ]
+  },
+  {
+    "id": 960,
+    "nombre": "Muut",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/muut.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar en tu Mazo Castillo un Aliado de Coste 2 con la habilidad \"No puede ser declarado atacante\" y jugarlo sin pagar su Coste. Luego, tu oponente bota una carta por cada Aliado bajo tu control con la habilidad \"No puede ser declarado atacante\".",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de Coste 2 con 'No puede ser declarado atacante' en tu Mazo Castillo para jugarlo sin pagar su Coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "mazoCastillo",
+            "inherent": "cannotAttack",
+            "cost": 2
+          },
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "type": "fromCardCount",
+                "query": {
+                  "type": "Aliado",
+                  "zone": "field",
+                  "controller": "self",
+                  "inherent": "cannotAttack"
+                }
+              },
+              "target": "opponent"
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes buscar en tu Mazo Castillo un Aliado de Coste 2 con la habilidad \"No puede ser declarado atacante\" y jugarlo sin pagar su Coste. Luego, tu oponente bota una carta por cada Aliado bajo tu control con la habilidad \"No puede ser declarado atacante\".",
+        "id_habilidad": "muut_search_and_mill"
+      }
+    ]
+  },
+  {
+    "id": 3600,
+    "nombre": "Tuyango",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/tuyango.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando entra en juego, muestra las 2 primeras cartas de tu Mazo Castillo, pon una en tu Mano y la otra en el fondo de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante."
+      },
+      {
+        "effect": {
+          "type": "revealAndChooseConditional",
+          "count": 2,
+          "choice": {
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta para poner en tu Mano. La otra irá al fondo de tu Mazo Castillo.",
+            "optional": false,
+            "destination": "hand",
+            "opponentPrompt": "Tu oponente está mostrando las 2 primeras cartas de su Mazo Castillo."
+          },
+          "fromZone": "mazoCastillo",
+          "unselected": "moveToBottom"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, muestra las 2 primeras cartas de tu Mazo Castillo, pon una en tu Mano y la otra en el fondo de tu Mazo Castillo.",
+        "id_habilidad": "tuyango_reveal_top_hand_bottom"
+      }
+    ]
+  },
+  {
+    "id": 4598,
+    "nombre": "Sacrificio Humano",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/sacrificiohumano.webp",
+    "habilidad_texto_descriptivo": "Por cada aliado en juego, tu oponente debe pagar un oro, si no lo hace debe enviarlo al cementerio.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "payGoldPerAllyOrDestroy"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Por cada aliado en juego, tu oponente debe pagar un oro, si no lo hace debe enviarlo al cementerio.",
+        "id_habilidad": "sacrificio_humano_pay_gold_or_destroy"
+      }
+    ]
+  },
+  {
+    "id": 3906,
+    "nombre": "Destierro Astral",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/destierroastral2.webp",
+    "habilidad_texto_descriptivo": "Destierra un Aliado oponente en juego. Luego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente en juego para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Deseas robar 1 carta?",
+              "options": [
+                {
+                  "id": "destierro_astral_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta."
+                },
+                {
+                  "id": "destierro_astral_no_draw",
+                  "action": {},
+                  "description": "No, gracias."
+                }
+              ]
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destierra un Aliado oponente en juego. Luego, puedes robar 1 carta.",
+        "id_habilidad": "destierro_astral_2_banish_and_draw"
+      }
+    ]
+  },
+  {
+    "id": 961,
+    "nombre": "Pozo de Muerte",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/pozodemuerte.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, ambos jugadores botan 3 cartas de su Mazo Castillo. Puedes desterrar este Tótem para jugar un Aliado de Coste 4 o menos de tu Cementerio sin pagar su Coste.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "allPlayers"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, ambos jugadores botan 3 cartas de su Mazo Castillo.",
+        "id_habilidad": "pozo_de_muerte_mill"
+      },
+      {
+        "costs": [
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "cost": {
+          "type": "banishSelf"
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de tu Cementerio de coste 4 o menos para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio",
+            "coste_oro": {
+              "value": 4,
+              "operator": "<="
+            }
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Puedes desterrar este Tótem para jugar un Aliado de Coste 4 o menos de tu Cementerio sin pagar su Coste.",
+        "id_habilidad": "pozo_de_muerte_play_from_graveyard"
+      }
+    ]
+  },
+  {
+    "id": 3602,
+    "nombre": "Totem del Coyote",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/totemdelcoyote.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno y si controlas 2 o más Aliados, puedes barajar 1 carta de tu Cementerio en tu Mazo Castillo. Luego, si controlas 1 o más Aliados Bestia tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "phase": "Principal",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true,
+          "then": {
+            "condition": {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "raza": "Bestia"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            "effect": {
+              "type": "millCards",
+              "count": 1,
+              "target": "opponent"
+            }
+          }
+        },
+        "description": "Una vez por turno y si controlas 2 o más Aliados, puedes barajar 1 carta de tu Cementerio en tu Mazo Castillo. Luego, si controlas 1 o más Aliados Bestia tu oponente bota 1 carta.",
+        "id_habilidad": "totem_del_coyote_shuffle_and_mill"
+      }
+    ]
+  },
+  {
+    "id": 962,
+    "nombre": "Pluma de Amaru",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/plumadeamaru.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este Oro y desterrar una carta de tu Mano para poner un Aliado de Coste 3 o menos de tu Cementeiro en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Quieres pagar este Oro y desterrar una carta de tu Mano para poner un Aliado de Coste 3 o menos de tu Cementerio en tu Mano?",
+          "options": [
+            {
+              "id": "pluma_amaru_activate",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "paySelfAsCost"
+                    },
+                    {
+                      "type": "banishFromHand",
+                      "count": 1,
+                      "query": {
+                        "type": "*"
+                      },
+                      "prompt": "Elige una carta de tu Mano para desterrar."
+                    }
+                  ],
+                  "effect": {
+                    "type": "searchAndPutInHand",
+                    "prompt": "Elige un Aliado de Coste 3 o menos de tu Cementerio para poner en tu Mano.",
+                    "canCancel": true,
+                    "searchQuery": {
+                      "type": "Aliado",
+                      "zone": "cementerio",
+                      "coste_oro": {
+                        "value": 3,
+                        "operator": "<="
+                      }
+                    }
+                  },
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar el coste."
+            },
+            {
+              "id": "pluma_amaru_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes pagar este Oro y desterrar una carta de tu Mano para poner un Aliado de Coste 3 o menos de tu Cementerio en tu Mano.",
+        "id_habilidad": "pluma_de_amaru_enter_play"
+      }
+    ]
+  },
+  {
+    "id": 963,
+    "nombre": "Amuleto de Caribu",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/amuletoca.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes copiar la habilidad de un Oro que controle tu oponente. Este Oro tendrá esa habilidad hasta que salga del juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "amuleto_de_caribu_copy_gold_ability",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes copiar la habilidad de un Oro que controle tu oponente. Este Oro tendrá esa habilidad hasta que salga del juego.",
+        "effect": {
+          "type": "copyOpponentGoldAbility",
+          "prompt": "Amuleto de Caribú: Elige un Oro de tu oponente para copiar su habilidad hasta que salga del juego."
+        }
+      }
+    ]
+  },
+  {
+    "id": 3101,
+    "nombre": "Pintura Naskapi",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/pinturanaskapi2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes pagar este Oro para barajar hasta 3 cartas de tu Mano en tu Mazo Castillo. Luego, roba tantas cartas de tu Mazo Castillo como cartas hayas barajado.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "pintura_naskapi_on_enter_play",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes pagar este Oro para barajar hasta 3 cartas de tu Mano en tu Mazo Castillo. Luego, roba tantas cartas de tu Mazo Castillo como cartas hayas barajado.",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Pintura Naskapi: ¿Deseas pagar este Oro para barajar hasta 3 cartas de tu Mano y robar esa misma cantidad?",
+          "options": [
+            {
+              "id": "pay_and_shuffle",
+              "description": "Pagar este Oro y barajar hasta 3 cartas de tu Mano",
+              "action": {
+                "type": "paySelfAsCost",
+                "then": {
+                  "effect": {
+                    "type": "shuffleUpToFromHandAndDrawMatching",
+                    "maxCount": 3,
+                    "minCount": 1,
+                    "prompt": "Pintura Naskapi: Elige hasta 3 cartas de tu Mano para barajar en tu Mazo Castillo y robar esa misma cantidad."
+                  }
+                }
+              }
+            },
+            {
+              "id": "skip",
+              "description": "No activar"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 3775,
+    "nombre": "Bestias Furiosas",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/bestiasfuriosas.webp",
+    "habilidad_texto_descriptivo": "Puedes pagar a Bestias Furiosas para que una Bestia que controles gane 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "bestias_furiosas_buff",
+        "trigger": "activatable_with_costs",
+        "description": "Puedes pagar a Bestias Furiosas para que una Bestia que controles gane 1 a la fuerza hasta la Fase Final.",
+        "costs": [
+          {
+            "type": "paySelfAsCost"
+          }
+        ],
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "raza": "Bestia"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "grantBuffToTarget",
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "duration": "endOfTurn",
+          "prompt": "Elige una Bestia que controles para que gane 1 a la fuerza hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "raza": "Bestia"
+            },
+            "controller": "self"
+          }
+        }
+      }
+    ]
   }
 ]

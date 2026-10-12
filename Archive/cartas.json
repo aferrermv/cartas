@@ -110727,5 +110727,654 @@
         }
       }
     ]
+  },
+  {
+    "id": 964,
+    "nombre": "Amadis",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/amadis.webp",
+    "habilidad_texto_descriptivo": "Jugar Armas en este Aliado te cuesta 1 Oro menos. Mientras este Aliado este en juego, los Aliados que controle tu oponente no pueden ganar Fuerza. Cuando Salga del juego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "amadis_reduce_weapon_cost",
+        "trigger": "continuous",
+        "description": "Jugar Armas en este Aliado te cuesta 1 Oro menos.",
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Arma"
+            },
+            "attachedTo": {
+              "query": {
+                "isSelf": true
+              }
+            }
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        }
+      },
+      {
+        "id_habilidad": "amadis_opponent_allies_cannot_gain_strength",
+        "trigger": "continuous",
+        "description": "Mientras este Aliado esté en juego, los Aliados que controle tu oponente no pueden ganar Fuerza.",
+        "effect": {
+          "type": "applyRestriction",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "restriction": {
+            "type": "cannotGainStrength"
+          }
+        }
+      },
+      {
+        "id_habilidad": "amadis_leave_play_draw",
+        "trigger": "onLeavePlay",
+        "description": "Cuando salga del juego, puedes robar 1 carta.",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Amadís: ¿Deseas robar 1 carta?",
+          "options": [
+            {
+              "id": "draw",
+              "description": "Robar 1 carta",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              }
+            },
+            {
+              "id": "skip",
+              "description": "No robar"
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 965,
+    "nombre": "Amar lo Imposible",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/amarloimposible.webp",
+    "habilidad_texto_descriptivo": "Solo puedes jugar este Talisman en tu Fase de Vigilia. Elige un Aliado que controles. Luego, elige un Aliado o un Arma de tu Cementerio del mismo coste que el Aliado elegido y juegala sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "amar_lo_imposible_effect",
+        "trigger": "onEnterPlay",
+        "description": "Solo puedes jugar este Talisman en tu Fase de Vigilia. Elige un Aliado que controles. Luego, elige un Aliado o un Arma de tu Cementerio del mismo coste que el Aliado elegido y juegala sin pagar su coste.",
+        "play_condition": {
+          "type": "currentPhase",
+          "phase": "Principal"
+        },
+        "effect": {
+          "type": "chooseAllyAndPlayMatchingFromGraveyard",
+          "prompt": "Amar lo Imposible: Elige un Aliado que controles."
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 966,
+    "nombre": "Amaru Aranway",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/amaru.webp",
+    "habilidad_texto_descriptivo": "Busca en tu Mazo Castillo un Totem o Arma de coste 2 o menos y juegalo sin pagar su Coste. Luego, bota 3 cartas.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "amaru_aranway_effect",
+        "trigger": "onEnterPlay",
+        "description": "Busca en tu Mazo Castillo un Totem o Arma de coste 2 o menos y juegalo sin pagar su Coste. Luego, bota 3 cartas.",
+        "effect": {
+          "type": "searchAndPlayTotemOrWeapon",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "cost": 2
+          },
+          "prompt": "Elige un Tótem o Arma de coste 2 o menos para jugarlo gratis.",
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 3,
+              "target": "self"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 967,
+    "nombre": "Beltenebros",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/beltenebros.webp",
+    "habilidad_texto_descriptivo": "Si tienes mas cartas en tu destierro que tu oponente, este Aliado puede atacar cuando entra en juego. Puedes desterrar este Aliado de tu Cementerio y pagar 1 Oro para que un Aliado que controle tu oponente pierda 2 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "beltenebros_haste_on_enter",
+        "trigger": "onEnterPlay",
+        "description": "Si tienes más cartas en tu destierro que tu oponente, este Aliado puede atacar cuando entra en juego.",
+        "condition": {
+          "type": "hasMoreCardsInBanishThanOpponent"
+        },
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "canAttackThisTurn",
+          "duration": "endOfTurn"
+        }
+      },
+      {
+        "id_habilidad": "beltenebros_graveyard_debuff",
+        "trigger": "activatable_with_costs",
+        "description": "Puedes desterrar este Aliado de tu Cementerio y pagar 1 Oro para que un Aliado que controle tu oponente pierda 2 a la Fuerza hasta la Fase Final.",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "grantBuffToTarget",
+          "buff": {
+            "stat": "fuerza",
+            "value": -2
+          },
+          "duration": "endOfTurn",
+          "prompt": "Elige un Aliado oponente para que pierda 2 a la Fuerza hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 968,
+    "nombre": "Espada Verde",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadaverde.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cada vez que su portador haga daño al mazo castillo oponente, puedes buscar una carta que no sea Oro en el Mazo Castillo oponente y desterrarla.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "espada_verde_damage_banish",
+        "trigger": "onDealCombatDamageToDeck",
+        "optional": true,
+        "description": "Cada vez que su portador haga daño al mazo castillo oponente, puedes buscar una carta que no sea Oro en el Mazo Castillo oponente y desterrarla.",
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 1,
+          "prompt": "Elige una carta que no sea Oro del Mazo Castillo oponente para desterrarla.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent",
+            "notType": "Oro"
+          }
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 969,
+    "nombre": "Fuego Pascual",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/fuegopascual.webp",
+    "habilidad_texto_descriptivo": "Mueve un Aliado que controles de la linea de Defensa a la Linea de ataque. Luego, roba 2 cartas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "fuego_pascual_effect",
+        "trigger": "onEnterPlay",
+        "description": "Mueve un Aliado que controles de la linea de Defensa a la Linea de ataque. Luego, roba 2 cartas.",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "zone": "defense"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "moveAllyToAttackLine",
+          "prompt": "Elige un Aliado en tu Línea de Defensa para mover a tu Línea de Ataque.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "zone": "defense"
+            },
+            "controller": "self"
+          },
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 2
+            }
+          }
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 970,
+    "nombre": "Sidhe na Gcat",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/gatosidhe.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Si controlas 2 o mas cartas \"Sidhe\", este Aliado gana 2 a la fuerza. Si este Aliado es descartado de tu Mano, puedes subir otra carta Sidhe de coste 2 o menos de tu Cementerio a tu Mano.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 0,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "nameContains": "Sidhe"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si controlas 2 o más cartas \"Sidhe\", este Aliado gana 2 a la fuerza.",
+        "id_habilidad": "sidhe_na_gcat_strength_buff"
+      },
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige otra carta Sidhe de coste 2 o menos de tu Cementerio para poner en tu Mano.",
+          "searchQuery": {
+            "zone": "cementerio",
+            "nameContains": "Sidhe",
+            "isOther": true,
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "nameContains": "Sidhe",
+            "isOther": true,
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Si este Aliado es descartado de tu Mano, puedes subir otra carta Sidhe de coste 2 o menos de tu Cementerio a tu Mano.",
+        "id_habilidad": "sidhe_na_gcat_on_discard",
+        "listensForEvent": "onDiscardSelf",
+        "triggeringPlayer": "self"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 971,
+    "nombre": "Loegaire Mac Neill",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/loegairemacneill.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Una vez por turno, puedes mover este u otro Aliado que controles de la linea de Defensa a la Linea de ataque para que otro aliado que controles gane 2 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Defensor",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "defense"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "moveAllyToAttackLine",
+          "target": {
+            "controller": "self"
+          },
+          "prompt": "Elige un Aliado en tu Línea de Defensa para mover a la Línea de Ataque.",
+          "canCancel": true,
+          "then": {
+            "type": "grantBuffToTarget",
+            "buff": {
+              "stat": "fuerza",
+              "value": 2
+            },
+            "duration": "startOfFinalPhase",
+            "target": {
+              "controller": "self",
+              "query": {
+                "type": "Aliado",
+                "isOther": true
+              }
+            },
+            "prompt": "Elige otro Aliado que controles para que gane 2 a la fuerza hasta la Fase Final.",
+            "canCancel": false
+          }
+        },
+        "description": "Una vez por turno, puedes mover este u otro Aliado que controles de la linea de Defensa a la Linea de ataque para que otro aliado que controles gane 2 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "loegaire_mac_neill_move_and_buff"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 972,
+    "nombre": "Sapa Inca",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/sapainca.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando porte un Arma, puedes robar 1 carta. Cada vez que haga daño al Mazo Castillo oponente, puedes poner una carta de tu Cementerio en la parte inferior de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Guerrero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1,
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "eventCondition": {
+          "type": "Arma",
+          "attachedTo": "self"
+        },
+        "listensForEvent": "onCardEnterPlay",
+        "description": "Cuando porte un Arma, puedes robar 1 carta.",
+        "id_habilidad": "sapa_inca_draw_on_weapon"
+      },
+      {
+        "effect": {
+          "type": "searchAndMoveToBottom",
+          "zone": "cementerio",
+          "count": 1,
+          "prompt": "Sapa Inca: Elige una carta de tu Cementerio para poner en la parte inferior de tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cada vez que haga daño al Mazo Castillo oponente, puedes poner una carta de tu Cementerio en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "sapa_inca_recycle_on_damage"
+      }
+    ]
+  },
+  {
+    "id": 973,
+    "nombre": "Torc Fiain",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/torfiain.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando hace daño al mazo castillo oponente, puedes bucar un Aliado en el Mazo Castillo oponente y desterrarlo.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 1,
+          "prompt": "Torc Fiain: Elige un Aliado del Mazo Castillo oponente para desterrarlo.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "optional": true,
+        "description": "Cuando hace daño al mazo castillo oponente, puedes bucar un Aliado en el Mazo Castillo oponente y desterrarlo.",
+        "id_habilidad": "torc_fiain_damage_banish_ally"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 1592,
+    "nombre": "Arae",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl784.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado que controles. Luego, roba 2 cartas.",
+    "descripcion": "Destruye un Aliado que controles. Luego, roba 2 cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "prompt": "Arae: Elige un Aliado que controles para destruirlo.",
+          "then": {
+            "type": "drawCards",
+            "count": 2
+          }
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Destruye un Aliado que controles. Luego, roba 2 cartas.",
+        "id_habilidad": "arae_destroy_and_draw"
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

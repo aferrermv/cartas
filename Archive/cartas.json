@@ -112079,5 +112079,300 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 4358,
+    "nombre": "Sisiutil",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/sisiutil.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes pagar 1 Oro para que otro Aliado que controles gane 2 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "oncePerTurn": true,
+        "trigger": "activatable_with_costs",
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "grantBuffToTarget",
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "duration": "startOfFinalPhase",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          },
+          "prompt": "Sisiutil: Elige otro Aliado que controles para que gane 2 a la Fuerza hasta la Fase Final.",
+          "canCancel": false
+        },
+        "description": "Una vez por turno, puedes pagar 1 Oro para que otro Aliado que controles gane 2 a la Fuerza hasta la Fase Final.",
+        "id_habilidad": "sisiutil_buff_ally"
+      }
+    ]
+  },
+  {
+    "id": 3068,
+    "nombre": "Cortadora",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/cortadora.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cada vez que ataque, baraja 1 carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Cortadora: Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Cada vez que ataque, baraja 1 carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "cortadora_on_attack_shuffle"
+      }
+    ]
+  },
+  {
+    "id": 974,
+    "nombre": "Snallygaster",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/snallygaster.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando sea declarado atacante, puedes pagar 1 Oro para que un Aliado que controle tu oponente pierda 1 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Snallygaster fue declarado atacante. ¿Quieres pagar 1 Oro para que un Aliado oponente pierda 1 a la Fuerza hasta la Fase Final?",
+          "options": [
+            {
+              "id": "snallygaster_pay_and_debuff",
+              "action": {
+                "type": "triggerAbility",
+                "ability": {
+                  "costs": [
+                    {
+                      "type": "payGold",
+                      "count": 1
+                    }
+                  ],
+                  "effect": {
+                    "type": "grantBuffToTarget",
+                    "buff": {
+                      "stat": "fuerza",
+                      "value": -1
+                    },
+                    "duration": "startOfFinalPhase",
+                    "target": {
+                      "zone": "field",
+                      "query": {
+                        "type": "Aliado"
+                      },
+                      "controller": "opponent"
+                    },
+                    "prompt": "Elige un Aliado oponente para que pierda 1 a la Fuerza hasta la Fase Final."
+                  },
+                  "trigger": "activatable_with_costs"
+                }
+              },
+              "description": "Sí, pagar 1 Oro."
+            },
+            {
+              "id": "snallygaster_decline",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerHasGold",
+              "count": 1
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "Cuando sea declarado atacante, puedes pagar 1 Oro para que un Aliado que controle tu oponente pierda 1 a la Fuerza hasta la Fase Final.",
+        "id_habilidad": "snallygaster_attack_debuff"
+      }
+    ]
+  },
+  {
+    "id": 3730,
+    "nombre": "H'Ain",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/hain2.webp",
+    "habilidad_texto_descriptivo": "Sube un Aliado oponente de coste 3 o menos a la Mano de su dueño. Luego, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Secreta",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "prompt": "H'Ain: Elige un Aliado oponente de Coste 3 o menos para subir a la Mano de su dueño.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense",
+              "support"
+            ],
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": false,
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Deseas robar 1 carta?",
+              "options": [
+                {
+                  "id": "hain_draw",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta."
+                },
+                {
+                  "id": "hain_no_draw",
+                  "action": {},
+                  "description": "No, gracias."
+                }
+              ]
+            }
+          }
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "controller": "opponent",
+          "query": {
+            "type": "Aliado",
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Sube un Aliado oponente de coste 3 o menos a la Mano de su dueño. Luego, puedes robar una carta.",
+        "id_habilidad": "hain_bounce_and_draw"
+      }
+    ]
   }
 ]

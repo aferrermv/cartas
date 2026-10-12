@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.2.6",
+    "pack_version": "3.2.7",
     "habilidades": []
   },
   {
@@ -55424,6 +55424,709 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 7450,
+    "nombre": "Bola de Fuego",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/boladefuegodracula111zon.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta en juego, que no sea un oro.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "message": "Habilidad de Bola de Fuego: Elige una carta en juego que no sea Oro para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7451,
+    "nombre": "Cathach",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/cathachdracula211zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Cathach entra en juego, puedes barajar 2 cartas de tu Cementerio en tu Mazo Castillo. Los Aliados oponentes pierden 1 a la fuerza mientras solo controles Aliados de raza Dragón.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:47:41.000Z",
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Cathach: Elige 2 cartas de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "type": [
+              "Aliado",
+              "Oro"
+            ],
+            "controller": "opponent"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Dragon"
+          }
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7452,
+    "nombre": "Draco Conjurador",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/dracoconjuradordracula311zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro sin Habilidad en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:46:29.000Z",
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Draco Conjurador: Elige un Oro de tu Mazo para poner en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7453,
+    "nombre": "Dragon de Magma",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragondemagmadracula411zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón de Magma entra en juego, destruye un Aliado oponente.",
+    "descripcion": "La tierra está enferma y su enfermedad se llama humanidad; entonces él será la cura.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:50:02.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Habilidad de Dragón de Magma: Elige un Aliado oponente para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7454,
+    "nombre": "Dragon de Plata",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/dragondeplatanueva511zon.webp",
+    "habilidad_texto_descriptivo": "Mientras Dragón de Plata esté en juego: en tu fase de vigilia, puedes elegir entre pagar 1 de oro para robar 1 carta; pagar 2 de oro para descartar 1 de tu oponente al azar; o pagar 3 de oro para que tu oponente bote 2 cartas. ",
+    "descripcion": "Mientras Dragón de Plata esté en juego: en tu fase de vigilia, puedes elegir entre pagar 1 de oro para robar 1 carta; pagar 2 de oro para descartar 1 de tu oponente al azar; o pagar 3 de oro para que tu oponente bote 2 cartas. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "dragonDePlataEffect",
+            "prompt": "Elige una habilidad de Dragón de Plata:",
+            "options": [
+              {
+                "id": "draw_card",
+                "cost": {
+                  "type": "payGold",
+                  "count": 1
+                },
+                "action": {
+                  "type": "drawCards",
+                  "count": 1
+                },
+                "description": "Pagar 1 Oro para robar 1 carta."
+              },
+              {
+                "id": "discard_opponent",
+                "cost": {
+                  "type": "payGold",
+                  "count": 2
+                },
+                "action": {
+                  "type": "discardRandomCard",
+                  "count": 1,
+                  "target": "opponent"
+                },
+                "description": "Pagar 2 Oros para que tu oponente descarte 1 carta al azar."
+              },
+              {
+                "id": "mill_opponent",
+                "cost": {
+                  "type": "payGold",
+                  "count": 3
+                },
+                "action": {
+                  "type": "millCards",
+                  "count": 2,
+                  "target": "opponent"
+                },
+                "description": "Pagar 3 Oros para que tu oponente bote 2 cartas."
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "game_message",
+          "message": "Habilidad de Dragón de Plata puesta en la pila."
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasGold",
+              "count": 1
+            }
+          ]
+        },
+        "description": "En tu fase de vigilia, elige entre pagar 1, 2 o 3 oros para diferentes efectos.",
+        "id_habilidad": "dragon_de_plata_ability"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7455,
+    "nombre": "Dragón Nival",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dragonnivaldracula611zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Dragón Nival entra en juego, deben ser destruidos todos los Aliados de fuerza 2 o menos.",
+    "descripcion": "El solitario señor de las alturas, hermano de las águilas y los lobos, tan sólo tiene un objetivo... defender su ancestral linaje, aunque para esto tenga que sacrificar su propia vida.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:51:05.000Z",
+    "fuerza": 3,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyAllMatching",
+          "query": {
+            "type": "Aliado",
+            "fuerza": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "controller": "any"
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7456,
+    "nombre": "Draig Ifanc",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/draigifancdracula711zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Draig Ifanc entra en juego, puedes robar una carta. Si Draig Ifanc es destruido o barajado del juego y sólo controlabas Aliados Dragón, puedes buscar un oro en tu Mazo Castillo y ponerlo en juego.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:45:12.000Z",
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Deseas activar la habilidad de Draig Ifanc para robar una carta?",
+          "options": [
+            {
+              "id": "draig_ifanc_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "draig_ifanc_decline",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        }
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayGold",
+          "prompt": "Elige un Oro de tu Mazo para poner en juego.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo",
+            "nameIsNot": "Dragones"
+          }
+        },
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isDestinationZone",
+              "zones": [
+                "cementerio",
+                "mazoCastillo"
+              ],
+              "excludeMethods": [
+                "placedOnBottom",
+                "placedOnTop"
+              ]
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Dragon"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7457,
+    "nombre": "Duque Godofredo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/duquegodofredodracula811zon.webp",
+    "habilidad_texto_descriptivo": "Mientras Duque Godofredo esté en juego, todos tus caballeros ganan + 1 a la fuerza.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:24:45.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "raza": "Caballero",
+            "type": "Aliado"
+          }
+        },
+        "trigger": "continuous"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7458,
+    "nombre": "Espada Larga",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/espadalargadracula911zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Espada Larga entra en juego, roba 2 cartas de tu Mazo Castillo. El portador de Espada Larga gana 1 a la fuerza.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:53:19.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7459,
+    "nombre": "Favor de la Corte",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/favordelacortedracula1011zon.webp",
+    "habilidad_texto_descriptivo": "Elige una carta oponente y devuelvela a su mano. Favor de la corte no Afecta oros. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "prompt": "Elige una carta oponente en juego (que no sea Oro) para devolver a su mano.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "description": "Elige una carta oponente y devuélvela a su mano. No afecta Oros.",
+        "id_habilidad": "favor_de_la_corte_effect"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7460,
+    "nombre": "Flecha Acida",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/flechasdelavadracula1111zon.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado oponente de Fuerza 2 o menos, Luego, roba una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "flecha_acida_effect",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de Fuerza 2 o menos para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "value": 2,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "alsoDraws": 1
+        },
+        "trigger": "onEnterPlay",
+        "description": "Destruye un Aliado oponente de Fuerza 2 o menos. Luego, roba una carta."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7461,
+    "nombre": "Guardia Gozosa",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/guardiagosozadracula1211zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Guardia Gozosa entra en juego un Aliado oponente pierde su habilidad y es destruido. Puedes destruir Guardián Gozosa barajar una carta de tu cementerio en tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "annulAndDestroyTarget",
+          "prompt": "Elige un Aliado oponente para quitarle su habilidad y destruirlo.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        }
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7462,
+    "nombre": "Guardia Real",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/guardiarealdracula1311zon.webp",
+    "habilidad_texto_descriptivo": "Guardia Real puede atacar cuando entra en juego. Si en un turno no ataca, debe ser Destruido en la fase final. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Guardia Real puede atacar cuando entra en juego."
+      },
+      {
+        "effect": {
+          "type": "destroySelf"
+        },
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Final"
+            },
+            {
+              "type": "isInZone",
+              "zone": "defense"
+            }
+          ]
+        },
+        "description": "Si en un turno no ataca, es destruido en la Fase Final.",
+        "id_habilidad": "guardia_real_destroy_if_defending",
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7463,
+    "nombre": "Sir Galahad",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirgalahaddracula1411zon.webp",
+    "habilidad_texto_descriptivo": "Sir Galahad puede atacar el turno que entra en juego. Si hace daño al Mazo castillo oponente, descartale una carta de la mano al azar. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Sir Galahad puede atacar el turno que entra en juego."
+      },
+      {
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Si hace daño al Mazo Castillo oponente, descártale una carta de la mano al azar.",
+        "id_habilidad": "galahad_damage_discard"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7464,
+    "nombre": "Sir Persival",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirpersivaldracula1511zon.webp",
+    "habilidad_texto_descriptivo": "Cuando Sir Pérsival entra en juego, baraja un Aliado oponente.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:33:48.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "Si lo ves a los ojos verás mil historias contadas a la luz de una fogata y el amor por una sola cosa: La Caballería.",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Elige un Aliado oponente para barajar en su mazo.",
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
   },
   {
     "id": 1585,

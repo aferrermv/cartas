@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.2.8",
+    "pack_version": "3.2.9",
     "habilidades": []
   },
   {
@@ -72714,7 +72714,7 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": [
+        "habilidades": [
       {
         "costs": [
           {
@@ -72742,6 +72742,11 @@
               "query": {
                 "raza": "Desafiante"
               }
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
             }
           ]
         },
@@ -111863,67 +111868,71 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Puede atacar cuando entra en juego."
-      },
-      {
-        "phase": "Principal",
-        "oncePerTurn": true,
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado",
-                "zone": "defense"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "type": "Aliado"
-              },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
-            }
-          ]
+  {
+    "inherent": [
+      "canAttackOnEnterPlay"
+    ],
+    "description": "Puede atacar cuando entra en juego."
+  },
+  {
+    "phase": "Principal",
+    "oncePerTurn": true,
+    "trigger": "activatable",
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": "field"
         },
-        "effect": {
-          "type": "moveAllyToAttackLine",
-          "target": {
-            "controller": "self"
+        {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "zone": "defense"
           },
-          "prompt": "Elige un Aliado en tu Línea de Defensa para mover a la Línea de Ataque.",
-          "canCancel": true,
-          "then": {
-            "type": "grantBuffToTarget",
-            "buff": {
-              "stat": "fuerza",
-              "value": 2
-            },
-            "duration": "startOfFinalPhase",
-            "target": {
-              "controller": "self",
-              "query": {
-                "type": "Aliado",
-                "isOther": true
-              }
-            },
-            "prompt": "Elige otro Aliado que controles para que gane 2 a la fuerza hasta la Fase Final.",
-            "canCancel": false
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      ]
+    },
+    "effect": {
+      "type": "moveAllyToAttackLine",
+      "target": {
+        "controller": "self"
+      },
+      "prompt": "Elige un Aliado en tu Línea de Defensa para mover a la Línea de Ataque.",
+      "canCancel": true,
+      "then": {
+        "type": "grantBuffToTarget",
+        "buff": {
+          "stat": "fuerza",
+          "value": 2
+        },
+        "duration": "startOfFinalPhase",
+        "target": {
+          "controller": "self",
+          "query": {
+            "type": "Aliado",
+            "isOther": true
           }
         },
-        "description": "Una vez por turno, puedes mover este u otro Aliado que controles de la linea de Defensa a la Linea de ataque para que otro aliado que controles gane 2 a la fuerza hasta la Fase Final.",
-        "id_habilidad": "loegaire_mac_neill_move_and_buff"
+        "prompt": "Elige otro Aliado que controles para que gane 2 a la fuerza hasta la Fase Final.",
+        "canCancel": false
       }
-    ],
+    },
+    "description": "Una vez por turno, puedes mover este u otro Aliado que controles de la linea de Defensa a la Linea de ataque para que otro aliado que controles gane 2 a la fuerza hasta la Fase Final.",
+    "id_habilidad": "loegaire_mac_neill_move_and_buff"
+  }
+],
     "tier": "medio"
   },
   {

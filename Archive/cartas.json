@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.3.0",
+    "pack_version": "3.3.1",
     "habilidades": []
   },
   {
@@ -113679,6 +113679,1350 @@
           "count": 1
         },
         "descripcion": "Al comienzo de tu Fase Final, roba 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 979,
+    "nombre": "Cara de Caballo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/caradecaballo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes botar 2 cartas para que tu oponente descarte 1 carta de su Mano. Luego, puedes buscar a cabeza de buey en tu Mazo Castillo y ponerlo en tu Mano.\n\n",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cara_de_caballo_enter_play",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "deckContains",
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "costs": [
+          {
+            "type": "millByCost",
+            "count": 2,
+            "optional": true,
+            "prompt": "¿Quieres botar 2 cartas de tu Mazo Castillo para que tu oponente descarte 1 carta de su Mano?"
+          }
+        ],
+        "effect": {
+          "type": "forceOpponentDiscard",
+          "count": 1,
+          "prompt": "Habilidad de Cara de Caballo: Elige 1 carta de tu Mano para descartar.",
+          "then": {
+            "effect": {
+              "type": "searchAndPutInHand",
+              "prompt": "Puedes buscar una copia de Cabeza de Buey en tu Mazo Castillo y ponerla en tu Mano.",
+              "canCancel": true,
+              "searchQuery": {
+                "nombre": "Cabeza de Buey",
+                "zone": "mazoCastillo"
+              }
+            }
+          }
+        },
+        "descripcion": "Cuando entra en juego, puedes botar 2 cartas para que tu oponente descarte 1 carta de su Mano. Luego, puedes buscar a Cabeza de Buey en tu Mazo Castillo y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 978,
+    "nombre": "Cabeza de Buey",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/cabezadebuey.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar 1 carta de tu Mano para barajar un Aliado que controle tu oponente de Coste 2 o menos en el Mazo Castillo de su dueño. Luego, puedes buscar a cara de caballo en tu Mazo Castillo y ponerlo en la parte superior de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cabeza_de_buey_enter_play",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerHasInHand",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                }
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "banishFromHand",
+            "count": 1,
+            "optional": true,
+            "prompt": "Elige 1 carta de tu Mano para desterrar y barajar un Aliado oponente."
+          }
+        ],
+        "effect": {
+          "type": "targetAndShuffle",
+          "count": 1,
+          "target": {
+            "controller": "opponent",
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 2,
+                "operator": "<="
+              }
+            }
+          },
+          "prompt": "Elige un Aliado oponente de Coste 2 o menos para barajarlo en su Mazo Castillo.",
+          "then": {
+            "effect": {
+              "type": "searchAndPlaceOnTop",
+              "prompt": "Puedes buscar una copia de Cara de Caballo en tu Mazo Castillo y ponerla en la parte superior.",
+              "canCancel": true,
+              "searchQuery": {
+                "nombre": "Cara de Caballo",
+                "zone": "mazoCastillo"
+              }
+            }
+          }
+        },
+        "descripcion": "Cuando entra en juego, puedes desterrar 1 carta de tu Mano para barajar un Aliado que controle tu oponente de Coste 2 o menos en el Mazo Castillo de su dueño. Luego, puedes buscar a Cara de Caballo en tu Mazo Castillo y ponerlo en la parte superior de tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 3435,
+    "nombre": "Dalai Lama",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/dalailama2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, destierra una carta del Cementerio oponente. Si esta carta esta en tu Cementerio, puedes desterrar otra carta de tu Cementerio y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "dalai_lama_enter_play",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra una carta del Cementerio oponente.",
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          }
+        }
+      },
+      {
+        "id_habilidad": "dalai_lama_graveyard_to_hand",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "isOther": true
+            },
+            "prompt": "Elige otra carta de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "description": "Si esta carta está en tu Cementerio, puedes desterrar otra carta de tu Cementerio y ponerlo en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 3453,
+    "nombre": "Heng-O",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/hengo.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mirar la Mano de tu oponente y descartarle un Talismán. Cuando sea barajado desde el juego, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "heng_o_enter_play",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes mirar la Mano de tu oponente y descartarle un Talismán.",
+        "effect": {
+          "type": "viewHandAndDiscard",
+          "prompt": "Mira la mano de tu oponente y elige un Talismán para descartar.",
+          "targetQuery": {
+            "type": "Talisman"
+          }
+        }
+      },
+      {
+        "id_habilidad": "heng_o_on_shuffled",
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "mazoCastillo"
+          ],
+          "excludeMethods": [
+            "placedOnBottom",
+            "placedOnTop"
+          ]
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Deseas robar 1 carta por la habilidad de Heng-O?",
+          "options": [
+            {
+              "id": "heng_o_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "heng_o_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "description": "Cuando sea barajado desde el juego, puedes robar 1 carta."
+      }
+    ]
+  },
+  {
+    "id": 3034,
+    "nombre": "Huxian",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/huxian.webp",
+    "habilidad_texto_descriptivo": "Hasta 2 veces por turno, puedes desterrar 2 cartas de tu Cementerio para que una carta en juego pierda su habilidad hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "huxian_annul_ability",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "twicePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 2,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige 2 cartas de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "effect": {
+          "type": "annulCardAbility",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "*"
+            },
+            "controller": "any"
+          },
+          "message": "Elige una carta en juego para que pierda su habilidad hasta la Fase Final.",
+          "duration": "endOfTurn"
+        },
+        "description": "Hasta 2 veces por turno, puedes desterrar 2 cartas de tu Cementerio para que una carta en juego pierda su habilidad hasta la Fase Final."
+      }
+    ]
+  },
+  {
+    "id": 980,
+    "nombre": "Meng po",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/mengpo.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener una meng po en juego. Cuando entra en juego, puedes jugar un Aliado de Coste 2 o menos del Cementerio oponente bajo tu control sin pagar su Coste. El Aliado jugado pierde su raza y gana la raza xian hasta que salga del juego.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "meng_po_unique",
+        "description": "Sólo puedes tener una Meng po en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "meng_po_enter_play",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Aliado de Coste 2 o menos del Cementerio oponente bajo tu control sin pagar su Coste. El Aliado jugado pierde su raza y gana la raza xian hasta que salga del juego.",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de coste 2 o menos del Cementerio oponente para jugar bajo tu control.",
+          "canCancel": true,
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "type": "Aliado",
+            "zone": "cementerio",
+            "controller": "opponent"
+          },
+          "modifications": {
+            "raza": "Xian"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 4835,
+    "nombre": "Nezha",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/nezha4.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, si solo controlas Xian, puedes desterrar una carta de tu Mano para robar 2 cartas de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "nezha_banish_to_draw",
+        "descripcion": "En tu Fase de Vigilia y una vez por turno, si solo controlas Xian, puedes desterrar una carta de tu Mano para robar 2 cartas de tu Mazo Castillo.",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Xian"
+              }
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "banishFromHand",
+            "count": 1,
+            "prompt": "Elige una carta de tu Mano para desterrar y robar 2 cartas.",
+            "optional": true
+          }
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": 4717,
+    "nombre": "Shenshu y Yulu",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/shenshuyyulu3.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, tu oponente bota 2 cartas de su Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "shenshu_y_yulu_mill",
+        "descripcion": "Una vez por turno, tu oponente bota 2 cartas de su Mazo Castillo.",
+        "trigger": "activatable",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3442,
+    "nombre": "Sun Wukong",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/sunwukong.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes desterrar 1 carta de tu Cementerio para que este Aliado sea Imbloqueable o gane 1 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "descripcion": "Puede atacar cuando entra en juego."
+      },
+      {
+        "id_habilidad": "sun_wukong_unblockable_or_buff",
+        "descripcion": "En tu Fase de Vigilia, una vez por turno, puedes desterrar 1 carta de tu Cementerio para que este Aliado sea Imbloqueable o gane 1 a la Fuerza hasta la Fase Final.",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige una carta de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige un efecto para Sun Wukong:",
+          "options": [
+            {
+              "id": "sun_wukong_unblockable",
+              "description": "Ser Imbloqueable hasta la Fase Final",
+              "action": {
+                "type": "grantKeywordToSelf",
+                "keyword": "unblockable",
+                "duration": "endOfTurn"
+              }
+            },
+            {
+              "id": "sun_wukong_buff",
+              "description": "Ganar 1 a la Fuerza hasta la Fase Final",
+              "action": {
+                "type": "applyBuffToSelf",
+                "buff": {
+                  "stat": "fuerza",
+                  "value": 1
+                },
+                "duration": "endOfTurn"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 3452,
+    "nombre": "Yu Huang",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/yuhuang2.webp",
+    "habilidad_texto_descriptivo": "Recuce su coste en 1 por cada Xian en juego. Cuando entra en juego, roba 1 carta.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "yu_huang_cost_reduction_1",
+        "descripcion": "Reduce su coste en 1 si hay al menos 1 Xian en juego.",
+        "trigger": "continuous",
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Xian",
+            "zone": "field",
+            "controller": "any"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "id_habilidad": "yu_huang_cost_reduction_2",
+        "descripcion": "Reduce su coste en 1 si hay al menos 2 Xian en juego.",
+        "trigger": "continuous",
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Xian",
+            "zone": "field",
+            "controller": "any"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "id_habilidad": "yu_huang_cost_reduction_3",
+        "descripcion": "Reduce su coste en 1 si hay al menos 3 Xian en juego.",
+        "trigger": "continuous",
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Xian",
+            "zone": "field",
+            "controller": "any"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "id_habilidad": "yu_huang_on_enter_draw",
+        "descripcion": "Cuando entra en juego, roba 1 carta.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 3171,
+    "nombre": "Santuario de Kashima",
+    "tipo": "Totem",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/santuario.webp",
+    "habilidad_texto_descriptivo": "Mientras este Tótem esté en juego, los Aliados que controles ganan 2 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "santuario_de_kashima_buff",
+        "descripcion": "Mientras este Tótem esté en juego, los Aliados que controles ganan 2 a la fuerza.",
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 3755,
+    "nombre": "Kyudo",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/kyudo2.webp",
+    "habilidad_texto_descriptivo": "Roba 3 cartas. Luego, destierra 1 carta de tu Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "kyudo_2_draw_then_banish",
+        "descripcion": "Roba 3 cartas. Luego, destierra 1 carta de tu Mano.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "drawThenBanishFromHand",
+          "drawCount": 3,
+          "banishCount": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": 981,
+    "nombre": "Mabu",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/mabu.webp",
+    "habilidad_texto_descriptivo": "Puedes jugar este talismán desde tu Cementerio. Si lo haces, destiérralo. Juega un tótem desde tu Cementerio sin pagar su Coste.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "mabu_play_totem",
+        "descripcion": "Juega un tótem desde tu Cementerio sin pagar su Coste.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio"
+          }
+        }
+      },
+      {
+        "id_habilidad": "mabu_play_from_graveyard",
+        "descripcion": "Puedes jugar este talismán desde tu Cementerio. Si lo haces, destiérralo. Juega un tótem desde tu Cementerio sin pagar su Coste.",
+        "description": "Puedes jugar este talismán desde tu Cementerio. Si lo haces, destiérralo. Juega un tótem desde tu Cementerio sin pagar su Coste.",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 4
+          },
+          {
+            "type": "banishSelf"
+          }
+        ],
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Elige un Tótem de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "cementerio"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 4335,
+    "nombre": "Xing Yi Quan",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/xingyiquan2.webp",
+    "habilidad_texto_descriptivo": "Única. Anula un Talismán de coste 3 o menos.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "xing_yi_quan_annul",
+        "descripcion": "Única. Anula un Talismán de coste 3 o menos.",
+        "trigger": "onOpponentPlayTalisman",
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "coste_oro": {
+              "value": 3,
+              "operator": "<="
+            }
+          }
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3745,
+    "nombre": "Dinastia Imperial",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/dinastiaimperial.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, si solo controlas Xian, puedes pagar este Oro para desterrar una carta del Cementerio oponente. Luego, puedes barajar una carta de tu Cementerio a tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "dinastia_imperial_activate",
+        "descripcion": "En tu Fase de Vigilia, si solo controlas Xian, puedes pagar este Oro para desterrar una carta del Cementerio oponente. Luego, puedes barajar una carta de tu Cementerio a tu Mazo Castillo.",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "cost": {
+          "type": "paySelfAsCost"
+        },
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "allControlledAlliesAre",
+              "query": {
+                "raza": "Xian"
+              }
+            }
+          ]
+        },
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "prompt": "Elige una carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "*"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": false,
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "cementerio",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+              "canCancel": true
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 4271,
+    "nombre": "Guan Ti",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/guanti.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño. Luego, tu oponente descarta 1 carta de su Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "guan_ti_enter_play",
+        "descripcion": "Cuando entra en juego, baraja un Aliado oponente en el Mazo Castillo de su dueño. Luego, tu oponente descarta 1 carta de su Mano.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente para barajar en el Mazo Castillo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": false,
+          "requiresChoice": true,
+          "then": {
+            "effect": {
+              "type": "forceOpponentDiscard",
+              "count": 1,
+              "prompt": "Habilidad de Guan Ti: Elige 1 carta de tu Mano para descartar."
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 3017,
+    "nombre": "Niu Wa",
+    "tipo": "Aliado",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/niuwa.webp",
+    "habilidad_texto_descriptivo": "Para que ataque descarta dos cartas de tu Mano.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede atacar normalmente."
+      },
+      {
+        "id_habilidad": "niu_wa_enable_attack",
+        "descripcion": "Para que ataque descarta dos cartas de tu Mano.",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 2,
+            "prompt": "Descarta 2 cartas de tu Mano para que Niu Wa pueda atacar este turno.",
+            "optional": false
+          }
+        ],
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "keyword": "nowCanAttack",
+          "duration": "endOfTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 4627,
+    "nombre": "Sha Heshang",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/shaheshang.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego puedes elegir de tu oponente una carta de Aliado de fuerza 2 o menos y barajala en su Mazo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "sha_heshang_enter_play",
+        "descripcion": "Cuando entra en juego puedes elegir de tu oponente una carta de Aliado de fuerza 2 o menos y barajala en su Mazo.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente de fuerza 2 o menos para barajar en su Mazo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "fuerza": {
+                "operator": "<=",
+                "value": 2
+              }
+            },
+            "controller": "opponent"
+          },
+          "canCancel": true,
+          "requiresChoice": true
+        }
+      }
+    ]
+  },
+  {
+    "id": 5007,
+    "nombre": "Kun",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/kun2.webp",
+    "habilidad_texto_descriptivo": "Descarta una carta de tu Mano y descarta una carta de tu oponente al azar una vez en tu turno.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "kun_discard_and_discard_random",
+        "descripcion": "Descarta una carta de tu Mano y descarta una carta de tu oponente al azar una vez en tu turno.",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "discardCard",
+            "count": 1,
+            "prompt": "Elige 1 carta de tu Mano para descartar como coste de Kun.",
+            "optional": false
+          }
+        ],
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        }
+      }
+    ]
+  },
+  {
+    "id": 4069,
+    "nombre": "Marca del Tigre",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/marcadeltigre2.webp",
+    "habilidad_texto_descriptivo": "Cancela la habilidad de una carta oponente.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "marca_del_tigre_annul_activate",
+        "descripcion": "Cancela la habilidad de una carta oponente.",
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "trigger": "onOpponentActivateAbility",
+        "effect": {
+          "type": "annulTriggeringAbility"
+        }
+      },
+      {
+        "id_habilidad": "marca_del_tigre_annul_play_ally",
+        "descripcion": "Cancela la habilidad de una carta oponente.",
+        "trigger": "onOpponentPlayAlly",
+        "effect": {
+          "type": "annulTriggeringAbility"
+        }
+      },
+      {
+        "id_habilidad": "marca_del_tigre_annul_play_weapon",
+        "descripcion": "Cancela la habilidad de una carta oponente.",
+        "trigger": "onOpponentPlayWeapon",
+        "effect": {
+          "type": "annulTriggeringAbility"
+        }
+      },
+      {
+        "id_habilidad": "marca_del_tigre_annul_play_totem",
+        "descripcion": "Cancela la habilidad de una carta oponente.",
+        "trigger": "onOpponentPlayTotem",
+        "effect": {
+          "type": "annulTriggeringAbility"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3690,
+    "nombre": "Xia Shi",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/xiashi.webp",
+    "habilidad_texto_descriptivo": "Los Aliados que controle tu oponente pierden su habilidad y 1 a la Fuerza, hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "xia_shi_annul_and_debuff_opponent_allies",
+        "descripcion": "Los Aliados que controle tu oponente pierden su habilidad y 1 a la Fuerza, hasta la Fase Final.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "annulAndDebuffAllOpponentAllies",
+          "value": -1,
+          "duration": "endOfTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3974,
+    "nombre": "Shen Yi",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/shenyi.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca una carta que no sea Oro en el Mazo Castillo oponente y destiérrala.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "shen_yi_enter_play_banish_from_opponent_deck",
+        "description": "Cuando entra en juego, busca una carta que no sea Oro en el Mazo Castillo oponente y destiérrala.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 1,
+          "prompt": "Busca una carta que no sea Oro en el Mazo Castillo oponente y destiérrala.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent",
+            "type_not_in": [
+              "Oro"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 4334,
+    "nombre": "Banquete Japones",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/primera_era/banquetejapones.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar esta carta, si controlas menos Oros que tu oponente. Busca un Oro sin habilidad en tu Mazo Castillo y ponlo en tu Zona de Oro pagado.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "banquete_japones_search_gold",
+        "description": "Sólo puedes jugar esta carta, si controlas menos Oros que tu oponente. Busca un Oro en tu Mazo Castillo y ponlo en tu Zona de Oro pagado.",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "controlsFewerGoldThanOpponent"
+        },
+        "condition": {
+          "type": "controlsFewerGoldThanOpponent"
+        },
+        "effect": {
+          "type": "searchAndPlayGold",
+          "destination": "paidGold",
+          "prompt": "Busca un Oro en tu Mazo Castillo y ponlo en tu Zona de Oro pagado.",
+          "searchQuery": {
+            "type": "Oro",
+            "zone": "mazoCastillo"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": 3440,
+    "nombre": "Fu Hsi",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/primera_era/fuhsi2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tu oponente bota 1 carta de su Mazo Castillo por cada carta en su Destierro.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "fu_hsi_enter_play_mill",
+        "descripcion": "Cuando entra en juego, tu oponente bota 1 carta de su Mazo Castillo por cada carta en su Destierro.",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "player": "opponent",
+            "source": "banishSize"
+          },
+          "target": "opponent"
+        }
       }
     ]
   }

@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.3.2",
+    "pack_version": "3.3.3",
     "habilidades": []
   },
   {
@@ -7472,7 +7472,8 @@
         "condition": {
           "type": "isInZone",
           "zone": "field"
-        }
+        },
+        "costPaidBeforeResponse": true
       },
       {
         "cost": {
@@ -42093,7 +42094,8 @@
         "condition": {
           "type": "isInZone",
           "zone": "field"
-        }
+        },
+        "costPaidBeforeResponse": true
       },
       {
         "cost": {
@@ -57194,7 +57196,7 @@
             },
             "controller": "any"
           },
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable",
         "phase": [
@@ -68819,7 +68821,10 @@
     "salud": null,
     "habilidades": [
       {
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "TargetAndAnullAbilitieandloserace",
           "prompt": "Habilidad de Dalriada: Elige un Aliado para que pierda su habilidad y su raza hasta la Fase Final.",
@@ -104605,7 +104610,10 @@
     "habilidades": [
       {
         "id": "scarlet_annul_and_cannot_block",
-        "phase": "Principal",
+         "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "effect": {
           "type": "annulCardAbility",
           "target": {

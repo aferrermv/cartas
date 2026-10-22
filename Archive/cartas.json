@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.3.3",
+    "pack_version": "3.3.4",
     "habilidades": []
   },
   {
@@ -58514,12 +58514,12 @@
   },
   {
     "id": 1165,
-    "nombre": "Totem Maldito",
+    "nombre": "Totem Celta",
     "tipo": "Totem",
-    "coste_oro": 5,
-    "imagen_url": "/img/store/cartas/totemaldito.webp",
-    "habilidad_texto_descriptivo": "En respuesta a un ataque oponente y sólo una vez por turno, puedes elegir un Aliado en su línea de defensa para bloquear su ataque. Si no es destruido, al final del turno devuélvelo a la línea de defensa del oponente. ",
-    "descripcion": "En respuesta a un ataque oponente y sólo una vez por turno, puedes elegir un Aliado en su línea de defensa para bloquear su ataque. Si no es destruido, al final del turno devuélvelo a la línea de defensa del oponente. ",
+    "coste_oro": 4,
+    "imagen_url": "/img/nuevasCartas/MYL-210.webp",
+    "habilidad_texto_descriptivo": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
+    "descripcion": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta. Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas. ",
     "expansion": "Espada Sagrada",
     "rareza": "false",
     "fecha_creacion": null,
@@ -58532,30 +58532,59 @@
     "salud": null,
     "habilidades": [
       {
-        "phase": "Bloqueo",
+        "id_habilidad": "totem_celta_name_type",
+        "trigger": "onEnterPlay",
         "effect": {
-          "type": "gainControlOfAlly",
-          "prompt": "Elige un Aliado oponente para ganar su control hasta la Fase Final.",
-          "target": {
-            "query": {
-              "type": "Aliado"
+          "type": "nameCardType",
+          "prompt": "Habilidad de Tótem Celta: Nombra un tipo de carta.",
+          "options": [
+            {
+              "id": "Aliado",
+              "description": "Aliado",
+              "value": "Aliado"
             },
-            "controller": "opponent"
-          },
-          "duration": "endOfTurn",
-          "modifications": {
-            "addKeywords": [
-              "canBlockThisTurn"
-            ]
-          }
+            {
+              "id": "Talisman",
+              "description": "Talismán",
+              "value": "Talisman"
+            },
+            {
+              "id": "Arma",
+              "description": "Arma",
+              "value": "Arma"
+            },
+            {
+              "id": "Totem",
+              "description": "Tótem",
+              "value": "Totem"
+            },
+            {
+              "id": "Oro",
+              "description": "Oro",
+              "value": "Oro"
+            }
+          ]
         },
+        "description": "Cuando el Tótem Celta entre en juego, nombra un tipo de carta."
+      },
+      {
+        "id_habilidad": "totem_celta_mill_on_play_named_type",
         "trigger": "activatable",
+        "listensForEvent": "onOpponentPlayCard",
+        "resolvesInstantly": true,
         "condition": {
           "type": "isInZone",
           "zone": "field"
         },
-        "description": "Gana el control de un Aliado oponente hasta la Fase Final.",
-        "oncePerTurn": true
+        "eventCondition": {
+          "matchesNamedCardType": true
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "description": "Mientras esté en juego, siempre que tu oponente juegue ese tipo, debe botar 2 cartas."
       }
     ],
     "tier": "muy bajo"
@@ -87879,8 +87908,8 @@
     "nombre": "Chon-chon",
     "tipo": "Talisman",
     "coste_oro": 2,
-    "imagen_url": "/img/primera_era/chonchon4.webp",
-    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en Guerra de Talismanes. Mueve de la línea de ataque a la línea de defensa a todos los Aliados oponentes. Luego, tu oponente bota tantas cartas como Aliados se hayan movido a la línea de defensa.",
+    "imagen_url": "/img/nuevascartas/chonchon2.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este talismán en el turno de tu oponente. Mueve a la línea de defensa los Aliados que controle tu oponente que hayan sido declarados atacantes este turno luego, tu oponente bota tantas cartas como Aliados se hayan movido a su línea de defensa.\n\n",
     "descripcion": null,
     "expansion": "El Reto",
     "rareza": "Cortesano",
@@ -87895,6 +87924,10 @@
     "habilidades": [
       {
         "effect": {
+          "type": "regroupAlliesAndCount",
+          "target": {
+            "controller": "opponent"
+          },
           "then": {
             "effect": {
               "type": "millCards",
@@ -87903,18 +87936,22 @@
               },
               "target": "opponent"
             }
-          },
-          "type": "regroupAlliesAndCount",
-          "target": {
-            "controller": "opponent"
           }
         },
         "trigger": "onEnterPlay",
-        "descripcion": "Sólo puedes jugar este Talismán en Guerra de Talismanes. Mueve de la línea de ataque a la línea de defensa a todos los Aliados oponentes. Luego, tu oponente bota tantas cartas como Aliados se hayan movido a la línea de defensa.",
-        "id_habilidad": "chonchon2_regroup_and_mill",
+        "description": "Sólo puedes jugar este talismán en el turno de tu oponente y en Guerra de Talismanes. Mueve a la línea de defensa los Aliados que controle tu oponente que hayan sido declarados atacantes este turno luego, tu oponente bota tantas cartas como Aliados se hayan movido a su línea de defensa.",
+        "id_habilidad": "chonchon_regroup_and_mill",
         "play_condition": {
-          "type": "currentPhase",
-          "phase": "Guerra de Talismanes"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isOpponentTurn"
+            },
+            {
+              "type": "currentPhase",
+              "phase": "Guerra de Talismanes"
+            }
+          ]
         }
       }
     ]
@@ -104610,7 +104647,7 @@
     "habilidades": [
       {
         "id": "scarlet_annul_and_cannot_block",
-         "phase": [
+        "phase": [
           "Principal",
           "Guerra de Talismanes"
         ],
@@ -118264,5 +118301,755 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 3381,
+    "nombre": "Rueda del Año",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/primera_era/ruedadelano.webp",
+    "habilidad_texto_descriptivo": "Única. Cada vez que tu oponente active la habilidad de un Oro que controle debe botar 1 carta de su Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "rueda_del_ano_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "goldReserve",
+            "paidGold"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "rueda_del_ano_mill_on_gold_ability",
+        "descripcion": "Cada vez que tu oponente active la habilidad de un Oro que controle debe botar 1 carta de su Mazo Castillo.",
+        "trigger": "activatable",
+        "listensForEvent": "onOpponentActivateGoldAbility",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2401,
+    "nombre": "Tornado de Rosas",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/tornadoderosas.webp",
+    "habilidad_texto_descriptivo": "Elige un Aliado en la línea de ataque oponente para que no haga daño de combate a tu Mazo Castillo este turno. Luego, baraja tantas cartas de tu Cementerio en tu Mazo Castillo como Coste tenga ese Aliado.\n\n",
+    "descripcion": null,
+    "expansion": "Base",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "discardSelf"
+          },
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "preventCombatDamageAndShuffleFromGraveyardByCost",
+          "prompt": "Elige un Aliado en la línea de ataque oponente para que no haga daño de combate a tu Mazo Castillo este turno:"
+        },
+        "trigger": "onDamageAssignment",
+        "condition": {
+          "type": "isInZone",
+          "zone": "hand"
+        },
+        "descripcion": "Elige un Aliado en la línea de ataque oponente para que no haga daño de combate a tu Mazo Castillo este turno. Luego, baraja tantas cartas de tu Cementerio en tu Mazo Castillo como Coste tenga ese Aliado.",
+        "id_habilidad": "tornado_de_rosas_damage_response",
+        "play_condition": {
+          "type": "isResponseCard"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2400,
+    "nombre": "Sigenot",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/sigenot.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mostrar la carta inferior de tu Mazo Castillo. Si es una carta de Coste 3 o menos que no sea talismán, puedes jugarla sin pagar su Coste. De lo contrario, envía esa carta a tu Cementerio.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "revealBottomAndPlayFreeOrGraveyard",
+          "prompt": "¿Deseas mostrar la carta inferior de tu Mazo Castillo para intentar jugarla gratis?"
+        },
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "descripcion": "Cuando entra en juego, puedes mostrar la carta inferior de tu Mazo Castillo. Si es una carta de Coste 3 o menos que no sea talismán, puedes jugarla sin pagar su Coste. De lo contrario, envía esa carta a tu Cementerio.",
+        "id_habilidad": "sigenot_reveal_bottom_play_free"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2399,
+    "nombre": "Rey Laurin",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/reylaurin.webp",
+    "habilidad_texto_descriptivo": "Si controlas 1 o más Aliados, puedes jugar este Aliado desde tu Cementerio pagando su Coste. Cuando entra en juego, puedes botar tantas cartas del Mazo Castillo oponente como otros Aliados controles.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "rey_laurin_graveyard_play",
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 3
+        },
+        "phase": "Principal",
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "field"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "descripcion": "Si controlas 1 o más Aliados, puedes jugar este Aliado desde tu Cementerio pagando su Coste."
+      },
+      {
+        "id_habilidad": "rey_laurin_mill_enter_play",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "field",
+                "isOther": true
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "¿Deseas botar cartas del Mazo Castillo oponente?",
+          "options": [
+            {
+              "id": "rey_laurin_mill_accept",
+              "description": "Sí, botar cartas",
+              "action": {
+                "type": "millCards",
+                "count": {
+                  "type": "fromCardCount",
+                  "query": {
+                    "type": "Aliado",
+                    "zone": "field",
+                    "controller": "self",
+                    "isOther": true
+                  }
+                },
+                "target": "opponent"
+              }
+            },
+            {
+              "id": "rey_laurin_mill_decline",
+              "description": "No, gracias",
+              "action": {
+                "type": "doNothing"
+              }
+            }
+          ]
+        },
+        "descripcion": "Cuando entra en juego, puedes botar tantas cartas del Mazo Castillo oponente como otros Aliados controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2398,
+    "nombre": "Eggerich",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/eggerich.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes poner una carta de tu Mano en la parte inferior de tu Mazo Castillo. Luego, puedes robar 1 carta.\n\n",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "eggerich_bottom_draw",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "placeFromHandToBottomAndDraw",
+          "prompt": "Elige 1 carta de tu Mano para poner en la parte inferior de tu Mazo Castillo y robar 1 carta.",
+          "minCount": 1,
+          "maxCount": 1,
+          "canCancel": true
+        },
+        "description": "Una vez por turno, puedes poner una carta de tu Mano en la parte inferior de tu Mazo Castillo. Luego, puedes robar 1 carta.",
+        "habilidad_texto_descriptivo": "Una vez por turno, puedes poner una carta de tu Mano en la parte inferior de tu Mazo Castillo. Luego, puedes robar 1 carta."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4016,
+    "nombre": "Lechuza Lunar",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/lechuzalunar.webp",
+    "habilidad_texto_descriptivo": "Cada vez que otro Faerie salga del juego, tu oponente bota 1 carta de su Mazo Castillo. Puedes destruir otra carta que no sea Oro para prevenir que este Aliado salga del juego.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "lechuza_lunar_mill_on_faerie_leave",
+        "trigger": "activatable",
+        "listensForEvent": "onAllyLeavePlay",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": "Aliado",
+            "raza": "Faerie",
+            "isOther": true
+          }
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Cada vez que otro Faerie salga del juego, tu oponente bota 1 carta de su Mazo Castillo.",
+        "habilidad_texto_descriptivo": "Cada vez que otro Faerie salga del juego, tu oponente bota 1 carta de su Mazo Castillo."
+      },
+      {
+        "id_habilidad": "lechuza_lunar_prevent_leave",
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "zone": "field",
+            "notType": "Oro",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige otra carta que no sea Oro que controles para destruir y prevenir que Lechuza Lunar salga del juego.",
+            "target": {
+              "controller": "self",
+              "query": {
+                "notType": "Oro",
+                "isOther": true
+              }
+            }
+          }
+        ],
+        "effect": {
+          "type": "prevent"
+        },
+        "description": "Puedes destruir otra carta que no sea Oro para prevenir que este Aliado salga del juego.",
+        "habilidad_texto_descriptivo": "Puedes destruir otra carta que no sea Oro para prevenir que este Aliado salga del juego."
+      }
+    ]
+  },
+  {
+    "id": 2402,
+    "nombre": "Wieland",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/wieland.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla. Cuando sea destruido, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla.\n\n",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "wieland_enter_banish_from_deck",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 1,
+          "prompt": "Elige una carta de Coste 2 o menos del Mazo Castillo oponente para desterrarla.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent",
+            "notType": "Oro",
+            "coste_oro": {
+              "operator": "<=",
+              "value": 2
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla.",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla."
+      },
+      {
+        "id_habilidad": "wieland_destroy_banish_from_deck",
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 1,
+          "prompt": "Elige una carta de Coste 2 o menos del Mazo Castillo oponente para desterrarla.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent",
+            "notType": "Oro",
+            "coste_oro": {
+              "operator": "<=",
+              "value": 2
+            }
+          }
+        },
+        "description": "Cuando sea destruido, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla.",
+        "habilidad_texto_descriptivo": "Cuando sea destruido, puedes buscar una carta de Coste 2 o menos en el Mazo Castillo oponente y desterrarla."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1166,
+    "nombre": "Totem de Bossus",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl211.webp",
+    "habilidad_texto_descriptivo": "En cada fase de agrupar, tu oponente destierra 1 carta de su cementerio. ",
+    "descripcion": "En cada fase de agrupar, tu oponente destierra 1 carta de su cementerio. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "totem_de_bossus_agrupacion_force_banish",
+        "trigger": "onEndOfTurn",
+        "condition": {
+          "type": "playerDoesNotHaveRestriction",
+          "restrictionType": "skipPhase",
+          "phase": "Agrupacion"
+        },
+        "effect": {
+          "type": "forceOpponentBanishFromGraveyard",
+          "count": 1,
+          "prompt": "Habilidad de Totem de Bossus: Elige 1 carta de tu Cementerio para desterrar."
+        },
+        "description": "En cada fase de agrupar, tu oponente destierra 1 carta de su cementerio.",
+        "habilidad_texto_descriptivo": "En cada fase de agrupar, tu oponente destierra 1 carta de su cementerio."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1492,
+    "nombre": "Jupiter",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/myl644.webp",
+    "habilidad_texto_descriptivo": "Cuando Júpiter entra en juego, puedes buscar hasta 2 Aliados de Raza Olímpico en tu Mazo Castillo y ponerlos en tu mano.",
+    "descripcion": "Cuando Júpiter entra en juego, puedes buscar hasta 2 Aliados de Raza Olímpico en tu Mazo Castillo y ponerlos en tu mano.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Olimpico",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "jupiter_enter_play_search_olimpicos",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "count": 2,
+          "minCount": 0,
+          "canCancel": true,
+          "prompt": "Habilidad de Júpiter: Elige hasta 2 Aliados de Raza Olímpico en tu Mazo Castillo para poner en tu mano.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "type": "Aliado",
+            "raza": "Olimpico"
+          }
+        },
+        "description": "Cuando Júpiter entra en juego, puedes buscar hasta 2 Aliados de Raza Olímpico en tu Mazo Castillo y ponerlos en tu mano.",
+        "habilidad_texto_descriptivo": "Cuando Júpiter entra en juego, puedes buscar hasta 2 Aliados de Raza Olímpico en tu Mazo Castillo y ponerlos en tu mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2403,
+    "nombre": "Hidra Del Caos",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/hydradelcaos.webp",
+    "habilidad_texto_descriptivo": "Hidra del Caos es Indesterrable. En tu Fase de Vigilia, una vez por turno, si controlas menos Aliados que tu oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Hidra del Caos es Indesterrable."
+      },
+      {
+        "id_habilidad": "hidra_del_caos_shuffle_graveyard",
+        "phase": "Principal",
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "controlsFewerAlliesThanOpponent"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Hidra Del Caos: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, si controlas menos Aliados que tu oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1530,
+    "nombre": "Yelmo de Legionario",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/yelmodelegionario.webp",
+    "habilidad_texto_descriptivo": "Solo puede ser portada por Aliados de Raza Heroe. El portador gana 2 a la fuerza. En tu Fase Final, si controlas 3 o mas Aliados, puedes activar Yelmo de Legionario para que tu oponente bote 3 cartas.",
+    "descripcion": "Yelmo de Legionario sólo puede ser portada por un Aliado de Raza Héroe. En respuesta a que tu oponente tenga 5 o menos cartas en su Mazo Castillo, puedes desterrar Yelmo de Legionario para que tu oponente bote las cartas.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "restrictions": {
+          "canEquipWeapon": {
+            "query": {
+              "raza": "Heroe"
+            }
+          }
+        },
+        "description": "Solo puede ser portada por Aliados de Raza Heroe."
+      },
+      {
+        "id_habilidad": "yelmo_de_legionario_mill_final_phase",
+        "phase": "Final",
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 3,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "description": "En tu Fase Final, si controlas 3 o mas Aliados, puedes activar Yelmo de Legionario para que tu oponente bote 3 cartas."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1594,
+    "nombre": "Maza de Bronce",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl786.webp",
+    "habilidad_texto_descriptivo": "El portador de Maza de Bronce gana 1 a la fuerza. Una vez por turno, puedes barajar un Aliado de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "El portador de Maza de Bronce gana 1 a la fuerza. Una vez por turno, puedes barajar un Aliado de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "maza_de_bronce_shuffle_ally",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Habilidad de Maza de Bronce: Elige un Aliado de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "description": "Una vez por turno, puedes barajar un Aliado de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1360,
+    "nombre": "Sisifo el Hechicero",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl498.webp",
+    "habilidad_texto_descriptivo": "Sísifo el Hechicero es Imbloqueable. En respuesta a que Sisifo el Hechicero sea destruido o desterrado, barájalo en tu Mazo Castillo.",
+    "descripcion": "Sísifo el Hechicero es Imbloqueable. En respuesta a que Sisifo el Hechicero sea destruido o desterrado, barájalo en tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Sísifo el Hechicero es Imbloqueable."
+      },
+      {
+        "id_habilidad": "sisifo_shuffle_on_destroy_or_banish",
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio",
+            "destierro"
+          ]
+        },
+        "effect": {
+          "type": "shuffleSelfIntoDeck"
+        },
+        "resolvesInstantly": true,
+        "description": "En respuesta a que Sisifo el Hechicero sea destruido o desterrado, barájalo en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1660,
+    "nombre": "Ty Newydd",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl883.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, sólo una vez por turno, puedes ver las 3 cartas superiores de tu Mazo Castillo y devolverlas en el orden que quieras.",
+    "descripcion": "En tu Fase de Vigilia, sólo una vez por turno, puedes ver las 3 cartas superiores de tu Mazo Castillo y devolverlas en el orden que quieras.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "ty_newydd_reorder_top_deck",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "lookAndReorderTopDeck",
+          "count": 3,
+          "prompt": "Mira las 3 primeras cartas de tu Mazo Castillo y reordénalas como quieras.",
+          "fromZone": "mazoCastillo"
+        },
+        "description": "En tu Fase de Vigilia, sólo una vez por turno, puedes ver las 3 cartas superiores de tu Mazo Castillo y devolverlas en el orden que quieras."
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

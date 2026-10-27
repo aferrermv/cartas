@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.3.7",
+    "pack_version": "3.3.8",
     "habilidades": []
   },
   {
@@ -4990,64 +4990,54 @@
     "salud": null,
     "habilidades": [
       {
-        "id": "cuchulain_salvation",
-        "effect": {
-          "type": "destroyTarget",
-          "target": {
-            "zone": "field",
-            "query": {
-              "isOther": true,
-              "type": "Aliado"
-            },
-            "player": "self",
-            "message": "Elige un Aliado para destruir y salvar a Cuchulain."
-          }
-        },
-        "condition": {
-          "type": "playerControls",
-          "query": {
-            "not": {
-              "id": "self"
-            },
-            "type": "Aliado"
-          }
-        },
+        "id_habilidad": "cuchulain_salvation",
         "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
-        "listensForEvent": "onBeforeDestroyed",
-        "triggeringPlayer": "self"
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "cuchulain_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 2
-        },
-        "trigger": "activatable",
+        "trigger": "onBeforeLeave",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio"
+          ]
+        },
+        "cost": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige uno de tus Aliados para destruir y salvar a Cuchulain.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          }
+        },
+        "effect": {
+          "type": "prevent"
+        }
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Cuchulain: ¿Quieres robar 2 cartas?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
+              "id": "cuchulain_draw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
             },
             {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
+              "id": "cuchulain_no_draw",
+              "action": {},
+              "description": "No robar"
             }
           ]
         },
+        "trigger": "onDealCombatDamageToDeck",
         "description": "Si Cuchulain hace daño al Mazo Castillo oponente, puedes robar 2 cartas.",
-        "oncePerTurn": true,
-        "id_habilidad": "cuchulain_draw_card_activatable"
+        "id_habilidad": "cuchulain_combat_damage_draw"
       }
     ]
   },
@@ -5320,15 +5310,7 @@
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true
-            },
-            {
-              "phase": "Final",
               "effect": {
                 "type": "searchAndShuffleIntoDeck",
                 "zone": "cementerio",
@@ -5339,22 +5321,8 @@
                 "prompt": "Hiciste daño con Ave de Hera. ¿Deseas barajar una carta de tu Cementerio en tu Mazo Castillo?",
                 "canCancel": true
               },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
-                  {
-                    "type": "isInZone",
-                    "zone": "field"
-                  },
-                  {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
-                  }
-                ]
-              },
-              "description": "Si esta carta hizo daño de combate este turno, puedes barajar una carta de tu Cementerio en tu Mazo.",
-              "oncePerTurn": true
+              "description": "Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+              "id_habilidad": "ave_hera_damage_shuffle"
             }
           ]
         },
@@ -5374,8 +5342,9 @@
             }
           ]
         },
-        "description": "Paga 3 Oros para convertir a Ave de Hera en un Aliado de fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, en tu Fase Final puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
-        "canPayWithSelf": true
+        "description": "En tu Fase de Vigilia, puedes pagar 3 Oros para convertir a Ave de Hera en un Aliado de coste y fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "canPayWithSelf": true,
+        "id_habilidad": "ave_de_hera_transform"
       }
     ]
   },
@@ -6927,50 +6896,44 @@
         ]
       },
       {
-        "id": "orcos_set_damage_marker",
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true
-      },
-      {
-        "cost": {
-          "type": "millCards",
-          "count": 1,
-          "prompt": "Bota la primera carta de tu Mazo Castillo para robar una carta.",
-          "target": "self"
-        },
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "playerControls",
+          "query": {
+            "raza": "Sombra",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Orcos: ¿Deseas botar una carta para robar una carta?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Sombra",
-                "type": "Aliado"
+              "id": "orcos_mill_and_draw",
+              "action": {
+                "type": "millCards",
+                "count": 1,
+                "target": "self",
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                }
               },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
+              "description": "Botar 1 carta y robar 1 carta"
+            },
+            {
+              "id": "orcos_pass",
+              "action": {},
+              "description": "No activar"
             }
           ]
         },
-        "oncePerTurn": true
+        "description": "Cuando hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Sombra, puedes botar una carta para robar una carta.",
+        "id_habilidad": "orcos_damage_mill_and_draw"
       }
     ]
   },
@@ -7713,18 +7676,10 @@
         ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true
-      },
-      {
-        "phase": "Final",
         "effect": {
           "type": "searchAndPutInHand",
-          "prompt": "Elige un Aliado de raza Heroe de coste 2 o menos para poner en tu mano.",
+          "prompt": "Elige un Aliado de raza Héroe de coste 2 o menos para poner en tu mano.",
           "canCancel": true,
           "searchQuery": {
             "cost": {
@@ -7736,12 +7691,8 @@
             "zone": "mazoCastillo"
           }
         },
-        "trigger": "activatable",
-        "condition": {
-          "type": "hasMarker",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "oncePerTurn": true
+        "description": "Si Rey Minos hace daño al Mazo Castillo oponente, puedes buscar un Aliado de raza Héroe de coste 2 o menos en tu Mazo Castillo y ponerlo en tu mano.",
+        "id_habilidad": "rey_minos_search_on_damage"
       }
     ]
   },
@@ -7813,50 +7764,42 @@
         ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "teseo_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado en juego para destruir.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "any"
-          }
-        },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "playerControls",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Teseo de Atenas: ¿Deseas destruir un Aliado en juego?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Heroe",
-                "type": "Aliado"
+              "id": "teseo_destroy_ally",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado en juego para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "any"
+                }
               },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
+              "description": "Destruir un Aliado en juego"
+            },
+            {
+              "id": "teseo_no_destroy",
+              "action": {},
+              "description": "No destruir"
             }
           ]
         },
-        "oncePerTurn": true,
+        "description": "Si Teseo de Atenas hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Héroe, puedes destruir un Aliado en juego.",
         "id_habilidad": "teseo_destroy_on_damage"
       }
     ]
@@ -10163,33 +10106,24 @@
         "inherent": [
           "unblockable",
           "canAttackOnEnterPlay"
-        ],
-        "description": "Imbloqueable, Puede atacar cuando entra en juego."
+        ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "nuada_set_damage_marker"
-      },
-      {
         "effect": {
           "type": "chooseOne",
-          "prompt": "Habilidad de Nuada: Debes destruir uno de tus Aliados o botar 3 cartas.",
+          "prompt": "Habilidad de Nuada Brazo de Plata: Elige un coste a pagar por hacer daño.",
           "options": [
             {
               "id": "nuada_destroy_ally",
               "action": {
                 "type": "destroyTarget",
-                "prompt": "Elige un Aliado que controles para destruir.",
+                "prompt": "Elige uno de tus otros Aliados para destruir.",
                 "target": {
                   "query": {
-                    "type": "Aliado"
+                    "type": "Aliado",
+                    "isOther": true
                   },
-                  "isOther": true,
                   "controller": "self"
                 }
               },
@@ -10215,31 +10149,8 @@
             }
           ]
         },
-        "trigger": "onPhaseStart",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "currentPhase",
-              "phase": "Final"
-            },
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "isPlayerTurn"
-            }
-          ]
-        },
-        "description": "Cuando hace daño al mazo castillo oponente, al inicio de la Fase Final, debes destruir uno de tus Aliados o botar 3 cartas.",
-        "oncePerTurn": true,
-        "id_habilidad": "nuada_end_of_turn_choice",
-        "resolvesInstantly": true
+        "description": "Cuando hace daño al mazo castillo oponente, debes destruir uno de tus Aliados o botar 3 cartas.",
+        "id_habilidad": "nuada_damage_choice"
       }
     ]
   },
@@ -11629,16 +11540,7 @@
         "description": "Puede atacar cuando entra en juego."
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "las_lilim_set_damage_marker"
-      },
-      {
-        "phase": "Final",
         "effect": {
           "type": "chooseOne",
           "prompt": "Habilidad de Las Lilim: Elige un efecto.",
@@ -11660,25 +11562,15 @@
                 "target": "opponent"
               },
               "description": "Tu oponente descarta 1 carta al azar."
-            }
-          ]
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
             },
             {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
+              "id": "lilim_pass",
+              "action": {},
+              "description": "No activar"
             }
           ]
         },
-        "description": "Cuando hace daño al Mazo Castillo oponente, en la Fase Final puedes elegir entre que tu oponente bote 2 cartas o que descarte una de su mano.",
-        "oncePerTurn": true,
+        "description": "Cuando hace daño al Mazo Castillo oponente, puedes elegir entre que tu oponente bote 2 cartas o que descarte una de su mano.",
         "id_habilidad": "las_lilim_damage_choice"
       }
     ]
@@ -24186,7 +24078,7 @@
           ],
           "target": {
             "query": {
-              "race": "Cazador",
+              "raza": "Cazador",
               "type": "Aliado"
             },
             "isOther": true,
@@ -40301,64 +40193,54 @@
     "salud": null,
     "habilidades": [
       {
-        "id": "cuchulain_salvation",
-        "effect": {
-          "type": "destroyTarget",
-          "target": {
-            "zone": "field",
-            "query": {
-              "isOther": true,
-              "type": "Aliado"
-            },
-            "player": "self",
-            "message": "Elige un Aliado para destruir y salvar a Cuchulain."
-          }
-        },
-        "condition": {
-          "type": "playerControls",
-          "query": {
-            "not": {
-              "id": "self"
-            },
-            "type": "Aliado"
-          }
-        },
+        "id_habilidad": "cuchulain_salvation",
         "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
-        "listensForEvent": "onBeforeDestroyed",
-        "triggeringPlayer": "self"
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "cuchulain_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 2
-        },
-        "trigger": "activatable",
+        "trigger": "onBeforeLeave",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio"
+          ]
+        },
+        "cost": {
+          "type": "destroyTarget",
+          "count": 1,
+          "prompt": "Elige uno de tus Aliados para destruir y salvar a Cuchulain.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "controller": "self"
+          }
+        },
+        "effect": {
+          "type": "prevent"
+        }
+      },
+      {
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Cuchulain: ¿Quieres robar 2 cartas?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
+              "id": "cuchulain_draw_2",
+              "action": {
+                "type": "drawCards",
+                "count": 2
+              },
+              "description": "Robar 2 cartas"
             },
             {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
+              "id": "cuchulain_no_draw",
+              "action": {},
+              "description": "No robar"
             }
           ]
         },
+        "trigger": "onDealCombatDamageToDeck",
         "description": "Si Cuchulain hace daño al Mazo Castillo oponente, puedes robar 2 cartas.",
-        "oncePerTurn": true,
-        "id_habilidad": "cuchulain_draw_card_activatable"
+        "id_habilidad": "cuchulain_combat_damage_draw"
       }
     ],
     "tier": "bajo"
@@ -42138,50 +42020,44 @@
         ]
       },
       {
-        "id": "orcos_set_damage_marker",
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true
-      },
-      {
-        "cost": {
-          "type": "millCards",
-          "count": 1,
-          "prompt": "Bota la primera carta de tu Mazo Castillo para robar una carta.",
-          "target": "self"
-        },
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "playerControls",
+          "query": {
+            "raza": "Sombra",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Orcos: ¿Deseas botar una carta para robar una carta?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Sombra",
-                "type": "Aliado"
+              "id": "orcos_mill_and_draw",
+              "action": {
+                "type": "millCards",
+                "count": 1,
+                "target": "self",
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                }
               },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
+              "description": "Botar 1 carta y robar 1 carta"
+            },
+            {
+              "id": "orcos_pass",
+              "action": {},
+              "description": "No activar"
             }
           ]
         },
-        "oncePerTurn": true
+        "description": "Cuando hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Sombra, puedes botar una carta para robar una carta.",
+        "id_habilidad": "orcos_damage_mill_and_draw"
       }
     ],
     "tier": "medio"
@@ -43482,50 +43358,42 @@
         ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "teseo_set_damage_marker"
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado en juego para destruir.",
-          "target": {
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "any"
-          }
-        },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "playerControls",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Teseo de Atenas: ¿Deseas destruir un Aliado en juego?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Heroe",
-                "type": "Aliado"
+              "id": "teseo_destroy_ally",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado en juego para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "any"
+                }
               },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
+              "description": "Destruir un Aliado en juego"
+            },
+            {
+              "id": "teseo_no_destroy",
+              "action": {},
+              "description": "No destruir"
             }
           ]
         },
-        "oncePerTurn": true,
+        "description": "Si Teseo de Atenas hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Héroe, puedes destruir un Aliado en juego.",
         "id_habilidad": "teseo_destroy_on_damage"
       }
     ],
@@ -51180,33 +51048,24 @@
         "inherent": [
           "unblockable",
           "canAttackOnEnterPlay"
-        ],
-        "description": "Imbloqueable, Puede atacar cuando entra en juego."
+        ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "nuada_set_damage_marker"
-      },
-      {
         "effect": {
           "type": "chooseOne",
-          "prompt": "Habilidad de Nuada: Debes destruir uno de tus Aliados o botar 3 cartas.",
+          "prompt": "Habilidad de Nuada Brazo de Plata: Elige un coste a pagar por hacer daño.",
           "options": [
             {
               "id": "nuada_destroy_ally",
               "action": {
                 "type": "destroyTarget",
-                "prompt": "Elige un Aliado que controles para destruir.",
+                "prompt": "Elige uno de tus otros Aliados para destruir.",
                 "target": {
                   "query": {
-                    "type": "Aliado"
+                    "type": "Aliado",
+                    "isOther": true
                   },
-                  "isOther": true,
                   "controller": "self"
                 }
               },
@@ -51232,31 +51091,8 @@
             }
           ]
         },
-        "trigger": "onPhaseStart",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "currentPhase",
-              "phase": "Final"
-            },
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "isPlayerTurn"
-            }
-          ]
-        },
-        "description": "Cuando hace daño al mazo castillo oponente, al inicio de la Fase Final, debes destruir uno de tus Aliados o botar 3 cartas.",
-        "oncePerTurn": true,
-        "id_habilidad": "nuada_end_of_turn_choice",
-        "resolvesInstantly": true
+        "description": "Cuando hace daño al mazo castillo oponente, debes destruir uno de tus Aliados o botar 3 cartas.",
+        "id_habilidad": "nuada_damage_choice"
       }
     ],
     "tier": "medio"
@@ -53190,50 +53026,44 @@
         ]
       },
       {
-        "id": "orcos_set_damage_marker",
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true
-      },
-      {
-        "cost": {
-          "type": "millCards",
-          "count": 1,
-          "prompt": "Bota la primera carta de tu Mazo Castillo para robar una carta.",
-          "target": "self"
-        },
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "playerControls",
+          "query": {
+            "raza": "Sombra",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Orcos: ¿Deseas botar una carta para robar una carta?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerControls",
-              "query": {
-                "raza": "Sombra",
-                "type": "Aliado"
+              "id": "orcos_mill_and_draw",
+              "action": {
+                "type": "millCards",
+                "count": 1,
+                "target": "self",
+                "then": {
+                  "effect": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                }
               },
-              "amount": 2,
-              "comparison": "greaterOrEqual"
+              "description": "Botar 1 carta y robar 1 carta"
+            },
+            {
+              "id": "orcos_pass",
+              "action": {},
+              "description": "No activar"
             }
           ]
         },
-        "oncePerTurn": true
+        "description": "Cuando hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Sombra, puedes botar una carta para robar una carta.",
+        "id_habilidad": "orcos_damage_mill_and_draw"
       }
     ],
     "tier": "medio"
@@ -62242,15 +62072,7 @@
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true
-            },
-            {
-              "phase": "Final",
               "effect": {
                 "type": "searchAndShuffleIntoDeck",
                 "zone": "cementerio",
@@ -62261,22 +62083,8 @@
                 "prompt": "Hiciste daño con Ave de Hera. ¿Deseas barajar una carta de tu Cementerio en tu Mazo Castillo?",
                 "canCancel": true
               },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
-                  {
-                    "type": "isInZone",
-                    "zone": "field"
-                  },
-                  {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
-                  }
-                ]
-              },
-              "description": "Si esta carta hizo daño de combate este turno, puedes barajar una carta de tu Cementerio en tu Mazo.",
-              "oncePerTurn": true
+              "description": "Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+              "id_habilidad": "ave_hera_damage_shuffle"
             }
           ]
         },
@@ -62296,8 +62104,9 @@
             }
           ]
         },
-        "description": "Paga 3 Oros para convertir a Ave de Hera en un Aliado de fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, en tu Fase Final puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
-        "canPayWithSelf": true
+        "description": "En tu Fase de Vigilia, puedes pagar 3 Oros para convertir a Ave de Hera en un Aliado de coste y fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "canPayWithSelf": true,
+        "id_habilidad": "ave_de_hera_transform"
       }
     ],
     "tier": "medio"
@@ -62341,15 +62150,7 @@
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true
-            },
-            {
-              "phase": "Final",
               "effect": {
                 "type": "searchAndShuffleIntoDeck",
                 "zone": "cementerio",
@@ -62360,22 +62161,8 @@
                 "prompt": "Hiciste daño con Ave de Hera. ¿Deseas barajar una carta de tu Cementerio en tu Mazo Castillo?",
                 "canCancel": true
               },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
-                  {
-                    "type": "isInZone",
-                    "zone": "field"
-                  },
-                  {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
-                  }
-                ]
-              },
-              "description": "Si esta carta hizo daño de combate este turno, puedes barajar una carta de tu Cementerio en tu Mazo.",
-              "oncePerTurn": true
+              "description": "Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+              "id_habilidad": "ave_hera_damage_shuffle"
             }
           ]
         },
@@ -62395,8 +62182,9 @@
             }
           ]
         },
-        "description": "Paga 3 Oros para convertir a Ave de Hera en un Aliado de fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, en tu Fase Final puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
-        "canPayWithSelf": true
+        "description": "En tu Fase de Vigilia, puedes pagar 3 Oros para convertir a Ave de Hera en un Aliado de coste y fuerza 3 hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "canPayWithSelf": true,
+        "id_habilidad": "ave_de_hera_transform"
       }
     ],
     "tier": "medio"
@@ -65963,38 +65751,28 @@
         "id_habilidad": "lautaro_enter_play_shuffle"
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "lautaro_set_damage_marker"
-      },
-      {
-        "phase": "Final",
         "effect": {
-          "type": "drawCards",
-          "count": 1,
-          "optional": true
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
+          "type": "chooseOne",
+          "prompt": "Habilidad de Lautaro: ¿Deseas robar una carta de tu Mazo?",
+          "options": [
             {
-              "type": "isInZone",
-              "zone": "field"
+              "id": "lautaro_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
             },
             {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
+              "id": "lautaro_pass",
+              "action": {},
+              "description": "No robar"
             }
           ]
         },
         "description": "Si hace daño al Mazo oponente puedes robar una carta de tu Mazo.",
-        "oncePerTurn": true,
-        "id_habilidad": "lautaro_draw_card_activatable"
+        "id_habilidad": "lautaro_damage_draw"
       }
     ]
   },
@@ -70865,33 +70643,24 @@
         "inherent": [
           "unblockable",
           "canAttackOnEnterPlay"
-        ],
-        "description": "Imbloqueable, Puede atacar cuando entra en juego."
+        ]
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "nuada_set_damage_marker"
-      },
-      {
         "effect": {
           "type": "chooseOne",
-          "prompt": "Habilidad de Nuada: Debes destruir uno de tus Aliados o botar 3 cartas.",
+          "prompt": "Habilidad de Nuada Brazo de Plata: Elige un coste a pagar por hacer daño.",
           "options": [
             {
               "id": "nuada_destroy_ally",
               "action": {
                 "type": "destroyTarget",
-                "prompt": "Elige un Aliado que controles para destruir.",
+                "prompt": "Elige uno de tus otros Aliados para destruir.",
                 "target": {
                   "query": {
-                    "type": "Aliado"
+                    "type": "Aliado",
+                    "isOther": true
                   },
-                  "isOther": true,
                   "controller": "self"
                 }
               },
@@ -70917,31 +70686,8 @@
             }
           ]
         },
-        "trigger": "onPhaseStart",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "currentPhase",
-              "phase": "Final"
-            },
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "isPlayerTurn"
-            }
-          ]
-        },
-        "description": "Cuando hace daño al mazo castillo oponente, al inicio de la Fase Final, debes destruir uno de tus Aliados o botar 3 cartas.",
-        "oncePerTurn": true,
-        "id_habilidad": "nuada_end_of_turn_choice",
-        "resolvesInstantly": true
+        "description": "Cuando hace daño al mazo castillo oponente, debes destruir uno de tus Aliados o botar 3 cartas.",
+        "id_habilidad": "nuada_damage_choice"
       }
     ],
     "tier": "medio"
@@ -73662,6 +73408,9 @@
       {
         "costs": [
           {
+            "type": "nameRace"
+          },
+          {
             "type": "payGold",
             "count": 2,
             "prompt": "Paga 2 Oros para transformar a Milano Negro."
@@ -73669,26 +73418,18 @@
         ],
         "phase": "Principal",
         "effect": {
-          "type": "milanoNegroTransform",
+          "type": "transformSelf",
           "duration": "endOfTurn",
           "transformTo": {
             "tipo": "Aliado",
             "fuerza": 2,
             "coste_oro": 2,
-            "canAttackOnEnterPlay": true
+            "canAttackOnEnterPlay": true,
+            "raza": "$namedRace"
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true,
-              "id_habilidad": "milano_negro_set_marker"
-            },
-            {
-              "phase": "Final",
               "effect": {
                 "type": "chooseOne",
                 "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
@@ -73726,26 +73467,16 @@
                       "minCount": 0
                     },
                     "description": "Cementerio Oponente"
-                  }
-                ]
-              },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
-                  {
-                    "type": "isInZone",
-                    "zone": "field"
                   },
                   {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
+                    "id": "milano_pass",
+                    "action": {},
+                    "description": "No desterrar"
                   }
                 ]
               },
-              "description": "Si este Aliado hizo daño de combate este turno, puedes desterrar hasta 2 cartas de un Cementerio.",
-              "oncePerTurn": true,
-              "id_habilidad": "milano_negro_final_activatable"
+              "description": "Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
+              "id_habilidad": "milano_damage_banish"
             }
           ]
         },
@@ -73756,7 +73487,8 @@
             {
               "type": "isInZone",
               "zone": [
-                "goldReserve"
+                "goldReserve",
+                "paidGold"
               ]
             },
             {
@@ -73765,84 +73497,8 @@
           ]
         },
         "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
-        "id_habilidad": "milano_negro_transform_main"
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "milano_negro_set_marker",
-        "isTemporaryAbility": true
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "chooseOne",
-          "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
-          "options": [
-            {
-              "id": "banish_self_graveyard",
-              "action": {
-                "type": "chooseAndBanish",
-                "count": 2,
-                "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
-                "target": {
-                  "zone": "cementerio",
-                  "query": {
-                    "type": "*"
-                  },
-                  "controller": "self"
-                },
-                "minCount": 0
-              },
-              "description": "Tu Cementerio"
-            },
-            {
-              "id": "banish_opponent_graveyard",
-              "action": {
-                "type": "chooseAndBanish",
-                "count": 2,
-                "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
-                "target": {
-                  "zone": "cementerio",
-                  "query": {
-                    "type": "*"
-                  },
-                  "controller": "opponent"
-                },
-                "minCount": 0
-              },
-              "description": "Cementerio Oponente"
-            }
-          ]
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            }
-          ]
-        },
-        "description": "Si este Aliado hizo daño de combate este turno, puedes desterrar hasta 2 cartas de un Cementerio.",
-        "oncePerTurn": true,
-        "id_habilidad": "milano_negro_final_activatable",
-        "isTemporaryAbility": true
-      },
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "isTemporaryAbility": true
+        "id_habilidad": "milano_negro_transform_main",
+        "canPayWithSelf": true
       }
     ],
     "tier": "medio"
@@ -77770,45 +77426,38 @@
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true,
-              "id_habilidad": "ave_bennu_set_marker"
-            },
-            {
-              "cost": {
-                "type": "banishSelf"
-              },
-              "phase": "Final",
               "effect": {
-                "type": "searchAndPlayGold",
-                "prompt": "Busca un Oro en tu Mazo Castillo para ponerlo en tu zona de Oro Pagado.",
-                "destination": "paidGold",
-                "searchQuery": {
-                  "type": "Oro",
-                  "zone": "mazoCastillo"
-                }
-              },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
+                "type": "chooseOne",
+                "prompt": "Habilidad de Ave Bennu: ¿Deseas desterrarlo para buscar un Oro?",
+                "options": [
                   {
-                    "type": "isInZone",
-                    "zone": "field"
+                    "id": "bennu_banish_and_search",
+                    "action": {
+                      "type": "banishSelf",
+                      "then": {
+                        "effect": {
+                          "type": "searchAndPlayGold",
+                          "prompt": "Busca un Oro en tu Mazo Castillo para ponerlo en tu zona de Oro Pagado.",
+                          "destination": "paidGold",
+                          "searchQuery": {
+                            "type": "Oro",
+                            "zone": "mazoCastillo"
+                          }
+                        }
+                      }
+                    },
+                    "description": "Desterrarlo y buscar un Oro"
                   },
                   {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
+                    "id": "bennu_pass",
+                    "action": {},
+                    "description": "No activar"
                   }
                 ]
               },
               "description": "Si hace daño al Mazo Castillo oponente, puedes desterrarlo para buscar un Oro en tu Mazo Castillo y ponerlo en tu zona de Oro Pagado.",
-              "oncePerTurn": true,
-              "id_habilidad": "ave_bennu_final_activatable"
+              "id_habilidad": "ave_bennu_damage_search"
             }
           ]
         },
@@ -79830,37 +79479,28 @@
           },
           "addAbilities": [
             {
-              "effect": {
-                "type": "addMarkerToSelf",
-                "marker": "dealtCombatDamageThisTurn"
-              },
               "trigger": "onDealCombatDamageToDeck",
-              "isHidden": true,
-              "id_habilidad": "ave_ardea_set_damage_marker"
-            },
-            {
-              "phase": "Final",
               "effect": {
-                "type": "drawCards",
-                "count": 1
-              },
-              "trigger": "activatable",
-              "condition": {
-                "type": "and",
-                "conditions": [
+                "type": "chooseOne",
+                "prompt": "Habilidad de Ave Ardea: ¿Deseas robar una carta?",
+                "options": [
                   {
-                    "type": "isInZone",
-                    "zone": "field"
+                    "id": "ardea_draw",
+                    "action": {
+                      "type": "drawCards",
+                      "count": 1
+                    },
+                    "description": "Robar 1 carta"
                   },
                   {
-                    "type": "hasMarker",
-                    "marker": "dealtCombatDamageThisTurn"
+                    "id": "ardea_pass",
+                    "action": {},
+                    "description": "No robar"
                   }
                 ]
               },
-              "description": "Si Ave Ardea hizo daño al Mazo Castillo oponente, puedes robar una carta.",
-              "oncePerTurn": true,
-              "id_habilidad": "ave_ardea_draw_card_activatable"
+              "description": "Si hace daño al Mazo Castillo oponente, puedes robar una carta.",
+              "id_habilidad": "ave_ardea_damage_draw"
             }
           ]
         },
@@ -79884,47 +79524,6 @@
         "oncePerTurn": true,
         "id_habilidad": "ave_ardea_transform_main",
         "canPayWithSelf": true
-      },
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "isTemporaryAbility": true
-      },
-      {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
-        "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "ave_ardea_set_damage_marker",
-        "isTemporaryAbility": true
-      },
-      {
-        "phase": "Final",
-        "effect": {
-          "type": "drawCards",
-          "count": 1
-        },
-        "trigger": "activatable",
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            }
-          ]
-        },
-        "description": "Si Ave Ardea hizo daño al Mazo Castillo oponente, puedes robar una carta.",
-        "oncePerTurn": true,
-        "id_habilidad": "ave_ardea_draw_card_activatable",
-        "isTemporaryAbility": true
       }
     ],
     "tier": "muy bajo"
@@ -82629,16 +82228,7 @@
         "description": "Puede atacar cuando entra en juego."
       },
       {
-        "effect": {
-          "type": "addMarkerToSelf",
-          "marker": "dealtCombatDamageThisTurn"
-        },
         "trigger": "onDealCombatDamageToDeck",
-        "isHidden": true,
-        "id_habilidad": "ogier_el_danes_set_damage_marker"
-      },
-      {
-        "phase": "Final",
         "effect": {
           "type": "chooseAndBanish",
           "count": 1,
@@ -82652,31 +82242,16 @@
           },
           "canCancel": true
         },
-        "trigger": "activatable",
         "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "field"
-            },
-            {
-              "type": "hasMarker",
-              "marker": "dealtCombatDamageThisTurn"
-            },
-            {
-              "type": "playerHasInGraveyard",
-              "controller": "opponent",
-              "query": {
-                "type": "*"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            }
-          ]
+          "type": "playerHasInGraveyard",
+          "controller": "opponent",
+          "query": {
+            "type": "*"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
         },
         "description": "Cuando hace daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
-        "oncePerTurn": true,
         "id_habilidad": "ogier_el_danes_banish_on_damage"
       }
     ]
@@ -121554,6 +121129,218 @@
           "prompt": "Nombra un Aliado. Ese Aliado y todas sus copias no pueden atacar o bloquear mientras Nehebaku esté en juego."
         },
         "description": "Cuando entra en juego, nombra un Aliado. Ese Aliado y todas sus copias no pueden atacar o bloquear mientras este Aliado esté en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2415,
+    "nombre": "Sir Gwain",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirgwain.webp",
+    "habilidad_texto_descriptivo": "Mientras este Aliado este en juego, tus Caballeros pueden atacar cuando entran en juego.\n\n",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "sir_gwain_aura_can_attack_on_enter",
+        "trigger": "continuous",
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "raza": "Caballero"
+            },
+            "controller": "self"
+          },
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "description": "Mientras este Aliado esté en juego, tus Caballeros pueden atacar cuando entran en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2166,
+    "nombre": "Shay",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1534.webp",
+    "habilidad_texto_descriptivo": "Solo puedes robar cartas de la parte inferior de tu Mazo Castillo. Una vez por turno, puedes mirar las 3 cartas inferiores de tu Mazo Castillo y ordenarlas. En tu Fase de Vigilia, una vez por turno, puedes pagar 2 Oros o destruir otro Aliado que controles para robar 1 carta y desterrar 1 carta de un Cementerio.",
+    "descripcion": "Solo puedes robar cartas de la parte inferior de tu Mazo Castillo. Una vez por turno, puedes mirar las 3 cartas inferiores de tu Mazo Castillo y ordenarlas. En tu Fase de Vigilia, una vez por turno, puedes pagar 2 Oros o destruir otro Aliado que controles para robar 1 carta y desterrar 1 carta de un Cementerio.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Eterno",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "shay_draw_from_bottom_rule",
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "self",
+          "restriction": {
+            "type": "drawFromBottom"
+          }
+        },
+        "description": "Solo puedes robar cartas de la parte inferior de tu Mazo Castillo."
+      },
+      {
+        "id_habilidad": "shay_choice_ability",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "twicePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes mirar y ordenar las 3 cartas inferiores de tu Mazo Castillo, o pagar 2 Oros / destruir otro Aliado para robar 1 carta y desterrar 1 carta del Cementerio oponente.",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Elige una habilidad de Shay:",
+          "options": [
+            {
+              "id": "shay_reorder_bottom",
+              "description": "Mirar las 3 cartas inferiores de tu Mazo Castillo y ordenarlas.",
+              "action": {
+                "type": "lookAndReorderBottomDeck",
+                "count": 3,
+                "prompt": "Mira las 3 cartas inferiores de tu Mazo Castillo y ordénalas como quieras."
+              }
+            },
+            {
+              "id": "shay_draw_and_banish",
+              "description": "Pagar 2 Oros o destruir otro Aliado para robar 1 carta y desterrar 1 carta de un Cementerio.",
+              "action": {
+                "type": "chooseOne",
+                "prompt": "Elige el coste para robar y desterrar:",
+                "options": [
+                  {
+                    "id": "shay_cost_pay_gold",
+                    "description": "Pagar 2 Oros",
+                    "action": {
+                      "type": "payGold",
+                      "count": 2,
+                      "then": {
+                        "effect": {
+                          "type": "drawCards",
+                          "count": 1,
+                          "then": {
+                            "effect": {
+                              "type": "chooseAndBanish",
+                              "count": 1,
+                              "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+                              "target": {
+                                "zone": "cementerio",
+                                "query": {
+                                  "type": "*"
+                                },
+                                "controller": "opponent"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "id": "shay_cost_destroy_ally",
+                    "description": "Destruir otro Aliado que controles",
+                    "action": {
+                      "type": "destroyTarget",
+                      "count": 1,
+                      "prompt": "Elige otro Aliado que controles para destruir como coste.",
+                      "target": {
+                        "query": {
+                          "type": "Aliado",
+                          "isOther": true
+                        },
+                        "controller": "self"
+                      },
+                      "then": {
+                        "effect": {
+                          "type": "drawCards",
+                          "count": 1,
+                          "then": {
+                            "effect": {
+                              "type": "chooseAndBanish",
+                              "count": 1,
+                              "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+                              "target": {
+                                "zone": "cementerio",
+                                "query": {
+                                  "type": "*"
+                                },
+                                "controller": "opponent"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2065,
+    "nombre": "Destruir Mercado",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/myl1408.webp",
+    "habilidad_texto_descriptivo": "Tu oponente no puede usar sus cartas de Oro en su siguiente Fase de Vigilia.",
+    "descripcion": "Tu oponente no puede usar sus cartas de Oro en su siguiente Fase de Vigilia.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "destruir_mercado_block_gold",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "duration": "untilEndOfOpponentTurn",
+          "restriction": {
+            "type": "cannotUseGold",
+            "phase": "Principal"
+          }
+        },
+        "description": "Tu oponente no puede usar sus cartas de Oro en su siguiente Fase de Vigilia."
       }
     ],
     "tier": "muy bajo"

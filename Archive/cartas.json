@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.3.8",
+    "pack_version": "3.3.9",
     "habilidades": []
   },
   {
@@ -28667,36 +28667,6 @@
     ]
   },
   {
-    "id": 1056,
-    "nombre": "Sir Owen",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/sirowen1056.webp",
-    "habilidad_texto_descriptivo": "Cuando Sir Owen entra en juego, roba 3 cartas y descarta 2. ",
-    "descripcion": "Cuando Sir Owen entra en juego, roba 3 cartas y descarta 2. ",
-    "expansion": "Espada Sagrada",
-    "rareza": "false",
-    "fecha_creacion": null,
-    "fuerza": 2,
-    "raza": "Caballero",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "drawThenDiscard",
-          "drawCount": 3,
-          "discardCount": 2
-        },
-        "trigger": "onEnterPlay",
-        "description": "Cuando Sir Owen entra en juego, roba 3 cartas y descarta 2."
-      }
-    ]
-  },
-  {
     "id": 1059,
     "nombre": "Lord Fergus Macloud",
     "tipo": "Aliado",
@@ -30540,68 +30510,6 @@
         "listensForEvent": "onAllyEnterPlay",
         "triggeringPlayer": "self",
         "resolvesInstantly": true
-      }
-    ]
-  },
-  {
-    "id": 1016,
-    "nombre": "Oberon",
-    "tipo": "Aliado",
-    "coste_oro": 4,
-    "imagen_url": "/img/nuevascartas/oberon1016.webp",
-    "habilidad_texto_descriptivo": "Solo puedes tener un Oberon en juego. En tu fase de vigilia y una vez por turno, puedes pagar el coste de un Aliado oponente y destruirlo. ",
-    "descripcion": "Solo puedes tener un Oberon en juego. En tu fase de vigilia y una vez por turno, puedes pagar el coste de un Aliado oponente y destruirlo. ",
-    "expansion": "Espada Sagrada",
-    "rareza": "false",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Faerie",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "descripcion": "Solo puedes tener un Oberon en juego.",
-        "id_habilidad": "oberon_unique",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "attack",
-            "defense"
-          ]
-        }
-      },
-      {
-        "costs": [
-          {
-            "type": "payTargetCost",
-            "prompt": "Elige un Aliado oponente para pagar su coste y destruirlo.",
-            "target": {
-              "query": {
-                "type": "Aliado"
-              },
-              "controller": "opponent"
-            },
-            "rememberAs": "preselectedTarget"
-          }
-        ],
-        "phase": "Principal",
-        "effect": {
-          "type": "destroyTarget",
-          "target": {
-            "fromContext": "preselectedTarget"
-          }
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "descripcion": "En tu fase de vigilia y una vez por turno, puedes pagar el coste de un Aliado oponente y destruirlo.",
-        "oncePerTurn": true,
-        "id_habilidad": "oberon_pay_and_destroy"
       }
     ]
   },
@@ -32513,32 +32421,6 @@
         "description": "Si ataca, debe ser destruido en la Fase Final.",
         "id_habilidad": "dregon_attack_consequence",
         "resolvesInstantly": true
-      }
-    ]
-  },
-  {
-    "id": 1132,
-    "nombre": "Draco Aguila",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/dracoaguila1132.webp",
-    "habilidad_texto_descriptivo": "Draco Águila se considera imbloqueable. ",
-    "descripcion": "Draco Águila se considera imbloqueable. ",
-    "expansion": "Espada Sagrada",
-    "rareza": "false",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Dragon",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "inherent": [
-          "unblockable"
-        ]
       }
     ]
   },

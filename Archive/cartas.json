@@ -77426,38 +77426,45 @@
           },
           "addAbilities": [
             {
-              "trigger": "onDealCombatDamageToDeck",
               "effect": {
-                "type": "chooseOne",
-                "prompt": "Habilidad de Ave Bennu: ¿Deseas desterrarlo para buscar un Oro?",
-                "options": [
+                "type": "addMarkerToSelf",
+                "marker": "dealtCombatDamageThisTurn"
+              },
+              "trigger": "onDealCombatDamageToDeck",
+              "isHidden": true,
+              "id_habilidad": "ave_bennu_set_marker"
+            },
+            {
+              "cost": {
+                "type": "banishSelf"
+              },
+              "phase": "Final",
+              "effect": {
+                "type": "searchAndPlayGold",
+                "prompt": "Busca un Oro en tu Mazo Castillo para ponerlo en tu zona de Oro Pagado.",
+                "destination": "paidGold",
+                "searchQuery": {
+                  "type": "Oro",
+                  "zone": "mazoCastillo"
+                }
+              },
+              "trigger": "activatable",
+              "condition": {
+                "type": "and",
+                "conditions": [
                   {
-                    "id": "bennu_banish_and_search",
-                    "action": {
-                      "type": "banishSelf",
-                      "then": {
-                        "effect": {
-                          "type": "searchAndPlayGold",
-                          "prompt": "Busca un Oro en tu Mazo Castillo para ponerlo en tu zona de Oro Pagado.",
-                          "destination": "paidGold",
-                          "searchQuery": {
-                            "type": "Oro",
-                            "zone": "mazoCastillo"
-                          }
-                        }
-                      }
-                    },
-                    "description": "Desterrarlo y buscar un Oro"
+                    "type": "isInZone",
+                    "zone": "field"
                   },
                   {
-                    "id": "bennu_pass",
-                    "action": {},
-                    "description": "No activar"
+                    "type": "hasMarker",
+                    "marker": "dealtCombatDamageThisTurn"
                   }
                 ]
               },
               "description": "Si hace daño al Mazo Castillo oponente, puedes desterrarlo para buscar un Oro en tu Mazo Castillo y ponerlo en tu zona de Oro Pagado.",
-              "id_habilidad": "ave_bennu_damage_search"
+              "oncePerTurn": true,
+              "id_habilidad": "ave_bennu_final_activatable"
             }
           ]
         },
@@ -121208,7 +121215,7 @@
       },
       {
         "id_habilidad": "shay_choice_ability",
-        "trigger": "activatable",
+        "trigger": "activatable_with_costs",
         "phase": "Principal",
         "twicePerTurn": true,
         "condition": {
@@ -121344,5 +121351,958 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 2416,
+    "nombre": "Sir Owen",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirowen15.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando entra en juego, puedes robar 3 cartas. Luego, destierra una carta de tu mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "sir_owen_draw_then_banish",
+        "trigger": "onEnterPlay",
+        "optional": true,
+        "effect": {
+          "type": "drawThenBanishFromHand",
+          "drawCount": 3,
+          "banishCount": 1
+        },
+        "description": "Cuando entra en juego, puedes robar 3 cartas. Luego, destierra una carta de tu mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2417,
+    "nombre": "Sir Galehodin",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirgalehodin14.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Sir Galehodin en juego. Mientras este Aliado este en juego, jugar Aliados Sir te cuesta 1 Oro menos.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Sir Galehodin en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "sir_galehodin_cost_reduction",
+        "trigger": "continuous",
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "nameContains": "Sir"
+            },
+            "controller": "self"
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "description": "Mientras este Aliado esté en juego, jugar Aliados Sir te cuesta 1 Oro menos."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2418,
+    "nombre": "Draco de Inverness",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/21dracodeinverness1.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando es declarado atacante si controlas 3 o mas Aliados de raza Dragon, este Aliado gana 2 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerControls",
+          "amount": 3,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "tipo": "Aliado",
+            "raza": "Dragon"
+          }
+        },
+        "effect": {
+          "type": "applyBuffToSelf",
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Cuando es declarado atacante si controlas 3 o mas Aliados de raza Dragon, este Aliado gana 2 a la fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2419,
+    "nombre": "Goblin Berserker",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/23goblinberserker2.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando entra en juego, puedes desterrar cualquier cantidad de cartas Goblin de tu Cementerio. Por cada carta desterrada, este Aliado gana 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "onEnterPlay",
+        "costs": [
+          {
+            "type": "banishFromGraveyardAsCost",
+            "prompt": "Elige cualquier cantidad de cartas Goblin de tu Cementerio para desterrar.",
+            "minCount": 0,
+            "canCancel": true,
+            "rememberAs": "banishedCount",
+            "query": {
+              "nameContains": "Goblin"
+            }
+          }
+        ],
+        "effect": {
+          "type": "applyBuffToSelfByCostContext",
+          "stat": "fuerza",
+          "multiplier": 1,
+          "duration": "endOfTurn",
+          "costContextProperty": "banishedCount"
+        },
+        "description": "Cuando entra en juego, puedes desterrar cualquier cantidad de cartas Goblin de tu Cementerio. Por cada carta desterrada, este Aliado gana 1 a la fuerza hasta la Fase Final.",
+        "id_habilidad": "goblin_berserker_enter_play_buff"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2420,
+    "nombre": "Oberon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/31oberon3.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Oberon en juego. Cuando entra en juego, puedes barajar una carta en juego que no sea Oro. Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes tener un Oberon en juego.",
+        "id_habilidad": "oberon_neww_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "canCancel": true,
+          "requiresChoice": true
+        },
+        "description": "Cuando entra en juego, puedes barajar una carta en juego que no sea Oro.",
+        "id_habilidad": "oberon_neww_enter_play_shuffle"
+      },
+      {
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Oberon:",
+            "options": [
+              {
+                "id": "pay_gold",
+                "action": {
+                  "type": "payGold",
+                  "count": 1
+                },
+                "description": "Pagar 1 Oro"
+              },
+              {
+                "id": "destroy_ally",
+                "action": {
+                  "type": "destroyTarget",
+                  "count": 1,
+                  "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
+                  "target": {
+                    "query": {
+                      "type": "Aliado"
+                    },
+                    "controller": "self"
+                  }
+                },
+                "description": "Destruir un Aliado que controles"
+              }
+            ]
+          }
+        ],
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 1
+        },
+        "description": "Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
+        "id_habilidad": "oberon_neww_draw_discard"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2421,
+    "nombre": "Atalanta la Amazona",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/43atalantalaamazona4.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 1 o mas Armas, este Aliado es Indestructible. Cuando entra en juego, puedes jugar un Arma de tu Mano sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "hasWeaponEquipped": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "indestructible"
+        },
+        "description": "Si controlas 1 o mas Armas, este Aliado es Indestructible."
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayFree",
+          "prompt": "Elige un Arma de tu Mano para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Arma",
+            "zone": "hand"
+          },
+          "canCancel": true
+        },
+        "description": "Cuando entra en juego, puedes jugar un Arma de tu Mano sin pagar su coste.",
+        "id_habilidad": "atalanta_enter_play_play_weapon"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2422,
+    "nombre": "Telestris, la Amazona",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/45telestris5.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta Amazona o una Reina Hipólita en tu Mazo Castillo para poner en tu Mano.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "or": [
+              {
+                "nameContains": "Amazona"
+              },
+              {
+                "nameContains": "Reina Hipolita"
+              }
+            ]
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano.",
+        "id_habilidad": "telestris_search_amazona_or_hipolita"
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "self",
+            "query": {
+              "type": "Aliado",
+              "or": [
+                {
+                  "nameContains": "Amazona"
+                },
+                {
+                  "nameContains": "Reina Hipolita"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
+        "id_habilidad": "telestris_amazona_hipolita_buff"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 1577,
+    "nombre": "Reina Hipolita",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl766.webp",
+    "habilidad_texto_descriptivo": "Cuando Reina Hipólita sea declarada atacante, los Aliados que controles ganan 1 a la fuerza hasta la Fase Final. Luego bota una carta de tu Mazo Castillo.",
+    "descripcion": "Cuando Reina Hipólita sea declarada atacante, los Aliados que controles ganan 1 a la fuerza hasta la Fase Final. Luego bota una carta de tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "controller": "self",
+            "query": {
+              "type": "Aliado"
+            }
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": 1,
+              "target": "self"
+            }
+          }
+        },
+        "description": "Cuando Reina Hipólita sea declarada atacante, los Aliados que controles ganan 1 a la fuerza hasta la Fase Final. Luego bota una carta de tu Mazo Castillo.",
+        "id_habilidad": "reina_hipolita_attack_buff_and_mill"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2423,
+    "nombre": "Las Musas",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/56lasmusas6.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar una carta Musa en tu Mazo Castillo o Cementerio y ponerla en tu Mano. Los Talismanes oponentes que hagan objetivo a tus Aliados Musa cuestan 1 oro adicional.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige una carta Musa de tu Mazo Castillo o Cementerio para poner en tu Mano:",
+          "canCancel": true,
+          "options": [
+            {
+              "id": "deck_musa",
+              "zone": "mazoCastillo",
+              "query": {
+                "nameContains": "Musa"
+              },
+              "description": "Desde el Mazo Castillo"
+            },
+            {
+              "id": "graveyard_musa",
+              "zone": "cementerio",
+              "query": {
+                "nameContains": "Musa"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand"
+          }
+        },
+        "description": "Cuando entra en juego, puedes buscar una carta Musa en tu Mazo Castillo o Cementerio y ponerla en tu Mano."
+      },
+      {
+        "trigger": "onBeforeBeingTarget",
+        "affects": {
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Musa"
+          }
+        },
+        "condition": {
+          "type": "triggeringCardIsType",
+          "cardType": "Talisman"
+        },
+        "effect": {
+          "type": "forceOpponentToPayCost",
+          "cost": {
+            "type": "payGold",
+            "count": 1
+          },
+          "prompt": "Debes pagar 1 Oro adicional para que tu Talismán afecte a un Aliado Musa."
+        },
+        "description": "Los Talismanes oponentes que hagan objetivo a tus Aliados Musa cuestan 1 oro adicional."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2424,
+    "nombre": "Musa Urania",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/57musaurania7.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para mirar las 3 primeras cartas de tu Mazo Castillo, pon una carta que no sea Aliado o todos los Aliados Musa en tu Mano y baraja el resto.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "revealTopAndChooseGroupOrSingle",
+          "count": 3,
+          "groupQuery": {
+            "type": "Aliado",
+            "nameContains": "Musa"
+          },
+          "singleQuery": {
+            "type_not_in": [
+              "Aliado"
+            ]
+          },
+          "remainderDestination": "shuffleIntoDeck",
+          "prompt": "Elige una carta: si eliges un Aliado Musa, te llevarás todas las Musas reveladas. El resto se barajará en tu Mazo Castillo."
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 1 Oro para mirar las 3 primeras cartas de tu Mazo Castillo, pon una carta que no sea Aliado o todos los Aliados Musa en tu Mano y baraja el resto."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2425,
+    "nombre": "Tea",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/67tea8.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes pagar 2 de Oro o desterrar un Aliado de tu Cementerio para que un Aliado en juego tenga fuerza 0 y no pueda recibir modificadores de fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Habilidad de Tea: Elige cómo pagar el coste:",
+            "options": [
+              {
+                "id": "pay_gold_cost",
+                "description": "Pagar 2 de Oro",
+                "action": {
+                  "type": "payGold",
+                  "count": 2
+                }
+              },
+              {
+                "id": "banish_ally_cost",
+                "description": "Desterrar 1 Aliado de tu Cementerio",
+                "action": {
+                  "type": "banishFromGraveyardAsCost",
+                  "prompt": "Elige 1 Aliado de tu Cementerio para desterrar como coste.",
+                  "minCount": 1,
+                  "maxCount": 1,
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "canCancel": true
+                }
+              }
+            ]
+          }
+        ],
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Elige un Aliado en juego para que tenga fuerza 0 y no pueda recibir modificadores hasta la Fase Final.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          },
+          "buff": {
+            "set_strength": 0,
+            "cannotModifyStrength": true
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Una vez por turno, puedes pagar 2 de Oro o desterrar un Aliado de tu Cementerio para que un Aliado en juego tenga fuerza 0 y no pueda recibir modificadores de fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2426,
+    "nombre": "Minotauro del Hades",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/69minotaurodelhades9.webp",
+    "habilidad_texto_descriptivo": "Indesterrable. Si controlas otro Aliado Minotauro, este Aliado puede atacar cuando entra en juego. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes desterrar una carta de tu Cementerio y pagar 2 Oros para jugarlo sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeBanished"
+        ],
+        "description": "Minotauro del Hades es indesterrable."
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Minotauro",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "canAttackOnEnterPlay"
+        },
+        "description": "Si controlas otro Aliado Minotauro, este Aliado puede atacar cuando entra en juego."
+      },
+      {
+        "phase": "Principal",
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "effect": {
+          "type": "banishCardAndPayGoldToPlaySelfFromGraveyard",
+          "goldCost": 2,
+          "banishCount": 1,
+          "prompt": "Elige 1 carta de tu Cementerio para desterrar y jugar a Minotauro del Hades."
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes desterrar una carta de tu Cementerio y pagar 2 Oros para jugarlo sin pagar su coste.",
+        "id_habilidad": "minotauro_del_hades_graveyard_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2427,
+    "nombre": "Fenex",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/159fenex10.webp",
+    "habilidad_texto_descriptivo": "Cuando entra o sale del juego, tu oponente bota 1 carta. En tu Fase de Vigilia, una vez por turno y si este Aliado esta en tu Cementerio, puedes pagar 1 Oro para subirlo a tu Mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Cuando entra en juego, tu oponente bota 1 carta."
+      },
+      {
+        "trigger": "onLeavePlay",
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "description": "Cuando sale del juego, tu oponente bota 1 carta."
+      },
+      {
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 1
+        },
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno y si este Aliado esta en tu Cementerio, puedes pagar 1 Oro para subirlo a tu Mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2429,
+    "nombre": "Draco Aguila",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/dracoaguila12.webp",
+    "habilidad_texto_descriptivo": "Puedes tener mas de 3 Draco Aguila en tu Mazo Castillo. Imbloqueable. Cuando entra en juego, tu oponente bota 1 carta por cada Draco Aguila que controles.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Draco Aguila es Imbloqueable."
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "name": "Draco Aguila",
+              "zone": "field",
+              "controller": "self"
+            }
+          }
+        },
+        "description": "Cuando entra en juego, tu oponente bota 1 carta por cada Draco Aguila que controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2428,
+    "nombre": "Behemot",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/168behemot11.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tus Aliados de raza Titan ganan 1 a la fuerza permanentemente. Cuando entra en juego, todos tus Aliados deben ser bloqueados por los Aliados oponentes este turno.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "raza": "Titan"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "description": "Cuando entra en juego, tus Aliados de raza Titan ganan 1 a la fuerza permanentemente."
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantKeywordToAllMatching",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "mustBlockthisAllyThisTurn",
+          "duration": "endOfTurn"
+        },
+        "description": "Cuando entra en juego, todos tus Aliados deben ser bloqueados por los Aliados oponentes este turno."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2431,
+    "nombre": "Fiodhain",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/fiohadain.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Aliado de tu Cementerio. Este Aliado tiene todas las habilidades de ese Aliado por el resto del juego.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "copyAbilityFromGY",
+          "prompt": "Elige un Aliado de tu Cementerio para copiar sus habilidades.",
+          "target": {
+            "zone": "cementerio",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "description": "Cuando entra en juego, puedes elegir un Aliado de tu Cementerio. Este Aliado tiene todas las habilidades de ese Aliado por el resto del juego.",
+        "id_habilidad": "fiodhain_copy_ability"
+      }
+    ],
+    "tier": "alto"
   }
 ]

@@ -55865,6 +55865,735 @@
     "tier": "medio"
   },
   {
+    "id": 7465,
+    "nombre": "Abhartach",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/abhartachhalloween.webp",
+    "habilidad_texto_descriptivo": "Unica. Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "banishAndBanishCopiesFromDeck",
+          "prompt": "Habilidad de Abhartach: Elige un Aliado o Tótem oponente para desterrar y eliminar sus copias del Mazo Castillo.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra un Aliado o Totem oponente. Luego, busca en el Mazo Castillo de su dueño todas las copias de esa carta y destierralas.",
+        "id_habilidad": "abhartach_banish_and_copies"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7466,
+    "nombre": "Amon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/amonhalloween.webp",
+    "habilidad_texto_descriptivo": "Única. Las habilidades oponentes que afecten a este Aliado cuestan 2 Oros adicionales. En tu Fase de Vigilia, una vez por turno, puedes pagar 4 oros para buscar un aliado de raza Eterno de coste 5 o menos en tu mazo Castillo, Cementerio y/o Destierro y jugarlo sin pagar su coste. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "cost": {
+            "type": "payGold",
+            "count": 2
+          },
+          "type": "forceOpponentToPayCost",
+          "prompt": "Debes pagar 2 Oros adicionales para que tu habilidad afecte a Amon."
+        },
+        "trigger": "onBeforeBeingTarget",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Las habilidades oponentes que afecten a este Aliado cuestan 2 Oros adicionales.",
+        "id_habilidad": "amon_ward",
+        "resolvesInstantly": true
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 4
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Aliado de raza Eterno de coste 5 o menos para jugar sin pagar su coste.",
+          "options": [
+            {
+              "id": "amon_search_deck",
+              "zone": "mazoCastillo",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 5,
+                  "operator": "<="
+                }
+              },
+              "description": "Buscar en Mazo Castillo"
+            },
+            {
+              "id": "amon_search_graveyard",
+              "zone": "cementerio",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 5,
+                  "operator": "<="
+                }
+              },
+              "description": "Buscar en Cementerio"
+            },
+            {
+              "id": "amon_search_banish",
+              "zone": "banish",
+              "query": {
+                "raza": "Eterno",
+                "type": "Aliado",
+                "coste_oro": {
+                  "value": 5,
+                  "operator": "<="
+                }
+              },
+              "description": "Buscar en Destierro"
+            }
+          ],
+          "canCancel": true,
+          "resolution": {
+            "type": "playToDefense",
+            "isFree": true
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes pagar 4 oros para buscar un aliado de raza Eterno de coste 5 o menos en tu mazo Castillo, Cementerio y/o Destierro y jugarlo sin pagar su coste.",
+        "oncePerTurn": true,
+        "id_habilidad": "amon_tutor"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7467,
+    "nombre": "Daana",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/daanahalloween.webp",
+    "habilidad_texto_descriptivo": "Mientras Daana este en juego, tus demas Aliados de raza Desafiante no pueden ser afectados por Talismanes oponentes y si son destruidos, barajalos en tu mazo castillo. Carta unica. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id": "daana_talisman_immunity",
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Desafiante",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "talismanImmunity"
+        },
+        "trigger": "continuous",
+        "description": "Tus demás Aliados de raza Desafiante no pueden ser afectados por Talismanes oponentes."
+      },
+      {
+        "id": "daana_shuffle_on_destroy",
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": "Desafiante",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "shuffleOnDestroy"
+        },
+        "trigger": "continuous",
+        "description": "Si tus demás Aliados de raza Desafiante son destruidos, barájalos en tu Mazo Castillo."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7468,
+    "nombre": "Eter",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/eterhalloween.webp",
+    "habilidad_texto_descriptivo": "Cuanto Éter entra en juego, puedes poner un Aliado oponente en la parte superior del Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndPlaceOnTop",
+          "prompt": "Elige un Aliado oponente para poner en la parte superior del Mazo Castillo de su dueño.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7469,
+    "nombre": "Fergus",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/fergushalloween.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "visualEffect": "fergusDestroy",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isHighestStrength": true
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7470,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganahalloween.webp",
+    "visualEffect": "morganaSpecialEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7471,
+    "nombre": "Oseye",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/oseyehalloween.webp",
+    "habilidad_texto_descriptivo": "Oseye no puede ser Anulado. Puede atacar cuando entra en juego. Puedes pagar el coste de Oseye para prevenir que sea destruida o desterrada subiendola a tu mano. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled",
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "cost": {
+          "type": "payGold",
+          "count": 2
+        },
+        "effect": {
+          "type": "returnSelfToHand"
+        },
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio",
+            "banish"
+          ]
+        },
+        "description": "Puedes pagar 2 Oros para prevenir que sea destruida o desterrada, subiéndola a tu mano.",
+        "id_habilidad": "oseye_salvation"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7472,
+    "nombre": "Ramses II",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/ramsesiihalloween.webp",
+    "visualEffect": "ramsesSpecialEntrance",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu proximo turno. Cuando este Aliado sea Bloqueado tu oponente bota tantas cartas como fuerza tenga Ramses II.",
+    "descripcion": "Edición Especial Aniversario",
+    "expansion": "Dominios de Ra",
+    "rareza": "Promo",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "costs": [
+          {
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Ramses II:",
+            "options": [
+              {
+                "id": "ramses_discard_cost",
+                "action": {
+                  "type": "discardCard",
+                  "count": 1,
+                  "prompt": "Descarta 1 carta de tu mano para activar la habilidad."
+                },
+                "description": "Descartar 1 carta de tu mano"
+              },
+              {
+                "id": "ramses_pay_gold_cost",
+                "action": {
+                  "type": "payGold",
+                  "count": 1
+                },
+                "description": "Pagar 1 Oro"
+              }
+            ]
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "grantKeywordToSelf",
+          "duration": "untilYourNextTurn",
+          "keywords": [
+            "indestructible",
+            "cannotBeBanished"
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "indestructible",
+              "negate": true
+            },
+            {
+              "type": "targetHasKeyword",
+              "keyword": "cannotBeBanished",
+              "negate": true
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes descartar una carta de tu Mano o pagar 1 Oro para que este aliado sea Indesterrable e Indestructible hasta tu próximo turno."
+      },
+      {
+        "effect": {
+          "type": "millByOwnStrength",
+          "target": "opponent"
+        },
+        "trigger": "onBeingBlocked",
+        "description": "Cuando este Aliado sea Bloqueado, tu oponente bota tantas cartas como fuerza tenga este Aliado."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7473,
+    "nombre": "Rea",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/reahalloween.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia y solo una vez por turno Busca un Aliado de raza olímpico o titán en tu zona de destierro y ponlo en tu línea de defensa sin pagar su coste",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado Olímpico o Titán de tu Destierro para jugar sin pagar su coste.",
+          "searchQuery": {
+            "raza": [
+              "Olímpico",
+              "Titan"
+            ],
+            "type": "Aliado",
+            "zone": "banish"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7474,
+    "nombre": "Sir Persival",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/sirpercivalhalloween.webp",
+    "habilidad_texto_descriptivo": "Cuando Sir Pérsival entra en juego, baraja un Aliado oponente.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-25T20:33:48.000Z",
+    "fuerza": 2,
+    "raza": "Caballero",
+    "leyenda": "Si lo ves a los ojos verás mil historias contadas a la luz de una fogata y el amor por una sola cosa: La Caballería.",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "targetAndShuffle",
+          "count": 1,
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "message": "Elige un Aliado oponente para barajar en su mazo.",
+          "requiresChoice": true
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7475,
+    "nombre": "Teseo de Atenas",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/teseodeatenashalloween.webp",
+    "habilidad_texto_descriptivo": "Teseo de Atenas puede atacar cuandoo entra en juego. Si Tese de Atenas hace daño al Mazo Castillo oponente y controlas 2 o mas Aliados de raza Heroe, puedes destruir un Aliado en juego. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ]
+      },
+      {
+        "trigger": "onDealCombatDamageToDeck",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "raza": "Heroe",
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Teseo de Atenas: ¿Deseas destruir un Aliado en juego?",
+          "options": [
+            {
+              "id": "teseo_destroy_ally",
+              "action": {
+                "type": "destroyTarget",
+                "prompt": "Elige un Aliado en juego para destruir.",
+                "target": {
+                  "query": {
+                    "type": "Aliado"
+                  },
+                  "controller": "any"
+                }
+              },
+              "description": "Destruir un Aliado en juego"
+            },
+            {
+              "id": "teseo_no_destroy",
+              "action": {},
+              "description": "No destruir"
+            }
+          ]
+        },
+        "description": "Si Teseo de Atenas hace daño al Mazo Castillo oponente y controlas 2 o más Aliados de raza Héroe, puedes destruir un Aliado en juego.",
+        "id_habilidad": "teseo_destroy_on_damage"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 7476,
+    "nombre": "Vouivre",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/vouivrehalloween.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Carta Única. Cuando Vouivre entra en juego, puedes barajar un Aliado que controles para barajar 2 Aliados oponentes. En tu Fase de Vigilia y una vez por turno, puedes buscar un Aliado de raza Dragón en tu Mazo Castillo y ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unique"
+        ]
+      },
+      {
+        "effect": {
+          "type": "chooseToShuffleSelfToShuffleOpponent",
+          "prompt": "Habilidad de Vouivre: ¿Quieres barajar uno de tus otros Aliados para barajar 2 Aliados oponentes?",
+          "canCancel": true,
+          "selfCount": 1,
+          "selfQuery": {
+            "type": "Aliado",
+            "isOther": true
+          },
+          "opponentCount": 2,
+          "opponentQuery": {
+            "type": "Aliado"
+          }
+        },
+        "trigger": "onEnterPlay"
+      },
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Vouivre: Busca un Aliado de raza Dragón en tu Mazo y ponlo en tu mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "raza": "Dragon",
+            "type": "Aliado",
+            "zone": "mazoCastillo"
+          }
+        },
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "trigger": "activatable",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "medio"
+  },
+  {
     "id": 1585,
     "nombre": "Perifetes",
     "tipo": "Aliado",

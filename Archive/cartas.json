@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.1",
+    "pack_version": "3.4.2",
     "habilidades": []
   },
   {
@@ -122915,5 +122915,194 @@
       }
     ],
     "tier": "alto"
+  },
+  {
+    "id": 2432,
+    "nombre": "Amazonas Guerreras",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/44amazonasguerreras1.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano sin pagar su coste.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Amazona"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -2
+          }
+        },
+        "description": "Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano sin pagar su coste.",
+        "id_habilidad": "amazonas_guerreras_cost_reduction"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2433,
+    "nombre": "Anfiarao",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/46anfiarao2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes mirar las 3 primeras cartas de tu Mazo Castillo y jugar un Aliado de coste 3 o menos de ahi sin pagar su coste. Luego, debes dejar las otras cartas en la parte inferior de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "viewTopAndChooseConditionalToHand",
+          "viewCount": 3,
+          "unselected": "moveToBottom",
+          "choice": {
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "prompt": "Elige un Aliado de coste 3 o menos para jugar sin pagar su coste. El resto irá al fondo de tu Mazo Castillo.",
+            "optional": true,
+            "destination": "playToAlly"
+          }
+        },
+        "description": "Cuando entra en juego, puedes mirar las 3 primeras cartas de tu Mazo Castillo y jugar un Aliado de coste 3 o menos de ahi sin pagar su coste. Luego, debes dejar las otras cartas en la parte inferior de tu Mazo Castillo.",
+        "id_habilidad": "anfiarao_view_and_play"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2434,
+    "nombre": "Pelope",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/47pelope3.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados de raza Heroe, este Aliado gana 1 a la fuerza y es Indestructible. En tu Fase Final, puedes agrupar este Aliado.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Heroe",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Heroe"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "isSelf"
+            }
+          }
+        },
+        "description": "Si controlas 2 o mas Aliados de raza Heroe, este Aliado gana 1 a la fuerza."
+      },
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Heroe"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "indestructible"
+        },
+        "description": "Si controlas 2 o mas Aliados de raza Heroe, este Aliado es Indestructible."
+      },
+      {
+        "phase": "Final",
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            }
+          ]
+        },
+        "effect": {
+          "type": "regroupSelf"
+        },
+        "description": "En tu Fase Final, puedes agrupar este Aliado.",
+        "oncePerTurn": true,
+        "id_habilidad": "pelope_regroup"
+      }
+    ],
+    "tier": "medio"
   }
 ]

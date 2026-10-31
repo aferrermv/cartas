@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.2",
+    "pack_version": "3.4.3",
     "habilidades": []
   },
   {
@@ -4989,31 +4989,32 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "id_habilidad": "cuchulain_salvation",
-        "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio"
-          ]
-        },
-        "cost": {
+       {
+        "id": "cuchulain_salvation",
+        "effect": {
           "type": "destroyTarget",
-          "count": 1,
-          "prompt": "Elige uno de tus Aliados para destruir y salvar a Cuchulain.",
           "target": {
+            "zone": "field",
             "query": {
-              "type": "Aliado",
-              "isOther": true
+              "isOther": true,
+              "type": "Aliado"
             },
-            "controller": "self"
+            "player": "self",
+            "message": "Elige un Aliado para destruir y salvar a Cuchulain."
           }
         },
-        "effect": {
-          "type": "prevent"
-        }
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "not": {
+              "id": "self"
+            },
+            "type": "Aliado"
+          }
+        },
+        "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
+        "listensForEvent": "onBeforeDestroyed",
+        "triggeringPlayer": "self"
       },
       {
         "effect": {
@@ -40075,30 +40076,31 @@
     "salud": null,
     "habilidades": [
       {
-        "id_habilidad": "cuchulain_salvation",
-        "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
-        "trigger": "onBeforeLeave",
-        "condition": {
-          "type": "isDestinationZone",
-          "zones": [
-            "cementerio"
-          ]
-        },
-        "cost": {
+        "id": "cuchulain_salvation",
+        "effect": {
           "type": "destroyTarget",
-          "count": 1,
-          "prompt": "Elige uno de tus Aliados para destruir y salvar a Cuchulain.",
           "target": {
+            "zone": "field",
             "query": {
-              "type": "Aliado",
-              "isOther": true
+              "isOther": true,
+              "type": "Aliado"
             },
-            "controller": "self"
+            "player": "self",
+            "message": "Elige un Aliado para destruir y salvar a Cuchulain."
           }
         },
-        "effect": {
-          "type": "prevent"
-        }
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "not": {
+              "id": "self"
+            },
+            "type": "Aliado"
+          }
+        },
+        "description": "En respuesta a que Cuchulain sea destruido, puedes destruir uno de tus Aliados para salvarlo.",
+        "listensForEvent": "onBeforeDestroyed",
+        "triggeringPlayer": "self"
       },
       {
         "effect": {

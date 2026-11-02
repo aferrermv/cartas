@@ -3658,6 +3658,165 @@
     "tier": "bajo"
   },
   {
+    "id": 56,
+    "nombre": "Behemot",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/gift/beheafromarcooctubre/behemotbase.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, tus Aliados de raza Titan ganan 1 a la fuerza permanentemente. Cuando entra en juego, todos tus Aliados deben ser bloqueados por los Aliados oponentes este turno.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "raza": "Titan"
+            },
+            "controller": "self"
+          },
+          "duration": "permanent"
+        },
+        "description": "Cuando entra en juego, tus Aliados de raza Titan ganan 1 a la fuerza permanentemente."
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantKeywordToAllMatching",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "keyword": "mustBlockthisAllyThisTurn",
+          "duration": "endOfTurn"
+        },
+        "description": "Cuando entra en juego, todos tus Aliados deben ser bloqueados por los Aliados oponentes este turno."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+   "id": 57,
+    "nombre": "Afrodita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/gift/beheafromarcooctubre/afroditabase.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseTypeAndViewTop",
+          "prompt": "Nombra un tipo de carta:",
+          "options": [
+            "Aliado",
+            "Arma",
+            "Totem"
+          ]
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+   {
+    "id": 58,
+    "nombre": "Marco Antonio",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/gift/beheafromarcooctubre/marcoantoniobase.webp",
+    "habilidad_texto_descriptivo": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
+    "descripcion": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
+    "expansion": "Helenica",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Heroe",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Heroe",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "Tus demás Aliados de raza Héroe ganan 1 a la fuerza.",
+        "id_habilidad": "marco_antonio_buff"
+      },
+      {
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "allPlayers",
+          "restriction": {
+            "type": "cannotPlayCardType",
+            "cardType": "Talisman"
+          }
+        },
+        "trigger": "continuous",
+        "descripcion": "No se pueden jugar Talismanes.",
+        "id_habilidad": "marco_antonio_talisman_lock"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
     "id": 30,
     "nombre": "Plaga",
     "tipo": "Talisman",

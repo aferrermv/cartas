@@ -3663,6 +3663,7 @@
     "tipo": "Aliado",
     "coste_oro": 4,
     "imagen_url": "/img/gift/beheafromarcooctubre/behemotbase.webp",
+    "visualEffect": "behemotSpecialEntrance",
     "habilidad_texto_descriptivo": "Cuando entra en juego, tus Aliados de raza Titan ganan 1 a la fuerza permanentemente. Cuando entra en juego, todos tus Aliados deben ser bloqueados por los Aliados oponentes este turno.",
     "descripcion": null,
     "expansion": "Helenica",

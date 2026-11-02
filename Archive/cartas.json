@@ -3761,63 +3761,6 @@
     ],
     "tier": "bajo"
   },
-   {
-    "id": 58,
-    "nombre": "Marco Antonio",
-    "tipo": "Aliado",
-    "coste_oro": 2,
-    "imagen_url": "/img/gift/beheafromarcooctubre/marcoantoniobase.webp",
-    "habilidad_texto_descriptivo": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
-    "descripcion": "Única. Tus demàs Aliados de raza Héroe ganan 1 a la fuerza. No se puden jugar Talismanes.",
-    "expansion": "Helenica",
-    "rareza": "true",
-    "fecha_creacion": null,
-    "fuerza": 3,
-    "raza": "Heroe",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "effect": {
-          "type": "statBuff",
-          "buffs": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
-          "target": {
-            "query": {
-              "raza": "Heroe",
-              "type": "Aliado"
-            },
-            "isOther": true,
-            "controller": "self"
-          }
-        },
-        "trigger": "continuous",
-        "descripcion": "Tus demás Aliados de raza Héroe ganan 1 a la fuerza.",
-        "id_habilidad": "marco_antonio_buff"
-      },
-      {
-        "effect": {
-          "type": "applyPlayerRestriction",
-          "target": "allPlayers",
-          "restriction": {
-            "type": "cannotPlayCardType",
-            "cardType": "Talisman"
-          }
-        },
-        "trigger": "continuous",
-        "descripcion": "No se pueden jugar Talismanes.",
-        "id_habilidad": "marco_antonio_talisman_lock"
-      }
-    ],
-    "tier": "bajo"
-  },
   {
     "id": 30,
     "nombre": "Plaga",

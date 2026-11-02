@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.3",
+    "pack_version": "3.4.4",
     "habilidades": []
   },
   {
@@ -3721,7 +3721,7 @@
     "tier": "medio"
   },
   {
-   "id": 57,
+    "id": 57,
     "nombre": "Afrodita",
     "tipo": "Aliado",
     "coste_oro": 3,
@@ -5093,7 +5093,7 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-       {
+      {
         "id": "cuchulain_salvation",
         "effect": {
           "type": "destroyTarget",
@@ -123210,5 +123210,444 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 2435,
+    "nombre": "Musa Caliope",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/55musacaliope11.webp",
+    "habilidad_texto_descriptivo": "Cuando un Oro entre en juego bajo tu control, tu oponente bota 1 carta. Cuando una carta Musa entre o Salga del juego, tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cuando un Oro entre en juego bajo tu control, tu oponente bota 1 carta.",
+        "id_habilidad": "musa_caliope_mill_on_gold",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "type": "Oro"
+        },
+        "triggeringPlayer": "self",
+        "resolvesInstantly": true
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cuando una carta Musa entre en juego, tu oponente bota 1 carta.",
+        "id_habilidad": "musa_caliope_mill_on_musa_enter",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "nameContains": "Musa"
+        },
+        "resolvesInstantly": true
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Cuando una carta Musa salga del juego, tu oponente bota 1 carta.",
+        "id_habilidad": "musa_caliope_mill_on_musa_leave",
+        "listensForEvent": "onAllyLeavePlay",
+        "eventCondition": {
+          "nameContains": "Musa"
+        },
+        "resolvesInstantly": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2436,
+    "nombre": "Enialo",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/58enialio2.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Una vez por turno, puedes pagar 1 Oro para mover un Aliado oponente de la linea de Ataque a la Linea de Defensa.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "effect": {
+          "type": "moveAllyToDefenseLine",
+          "prompt": "Elige un Aliado oponente en su Línea de Ataque para mover a su Línea de Defensa.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "zone": "attack"
+            },
+            "controller": "opponent"
+          }
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "trigger": "activatable_with_costs",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "description": "Una vez por turno, puedes pagar 1 Oro para mover un Aliado oponente de la linea de Ataque a la Linea de Defensa.",
+        "id_habilidad": "enialo_move_to_defense"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2437,
+    "nombre": "Men",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/59men3.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Men en juego. Cuando entra en juego, puedes elegir un Aliado de tu Cementerio y jugarlo sin pagar su coste. Luego, bota tantas cartas como coste tenga ese Aliado.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Men en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de tu Cementerio para jugarlo sin pagar su coste:",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          },
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "fromContext": "resolvedCard.coste_oro"
+              },
+              "target": "self"
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes elegir un Aliado de tu Cementerio y jugarlo sin pagar su coste. Luego, bota tantas cartas como coste tenga ese Aliado.",
+        "id_habilidad": "men_play_ally_from_gy_and_mill"
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2438,
+    "nombre": "Talos",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/68talos4.webp",
+    "habilidad_texto_descriptivo": "Mientras controles otro Titan, este Aliado es Indesterrable. Cuando sea destruido, puedes desterrar un Aliado de tu Cementerio ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "continuous",
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "raza": "Titan",
+            "isOther": true
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "cannotBeBanished"
+        },
+        "description": "Mientras controles otro Titan, este Aliado es Indesterrable.",
+        "id_habilidad": "talos_continuous_indesterrable"
+      },
+      {
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "costs": [
+          {
+            "type": "banishFromGraveyardAsCost",
+            "count": 1,
+            "minCount": 1,
+            "maxCount": 1,
+            "query": {
+              "type": "Aliado",
+              "isOther": true
+            },
+            "prompt": "Elige un Aliado de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "description": "Cuando sea destruido, puedes desterrar un Aliado de tu Cementerio para ponerlo en tu Mano.",
+        "id_habilidad": "talos_on_destroyed_to_hand"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2439,
+    "nombre": "Aqueloo",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/70aqueloo5.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Cementerio para barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "costs": [
+          {
+            "type": "banishFromGraveyard",
+            "count": 1,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Elige 1 carta de tu Cementerio para desterrar como coste."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "trigger": "activatable_with_costs",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes desterrar una carta de tu Cementerio para barajar una carta de tu Cementerio en tu Mazo Castillo.",
+        "id_habilidad": "aqueloo_banish_to_shuffle_gy"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2440,
+    "nombre": "Taumante",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/71taumante6.webp",
+    "habilidad_texto_descriptivo": "En cada Fase de Agrupacion, puedes elegir entre barajar una carta de tu Cementerio en tu Mazo Castillo, desterrar una carta de un Cementerio, o robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Taumante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Taumante: Elige una opción:",
+          "options": [
+            {
+              "id": "taumante_shuffle_gy",
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "amount": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "action": {
+                "type": "searchAndShuffleIntoDeck",
+                "zone": "cementerio",
+                "count": 1,
+                "query": {
+                  "type": "*"
+                },
+                "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo."
+              },
+              "description": "Barajar 1 carta de tu Cementerio en tu Mazo Castillo"
+            },
+            {
+              "id": "taumante_banish_opponent_gy",
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "amount": 1,
+                "comparison": "greaterOrEqual",
+                "controller": "opponent"
+              },
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                }
+              },
+              "description": "Desterrar 1 carta del Cementerio oponente"
+            },
+            {
+              "id": "taumante_banish_own_gy",
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "amount": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "self"
+                }
+              },
+              "description": "Desterrar 1 carta de tu Cementerio"
+            },
+            {
+              "id": "taumante_draw",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Robar 1 carta"
+            },
+            {
+              "id": "taumante_pass",
+              "action": {},
+              "description": "No hacer nada"
+            }
+          ]
+        },
+        "description": "En cada Fase de Agrupacion, puedes elegir entre barajar una carta de tu Cementerio en tu Mazo Castillo, desterrar una carta de un Cementerio, o robar 1 carta.",
+        "id_habilidad": "taumante_start_of_turn_choice"
+      }
+    ],
+    "tier": "bajo"
   }
 ]

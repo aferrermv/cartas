@@ -3726,6 +3726,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/gift/beheafromarcooctubre/afroditabase.webp",
+    "visualEffect": "afroditaSpecialEntrance",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
     "descripcion": null,
     "expansion": "Helenica",

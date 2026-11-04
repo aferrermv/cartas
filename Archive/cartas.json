@@ -1898,7 +1898,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/aliados/dracoconjurador12.webp",
-    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro sin Habilidad en tu Mazo Castillo y ponerlo en tu Mano.",
+    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.4",
+    "pack_version": "3.4.5",
     "habilidades": []
   },
   {
@@ -45947,7 +45947,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/dracoconjuradorcarloko1.webp",
-    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro sin Habilidad en tu Mazo Castillo y ponerlo en tu Mano.",
+    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro  en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": "Edición Especial Arte Alternativo",
     "expansion": "Espada Sagrada",
     "rareza": "Promo",
@@ -55370,7 +55370,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/dracoconjuradordracula311zon.webp",
-    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro sin Habilidad en tu Mazo Castillo y ponerlo en tu Mano.",
+    "habilidad_texto_descriptivo": "Cuando Draco Conjurador entra en juego, puedes buscar un Oro en tu Mazo Castillo y ponerlo en tu Mano.",
     "descripcion": "",
     "expansion": "Espada Sagrada",
     "rareza": "Común",
@@ -118637,16 +118637,6 @@
     "salud": null,
     "habilidades": [
       {
-        "id_habilidad": "rueda_del_ano_unique",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "goldReserve",
-            "paidGold"
-          ]
-        }
-      },
-      {
         "id_habilidad": "rueda_del_ano_mill_on_gold_ability",
         "descripcion": "Cada vez que tu oponente active la habilidad de un Oro que controle debe botar 1 carta de su Mazo Castillo.",
         "trigger": "activatable",
@@ -123550,7 +123540,7 @@
     "rareza": "Común",
     "fecha_creacion": null,
     "fuerza": 4,
-    "raza": "Taumante",
+    "raza": "Titan",
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
@@ -123646,6 +123636,73 @@
         },
         "description": "En cada Fase de Agrupacion, puedes elegir entre barajar una carta de tu Cementerio en tu Mazo Castillo, desterrar una carta de un Cementerio, o robar 1 carta.",
         "id_habilidad": "taumante_start_of_turn_choice"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2441,
+    "nombre": "Melinoe",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/melinoeoe.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes botar 2 cartas para buscar un Aliado de coste 3 o mas En tu Mazo Castillo y ponlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Melinoe: ¿Quieres botar 2 cartas para buscar un Aliado de coste 3 o más en tu Mazo Castillo?",
+          "options": [
+            {
+              "id": "melinoe_mill_to_search_ally",
+              "condition": {
+                "type": "deckContains",
+                "amount": 2,
+                "comparison": "greaterOrEqual"
+              },
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "self",
+                "then": {
+                  "effect": {
+                    "type": "searchAndPutInHand",
+                    "prompt": "Elige un Aliado de coste 3 o más de tu Mazo Castillo para poner en tu mano.",
+                    "canCancel": true,
+                    "searchQuery": {
+                      "type": "Aliado",
+                      "zone": "mazoCastillo",
+                      "cost": {
+                        "value": 3,
+                        "operator": ">="
+                      }
+                    }
+                  }
+                }
+              },
+              "description": "Botar 2 cartas y buscar un Aliado de coste 3 o más"
+            },
+            {
+              "id": "melinoe_decline",
+              "action": {},
+              "description": "No hacer nada"
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes botar 2 cartas para buscar un Aliado de coste 3 o mas En tu Mazo Castillo y ponlo en tu Mano.",
+        "id_habilidad": "melinoe_enter_play_mill_to_search"
       }
     ],
     "tier": "bajo"

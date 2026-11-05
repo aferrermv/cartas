@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.5",
+    "pack_version": "3.4.6",
     "habilidades": []
   },
   {
@@ -74214,8 +74214,7 @@
           ]
         },
         "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
-        "id_habilidad": "milano_negro_transform_main",
-        "canPayWithSelf": true
+        "id_habilidad": "milano_negro_transform_main"
       }
     ],
     "tier": "medio"
@@ -116273,27 +116272,19 @@
           "options": [
             {
               "id": "oraculo_hueso_pay_and_shuffle",
+              "description": "Sí, pagar y barajar",
               "action": {
-                "type": "triggerAbility",
-                "ability": {
-                  "costs": [
-                    {
-                      "type": "paySelfAsCost"
-                    }
-                  ],
+                "type": "paySelfAsCost",
+                "then": {
                   "effect": {
-                    "type": "targetAndShuffleInModal",
-                    "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo.",
+                    "type": "searchAndShuffleIntoDeck",
+                    "zone": "cementerio",
                     "count": 1,
-                    "minCount": 1,
-                    "canCancel": false,
-                    "target": {
-                      "zone": "cementerio",
-                      "controller": "self",
-                      "query": {
-                        "type": "*"
-                      }
+                    "query": {
+                      "type": "*"
                     },
+                    "prompt": "Elige 1 carta de tu Cementerio para barajar en tu Mazo Castillo.",
+                    "canCancel": false,
                     "then": {
                       "effect": {
                         "type": "chooseOne",
@@ -116301,30 +116292,28 @@
                         "options": [
                           {
                             "id": "oraculo_hueso_draw_yes",
+                            "description": "Sí, robar 1 carta",
                             "action": {
                               "type": "drawCards",
                               "count": 1
-                            },
-                            "description": "Sí, robar 1 carta"
+                            }
                           },
                           {
                             "id": "oraculo_hueso_draw_no",
-                            "action": {},
-                            "description": "No, gracias"
+                            "description": "No, gracias",
+                            "action": {}
                           }
                         ]
                       }
                     }
-                  },
-                  "trigger": "activatable_with_costs"
+                  }
                 }
-              },
-              "description": "Sí, pagar y barajar"
+              }
             },
             {
               "id": "oraculo_hueso_pay_decline",
-              "action": {},
-              "description": "No, gracias"
+              "description": "No, gracias",
+              "action": {}
             }
           ]
         },

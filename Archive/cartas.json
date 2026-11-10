@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.7",
+    "pack_version": "3.4.8",
     "habilidades": []
   },
   {
@@ -3853,20 +3853,20 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "trigger": "onEnterPlay",
-    "effect": {
-      "type": "executeMassRemoval",
-      "destination": "banish",
-      "target": {
-        "query": {
-          "type": "Aliado"
-        },
-        "controller": "any"
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "executeMassRemoval",
+          "destination": "banish",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        }
       }
-    }
-  }
-]
+    ]
   },
   {
     "id": 38,
@@ -15667,29 +15667,29 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "trigger": "onEnterPlay",
-    "description": "Destruye todos los Aliados en juego.",
-    "id_habilidad": "qadesh_destroy",
-    "opponentCanAnnul": {
-      "cost": {
-        "type": "payGold",
-        "count": 5
-      },
-      "prompt": "Tu oponente jugó Qadesh. ¿Quieres pagar 5 Oros para anularla?"
-    },
-    "effect": {
-      "type": "executeMassRemoval",
-      "destination": "cementerio",
-      "target": {
-        "query": {
-          "type": "Aliado"
+      {
+        "trigger": "onEnterPlay",
+        "description": "Destruye todos los Aliados en juego.",
+        "id_habilidad": "qadesh_destroy",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "payGold",
+            "count": 5
+          },
+          "prompt": "Tu oponente jugó Qadesh. ¿Quieres pagar 5 Oros para anularla?"
         },
-        "controller": "any"
+        "effect": {
+          "type": "executeMassRemoval",
+          "destination": "cementerio",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        }
       }
-    }
-  }
-]
+    ]
   },
   {
     "id": 448,
@@ -23696,60 +23696,60 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "then": {
+      {
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        }
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "abu_simbel_enter_play_sequence",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta."
       },
-      "type": "searchAndShuffleIntoDeck",
-      "zone": "cementerio",
-      "count": 1,
-      "query": {
-        "type": "*"
-      },
-      "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
-      "canCancel": true
-    },
-    "trigger": "onEnterPlay",
-    "id_habilidad": "abu_simbel_enter_play_sequence",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta."
-  },
-  {
-    "cost": {
-      "type": "destroySelf"
-    },
-    "effect": {
-      "type": "prevent"
-    },
-    "trigger": "activatable",
-    "id_habilidad": "abu_simbel_protection",
-    "requireOpponentTrigger": true,
-    "eventCondition": {
-      "type": "triggeringCardCondition",
-      "query": {
-        "type": [
-          "Aliado",
-          "Totem"
-        ],
-        "excludeReason": "combat",
-        "destinationZone": [
-          "cementerio",
-          "mazoCastillo"
-        ],
-        "excludeMethods": [
-          "placedOnBottom",
-          "placedOnTop"
-        ]
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "id_habilidad": "abu_simbel_protection",
+        "requireOpponentTrigger": true,
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": [
+              "Aliado",
+              "Totem"
+            ],
+            "excludeReason": "combat",
+            "destinationZone": [
+              "cementerio",
+              "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado o un Totem que controles sea destruido o barajado por una habilidad oponente."
       }
-    },
-    "listensForEvent": "onAllyLeavePlay",
-    "triggeringPlayer": "self",
-    "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado o un Totem que controles sea destruido o barajado por una habilidad oponente."
-  }
-]
+    ]
   },
   {
     "id": 627,
@@ -36747,25 +36747,25 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "trigger": "onEnterPlay",
-    "descripcion": "Baraja todas las cartas en juego que no sean Oro, en el Mazo Castillo de su dueño.",
-    "id_habilidad": "nukewaza_shuffle_all",
-    "effect": {
-      "type": "executeMassRemoval",
-      "destination": "mazoCastillo",
-      "target": {
-        "query": {
-          "zone": "field",
-          "type_not_in": [
-            "Oro"
-          ]
-        },
-        "controller": "any"
+      {
+        "trigger": "onEnterPlay",
+        "descripcion": "Baraja todas las cartas en juego que no sean Oro, en el Mazo Castillo de su dueño.",
+        "id_habilidad": "nukewaza_shuffle_all",
+        "effect": {
+          "type": "executeMassRemoval",
+          "destination": "mazoCastillo",
+          "target": {
+            "query": {
+              "zone": "field",
+              "type_not_in": [
+                "Oro"
+              ]
+            },
+            "controller": "any"
+          }
+        }
       }
-    }
-  }
-]
+    ]
   },
   {
     "id": 3094,
@@ -43771,60 +43771,60 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "effect": {
-      "then": {
+      {
         "effect": {
-          "type": "drawCards",
-          "count": 1
-        }
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          },
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
+          "canCancel": true
+        },
+        "trigger": "onEnterPlay",
+        "id_habilidad": "abu_simbel_enter_play_sequence",
+        "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta."
       },
-      "type": "searchAndShuffleIntoDeck",
-      "zone": "cementerio",
-      "count": 1,
-      "query": {
-        "type": "*"
-      },
-      "prompt": "Elige una carta de tu Cementerio para barajar en tu Mazo.",
-      "canCancel": true
-    },
-    "trigger": "onEnterPlay",
-    "id_habilidad": "abu_simbel_enter_play_sequence",
-    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo y robar una carta."
-  },
-  {
-    "cost": {
-      "type": "destroySelf"
-    },
-    "effect": {
-      "type": "prevent"
-    },
-    "trigger": "activatable",
-    "id_habilidad": "abu_simbel_protection",
-    "requireOpponentTrigger": true,
-    "eventCondition": {
-      "type": "triggeringCardCondition",
-      "query": {
-        "type": [
-          "Aliado",
-          "Totem"
-        ],
-        "excludeReason": "combat",
-        "destinationZone": [
-          "cementerio",
-          "mazoCastillo"
-        ],
-        "excludeMethods": [
-          "placedOnBottom",
-          "placedOnTop"
-        ]
+      {
+        "cost": {
+          "type": "destroySelf"
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "trigger": "activatable",
+        "id_habilidad": "abu_simbel_protection",
+        "requireOpponentTrigger": true,
+        "eventCondition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "type": [
+              "Aliado",
+              "Totem"
+            ],
+            "excludeReason": "combat",
+            "destinationZone": [
+              "cementerio",
+              "mazoCastillo"
+            ],
+            "excludeMethods": [
+              "placedOnBottom",
+              "placedOnTop"
+            ]
+          }
+        },
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado o un Totem que controles sea destruido o barajado por una habilidad oponente."
       }
-    },
-    "listensForEvent": "onAllyLeavePlay",
-    "triggeringPlayer": "self",
-    "habilidad_texto_descriptivo": "Puedes destruir este Totem, para prevenir que un Aliado o un Totem que controles sea destruido o barajado por una habilidad oponente."
-  }
-],
+    ],
     "tier": "bajo"
   },
   {
@@ -64183,30 +64183,30 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades":[
-  {
-    "trigger": "onEnterPlay",
-    "description": "Destruye todos los Aliados en juego.",
-    "id_habilidad": "qadesh_destroy",
-    "opponentCanAnnul": {
-      "cost": {
-        "type": "payGold",
-        "count": 5
-      },
-      "prompt": "Tu oponente jugó Qadesh. ¿Quieres pagar 5 Oros para anularla?"
-    },
-    "effect": {
-      "type": "executeMassRemoval",
-      "destination": "cementerio",
-      "target": {
-        "query": {
-          "type": "Aliado"
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "description": "Destruye todos los Aliados en juego.",
+        "id_habilidad": "qadesh_destroy",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "payGold",
+            "count": 5
+          },
+          "prompt": "Tu oponente jugó Qadesh. ¿Quieres pagar 5 Oros para anularla?"
         },
-        "controller": "any"
+        "effect": {
+          "type": "executeMassRemoval",
+          "destination": "cementerio",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        }
       }
-    }
-  }
-],
+    ],
     "tier": "medio"
   },
   {
@@ -74080,95 +74080,95 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-  {
-    "costs": [
       {
-        "type": "payGold",
-        "count": 2,
-        "prompt": "Paga 2 Oros para transformar a Milano Negro."
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2,
+            "prompt": "Paga 2 Oros para transformar a Milano Negro."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "milanoNegroTransform",
+          "prompt": "Nombra una Raza para Milano Negro.",
+          "duration": "endOfTurn",
+          "transformTo": {
+            "tipo": "Aliado",
+            "fuerza": 2,
+            "coste_oro": 2,
+            "canAttackOnEnterPlay": true
+          },
+          "addAbilities": [
+            {
+              "trigger": "onDealCombatDamageToDeck",
+              "effect": {
+                "type": "chooseOne",
+                "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
+                "options": [
+                  {
+                    "id": "banish_self_graveyard",
+                    "action": {
+                      "type": "chooseAndBanish",
+                      "count": 2,
+                      "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
+                      "target": {
+                        "zone": "cementerio",
+                        "query": {
+                          "type": "*"
+                        },
+                        "controller": "self"
+                      },
+                      "minCount": 0
+                    },
+                    "description": "Tu Cementerio"
+                  },
+                  {
+                    "id": "banish_opponent_graveyard",
+                    "action": {
+                      "type": "chooseAndBanish",
+                      "count": 2,
+                      "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
+                      "target": {
+                        "zone": "cementerio",
+                        "query": {
+                          "type": "*"
+                        },
+                        "controller": "opponent"
+                      },
+                      "minCount": 0
+                    },
+                    "description": "Cementerio Oponente"
+                  },
+                  {
+                    "id": "milano_pass",
+                    "action": {},
+                    "description": "No desterrar"
+                  }
+                ]
+              },
+              "description": "Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
+              "id_habilidad": "milano_damage_banish"
+            }
+          ]
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "wasNotPlayedThisTurn"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
+        "id_habilidad": "milano_negro_transform_main"
       }
     ],
-    "phase": "Principal",
-    "effect": {
-      "type": "milanoNegroTransform",
-      "prompt": "Nombra una Raza para Milano Negro.",
-      "duration": "endOfTurn",
-      "transformTo": {
-        "tipo": "Aliado",
-        "fuerza": 2,
-        "coste_oro": 2,
-        "canAttackOnEnterPlay": true
-      },
-      "addAbilities": [
-        {
-          "trigger": "onDealCombatDamageToDeck",
-          "effect": {
-            "type": "chooseOne",
-            "prompt": "Habilidad de Milano Negro: ¿De qué Cementerio quieres desterrar cartas?",
-            "options": [
-              {
-                "id": "banish_self_graveyard",
-                "action": {
-                  "type": "chooseAndBanish",
-                  "count": 2,
-                  "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
-                  "target": {
-                    "zone": "cementerio",
-                    "query": {
-                      "type": "*"
-                    },
-                    "controller": "self"
-                  },
-                  "minCount": 0
-                },
-                "description": "Tu Cementerio"
-              },
-              {
-                "id": "banish_opponent_graveyard",
-                "action": {
-                  "type": "chooseAndBanish",
-                  "count": 2,
-                  "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
-                  "target": {
-                    "zone": "cementerio",
-                    "query": {
-                      "type": "*"
-                    },
-                    "controller": "opponent"
-                  },
-                  "minCount": 0
-                },
-                "description": "Cementerio Oponente"
-              },
-              {
-                "id": "milano_pass",
-                "action": {},
-                "description": "No desterrar"
-              }
-            ]
-          },
-          "description": "Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
-          "id_habilidad": "milano_damage_banish"
-        }
-      ]
-    },
-    "trigger": "activatable_with_costs",
-    "condition": {
-      "type": "and",
-      "conditions": [
-        {
-          "type": "isInZone",
-          "zone": "goldReserve"
-        },
-        {
-          "type": "wasNotPlayedThisTurn"
-        }
-      ]
-    },
-    "description": "En tu Fase de Vigilia, puedes nombrar una Raza. Luego, puedes pagar 2 Oros para convertir este Oro desde tu Reserva en un Aliado de coste y Fuerza 2 y de la raza nombrada hasta la Fase Final. Si hace daño al Mazo Castillo oponente, puedes desterrar hasta 2 cartas de un Cementerio.",
-    "id_habilidad": "milano_negro_transform_main"
-  }
-],
     "tier": "medio"
   },
   {
@@ -94103,47 +94103,47 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "costs": [
       {
-        "type": "payGold",
-        "count": 2
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado",
+            "notKeyword": "indestructible"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "controller": "self"
+        },
+        "effect": {
+          "then": {
+            "effect": {
+              "type": "reduceMillToZero"
+            }
+          },
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado que controles para destruir.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "notKeyword": "indestructible"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "activatable",
+        "description": "En respuesta a recibir daño, destruye un Aliado que controles para reducir a 0 el daño hecho a tu Mazo Castillo este turno.",
+        "id_habilidad": "aliado_feerico_prevent_damage",
+        "sourcePlayer": "opponent",
+        "targetPlayer": "self",
+        "listensForEvent": "onBeingMilled"
       }
     ],
-    "condition": {
-      "type": "playerControls",
-      "query": {
-        "type": "Aliado",
-        "notKeyword": "indestructible"
-      },
-      "amount": 1,
-      "comparison": "greaterOrEqual",
-      "controller": "self"
-    },
-    "effect": {
-      "then": {
-        "effect": {
-          "type": "reduceMillToZero"
-        }
-      },
-      "type": "destroyTarget",
-      "prompt": "Elige un Aliado que controles para destruir.",
-      "target": {
-        "query": {
-          "type": "Aliado",
-          "notKeyword": "indestructible"
-        },
-        "controller": "self"
-      }
-    },
-    "trigger": "activatable",
-    "description": "En respuesta a recibir daño, destruye un Aliado que controles para reducir a 0 el daño hecho a tu Mazo Castillo este turno.",
-    "id_habilidad": "aliado_feerico_prevent_damage",
-    "sourcePlayer": "opponent",
-    "targetPlayer": "self",
-    "listensForEvent": "onBeingMilled"
-  }
-],
     "tier": "muy bajo"
   },
   {
@@ -122270,10 +122270,13 @@
                 "action": {
                   "type": "destroyTarget",
                   "count": 1,
+                  "canTargetSourceCard": true,
                   "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
                   "target": {
+                    "isOther": false,
                     "query": {
-                      "type": "Aliado"
+                      "type": "Aliado",
+                      "isOther": false
                     },
                     "controller": "self"
                   }
@@ -123658,5 +123661,575 @@
       }
     ],
     "tier": "bajo"
+  },
+  {
+    "id": 1519,
+    "nombre": "Nombrado Emperador",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl675.webp",
+    "habilidad_texto_descriptivo": "Baraja 3 cartas de tu Cementerio a tu Mazo Castillo.",
+    "descripcion": "Baraja 3 cartas de tu Cementerio a tu Mazo Castillo.",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 3,
+          "minCount": 3,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Nombrado Emperador: Elige 3 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": false
+        },
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerHasInGraveyard",
+          "query": {
+            "type": "*"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Baraja 3 cartas de tu Cementerio a tu Mazo Castillo.",
+        "id_habilidad": "nombrado_emperador_shuffle_3"
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2447,
+    "nombre": "Juicio a los Muertos",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/juicioalosmuertos.webp",
+    "habilidad_texto_descriptivo": "Única. Si tienes igual o menor cantidad de oros en juego que tu oponente, este Talisman no puede ser anulado. Baraja una carta oponente que este en juego que no sea Oro. Luego, bota tantas cartas como coste tenga la carta barajada.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotBeAnnulled"
+        ],
+        "condition": {
+          "type": "controlsFewerOrEqualGoldThanOpponent"
+        },
+        "description": "Si tienes igual o menor cantidad de oros en juego que tu oponente, este Talisman no puede ser anulado.",
+        "id_habilidad": "juicio_a_los_muertos_cannot_be_annulled"
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta oponente en juego que no sea Oro para barajar.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense",
+              "support",
+              "totem"
+            ],
+            "controller": "opponent",
+            "query": {
+              "notType": "Oro"
+            }
+          },
+          "canCancel": false,
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "count": {
+                "fromContext": "resolvedCard.coste_oro"
+              },
+              "target": "self"
+            }
+          },
+          "requiresChoice": true
+        },
+        "description": "Baraja una carta oponente que este en juego que no sea Oro. Luego, bota tantas cartas como coste tenga la carta barajada.",
+        "id_habilidad": "juicio_a_los_muertos_shuffle_and_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2448,
+    "nombre": "Vairocana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/vairocana.webp",
+    "habilidad_texto_descriptivo": "Cuando entre en juego, puedes mirar la Mano de tu oponente y elige una carta de ahí que no sea Oro. Luego, elige entre descartar esa carta o que tu oponente bote tantas cartas como Coste tenga la carta elegida.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "vairocana_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "viewHandAndDiscardOrMill",
+          "prompt": "Mira la mano de tu oponente y elige una carta que no sea Oro.",
+          "targetQuery": {
+            "notType": "Oro"
+          },
+          "canCancel": true
+        },
+        "description": "Cuando entre en juego, puedes mirar la Mano de tu oponente y elige una carta de ahí que no sea Oro. Luego, elige entre descartar esa carta o que tu oponente bote tantas cartas como Coste tenga la carta elegida."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2442,
+    "nombre": "Askafroa",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/askafroa.webp",
+    "habilidad_texto_descriptivo": "Sólo puede ser declarado atacante si controlas 3 o más Aliados. Cuando entra en juego, puedes ganar el control de un Aliado de Coste 3 o menos que controle tu oponente hasta la Fase Final.\nCuando sea destruido, puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "Sólo puede ser declarado atacante si controlas 3 o más Aliados.",
+        "id_habilidad": "askafroa_cannot_attack"
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "grantKeyword",
+          "target": "self",
+          "keyword": "nowCanAttack"
+        },
+        "condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 3,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Sólo puede ser declarado atacante si controlas 3 o más Aliados.",
+        "id_habilidad": "askafroa_can_attack_condition"
+      },
+      {
+        "id_habilidad": "askafroa_gain_control",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente de Coste 3 o menos para ganar su control hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "cost": {
+                "value": 3,
+                "operator": "<="
+              }
+            },
+            "controller": "opponent"
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Cuando entra en juego, puedes ganar el control de un Aliado de Coste 3 o menos que controle tu oponente hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "askafroa_draw_on_destroyed",
+        "trigger": "onLeavePlay",
+        "condition": {
+          "type": "wasMovedTo",
+          "zone": "cementerio"
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Askafroa fue destruido. ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "askafroa_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "askafroa_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "description": "Cuando sea destruido, puedes robar 1 carta."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2443,
+    "nombre": "Baldraz",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/baldraz.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes descartar una carta de tu Mano para robar 2 cartas. Luego, elige hasta 2 Aliados en juego bajo tu control para que ganen 2 a la Fuerza hasta la Fase Final.\n\n",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "baldraz_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "baldrazEffect"
+        },
+        "description": "Cuando entra en juego, puedes descartar una carta de tu Mano para robar 2 cartas. Luego, elige hasta 2 Aliados en juego bajo tu control para que ganen 2 a la Fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2444,
+    "nombre": "Brunhild",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/brunhild.webp",
+    "habilidad_texto_descriptivo": "Si controlas menos Aliados que tu oponente, jugar este Aliado te cuesta 1 Oro menos. Cuando entre o salga del juego, puedes buscar un Aliado en un Mazo Castillo y ponerlo en el Cementerio de su dueño.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "reduceCost",
+          "target": "self",
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "controlsFewerAlliesThanOpponent"
+        },
+        "description": "Si controlas menos Aliados que tu oponente, jugar este Aliado te cuesta 1 Oro menos.",
+        "id_habilidad": "brunhild_cost_reduction"
+      },
+      {
+        "id_habilidad": "brunhild_enter_play_search",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Brunhild: ¿En qué Mazo Castillo deseas buscar un Aliado?",
+          "canCancel": true,
+          "options": [
+            {
+              "id": "brunhild_enter_search_opponent",
+              "description": "Buscar en el Mazo Castillo oponente",
+              "action": {
+                "type": "searchAndChooseToGraveyard",
+                "count": 1,
+                "prompt": "Busca un Aliado en el Mazo Castillo oponente y envíalo a su Cementerio.",
+                "canCancel": true,
+                "searchQuery": {
+                  "type": "Aliado",
+                  "zone": "mazoCastillo",
+                  "controller": "opponent"
+                }
+              }
+            },
+            {
+              "id": "brunhild_enter_search_self",
+              "description": "Buscar en tu propio Mazo Castillo",
+              "action": {
+                "type": "searchAndChooseToGraveyard",
+                "count": 1,
+                "prompt": "Busca un Aliado en tu Mazo Castillo y envíalo a tu Cementerio.",
+                "canCancel": true,
+                "searchQuery": {
+                  "type": "Aliado",
+                  "zone": "mazoCastillo",
+                  "controller": "self"
+                }
+              }
+            },
+            {
+              "id": "brunhild_enter_cancel",
+              "description": "No buscar",
+              "action": {}
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes buscar un Aliado en un Mazo Castillo y ponerlo en el Cementerio de su dueño."
+      },
+      {
+        "id_habilidad": "brunhild_leave_play_search",
+        "trigger": "onLeavePlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Brunhild: ¿En qué Mazo Castillo deseas buscar un Aliado?",
+          "canCancel": true,
+          "options": [
+            {
+              "id": "brunhild_leave_search_opponent",
+              "description": "Buscar en el Mazo Castillo oponente",
+              "action": {
+                "type": "searchAndChooseToGraveyard",
+                "count": 1,
+                "prompt": "Busca un Aliado en el Mazo Castillo oponente y envíalo a su Cementerio.",
+                "canCancel": true,
+                "searchQuery": {
+                  "type": "Aliado",
+                  "zone": "mazoCastillo",
+                  "controller": "opponent"
+                }
+              }
+            },
+            {
+              "id": "brunhild_leave_search_self",
+              "description": "Buscar en tu propio Mazo Castillo",
+              "action": {
+                "type": "searchAndChooseToGraveyard",
+                "count": 1,
+                "prompt": "Busca un Aliado en tu Mazo Castillo y envíalo a tu Cementerio.",
+                "canCancel": true,
+                "searchQuery": {
+                  "type": "Aliado",
+                  "zone": "mazoCastillo",
+                  "controller": "self"
+                }
+              }
+            },
+            {
+              "id": "brunhild_leave_cancel",
+              "description": "No buscar",
+              "action": {}
+            }
+          ]
+        },
+        "description": "Cuando salga del juego, puedes buscar un Aliado en un Mazo Castillo y ponerlo en el Cementerio de su dueño."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2445,
+    "nombre": "Hariasa",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hariasa.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir entre robar 1 carta o que tu oponente bote 2 cartas. En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes destruir un Aliado que controles para ponerlo en tu Mano.\n\n",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "hariasa_enter_play_choice",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Hariasa: Elige un efecto:",
+          "canCancel": true,
+          "options": [
+            {
+              "id": "hariasa_draw",
+              "description": "Robar 1 carta",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              }
+            },
+            {
+              "id": "hariasa_mill_opponent",
+              "description": "Tu oponente bota 2 cartas",
+              "action": {
+                "type": "millCards",
+                "count": 2,
+                "target": "opponent"
+              }
+            },
+            {
+              "id": "hariasa_cancel",
+              "description": "No usar habilidad",
+              "action": {}
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes elegir entre robar 1 carta o que tu oponente bote 2 cartas."
+      },
+      {
+        "id_habilidad": "hariasa_graveyard_to_hand",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Hariasa: Elige un Aliado que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado está en tu Cementerio, puedes destruir un Aliado que controles para ponerlo en tu Mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2446,
+    "nombre": "Jared el Mago",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/jared.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Jared el Mago en juego. Una vez por turno, cuando juegues un Talisman, puedes barajar un Aliado oponente de coste igual o menor al Talisman jugado.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Jared el Mago en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "jared_el_mago_shuffle_on_talisman",
+        "trigger": "activatable",
+        "phase": "any",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "type": "Talisman"
+        },
+        "triggeringPlayer": "self",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige un Aliado oponente de coste igual o menor al Talismán jugado para barajar.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "opponent",
+            "query": {
+              "type": "Aliado",
+              "coste_oro": {
+                "value": {
+                  "fromContext": "triggeringCard.coste_oro"
+                },
+                "operator": "<="
+              }
+            }
+          },
+          "canCancel": true
+        },
+        "description": "Una vez por turno, cuando juegues un Talisman, puedes barajar un Aliado oponente de coste igual o menor al Talisman jugado."
+      }
+    ],
+    "tier": "medio"
   }
 ]

@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.8",
+    "pack_version": "3.4.9",
     "habilidades": []
   },
   {
@@ -72977,57 +72977,6 @@
     "tier": "muy bajo"
   },
   {
-    "id": 1057,
-    "nombre": "Lady Rachel",
-    "tipo": "Aliado",
-    "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/myl79.webp",
-    "habilidad_texto_descriptivo": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente. ",
-    "descripcion": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente. ",
-    "expansion": "Espada Sagrada",
-    "rareza": "false",
-    "fecha_creacion": null,
-    "fuerza": 1,
-    "raza": "Caballero",
-    "leyenda": "",
-    "danio": null,
-    "durabilidad": null,
-    "cantidad_generada": null,
-    "salud": null,
-    "habilidades": [
-      {
-        "costs": [
-          {
-            "type": "banishSelf"
-          }
-        ],
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "effect": {
-          "type": "destroyTarget",
-          "prompt": "Elige un Aliado de raza Dragón oponente para destruir.",
-          "target": {
-            "query": {
-              "raza": "Dragon",
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        },
-        "trigger": "activatable_with_costs",
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "description": "Puedes desterrar a Lady Rachel para destruir un Dragón oponente.",
-        "id_habilidad": "lady_rachel_destroy_dragon"
-      }
-    ],
-    "tier": "muy bajo"
-  },
-  {
     "id": 1276,
     "nombre": "Espada de Caballero",
     "tipo": "Arma",
@@ -124231,5 +124180,806 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 2449,
+    "nombre": "Lady Rachel",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/8ladyrachel.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Arma que controles para destruir una carta oponente en juego de coste 2 o menos.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "lady_rachel_2_destroy_weapon_cost_destroy_target",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "costs": [
+          {
+            "type": "destroyWeaponAsCost",
+            "count": 1,
+            "prompt": "Habilidad de Lady Rachel 2: Elige un Arma que controles para destruir como coste."
+          }
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "zone": "field",
+                "coste_oro": {
+                  "value": 2,
+                  "operator": "<="
+                },
+                "notKeyword": "indestructible"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige una carta oponente en juego de coste 2 o menos para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "coste_oro": {
+                "value": 2,
+                "operator": "<="
+              },
+              "notKeyword": "indestructible"
+            },
+            "controller": "opponent"
+          },
+          "canCancel": false
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Arma que controles para destruir una carta oponente en juego de coste 2 o menos."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2450,
+    "nombre": "Sir Tor",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/9sirtor.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Puede atacar cuando entra en juego. Cuando es declarado atacante junto a 2 o mas Aliados Sir, cada jugador bota 2 cartas. Luego, destierra una carta de tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Imbloqueable. Puede atacar cuando entra en juego."
+      },
+      {
+        "id_habilidad": "sir_tor_attack_mill_and_banish",
+        "trigger": "onDeclareAttack",
+        "condition": {
+          "type": "playerAttackedWith",
+          "query": {
+            "type": "Aliado",
+            "nameContains": "Sir",
+            "isOther": true
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "massMill",
+          "count": 2,
+          "target": "allPlayers",
+          "then": {
+            "effect": {
+              "type": "chooseAndBanish",
+              "count": 1,
+              "prompt": "Habilidad de Sir Tor: Elige una carta de tu Cementerio para desterrar.",
+              "target": {
+                "zone": "cementerio",
+                "controller": "self",
+                "query": {
+                  "type": "*"
+                }
+              },
+              "canCancel": false
+            }
+          }
+        },
+        "description": "Cuando es declarado atacante junto a 2 o mas Aliados Sir, cada jugador bota 2 cartas. Luego, destierra una carta de tu Cementerio."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2451,
+    "nombre": "Sir Bleoberis",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/11sirbleoberis.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes destruir una carta oponente en juego que no sea Oro, de coste igual o menor a la cantidad de Armas que controles.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "sir_bleoberis_destroy_target_on_enter",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "destroyTarget",
+          "canCancel": true,
+          "prompt": "Habilidad de Sir Bleoberis: Elige una carta oponente en juego (que no sea Oro) de coste igual o menor a las Armas que controles para destruir.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro",
+              "notKeyword": "indestructible"
+            },
+            "condition": {
+              "value": {
+                "query": {
+                  "type": "Arma",
+                  "zone": "field",
+                  "controller": "self"
+                },
+                "source": "count"
+              },
+              "property": "coste_oro",
+              "comparison": "lessThanOrEqualTo"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando entra en juego, puedes destruir una carta oponente en juego que no sea Oro, de coste igual o menor a la cantidad de Armas que controles."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2452,
+    "nombre": "Dragon de Agua",
+    "tipo": "Aliado",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/dragondeagua.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Mientras este Aliado este en juego, tus demás Aliados de raza Dragón no pueden ser afectados por Talismanes oponentes.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "id_habilidad": "dragon_de_agua_2_talisman_immunity",
+        "trigger": "continuous",
+        "effect": {
+          "type": "grantKeyword",
+          "target": {
+            "query": {
+              "raza": [
+                "Dragon",
+                "Dragón"
+              ],
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          },
+          "keyword": "talismanImmunity"
+        },
+        "description": "Mientras este Aliado esté en juego, tus demás Aliados de raza Dragón no pueden ser afectados por Talismanes oponentes."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2453,
+    "nombre": "Espina de Serpiente",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/espina.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente. Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 3,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "espina_de_serpiente_on_enter_debuff",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "canCancel": true,
+          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza permanentemente.",
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "duration": "permanent",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente."
+      },
+      {
+        "id_habilidad": "espina_de_serpiente_shuffle_debuff",
+        "trigger": "activatable",
+        "costPaidBeforeResponse": true,
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "duration": "endOfTurn",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final."
+      }
+    ],
+    "tier": "alto"
+  },
+  {
+    "id": 2454,
+    "nombre": "Nathair-Teine",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/nathairreine.webp",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Cuando es declarado atacante, puedes elegir un Aliado de raza Dragón de coste 1 o menos en tu Cementerio y jugarlo sin pagar su coste en tu linea de Ataque como un Aliado declarado Atacante. En tu Fase Final, ese Aliado debe ser destruido.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "id_habilidad": "nathair_teine_declare_attack_reanimate",
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "playAllyFromGraveyardAsAttacker",
+          "canCancel": true,
+          "prompt": "Habilidad de Nathair-Teine: Elige un Aliado Dragón de coste 1 o menos de tu Cementerio para jugarlo en la Línea de Ataque como atacante.",
+          "searchQuery": {
+            "type": "Aliado",
+            "raza": [
+              "Dragon",
+              "Dragón"
+            ],
+            "coste_oro": {
+              "value": 1,
+              "operator": "<="
+            },
+            "zone": "cementerio"
+          },
+          "temporaryEffect": "destroyAtEndOfTurn"
+        },
+        "description": "Cuando es declarado atacante, puedes elegir un Aliado de raza Dragón de coste 1 o menos en tu Cementerio y jugarlo sin pagar su coste en tu linea de Ataque como un Aliado declarado Atacante. En tu Fase Final, ese Aliado debe ser destruido."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2455,
+    "nombre": "Y Ddraig Ddall",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ydraigddall.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, si controlas 2 o mas Aliados de raza Dragon, puedes barajar un Aliado de raza Dragón de tu Mano para buscar un Aliado de raza Dragón en tu Mazo Castillo y ponerlo en tu mano.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "y_ddraig_ddall_enter_play_search",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "amount": 2,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "Aliado",
+                "raza": [
+                  "Dragon",
+                  "Dragón"
+                ]
+              }
+            },
+            {
+              "type": "playerHasInHand",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "Aliado",
+                "raza": [
+                  "Dragon",
+                  "Dragón"
+                ]
+              }
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "shuffleFromHandAsCost",
+            "count": 1,
+            "optional": true,
+            "query": {
+              "type": "Aliado",
+              "raza": [
+                "Dragon",
+                "Dragón"
+              ]
+            },
+            "prompt": "Habilidad de Y Ddraig Ddall: Puedes barajar un Aliado de raza Dragón de tu Mano en tu Mazo Castillo."
+          }
+        ],
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Y Ddraig Ddall: Elige un Aliado de raza Dragón en tu Mazo Castillo y ponlo en tu mano.",
+          "canCancel": false,
+          "searchQuery": {
+            "type": "Aliado",
+            "raza": [
+              "Dragon",
+              "Dragón"
+            ],
+            "zone": "mazoCastillo"
+          }
+        },
+        "description": "Cuando entra en juego, si controlas 2 o mas Aliados de raza Dragon, puedes barajar un Aliado de raza Dragón de tu Mano para buscar un Aliado de raza Dragón en tu Mazo Castillo y ponerlo en tu mano."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2456,
+    "nombre": "Cornucopia De Aqueloo",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/cornucopiadeaqueloo.webp",
+    "habilidad_texto_descriptivo": "Si este Oro esta en tu Reserva de oros o en tu Zona de oro Pagado, puedes poner este Oro en la parte inferior de tu Mazo Castillo para subir un Oro que no sea Cornucopia de Aqueloo, de tu Cementerio a tu Mano",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cornucopia_de_aqueloo_recover_gold",
+        "trigger": "activatable",
+        "costPaidBeforeResponse": true,
+        "cost": {
+          "type": "moveSelfToBottomOfDeck"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "Oro",
+                "nameIsNot": [
+                  "Cornucopia De Aqueloo",
+                  "Cornucopia de Aqueloo"
+                ]
+              }
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Cornucopia De Aqueloo: Elige un Oro de tu Cementerio para subir a tu Mano.",
+          "canCancel": false,
+          "searchQuery": {
+            "type": "Oro",
+            "nameIsNot": [
+              "Cornucopia De Aqueloo",
+              "Cornucopia de Aqueloo"
+            ],
+            "zone": "cementerio"
+          }
+        },
+        "description": "Si este Oro esta en tu Reserva de oros o en tu Zona de oro Pagado, puedes poner este Oro en la parte inferior de tu Mazo Castillo para subir un Oro que no sea Cornucopia de Aqueloo, de tu Cementerio a tu Mano."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2457,
+    "nombre": "Martillo de Galehaut",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/martillodegalehaut.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes desterrar hasta dos cartas de cualquier cementerio. El portador gana 1 a la fuerza por cada Arma y Aliado Sir en tu destierro.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "martillo_de_galehaut_enter_play_banish",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "or",
+          "conditions": [
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "controller": "opponent",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Martillo de Galehaut: ¿De qué Cementerio quieres desterrar hasta 2 cartas?",
+          "options": [
+            {
+              "id": "banish_self_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 2,
+                "minCount": 0,
+                "allowFewer": true,
+                "canCancel": true,
+                "prompt": "Elige hasta 2 cartas de tu Cementerio para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "self"
+                }
+              },
+              "description": "Tu Cementerio"
+            },
+            {
+              "id": "banish_opponent_graveyard",
+              "action": {
+                "type": "chooseAndBanish",
+                "count": 2,
+                "minCount": 0,
+                "allowFewer": true,
+                "canCancel": true,
+                "prompt": "Elige hasta 2 cartas del Cementerio oponente para desterrar.",
+                "target": {
+                  "zone": "cementerio",
+                  "query": {
+                    "type": "*"
+                  },
+                  "controller": "opponent"
+                }
+              },
+              "description": "Cementerio Oponente"
+            },
+            {
+              "id": "pass",
+              "action": {},
+              "description": "No desterrar"
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes desterrar hasta dos cartas de cualquier cementerio."
+      },
+      {
+        "id_habilidad": "martillo_de_galehaut_wielder_buff",
+        "trigger": "continuous",
+        "effect": {
+          "type": "gainBuffFromCount",
+          "target": "wielder",
+          "stat": "fuerza",
+          "multiplier": 1,
+          "query": {
+            "zone": [
+              "banish"
+            ],
+            "controller": "self",
+            "or": [
+              {
+                "type": "Arma"
+              },
+              {
+                "type": "Aliado",
+                "nameContains": "Sir "
+              }
+            ]
+          }
+        },
+        "description": "El portador gana 1 a la fuerza por cada Arma y Aliado Sir en tu destierro."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2458,
+    "nombre": "Oro Fiodhain",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/orofiodain.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, cuando juegues un Talisman, puedes mirar las dos primeras cartas de tu Mazo Castillo y dejar una de ellas en la parte superior o inferior de tu Mazo Castillo. Solo puedes activar un Fruto Fiodhain por turno.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "oro_fiodhain_scry",
+        "trigger": "activatable",
+        "phase": "any",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "type": "Talisman"
+        },
+        "triggeringPlayer": "self",
+        "oncePerTurn": "byAbilityId",
+        "condition": {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
+          ]
+        },
+        "effect": {
+          "type": "lookAndDistribute",
+          "count": 2,
+          "fromZone": "mazoCastillo",
+          "destinations": [
+            {
+              "zone": "mazoCastillo",
+              "position": "top",
+              "prompt": "Elige una carta para dejar en la parte superior de tu Mazo Castillo (la otra irá al fondo)."
+            },
+            {
+              "zone": "mazoCastillo",
+              "position": "bottom",
+              "remainder": true,
+              "prompt": "La otra carta quedará en la parte inferior de tu Mazo Castillo."
+            }
+          ]
+        },
+        "description": "Una vez por turno, cuando juegues un Talisman, puedes mirar las dos primeras cartas de tu Mazo Castillo y dejar una de ellas en la parte superior o inferior de tu Mazo Castillo. Solo puedes activar un Fruto Fiodhain por turno."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 2459,
+    "nombre": "Caminar las Estrellas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/caminarlasestrellas.webp",
+    "habilidad_texto_descriptivo": "Busca 2 cartas en tu Mazo Castillo con distinto nombre y muestraselas a tu oponente. Tu oponente elige una de ellas y la pone en tu Mano y la otra en tu Cementerio.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "caminar_las_estrellas_search",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchTwoUniqueNamesOpponentPutsInHandAndGraveyard",
+          "prompt": "Busca 2 cartas con distinto nombre en tu Mazo Castillo."
+        },
+        "description": "Busca 2 cartas en tu Mazo Castillo con distinto nombre y muestraselas a tu oponente. Tu oponente elige una de ellas y la pone en tu Mano y la otra en tu Cementerio."
+      }
+    ],
+    "tier": "medio"
+  },
+  {
+    "id": 1330,
+    "nombre": "Termofilas",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl459.webp",
+    "habilidad_texto_descriptivo": "Si tienes dos o más Aliados de raza Héroe en juego, ganan 2 a la fuerza hasta el final del turno. ",
+    "descripcion": "Si tienes dos o más Aliados de raza Héroe en juego, ganan 2 a la fuerza hasta el final del turno. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "termofilas_buff_heroes",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerControls",
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "type": "Aliado",
+            "raza": "Heroe"
+          }
+        },
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "raza": "Heroe"
+            },
+            "controller": "self"
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Si tienes dos o más Aliados de raza Héroe en juego, ganan 2 a la fuerza hasta el final del turno."
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

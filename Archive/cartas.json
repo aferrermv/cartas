@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.4.9",
+    "pack_version": "3.5.0",
     "habilidades": []
   },
   {
@@ -124439,7 +124439,7 @@
     "leyenda": null,
     "danio": null,
     "durabilidad": null,
-    "cantidad_generada": 3,
+    "cantidad_generada": null,
     "salud": null,
     "habilidades": [
       {

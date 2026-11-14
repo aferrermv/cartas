@@ -29544,12 +29544,46 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "zone": "field",
+                "notKeyword": "indestructible"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "notType": "Oro",
+                "zone": "field",
+                "coste_oro": {
+                  "value": 3,
+                  "operator": "<="
+                },
+                "notKeyword": [
+                  "cannotBeBanished",
+                  "talismanImmunity"
+                ]
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
         "effect": {
           "cost": {
             "prompt": "Elige un Aliado que controles para destruir como coste.",
             "target": {
               "query": {
-                "type": "Aliado"
+                "type": "Aliado",
+                "notKeyword": "indestructible"
               },
               "controller": "self"
             },
@@ -29564,7 +29598,11 @@
                 "coste_oro": {
                   "value": 3,
                   "operator": "<="
-                }
+                },
+                "notKeyword": [
+                  "cannotBeBanished",
+                  "talismanImmunity"
+                ]
               },
               "controller": "opponent"
             },
@@ -56653,6 +56691,1287 @@
       }
     ],
     "tier": "medio"
+  },
+ {
+    "id": 7477,
+    "nombre": "Afrodita",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/afroditamititosyleyendas.webp",
+    "visualEffect": "afroditaSpecialEntrance",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, una vez por turno, nombra un tipo de carta que no sea Oro o Talisman. Luego mira la primera carta de tu Mazo Castillo y, si es de ese tipo, Juegala sin pagar su Coste. Si no lo es, Barajala en tu Mazo Castillo. ",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Olimpico",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "chooseTypeAndViewTop",
+          "prompt": "Nombra un tipo de carta:",
+          "options": [
+            "Aliado",
+            "Arma",
+            "Totem"
+          ]
+        },
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7478,
+    "nombre": "Berserk",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/berserkmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Elige un Aliado que controles para que duplique su fuerza y sea Imbloqueable hasta la Fase Final. En tu proximo turno, ese Aliado no podrá ser declarado atacante. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "applyBerserk",
+          "prompt": "Elige un Aliado que controles para que entre en estado Berserk.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7479,
+    "nombre": "Bola de Fuego",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/boladefuegomititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Destruye una carta en juego, que no sea un oro.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "destroyTarget",
+          "visualEffect": "fireball",
+          "count": 1,
+          "target": {
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "any"
+          },
+          "message": "Habilidad de Bola de Fuego: Elige una carta en juego que no sea Oro para destruir."
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7480,
+    "nombre": "Cantobele",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/cantobelemititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Busca un Aliado en tu cementerio y juégalo sin pagar su coste",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "searchAndPlayToDefense",
+          "prompt": "Elige un Aliado de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "type": "Aliado",
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7481,
+    "nombre": "Capa de Invisibilidad",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/capadeinvisibilidadmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "En respuesta a que tu oponente baje una carta, ésta es barajada en su mazo castillo. Esta habilidad no afecta a los oros.",
+    "descripcion": "\"\"¿Invisibilidad? Eso es imposible.\"\" Últimas palabras de muchos generales incrédulos.",
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": "2025-06-26T19:33:33.000Z",
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayAlly"
+      },
+      {
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayWeapon"
+      },
+      {
+        "effect": {
+          "type": "shuffleTriggeringCardIfNotOro"
+        },
+        "trigger": "onOpponentPlayTotem"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7482,
+    "nombre": "Cleopatra VII",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cleopatramititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Cuando Cleopatra VII entra en juego, nombra una raza. los Aliados de esa raza pierden su habilidad mientras Cleopatra VII esté en juego. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Faraon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cleopatra_vii_choose_race",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOneAndApplyLingeringEffect",
+          "prompt": "Nombra una Raza. Los Aliados de esa Raza perderán su habilidad.",
+          "options": [
+            {
+              "id": "raza_caballero",
+              "description": "Caballero",
+              "value": "Caballero"
+            },
+            {
+              "id": "raza_dragon",
+              "description": "Dragón",
+              "value": "Dragon"
+            },
+            {
+              "id": "raza_faerie",
+              "description": "Faerie",
+              "value": "Faerie"
+            },
+            {
+              "id": "raza_titan",
+              "description": "Titán",
+              "value": "Titan"
+            },
+            {
+              "id": "raza_defensor",
+              "description": "Defensor",
+              "value": "Defensor"
+            },
+            {
+              "id": "raza_desafiante",
+              "description": "Desafiante",
+              "value": "Desafiante"
+            },
+            {
+              "id": "raza_sombra",
+              "description": "Sombra",
+              "value": "Sombra"
+            },
+            {
+              "id": "raza_heroe",
+              "description": "Héroe",
+              "value": "Heroe"
+            },
+            {
+              "id": "raza_olimpico",
+              "description": "Olímpico",
+              "value": "Olimpico"
+            },
+            {
+              "id": "raza_eterno",
+              "description": "Eterno",
+              "value": "Eterno"
+            },
+            {
+              "id": "raza_sacerdote",
+              "description": "Sacerdote",
+              "value": "Sacerdote"
+            }
+          ],
+          "duration": "whileInPlay",
+          "lingeringEffect": {
+            "type": "annulAllMatching",
+            "target": {
+              "query": {
+                "raza": {
+                  "fromContext": "chosenValue"
+                },
+                "type": "Aliado"
+              },
+              "isOther": true,
+              "controller": "any"
+            }
+          }
+        },
+        "habilidad_texto_descriptivo": "Cuando Cleopatra VII entra en juego, nombra una raza. Los Aliados de esa raza pierden su habilidad mientras Cleopatra VII esté en juego."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7483,
+    "nombre": "Constantino",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/constantinomititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Mientras Constantino esté en juego, si todos tus Aliados son de Raza Héroe, ganan 2 a la Fuerza.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Heroe",
+    "salud": null,
+    "cantidad_generada": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "condition": {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Heroe"
+          }
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7484,
+    "nombre": "Fergus",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/fergusmititosyleyendas.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "descripcion": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Defensor",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "phase": "Principal",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado oponente de mayor fuerza para destruir.",
+          "visualEffect": "fergusDestroy",
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isHighestStrength": true
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia y una vez por turno, puedes destruir el Aliado oponente de mayor fuerza.",
+        "oncePerTurn": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7485,
+    "nombre": "Fe sin Límite",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/fesinlimitemititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Anula un Talismán oponente. Roba una carta.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulTriggeringTalisman",
+          "visualEffect": "fesinlimiteAnnul"
+        },
+        "trigger": "onOpponentPlayTalisman"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7486,
+    "nombre": "Forma de Lince",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/formadelincemititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final. Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forma_de_lince_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "visualEffect": "formadelinceskill",
+          "prompt": "Elige un Aliado para que gane 3 a la Fuerza.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "self"
+          },
+          "buff": {
+            "stat": "fuerza",
+            "value": 3
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "effect": {
+              "type": "addMarkerToTarget",
+              "marker": "forma_de_lince_target",
+              "duration": "endOfTurn"
+            }
+          }
+        },
+        "description": "Un Aliado que controles gana 3 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "forma_de_lince_final_phase_draw",
+        "trigger": "onPhaseStart",
+        "triggerZones": [
+          "graveyard",
+          "hand",
+          "deck",
+          "banish",
+          "field"
+        ],
+        "phase": "Final",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "El Aliado afectado por Forma de Lince hizo daño. ¿Quieres robar una carta?",
+          "options": [
+            {
+              "id": "forma_de_lince_draw_card",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta."
+            },
+            {
+              "id": "forma_de_lince_no_draw",
+              "action": {},
+              "description": "No, gracias."
+            }
+          ]
+        },
+        "condition": {
+          "type": "playerHasMarker",
+          "marker": "forma_de_lince_can_draw",
+          "uniqueSource": true
+        },
+        "oncePerTurn": true,
+        "description": "Si ese Aliado hace daño al Mazo castillo este turno, puedes robar una carta de tu Mazo Castillo en tu Fase Final."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7487,
+    "nombre": "Haquika",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/haquikamititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Indestructible. Cuando Haquika entra en juego, puedes elegir un Aliado oponente y ponerlo en tu Linea de Defensa. Si Haquika sale del juego, el Aliado vuelve a la linea de Defensa Oponente. ",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sacerdote",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "haquika_main_ability",
+        "inherent": [
+          "indestructible"
+        ],
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado oponente para poner en tu Línea de Defensa.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          },
+          "duration": "whileInPlay",
+          "destinationZone": "defense"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Indestructible. Cuando Haquika entra en juego, puedes elegir un Aliado oponente y ponerlo en tu Linea de Defensa. Si Haquika sale del juego, el Aliado vuelve a la linea de Defensa Oponente."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7488,
+    "nombre": "Lady Calvaur",
+    "tipo": "Aliado",
+    "coste_oro": 7,
+    "imagen_url": "/img/store/cartas/ladycalvaurmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Cuando entra en juego, destierra hasta dos cartas oponente en juego que no sean Oro.\nEn tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes destruir un Aliado de raza Dragon que controles para ponerlo en tu Mano. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 7,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "effect": {
+          "type": "banishTargetInModal",
+          "prompt": "Elige hasta 2 cartas oponentes en juego (que no sean Oro) para desterrar.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
+            },
+            "controller": "opponent"
+          },
+          "maxCount": 2,
+          "minCount": 0
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, destierra hasta dos cartas oponente en juego que no sean Oro.",
+        "id_habilidad": "lady_calvaur_enter_play"
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige un Aliado de raza Dragón que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "raza": "Dragon",
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "currentPhase",
+              "phase": "Principal"
+            },
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "raza": "Dragon",
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes destruir un Aliado de raza Dragón que controles para ponerlo en tu Mano.",
+        "id_habilidad": "lady_calvaur_graveyard_return"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7489,
+    "nombre": "Medusa",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/medusamititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Medusa puede atacar el turno cuando entra en juego. Si  medusa hace daño de combate al Mazo Castillo oponente roba una carta de tu Mazo Castillo. No puede bloquear",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Titan",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "canAttackOnEnterPlay",
+          "cannotBlock"
+        ]
+      },
+      {
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "trigger": "onDealCombatDamageToDeck"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7490,
+    "nombre": "Morgana",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/morganamititosyleyendas.webp",
+    "visualEffect": "morganaSpecialEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Morgana en juego. En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente. ",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Faerie",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Morgana en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige uno de tus Aliados para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Aliado"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "banishTarget",
+          "prompt": "Elige un Aliado oponente para desterrar.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "cannotBeBanished"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "controller": "opponent"
+            }
+          ]
+        },
+        "description": "En tu fase de vigilia y una vez por turno, puedes destruir uno de tus Aliados para desterrar un aliado oponente.",
+        "oncePerTurn": true,
+        "id_habilidad": "morgana_sacrifice_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7491,
+    "nombre": "Morir de Pie",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/morirdepiemititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Cuándo juegues morir de pie destierralo, solo puedes jugar morir de pie si controlas dos o más aliados de una misma raza anula una carta oponente que no sea oro ni Aliado.",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTalisman",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayWeapon",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringCard"
+        },
+        "trigger": "onOpponentPlayTotem",
+        "condition": {
+          "type": "controllerHasAlliesOfSameRace",
+          "count": 2
+        },
+        "banishOnPlay": true
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7492,
+    "nombre": "Nacimiento de Pegaso",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/nacimientodepegasomititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Única. Mira las dos primeras cartas de tu Mazo Castillo puedes elegir dejarlas en la parte superior o inferior de tu Mazo Castillo. Luego, roba dos cartas",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "viewTopAndChoose",
+          "prompt": "Ves las dos primeras cartas de tu mazo. Elige dónde dejarlas:",
+          "options": [
+            {
+              "id": "top",
+              "description": "Dejar en la parte superior"
+            },
+            {
+              "id": "bottom",
+              "description": "Mover al fondo del mazo"
+            }
+          ],
+          "drawCount": 2,
+          "viewCount": 2
+        },
+        "trigger": "onEnterPlay"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7493,
+    "nombre": "Ptah",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ptahmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "No puede ser declarado atacante. Cuando entra en juego, tu oponente elige 6 cartas de tu Cementerio y las barajas en tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Eterno",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "No puede ser declarado atacante."
+      },
+      {
+        "effect": {
+          "type": "opponentChoosesAndShufflesFromMyGraveyard",
+          "count": 6,
+          "prompt": "Elige 6 cartas del Cementerio de tu oponente para que las baraje en su Mazo Castillo.",
+          "sourceZone": "cementerio",
+          "destinationZone": "mazoCastillo"
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, tu oponente elige 6 cartas de tu Cementerio y las barajas en tu Mazo Castillo."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7494,
+    "nombre": "Qadesh",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/qadeshmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Destruye todos los Aliados en juego. Tu oponente puede pagar 5 Oros para anular esta carta.",
+    "descripcion": null,
+    "expansion": "Dominios de Ra",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "trigger": "onEnterPlay",
+        "description": "Destruye todos los Aliados en juego.",
+        "id_habilidad": "qadesh_destroy",
+        "opponentCanAnnul": {
+          "cost": {
+            "type": "payGold",
+            "count": 5
+          },
+          "prompt": "Tu oponente jugó Qadesh. ¿Quieres pagar 5 Oros para anularla?"
+        },
+        "effect": {
+          "type": "executeMassRemoval",
+          "destination": "cementerio",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "any"
+          }
+        }
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7495,
+    "nombre": "Red De Plata",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/reddeplatamititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Anula un Aliado que esté entrando en juego. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulTriggeringAlly"
+        },
+        "trigger": "onOpponentPlayAlly"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7496,
+    "nombre": "Relampago Arcano",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/relampagoarcanomititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Única. Redirige un efecto oponente que afecte a una carta que controles que no sea Oro. Luego, tu oponente bota tantas cartas como coste tenga el nuevo objetivo.",
+    "descripcion": "Única. Redirige un efecto oponente que afecte a una carta que controles que no sea Oro. Luego, tu oponente bota tantas cartas como coste tenga el nuevo objetivo.",
+    "expansion": "Dominios de Ra",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 1
+          }
+        ],
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "notType": "Oro"
+          }
+        },
+        "effect": {
+          "type": "redirectAndMill",
+          "prompt": "Elige un nuevo objetivo para el efecto del oponente.",
+          "target": {
+            "query": {
+              "type": "*"
+            },
+            "controller": "any"
+          }
+        },
+        "trigger": "onCardAffectedByOpponentAbility",
+        "descripcion": "Redirige un efecto oponente que afecte a una carta que controles que no sea Oro. Luego, tu oponente bota tantas cartas como coste tenga el nuevo objetivo (Coste: 1 Oro).",
+        "id_habilidad": "relampago_arcano_redirect"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7497,
+    "nombre": "Rey Arturo Pendragon",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/reyarturomititosyleyendas.webp",
+    "visualEffect": "heavyEntrance",
+    "habilidad_texto_descriptivo": "Unica. Tus demas Aliados de raza Caballero ganan 2 a la Fuerza. Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste. En cada fase de Agrupacion tu oponente bota 2 cartas.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 2
+            }
+          ],
+          "target": {
+            "query": {
+              "raza": "Caballero",
+              "type": "Aliado"
+            },
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "trigger": "continuous",
+        "description": "Tus demás Aliados de raza Caballero ganan 2 a la Fuerza.",
+        "id_habilidad": "arturo_lord_effect"
+      },
+      {
+        "effect": {
+          "type": "searchAndPlayAllyOrWeapon",
+          "prompt": "Elige un Aliado o Arma de coste 2 o menos de tu Cementerio para jugar sin pagar su coste.",
+          "searchQuery": {
+            "cost": {
+              "value": 2,
+              "operator": "<="
+            },
+            "zone": "cementerio"
+          }
+        },
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Aliado o Arma de coste 2 o menos de tu cementerio sin pagar su coste.",
+        "id_habilidad": "arturo_enter_play"
+      },
+      {
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "trigger": "onEndOfTurn",
+        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_end_of_turn_mill"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7498,
+    "nombre": "La Serpiente Negra",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/serpientenegramititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "La serpiente Negra es Indestructible. En tu fase de Vigilia y una vez por turno, puedes barajar 1 carta de tu Mano para buscar 2 cartas en el Mazo Castillo oponente y desterrarlas. \n",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Sombra",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "indestructible"
+        ]
+      },
+      {
+        "costs": [
+          {
+            "type": "shuffleFromHandAsCost",
+            "count": 1,
+            "prompt": "Elige una carta de tu mano para barajar como coste."
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "searchAndChooseToBanish",
+          "count": 2,
+          "prompt": "Elige 2 cartas del Mazo Castillo oponente para desterrar.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "controller": "opponent"
+          }
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "count": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "id_habilidad": "serpiente_negra_shuffle_banish"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7499,
+    "nombre": "Siete contra Tebas",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/sietecontratebasmititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Cancela la habilidad de una carta oponente en juego que no sea oro. Luego puedes robar una carta de tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentActivateAbility"
+      },
+      {
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentPlayAlly"
+      },
+      {
+        "effect": {
+          "type": "annulAndOptionalDraw",
+          "drawCount": 1
+        },
+        "trigger": "onOpponentPlayWeapon"
+      },
+      {
+        "effect": {
+          "type": "annulTriggeringAbility",
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar una carta por el efecto de Siete contra Tebas?",
+              "options": [
+                {
+                  "id": "siete_contra_tebas_draw_4",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta"
+                },
+                {
+                  "id": "siete_contra_tebas_no_draw_4",
+                  "action": {},
+                  "description": "No, gracias"
+                }
+              ]
+            }
+          }
+        },
+        "trigger": "onOpponentPlayTotem"
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 7500,
+    "nombre": "Tutatis",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/tutatismititosyleyendas.webp",
+    "habilidad_texto_descriptivo": "Solo puedes jugar a Tutatis si controlas dos o mas aliados. Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo. ",
+    "descripcion": null,
+    "expansion": "Hijos De Daana",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Desafiante",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "descripcion": "Solo puedes jugar a Tutatis si controlas dos o más Aliados.",
+        "play_condition": {
+          "type": "playerControls",
+          "query": {
+            "type": "Aliado"
+          },
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        }
+      },
+      {
+        "effect": {
+          "type": "forceAllAlliesToAttack"
+        },
+        "trigger": "onMoveToAttack",
+        "descripcion": "Si Tutatis es declarado Atacante, deben ser declarados Atacantes todos tus Aliados que puedan hacerlo."
+      }
+    ],
+    "tier": "bajo"
   },
   {
     "id": 1585,
@@ -92760,8 +94079,7 @@
         "condition": {
           "type": "isInZone",
           "zone": [
-            "goldReserve",
-            "paidGold"
+            "goldReserve"
           ]
         },
         "descripcion": "Si este Oro esta en tu Reserva de Oros, puedes barajar este Oro en tu Mazo Castillo para que un Aliado que controles no pueda salir del juego hasta la Fase Final.",

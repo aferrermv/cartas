@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.1",
+    "pack_version": "3.5.2",
     "habilidades": []
   },
   {
@@ -10518,13 +10518,19 @@
     "salud": null,
     "habilidades": [
       {
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInHand",
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
         "costs": [
           {
             "type": "discardCard",
             "count": 1,
-            "prompt": "Descarta un Aliado de tu mano para activar la habilidad de Dionisio Zagreo.",
+            "prompt": "Descarta una carta de tu mano para activar la habilidad de Dionisio Zagreo.",
             "query": {
-              "type": "Aliado"
+              "type": "*"
             },
             "optional": true
           }
@@ -10532,7 +10538,7 @@
         "effect": {
           "type": "dionisioZagreoDrawEffect"
         },
-        "trigger": "onEnterPlay"
+        "description": "Cuando Dionisio Zagreo entra en juego, puedes descartar una carta de tu mano para robar 1 carta. Si la carta descartada es un Aliado de raza Olímpico, puedes robar una carta adicional."
       }
     ]
   },
@@ -120602,7 +120608,8 @@
         "costs": [
           {
             "type": "payGold",
-            "count": 1
+            "count": 1,
+            "canCancel": false
           },
           {
             "type": "discardSelf"
@@ -124773,8 +124780,18 @@
         "phase": "Principal",
         "trigger": "onPhaseStart",
         "condition": {
-          "type": "isInZone",
-          "zone": "field"
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
         },
         "effect": {
           "type": "chooseOne",

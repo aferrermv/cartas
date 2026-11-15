@@ -2764,7 +2764,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.2",
+    "pack_version": "3.5.3",
     "habilidades": []
   },
   {
@@ -56698,7 +56698,7 @@
     ],
     "tier": "medio"
   },
- {
+  {
     "id": 7477,
     "nombre": "Afrodita",
     "tipo": "Aliado",
@@ -126316,5 +126316,64 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 2460,
+    "nombre": "Harma",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/harma.webp",
+    "habilidad_texto_descriptivo": "El portador gana 2 a la fuerza. Cuando entra en juego, puedes barajar hasta 2 cartas de tu Cementerio en tu Mazo Castillo. Luego puedes robar 1 carta.",
+    "descripcion": null,
+    "expansion": "Helenica",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 2,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "harma_enter_play",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "minCount": 0,
+          "query": {
+            "type": "*"
+          },
+          "canCancel": true,
+          "prompt": "Habilidad de Harma: Elige hasta 2 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Quieres robar 1 carta?",
+              "options": [
+                {
+                  "id": "harma_draw_yes",
+                  "description": "Sí, robar 1 carta",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  }
+                },
+                {
+                  "id": "harma_draw_no",
+                  "description": "No, gracias",
+                  "action": {}
+                }
+              ]
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes barajar hasta 2 cartas de tu Cementerio en tu Mazo Castillo. Luego puedes robar 1 carta."
+      }
+    ],
+    "tier": "medio"
   }
 ]

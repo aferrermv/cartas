@@ -326,13 +326,18 @@
     "salud": null,
     "habilidades": [
       {
+        "play_condition": {
+          "type": "playerHasInHand",
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "trigger": "onEnterPlay",
         "effect": {
           "type": "discardCard",
           "count": 1,
           "prompt": "Debes descartar 1 carta por el efecto de Duendes.",
           "optional": false
         },
-        "trigger": "onEnterPlay",
         "descripcion": "Cuando Duendes entre en juego, debes descartar 1 carta de tu Mano",
         "id_habilidad": "duendes_enter_play_discard"
       }
@@ -2319,7 +2324,7 @@
             "controller": "opponent"
           },
           "message": "Elige una carta oponente (que no sea Oro) para que pierda su habilidad hasta la Fase Final.",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable",
         "condition": {
@@ -2764,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.4",
+    "pack_version": "3.5.5",
     "habilidades": []
   },
   {
@@ -39887,7 +39892,7 @@
             "controller": "opponent"
           },
           "message": "Elige una carta oponente (que no sea Oro) para que pierda su habilidad hasta la Fase Final.",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable",
         "condition": {
@@ -48254,7 +48259,7 @@
             "controller": "opponent"
           },
           "message": "Elige una carta oponente (que no sea Oro) para que pierda su habilidad hasta la Fase Final.",
-          "duration": "endOfTurn"
+          "duration": "startOfFinalPhase"
         },
         "trigger": "activatable",
         "condition": {
@@ -125777,76 +125782,79 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-      {
-        "id_habilidad": "espina_de_serpiente_on_enter_debuff",
-        "trigger": "onEnterPlay",
-        "effect": {
-          "type": "grantBuffToTarget",
-          "canCancel": true,
-          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza permanentemente.",
-          "buff": {
-            "stat": "fuerza",
-            "value": -1
-          },
-          "duration": "permanent",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
-        },
-        "description": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente."
+  {
+    "id_habilidad": "espina_de_serpiente_on_enter_debuff",
+    "trigger": "onEnterPlay",
+    "effect": {
+      "type": "grantBuffToTarget",
+      "canCancel": true,
+      "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza permanentemente.",
+      "buff": {
+        "stat": "fuerza",
+        "value": -1
       },
-      {
-        "id_habilidad": "espina_de_serpiente_shuffle_debuff",
-        "trigger": "activatable",
-        "costPaidBeforeResponse": true,
-        "cost": {
-          "type": "shuffleSelf"
+      "duration": "permanent",
+      "target": {
+        "zone": "field",
+        "query": {
+          "type": "Aliado"
         },
-        "phase": [
-          "Principal",
-          "Guerra de Talismanes"
-        ],
-        "condition": {
-          "type": "and",
-          "conditions": [
-            {
-              "type": "isInZone",
-              "zone": "goldReserve"
-            },
-            {
-              "type": "playerControls",
-              "controller": "opponent",
-              "query": {
-                "type": "Aliado"
-              },
-              "amount": 1,
-              "comparison": "greaterOrEqual"
-            }
+        "controller": "opponent"
+      }
+    },
+    "description": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente."
+  },
+  {
+    "id_habilidad": "espina_de_serpiente_shuffle_debuff",
+    "trigger": "activatable",
+    "costPaidBeforeResponse": true,
+    "cost": {
+      "type": "shuffleSelf"
+    },
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "condition": {
+      "type": "and",
+      "conditions": [
+        {
+          "type": "isInZone",
+          "zone": [
+            "goldReserve",
+            "paidGold"
           ]
         },
-        "effect": {
-          "type": "grantBuffToTarget",
-          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
-          "buff": {
-            "stat": "fuerza",
-            "value": -1
+        {
+          "type": "playerControls",
+          "controller": "opponent",
+          "query": {
+            "type": "Aliado"
           },
-          "duration": "endOfTurn",
-          "target": {
-            "zone": "field",
-            "query": {
-              "type": "Aliado"
-            },
-            "controller": "opponent"
-          }
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        }
+      ]
+    },
+    "effect": {
+      "type": "grantBuffToTarget",
+      "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
+      "buff": {
+        "stat": "fuerza",
+        "value": -1
+      },
+      "duration": "endOfTurn",
+      "target": {
+        "zone": "field",
+        "query": {
+          "type": "Aliado"
         },
-        "description": "Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final."
+        "controller": "opponent"
       }
-    ],
+    },
+    "description": "Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final."
+  }
+],
     "tier": "alto"
   },
   {
@@ -125868,36 +125876,36 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "inherent": [
-      "canAttackOnEnterPlay"
-    ],
-    "description": "Puede atacar cuando entra en juego."
-  },
-  {
-    "id_habilidad": "nathair_teine_declare_attack_reanimate",
-    "trigger": "onDeclareAttack",
-    "effect": {
-      "type": "playAllyFromGraveyardAsAttacker",
-      "canCancel": true,
-      "prompt": "Habilidad de Nathair-Teine: Elige un Aliado Dragón de coste 1 o menos de tu Cementerio para jugarlo en la Línea de Ataque como atacante.",
-      "searchQuery": {
-        "type": "Aliado",
-        "raza": [
-          "Dragon",
-          "Dragón"
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
         ],
-        "coste_oro": {
-          "value": 1,
-          "operator": "<="
-        },
-        "zone": "cementerio"
+        "description": "Puede atacar cuando entra en juego."
       },
-      "temporaryEffect": "destroyInFinalPhase"
-    },
-    "description": "Cuando es declarado atacante, puedes elegir un Aliado de raza Dragón de coste 1 o menos en tu Cementerio y jugarlo sin pagar su coste en tu linea de Ataque como un Aliado declarado Atacante. En tu Fase Final, ese Aliado debe ser destruido."
-  }
-],
+      {
+        "id_habilidad": "nathair_teine_declare_attack_reanimate",
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "playAllyFromGraveyardAsAttacker",
+          "canCancel": true,
+          "prompt": "Habilidad de Nathair-Teine: Elige un Aliado Dragón de coste 1 o menos de tu Cementerio para jugarlo en la Línea de Ataque como atacante.",
+          "searchQuery": {
+            "type": "Aliado",
+            "raza": [
+              "Dragon",
+              "Dragón"
+            ],
+            "coste_oro": {
+              "value": 1,
+              "operator": "<="
+            },
+            "zone": "cementerio"
+          },
+          "temporaryEffect": "destroyInFinalPhase"
+        },
+        "description": "Cuando es declarado atacante, puedes elegir un Aliado de raza Dragón de coste 1 o menos en tu Cementerio y jugarlo sin pagar su coste en tu linea de Ataque como un Aliado declarado Atacante. En tu Fase Final, ese Aliado debe ser destruido."
+      }
+    ],
     "tier": "medio"
   },
   {

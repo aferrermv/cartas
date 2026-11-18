@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.5",
+    "pack_version": "3.5.6",
     "habilidades": []
   },
   {
@@ -9623,14 +9623,30 @@
         "id_habilidad": "arturo_enter_play"
       },
       {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
+        },
         "effect": {
           "type": "millCards",
           "count": 2,
           "target": "opponent"
         },
-        "trigger": "onEndOfTurn",
-        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
-        "id_habilidad": "arturo_end_of_turn_mill"
+        "description": "En cada fase de Agrupación, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_agrupacion_mill"
       }
     ]
   },
@@ -52062,14 +52078,30 @@
         "id_habilidad": "arturo_enter_play"
       },
       {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
+        },
         "effect": {
           "type": "millCards",
           "count": 2,
           "target": "opponent"
         },
-        "trigger": "onEndOfTurn",
-        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
-        "id_habilidad": "arturo_end_of_turn_mill"
+        "description": "En cada fase de Agrupación, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_agrupacion_mill"
       }
     ],
     "tier": "medio"
@@ -54306,14 +54338,30 @@
         "id_habilidad": "arturo_enter_play"
       },
       {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
+        },
         "effect": {
           "type": "millCards",
           "count": 2,
           "target": "opponent"
         },
-        "trigger": "onEndOfTurn",
-        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
-        "id_habilidad": "arturo_end_of_turn_mill"
+        "description": "En cada fase de Agrupación, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_agrupacion_mill"
       }
     ],
     "tier": "muy bajo"
@@ -55137,14 +55185,30 @@
         "id_habilidad": "arturo_enter_play"
       },
       {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
+        },
         "effect": {
           "type": "millCards",
           "count": 2,
           "target": "opponent"
         },
-        "trigger": "onEndOfTurn",
-        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
-        "id_habilidad": "arturo_end_of_turn_mill"
+        "description": "En cada fase de Agrupación, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_agrupacion_mill"
       }
     ],
     "tier": "bajo"
@@ -57796,14 +57860,30 @@
         "id_habilidad": "arturo_enter_play"
       },
       {
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "resolvesInstantly": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            }
+          ]
+        },
         "effect": {
           "type": "millCards",
           "count": 2,
           "target": "opponent"
         },
-        "trigger": "onEndOfTurn",
-        "description": "Al final de tu turno, tu oponente bota 2 cartas.",
-        "id_habilidad": "arturo_end_of_turn_mill"
+        "description": "En cada fase de Agrupación, tu oponente bota 2 cartas.",
+        "id_habilidad": "arturo_agrupacion_mill"
       }
     ],
     "tier": "bajo"
@@ -125782,79 +125862,79 @@
     "cantidad_generada": 1,
     "salud": null,
     "habilidades": [
-  {
-    "id_habilidad": "espina_de_serpiente_on_enter_debuff",
-    "trigger": "onEnterPlay",
-    "effect": {
-      "type": "grantBuffToTarget",
-      "canCancel": true,
-      "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza permanentemente.",
-      "buff": {
-        "stat": "fuerza",
-        "value": -1
-      },
-      "duration": "permanent",
-      "target": {
-        "zone": "field",
-        "query": {
-          "type": "Aliado"
+      {
+        "id_habilidad": "espina_de_serpiente_on_enter_debuff",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "grantBuffToTarget",
+          "canCancel": true,
+          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza permanentemente.",
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "duration": "permanent",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
         },
-        "controller": "opponent"
-      }
-    },
-    "description": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente."
-  },
-  {
-    "id_habilidad": "espina_de_serpiente_shuffle_debuff",
-    "trigger": "activatable",
-    "costPaidBeforeResponse": true,
-    "cost": {
-      "type": "shuffleSelf"
-    },
-    "phase": [
-      "Principal",
-      "Guerra de Talismanes"
-    ],
-    "condition": {
-      "type": "and",
-      "conditions": [
-        {
-          "type": "isInZone",
-          "zone": [
-            "goldReserve",
-            "paidGold"
+        "description": "Cuando entra en juego, puedes elegir un Aliado oponente para que pierda 1 a la fuerza permanentemente."
+      },
+      {
+        "id_habilidad": "espina_de_serpiente_shuffle_debuff",
+        "trigger": "activatable",
+        "costPaidBeforeResponse": true,
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ]
+            },
+            {
+              "type": "playerControls",
+              "controller": "opponent",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
           ]
         },
-        {
-          "type": "playerControls",
-          "controller": "opponent",
-          "query": {
-            "type": "Aliado"
+        "effect": {
+          "type": "grantBuffToTarget",
+          "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
+          "buff": {
+            "stat": "fuerza",
+            "value": -1
           },
-          "amount": 1,
-          "comparison": "greaterOrEqual"
-        }
-      ]
-    },
-    "effect": {
-      "type": "grantBuffToTarget",
-      "prompt": "Habilidad de Espina de Serpiente: Elige un Aliado oponente para que pierda 1 a la fuerza hasta la Fase Final.",
-      "buff": {
-        "stat": "fuerza",
-        "value": -1
-      },
-      "duration": "endOfTurn",
-      "target": {
-        "zone": "field",
-        "query": {
-          "type": "Aliado"
+          "duration": "endOfTurn",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
         },
-        "controller": "opponent"
+        "description": "Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final."
       }
-    },
-    "description": "Puedes barajar este Oro en tu Mazo Castillo para que un Aliado oponente pierda 1 a la fuerza hasta la Fase Final."
-  }
-],
+    ],
     "tier": "alto"
   },
   {
@@ -126383,5 +126463,590 @@
       }
     ],
     "tier": "medio"
+  },
+  {
+    "id": 3827,
+    "nombre": "Amateratsu",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/amateratsu.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego y al comienzo de cada fase de Agrupacion, puedes barajar una carta de tu Cementerio en tu Mazo Castillo",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "amateratsu_enter_play",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "minCount": 0,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Amateratsu: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "descripcion": "Cuando entra en juego, puedes barajar una carta de tu Cementerio en tu Mazo Castillo."
+      },
+      {
+        "id_habilidad": "amateratsu_agrupacion",
+        "phase": "Principal",
+        "trigger": "onPhaseStart",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerDoesNotHaveRestriction",
+              "restrictionType": "skipPhase",
+              "phase": "Agrupacion"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "minCount": 0,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Amateratsu: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "descripcion": "Al comienzo de cada Fase de Agrupación, puedes barajar una carta de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4074,
+    "nombre": "Castillo de Shuri",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/castillodeshuri.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes barajar 2 cartas con distinto nombre de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "castillo_de_shuri_shuffle",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "uniqueBy": "nombre",
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "minCount": 2,
+          "uniqueSelectionBy": "nombre",
+          "canCancel": true,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Castillo de Shuri: Elige 2 cartas con distinto nombre de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "description": "Una vez por turno, puedes barajar 2 cartas con distinto nombre de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3107,
+    "nombre": "Justos por Pecadores",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/justosporpecadores.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar esta carta en tu turno. Destruye un Aliado que controles. Luego, en el próximo turno, tu oponente no puede declarar ataque.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "justos_por_pecadores_effect",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado",
+                "notKeyword": "indestructible"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "destroyTarget",
+          "target": {
+            "zone": "field",
+            "query": {
+              "type": "Aliado",
+              "notKeyword": "indestructible"
+            },
+            "controller": "self"
+          },
+          "prompt": "Justos por Pecadores: Elige un Aliado que controles para destruirlo.",
+          "canCancel": false,
+          "then": {
+            "effect": {
+              "type": "applyPlayerRestriction",
+              "target": "opponent",
+              "duration": "untilEndOfOpponentTurn",
+              "restriction": {
+                "type": "cannotDeclareAttack"
+              }
+            }
+          }
+        },
+        "description": "Sólo puedes jugar esta carta en tu turno. Destruye un Aliado que controles. Luego, en el próximo turno, tu oponente no puede declarar ataque."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2461,
+    "nombre": "Baima Si",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/baimasi.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes robar 1 carta. Mientras controles 2 o más Aliados, los Aliados que controle tu oponente pierden 1 a la Fuerza.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "baimasi_enter_play_draw",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Habilidad de Baima Si: ¿Quieres robar 1 carta?",
+          "options": [
+            {
+              "id": "baimasi_draw_yes",
+              "action": {
+                "type": "drawCards",
+                "count": 1
+              },
+              "description": "Sí, robar 1 carta"
+            },
+            {
+              "id": "baimasi_draw_no",
+              "action": {},
+              "description": "No, gracias"
+            }
+          ]
+        },
+        "description": "Cuando entra en juego, puedes robar 1 carta."
+      },
+      {
+        "id_habilidad": "baimasi_continuous_debuff",
+        "trigger": "continuous",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Aliado"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": -1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "description": "Mientras controles 2 o más Aliados, los Aliados que controle tu oponente pierden 1 a la Fuerza."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 5358,
+    "nombre": "Kawarimi",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/kawarimi.webp",
+    "habilidad_texto_descriptivo": "En respuesta a un Ataque, juega esta carta en tu Fase de bloqueo para cancelar el ataque oponente. ",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "kawarimi_cancel_attack",
+        "trigger": "onEnterPlay",
+        "phase": "Bloqueo",
+        "effect": {
+          "type": "cancelAttackOrBlock",
+          "target": "all"
+        },
+        "descripcion": "En respuesta a un Ataque, juega esta carta en tu Fase de bloqueo para cancelar el ataque oponente."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4211,
+    "nombre": "Saimin No Jutsu",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/saiminnojutsu.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar esta carta en tu turno.   En el próximo turno, tu oponente no puede declarar ataque. Luego, roba 1 carta.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "saimin_no_jutsu_effect",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "isPlayerTurn"
+        },
+        "effect": {
+          "type": "applyPlayerRestriction",
+          "target": "opponent",
+          "duration": "untilEndOfOpponentTurn",
+          "restriction": {
+            "type": "cannotDeclareAttack"
+          },
+          "then": {
+            "effect": {
+              "type": "drawCards",
+              "count": 1
+            }
+          }
+        },
+        "descripcion": "Sólo puedes jugar esta carta en tu turno. En el próximo turno, tu oponente no puede declarar ataque. Luego, roba 1 carta."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4239,
+    "nombre": "Curandero",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/curandero.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes barajar un Chamán o Tótem de tu Cementerio en tu Mazo Castillo para robar 1 carta por cada Tótem que controles.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "curandero_enter_play_shuffle_and_draw",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "or": [
+              {
+                "raza": "Chaman"
+              },
+              {
+                "type": "Totem"
+              }
+            ]
+          }
+        },
+        "costs": [
+          {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "count": 1,
+            "query": {
+              "or": [
+                {
+                  "raza": "Chaman"
+                },
+                {
+                  "type": "Totem"
+                }
+              ]
+            },
+            "prompt": "Habilidad de Curandero: Elige un Chamán o Tótem de tu Cementerio para barajar en tu Mazo Castillo.",
+            "canCancel": true
+          }
+        ],
+        "effect": {
+          "type": "drawCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Totem",
+              "zone": "field",
+              "controller": "self"
+            }
+          }
+        },
+        "descripcion": "Cuando entra en juego, puedes barajar un Chamán o Tótem de tu Cementerio en tu Mazo Castillo para robar 1 carta por cada Tótem que controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3582,
+    "nombre": "Kuyen",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/kuyen2.webp",
+    "habilidad_texto_descriptivo": "El daño directo aumenta en 1. Una vez por turno, puedes destruir un Totem que controles para que un Aliado oponente no haga daño a tu Mazo Castillo hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "kuyen_2_increase_mill_damage",
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "increaseMillDamage",
+          "value": 1
+        },
+        "descripcion": "El daño directo aumenta en 1."
+      },
+      {
+        "id_habilidad": "kuyen_2_prevent_combat_damage",
+        "trigger": "activatable_with_costs",
+        "oncePerTurn": true,
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "query": {
+                "type": "Totem"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Habilidad de Kuyen: Elige un Tótem que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "type": "Totem"
+              },
+              "controller": "self"
+            }
+          }
+        ],
+        "effect": {
+          "type": "targetAndPreventCombatDamage",
+          "prompt": "Elige un Aliado oponente atacante para que no haga daño a tu Mazo Castillo hasta la Fase Final.",
+          "target": {
+            "query": {
+              "type": "Aliado"
+            },
+            "controller": "opponent"
+          }
+        },
+        "descripcion": "Una vez por turno, puedes destruir un Totem que controles para que un Aliado oponente no haga daño a tu Mazo Castillo hasta la Fase Final."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4786,
+    "nombre": "Wangulen",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/wangulen3.webp",
+    "habilidad_texto_descriptivo": "Sólo puede bloquear. Una vez por turno, puedes barajar una carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 5,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "wangulen_cannot_attack",
+        "inherent": [
+          "cannotAttack"
+        ],
+        "description": "Sólo puede bloquear."
+      },
+      {
+        "id_habilidad": "wangulen_shuffle_graveyard",
+        "trigger": "activatable",
+        "oncePerTurn": true,
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 1,
+          "minCount": 1,
+          "canCancel": false,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Wangulen: Elige una carta de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "description": "Una vez por turno, puedes barajar una carta de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
   }
 ]

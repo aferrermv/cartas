@@ -58064,6 +58064,83 @@
     ],
     "tier": "bajo"
   },
+   {
+    "id": 7501,
+     "nombre": "kilgharrah",
+    "tipo": "Aliado",
+    "coste_oro": 6,
+    "imagen_url": "/img/store/cartas/kilgharrah1aniversario/kilgharrah1aniversario_base.webp",
+    "visualEffect": "kilgharrahSpecialEntrance",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Kilgharrah en juego. Imbloqueable, puede atacar el turno que entra en juego. En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+    "descripcion": "",
+    "expansion": "Espada Sagrada",
+    "rareza": "Legendaria",
+    "fecha_creacion": "2025-06-26T19:56:46.000Z",
+    "fuerza": 6,
+    "raza": "Dragon",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable",
+          "canAttackOnEnterPlay",
+          "unique"
+        ],
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "costs": [
+          {
+            "type": "searchAndShuffleIntoDeck",
+            "zone": "cementerio",
+            "count": 2,
+            "query": {
+              "type": "*"
+            },
+            "prompt": "Coste de Kilgharrah: Elige 2 cartas de tu Cementerio para barajar y poder robar 2 cartas.",
+            "canCancel": true
+          }
+        ],
+        "phase": "Principal",
+        "effect": {
+          "type": "drawCards",
+          "count": 2
+        },
+        "trigger": "activatable_with_costs",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": "*"
+              },
+              "amount": 2,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "oncePerTurn": true,
+        "description": "En tu fase de vigilia, una vez por turno, puedes barajar 2 cartas de tu cementerio en tu mazo castillo para robar 2 cartas.",
+        "id_habilidad": "kilgharrah_draw"
+      }
+    ],
+    "tier": "muy alto"
+  },
   {
     "id": 1585,
     "nombre": "Perifetes",

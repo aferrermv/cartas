@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.6",
+    "pack_version": "3.5.7",
     "habilidades": []
   },
   {
@@ -58064,9 +58064,9 @@
     ],
     "tier": "bajo"
   },
-   {
+  {
     "id": 7501,
-     "nombre": "kilgharrah",
+    "nombre": "kilgharrah",
     "tipo": "Aliado",
     "coste_oro": 6,
     "imagen_url": "/img/store/cartas/kilgharrah1aniversario/kilgharrah1aniversario_base.webp",
@@ -127136,7 +127136,7 @@
     "nombre": "Atacama",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/20AtacamaJO8.webp",
+    "imagen_url": "/img/store/cartas/20atacamajo8.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, puedes ganar el control de un Arma o un Totem que controle tu oponente hasta que salga del juego.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127173,14 +127173,15 @@
         },
         "description": "Cuando entra en juego, puedes ganar el control de un Arma o un Totem que controle tu oponente hasta que salga del juego."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 3525,
     "nombre": "Brujo de Salamanca",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/primera_era/BrujodeSalamanca2.webp",
+    "imagen_url": "/img/store/cartas/brujodesalamanca2.webp",
     "habilidad_texto_descriptivo": "Una vez por turno, puedes destruir un Totem o un Aliado que controles para que tu oponente bote 3 cartas. Luego puedes robar 1 carta de tu Mazo Castillo.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127251,14 +127252,15 @@
         },
         "description": "Una vez por turno, puedes destruir un Totem o un Aliado que controles para que tu oponente bote 3 cartas. Luego puedes robar 1 carta de tu Mazo Castillo."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 4240,
     "nombre": "Runa Urutrungu",
     "tipo": "Aliado",
     "coste_oro": 4,
-    "imagen_url": "/img/primera_era/RunaUrutrungu.webp",
+    "imagen_url": "/img/store/cartas/runaurutrungu.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Tótem en tu Mazo Castillo y ponlo en juego sin pagar su Coste.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127285,14 +127287,15 @@
         },
         "description": "Cuando entra en juego, busca un Tótem en tu Mazo Castillo y ponlo en juego sin pagar su Coste."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 2462,
     "nombre": "Mala Luz",
     "tipo": "Talisman",
     "coste_oro": 3,
-    "imagen_url": "/img/nuevascartas/malaluz.webp",
+    "imagen_url": "/img/store/cartas/malaluz.webp",
     "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca un Aliado, Tótem o Arma en tu Mazo Castillo de Coste 3 y juégalo sin pagar su Coste. Luego, destierra este Talismán.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127337,14 +127340,15 @@
         "banishOnPlay": true,
         "description": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca un Aliado, Tótem o Arma en tu Mazo Castillo de Coste 3 y juégalo sin pagar su Coste. Luego, destierra este Talismán."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 3070,
     "nombre": "Chemamull",
     "tipo": "Totem",
     "coste_oro": 2,
-    "imagen_url": "/img/primera_era/Chemamull.webp",
+    "imagen_url": "/img/store/cartas/chemamull.webp",
     "habilidad_texto_descriptivo": "Cuando entra en juego, y si controlas 1 o más Aliados Chamán, destierra la primera carta del Mazo Castillo oponente. Puedes destruir este Totem para poner un Aliado o Totem que no sea Chemamull de tu Cementerio en tu Mano.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127433,14 +127437,15 @@
         },
         "description": "Puedes destruir este Totem para poner un Aliado o Totem que no sea Chemamull de tu Cementerio en tu Mano."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 2463,
     "nombre": "Arco Delaware",
     "tipo": "Arma",
     "coste_oro": 2,
-    "imagen_url": "/img/nuevascartas/arcodelawe.webp",
+    "imagen_url": "/img/store/cartas/arcodelawe.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar 2 Oros para jugar esta Arma desde tu Cementerio sin pagar su Coste. El portador gana 1 a la Fuerza. Puedes barajar esta Arma en el Mazo Castillo de su dueño para que tu oponente bote 3 cartas.\n",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127503,14 +127508,15 @@
         },
         "description": "Puedes barajar esta Arma en el Mazo Castillo de su dueño para que tu oponente bote 3 cartas."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 3967,
     "nombre": "Huaraka",
     "tipo": "Arma",
     "coste_oro": 3,
-    "imagen_url": "/img/primera_era/Huaraka2.webp",
+    "imagen_url": "/img/store/cartas/huaraka2.webp",
     "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Cuando entra en juego, tu oponente baraja un Aliado que controle en al Mazo Castillo de su dueño.",
     "descripcion": null,
     "expansion": "La Ira del Nahual",
@@ -127533,14 +127539,15 @@
         },
         "description": "Cuando entra en juego, tu oponente baraja un Aliado que controle en al Mazo Castillo de su dueño."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   },
   {
     "id": 3560,
     "nombre": "Garm",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/primera_era/Garm.webp",
+    "imagen_url": "/img/store/cartas/garm.webp",
     "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su Coste.",
     "descripcion": null,
     "expansion": "Ragnarok",
@@ -127579,6 +127586,7 @@
         },
         "description": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su Coste."
       }
-    ]
+    ],
+    "tier": "muy bajo"
   }
 ]

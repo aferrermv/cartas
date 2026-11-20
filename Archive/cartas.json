@@ -114606,7 +114606,12 @@
     "salud": 0,
     "habilidades": [
       {
+        "id_habilidad": "puerta_del_sol_cost_reduction",
         "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
         "effect": {
           "type": "reduceCost",
           "target": {
@@ -114620,7 +114625,7 @@
             "value": -1
           }
         },
-        "descripcion": "Mientras este Tótem esté en juego, tus Tótem reducen su coste en 1 Oro."
+        "description": "Mientras este Tótem esté en juego, tus Tótem reducen su coste en 1 Oro."
       }
     ]
   },
@@ -127125,5 +127130,455 @@
       }
     ],
     "tier": "muy bajo"
+  },
+  {
+    "id": 2381,
+    "nombre": "Atacama",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/20AtacamaJO8.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes ganar el control de un Arma o un Totem que controle tu oponente hasta que salga del juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "atacama_gain_control_weapon_or_totem",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "controller": "opponent",
+          "query": {
+            "type": [
+              "Arma",
+              "Totem"
+            ]
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "gainControlOfWeaponOrTotem",
+          "canCancel": true,
+          "duration": "permanent",
+          "prompt": "Habilidad de Atacama: Puedes ganar el control de un Arma o un Totem que controle tu oponente."
+        },
+        "description": "Cuando entra en juego, puedes ganar el control de un Arma o un Totem que controle tu oponente hasta que salga del juego."
+      }
+    ]
+  },
+  {
+    "id": 3525,
+    "nombre": "Brujo de Salamanca",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/BrujodeSalamanca2.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes destruir un Totem o un Aliado que controles para que tu oponente bote 3 cartas. Luego puedes robar 1 carta de tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "brujo_de_salamanca_ability",
+        "trigger": "activatable_with_costs",
+        "oncePerTurn": true,
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "count": 1,
+            "prompt": "Elige un Tótem o un Aliado que controles para destruir como coste.",
+            "target": {
+              "query": {
+                "type": [
+                  "Totem",
+                  "Aliado"
+                ]
+              },
+              "controller": "self"
+            },
+            "canTargetSourceCard": true
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent",
+          "then": {
+            "effect": {
+              "type": "chooseOne",
+              "prompt": "¿Deseas robar 1 carta de tu Mazo Castillo?",
+              "options": [
+                {
+                  "id": "brujo_draw_yes",
+                  "action": {
+                    "type": "drawCards",
+                    "count": 1
+                  },
+                  "description": "Sí, robar 1 carta."
+                },
+                {
+                  "id": "brujo_draw_no",
+                  "action": {},
+                  "description": "No, gracias."
+                }
+              ]
+            }
+          }
+        },
+        "description": "Una vez por turno, puedes destruir un Totem o un Aliado que controles para que tu oponente bote 3 cartas. Luego puedes robar 1 carta de tu Mazo Castillo."
+      }
+    ]
+  },
+  {
+    "id": 4240,
+    "nombre": "Runa Urutrungu",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/primera_era/RunaUrutrungu.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, busca un Tótem en tu Mazo Castillo y ponlo en juego sin pagar su Coste.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "runa_urutrungu_search_and_play_totem",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "prompt": "Habilidad de Runa Urutrungu: Busca un Tótem en tu Mazo Castillo para ponerlo en juego sin pagar su Coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo"
+          }
+        },
+        "description": "Cuando entra en juego, busca un Tótem en tu Mazo Castillo y ponlo en juego sin pagar su Coste."
+      }
+    ]
+  },
+  {
+    "id": 2462,
+    "nombre": "Mala Luz",
+    "tipo": "Talisman",
+    "coste_oro": 3,
+    "imagen_url": "/img/nuevascartas/malaluz.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca un Aliado, Tótem o Arma en tu Mazo Castillo de Coste 3 y juégalo sin pagar su Coste. Luego, destierra este Talismán.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "mala_luz_ability",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "currentPhase",
+              "phase": "Principal"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndPlayAllyTotemOrWeapon",
+          "prompt": "Habilidad de Mala Luz: Elige un Aliado, Tótem o Arma de Coste 3 de tu Mazo Castillo para jugar sin pagar su Coste.",
+          "searchQuery": {
+            "type": [
+              "Aliado",
+              "Totem",
+              "Arma"
+            ],
+            "cost": 3,
+            "zone": "mazoCastillo"
+          }
+        },
+        "banishOnPlay": true,
+        "description": "Sólo puedes jugar este Talismán en tu Fase de Vigilia. Busca un Aliado, Tótem o Arma en tu Mazo Castillo de Coste 3 y juégalo sin pagar su Coste. Luego, destierra este Talismán."
+      }
+    ]
+  },
+  {
+    "id": 3070,
+    "nombre": "Chemamull",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/Chemamull.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, y si controlas 1 o más Aliados Chamán, destierra la primera carta del Mazo Castillo oponente. Puedes destruir este Totem para poner un Aliado o Totem que no sea Chemamull de tu Cementerio en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "chemamull_on_enter_banish",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerControls",
+          "controller": "self",
+          "query": {
+            "type": "Aliado",
+            "raza": "Chaman"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent",
+          "destinationZone": "banish"
+        },
+        "description": "Cuando entra en juego, y si controlas 1 o más Aliados Chamán, destierra la primera carta del Mazo Castillo oponente."
+      },
+      {
+        "id_habilidad": "chemamull_destroy_self_recur",
+        "trigger": "activatable",
+        "costPaidBeforeResponse": true,
+        "cost": {
+          "type": "destroySelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInGraveyard",
+              "query": {
+                "type": [
+                  "Aliado",
+                  "Totem"
+                ],
+                "nameIsNot": "Chemamull"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Chemamull: Elige un Aliado o Tótem que no sea Chemamull de tu Cementerio para poner en tu Mano.",
+          "canCancel": false,
+          "searchQuery": {
+            "zone": "cementerio",
+            "type": [
+              "Aliado",
+              "Totem"
+            ],
+            "nameIsNot": "Chemamull",
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ],
+              "nameIsNot": "Chemamull"
+            }
+          }
+        },
+        "description": "Puedes destruir este Totem para poner un Aliado o Totem que no sea Chemamull de tu Cementerio en tu Mano."
+      }
+    ]
+  },
+  {
+    "id": 2463,
+    "nombre": "Arco Delaware",
+    "tipo": "Arma",
+    "coste_oro": 2,
+    "imagen_url": "/img/nuevascartas/arcodelawe.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes pagar 2 Oros para jugar esta Arma desde tu Cementerio sin pagar su Coste. El portador gana 1 a la Fuerza. Puedes barajar esta Arma en el Mazo Castillo de su dueño para que tu oponente bote 3 cartas.\n",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "arco_delaware_play_from_graveyard",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "playSelfAsWeapon"
+        },
+        "description": "En tu Fase de Vigilia, puedes pagar 2 Oros para jugar esta Arma desde tu Cementerio sin pagar su Coste."
+      },
+      {
+        "id_habilidad": "arco_delaware_shuffle_mill",
+        "trigger": "activatable",
+        "costPaidBeforeResponse": true,
+        "cost": {
+          "type": "shuffleSelf"
+        },
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 3,
+          "target": "opponent"
+        },
+        "description": "Puedes barajar esta Arma en el Mazo Castillo de su dueño para que tu oponente bote 3 cartas."
+      }
+    ]
+  },
+  {
+    "id": 3967,
+    "nombre": "Huaraka",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/primera_era/Huaraka2.webp",
+    "habilidad_texto_descriptivo": "El portador gana 1 a la fuerza. Cuando entra en juego, tu oponente baraja un Aliado que controle en al Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": 1,
+    "durabilidad": 0,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "huaraka_on_enter_shuffle_opponent_ally",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "forceOpponentToShuffleAlly",
+          "prompt": "Habilidad de Huaraka: Elige un Aliado que controles para barajar en el Mazo Castillo de su dueño."
+        },
+        "description": "Cuando entra en juego, tu oponente baraja un Aliado que controle en al Mazo Castillo de su dueño."
+      }
+    ]
+  },
+  {
+    "id": 3560,
+    "nombre": "Garm",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/primera_era/Garm.webp",
+    "habilidad_texto_descriptivo": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su Coste.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "garm_graveyard_play",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            }
+          ]
+        },
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 2
+        },
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "description": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su Coste."
+      }
+    ]
   }
 ]

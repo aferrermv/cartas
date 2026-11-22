@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.7",
+    "pack_version": "3.5.8",
     "habilidades": []
   },
   {
@@ -126346,7 +126346,7 @@
   },
   {
     "id": 2458,
-    "nombre": "Oro Fiodhain",
+    "nombre": "Fruto Fiodhain",
     "tipo": "Oro",
     "coste_oro": 0,
     "imagen_url": "/img/store/cartas/orofiodain.webp",
@@ -126381,22 +126381,8 @@
           ]
         },
         "effect": {
-          "type": "lookAndDistribute",
-          "count": 2,
-          "fromZone": "mazoCastillo",
-          "destinations": [
-            {
-              "zone": "mazoCastillo",
-              "position": "top",
-              "prompt": "Elige una carta para dejar en la parte superior de tu Mazo Castillo (la otra irá al fondo)."
-            },
-            {
-              "zone": "mazoCastillo",
-              "position": "bottom",
-              "remainder": true,
-              "prompt": "La otra carta quedará en la parte inferior de tu Mazo Castillo."
-            }
-          ]
+          "type": "frutoFiodhainEffect",
+          "prompt": "Elige una carta, la seleccionada quedará en el tope y la otra en el fondo"
         },
         "description": "Una vez por turno, cuando juegues un Talisman, puedes mirar las dos primeras cartas de tu Mazo Castillo y dejar una de ellas en la parte superior o inferior de tu Mazo Castillo. Solo puedes activar un Fruto Fiodhain por turno."
       }

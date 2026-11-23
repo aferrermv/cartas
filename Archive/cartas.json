@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.9",
+    "pack_version": "3.6.0",
     "habilidades": []
   },
   {
@@ -123804,7 +123804,7 @@
     "tipo": "Aliado",
     "coste_oro": 3,
     "imagen_url": "/img/store/cartas/45telestris5.webp",
-    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Telestris, la Amazona en juego. Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",
@@ -123817,71 +123817,85 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "inherent": [
-          "canAttackOnEnterPlay"
-        ],
-        "description": "Puede atacar cuando entra en juego."
-      },
-      {
-        "trigger": "activatable",
-        "phase": "Principal",
-        "oncePerTurn": true,
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "effect": {
-          "type": "searchAndPutInHand",
-          "prompt": "Elige una carta Amazona o una Reina Hipólita en tu Mazo Castillo para poner en tu Mano.",
-          "searchQuery": {
-            "zone": "mazoCastillo",
-            "or": [
-              {
-                "nameContains": "Amazona"
-              },
-              {
-                "nameContains": "Reina Hipolita"
-              }
-            ]
-          }
-        },
-        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano.",
-        "id_habilidad": "telestris_search_amazona_or_hipolita"
-      },
-      {
-        "trigger": "continuous",
-        "effect": {
-          "type": "statBuff",
-          "buffs": [
-            {
-              "stat": "fuerza",
-              "value": 1
-            }
-          ],
-          "target": {
-            "zone": [
-              "attack",
-              "defense"
-            ],
-            "controller": "self",
-            "query": {
-              "type": "Aliado",
-              "or": [
-                {
-                  "nameContains": "Amazona"
-                },
-                {
-                  "nameContains": "Reina Hipolita"
-                }
-              ]
-            }
-          }
-        },
-        "description": "Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
-        "id_habilidad": "telestris_amazona_hipolita_buff"
-      }
+  {
+    "description": "Solo puedes tener una Telestris, la Amazona en juego.",
+    "play_limitation": {
+      "type": "unique",
+      "scope": [
+        "attack",
+        "defense"
+      ]
+    }
+  },
+  {
+    "inherent": [
+      "canAttackOnEnterPlay"
     ],
+    "description": "Puede atacar cuando entra en juego."
+  },
+  {
+    "trigger": "activatable",
+    "phase": "Principal",
+    "oncePerTurn": true,
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "effect": {
+      "type": "searchAndPutInHand",
+      "prompt": "Elige una carta Amazona o una Reina Hipólita en tu Mazo Castillo para poner en tu Mano.",
+      "searchQuery": {
+        "zone": "mazoCastillo",
+        "nameIsNot": [
+          "Telestris, la Amazona",
+          "Telestris la Amazona"
+        ],
+        "or": [
+          {
+            "nameContains": "Amazona"
+          },
+          {
+            "nameContains": "Reina Hipolita"
+          }
+        ]
+      }
+    },
+    "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano.",
+    "id_habilidad": "telestris_search_amazona_or_hipolita"
+  },
+  {
+    "trigger": "continuous",
+    "effect": {
+      "type": "statBuff",
+      "buffs": [
+        {
+          "stat": "fuerza",
+          "value": 1
+        }
+      ],
+      "target": {
+        "zone": [
+          "attack",
+          "defense"
+        ],
+        "controller": "self",
+        "query": {
+          "type": "Aliado",
+          "or": [
+            {
+              "nameContains": "Amazona"
+            },
+            {
+              "nameContains": "Reina Hipolita"
+            }
+          ]
+        }
+      }
+    },
+    "description": "Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
+    "id_habilidad": "telestris_amazona_hipolita_buff"
+  }
+],
     "tier": "medio"
   },
   {
@@ -124414,7 +124428,7 @@
     "tipo": "Aliado",
     "coste_oro": 2,
     "imagen_url": "/img/store/cartas/44amazonasguerreras1.webp",
-    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano sin pagar su coste.",
+    "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano reduciendo su coste en 1 Oro.",
     "descripcion": null,
     "expansion": "Helenica",
     "rareza": "Común",
@@ -124449,7 +124463,7 @@
           "target": "self",
           "modification": {
             "stat": "coste_oro",
-            "value": -2
+            "value": -1
           }
         },
         "description": "Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano sin pagar su coste.",

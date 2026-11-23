@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.5.8",
+    "pack_version": "3.5.9",
     "habilidades": []
   },
   {
@@ -127571,6 +127571,649 @@
           "type": "playSelfFromGraveyardFree"
         },
         "description": "En tu Fase de Vigilia, puedes jugar este Aliado desde tu Cementerio pagando su Coste."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3104,
+    "nombre": "Uxmal",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/uxmal.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Totem en tu Mazo Castillo que no sea Uxmal y ponerlo en tu Mano. Cada vez que otro Tótem entre en juego bajo tu control, tu oponente bota 1 carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "id_habilidad": "uxmal_on_enter_search_totem",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Habilidad de Uxmal: Elige un Tótem de tu Mazo Castillo que no sea Uxmal para ponerlo en tu Mano.",
+          "canCancel": true,
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo",
+            "nameIsNot": "Uxmal"
+          }
+        },
+        "description": "Cuando entra en juego, puedes buscar un Totem en tu Mazo Castillo que no sea Uxmal y ponerlo en tu Mano."
+      },
+      {
+        "id_habilidad": "uxmal_mill_on_other_totem",
+        "trigger": "activatable",
+        "listensForEvent": "onCardEnterPlay",
+        "triggeringPlayer": "self",
+        "eventCondition": {
+          "type": "Totem"
+        },
+        "effect": {
+          "type": "millCards",
+          "count": 1,
+          "target": "opponent"
+        },
+        "resolvesInstantly": true,
+        "description": "Cada vez que otro Tótem entre en juego bajo tu control, tu oponente bota 1 carta."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3776,
+    "nombre": "Culto Chaman",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/cultochaman.webp",
+    "habilidad_texto_descriptivo": "Si esta en tu Reserva de Oros, puedes destruirlo y pagar 2 Oros para que tu oponente bote una carta por cada Totem que tengas en juego.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "culto_chaman_mill_by_totems",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "goldReserve"
+            },
+            {
+              "type": "playerControls",
+              "controller": "self",
+              "query": {
+                "type": "Totem"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "destroySelf"
+          },
+          {
+            "type": "payGold",
+            "count": 2
+          }
+        ],
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Totem",
+              "zone": "field",
+              "controller": "self"
+            }
+          }
+        },
+        "description": "Si esta en tu Reserva de Oros, puedes destruirlo y pagar 2 Oros para que tu oponente bote una carta por cada Totem que tengas en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2464,
+    "nombre": "Ama No Fuchigoma",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/amanofuchigoma.webp",
+    "habilidad_texto_descriptivo": "Mientras este Aliado esté en juego, jugar cartas Tótem te cuesta 1 Oro menos. En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas del Mazo Castillo oponente como cartas Tótem controles.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "ama_no_fuchigoma_cost_reduction",
+        "trigger": "continuous",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "reduceCost",
+          "target": {
+            "query": {
+              "type": "Totem"
+            },
+            "controller": "self"
+          },
+          "modification": {
+            "stat": "coste_oro",
+            "value": -1
+          }
+        },
+        "description": "Mientras este Aliado esté en juego, jugar cartas Tótem te cuesta 1 Oro menos."
+      },
+      {
+        "id_habilidad": "ama_no_fuchigoma_mill_by_totems",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "playerControls",
+              "controller": "self",
+              "query": {
+                "type": "Totem"
+              },
+              "amount": 1,
+              "comparison": "greaterOrEqual"
+            }
+          ]
+        },
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Totem",
+              "zone": "field",
+              "controller": "self"
+            }
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar tantas cartas del Mazo Castillo oponente como cartas Tótem controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3871,
+    "nombre": "Buda Tathagata",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/budatathagata2.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes subir una carta oponente en juego que no sea Oro a la Mano de su dueño. Mientras este Aliado esté en juego esa carta no puede ser jugada.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "buda_tathagata_return_and_lock",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndReturnToHand",
+          "count": 1,
+          "canCancel": true,
+          "remembersTarget": true,
+          "target": {
+            "zone": "field",
+            "controller": "opponent",
+            "query": {
+              "type_not_in": [
+                "Oro"
+              ]
+            }
+          },
+          "prompt": "Habilidad de Buda Tathagata: Elige una carta oponente en juego que no sea Oro para subir a la Mano de su dueño."
+        },
+        "description": "Cuando entra en juego, puedes subir una carta oponente en juego que no sea Oro a la Mano de su dueño. Mientras este Aliado esté en juego esa carta no puede ser jugada."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2465,
+    "nombre": "Ekajati",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/ekajati.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes jugar este Aliado si controlas 1 o más Tótem. Cuando entra en juego, puedes barajar 2 cartas de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "ekajati_play_condition",
+        "play_condition": {
+          "type": "playerControls",
+          "controller": "self",
+          "query": {
+            "type": "Totem"
+          },
+          "amount": 1,
+          "comparison": "greaterOrEqual"
+        },
+        "description": "Sólo puedes jugar este Aliado si controlas 1 o más Tótem."
+      },
+      {
+        "id_habilidad": "ekajati_on_enter_shuffle",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "playerHasInGraveyard",
+          "amount": 2,
+          "comparison": "greaterOrEqual"
+        },
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "minCount": 2,
+          "maxCount": 2,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Habilidad de Ekajati: Elige exactamente 2 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "description": "Cuando entra en juego, puedes barajar 2 cartas de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2466,
+    "nombre": "Gozu Tenno",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/gozuteno.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes buscar un Tótem de Coste 3 o menos en tu Mazo Castillo y jugarlo sin pagar su Coste.\nLuego, tu oponente bota tantas cartas como Coste tenga el Tótem jugado.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "gozu_tenno_play_totem_and_mill",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayToTotem",
+          "canCancel": true,
+          "prompt": "Habilidad de Gozu Tenno: Elige un Tótem de Coste 3 o menos para jugarlo sin pagar su Coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "mazoCastillo",
+            "coste_oro": {
+              "operator": "<=",
+              "value": 3
+            }
+          },
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "target": "opponent",
+              "count": {
+                "fromContext": "resolvedCard.coste_oro"
+              }
+            }
+          }
+        },
+        "description": "Cuando entra en juego, puedes buscar un Tótem de Coste 3 o menos en tu Mazo Castillo y jugarlo sin pagar su Coste. Luego, tu oponente bota tantas cartas como Coste tenga el Tótem jugado."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3977,
+    "nombre": "Monte Wudang",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/montewudang2.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener un Monte Wudang en juego.  Al comienzo de la Fase de Vigilia oponente, una vez por turno, tu oponente destruye una carta que controle que no sea Oro.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "description": "Sólo puedes tener un Monte Wudang en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "monte_wudang_force_destroy",
+        "trigger": "onPhaseStart",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "isOpponentTurn"
+            }
+          ]
+        },
+        "effect": {
+          "type": "forceOpponentToDestroyCard",
+          "target": {
+            "query": {
+              "type_not_in": [
+                "Oro"
+              ]
+            }
+          },
+          "prompt": "Habilidad de Monte Wudang: Debes destruir una carta que controles que no sea Oro."
+        },
+        "description": "Al comienzo de la Fase de Vigilia oponente, una vez por turno, tu oponente destruye una carta que controle que no sea Oro."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3971,
+    "nombre": "Wanli Changcheng",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/wanlichangcheng.webp",
+    "habilidad_texto_descriptivo": "Los Aliados declarados atacantes que no son bloqueados tienen 1 a la Fuerza hasta la Fase Final.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "trigger": "onBlockDeclaration",
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "applyBuffToAllMatching",
+          "buffs": [
+            {
+              "set_strength": 1
+            }
+          ],
+          "target": {
+            "query": {
+              "type": "Aliado",
+              "isUnblocked": true,
+              "zone": "attack"
+            },
+            "controller": "any"
+          },
+          "duration": "endOfTurn"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4223,
+    "nombre": "Dellingr",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/dellingr.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, cuando un Dios que controles sale del juego, tu oponente debe barajar un Aliado que controle en el Mazo Castillo de su dueño.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 4,
+    "raza": "Dios",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "dellingr_god_leaves_play_force_shuffle",
+        "trigger": "activatable",
+        "listensForEvent": "onAllyLeavePlay",
+        "triggeringPlayer": "self",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "eventCondition": {
+          "type": "Aliado",
+          "raza": "Dios"
+        },
+        "effect": {
+          "type": "forceOpponentToShuffleAlly",
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Habilidad de Dellingr: Debes elegir un Aliado que controles para barajar en el Mazo Castillo de su dueño."
+        },
+        "description": "Una vez por turno, cuando un Dios que controles sale del juego, tu oponente debe barajar un Aliado que controle en el Mazo Castillo de su dueño."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3531,
+    "nombre": "Altar de Odin",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/altardeodin.webp",
+    "habilidad_texto_descriptivo": "Sólo puedes tener un Altar de Odin en juego. En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado que controles para ganar el control de un Aliado o Totem oponente en juego hasta la Fase Final. Luego, si controlas 1 o más Aliados Dios, destierra una carta de un Cementerio.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "description": "Sólo puedes tener un Altar de Odin en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "altar_de_odin_activatable",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "destroyTarget",
+            "prompt": "Habilidad de Altar de Odin: Elige un Aliado que controles para destruir como coste.",
+            "target": {
+              "controller": "self",
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          }
+        ],
+        "effect": {
+          "type": "gainControlOfAlly",
+          "prompt": "Elige un Aliado o Tótem oponente en juego para ganar su control hasta la Fase Final.",
+          "target": {
+            "controller": "opponent",
+            "query": {
+              "type": [
+                "Aliado",
+                "Totem"
+              ]
+            }
+          },
+          "duration": "endOfTurn",
+          "then": {
+            "condition": {
+              "type": "playerControls",
+              "comparison": "greaterOrEqual",
+              "amount": 1,
+              "query": {
+                "type": "Aliado",
+                "raza": "Dios",
+                "zone": "field"
+              }
+            },
+            "effect": {
+              "type": "banishTargetInModal",
+              "prompt": "Habilidad de Altar de Odin: Elige una carta de un Cementerio para desterrar.",
+              "message": "Habilidad de Altar de Odin: Elige una carta de un Cementerio para desterrar.",
+              "minCount": 1,
+              "maxCount": 1,
+              "target": {
+                "zone": "cementerio",
+                "controller": "any"
+              }
+            }
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes destruir un Aliado que controles para ganar el control de un Aliado o Totem oponente en juego hasta la Fase Final. Luego, si controlas 1 o más Aliados Dios, destierra una carta de un Cementerio."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 6243,
+    "nombre": "Kornos",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/cornos.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Mientras este Aliado esté en juego, gana 1 a la Fuerza por cada otro Aliado Imbloqueable que controles.\n",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Dragon",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "gainBuffFromCount",
+          "target": "self",
+          "stat": "fuerza",
+          "multiplier": 1,
+          "query": {
+            "type": "Aliado",
+            "keyword": "unblockable",
+            "isOther": true,
+            "controller": "self"
+          }
+        },
+        "description": "Mientras este Aliado esté en juego, gana 1 a la Fuerza por cada otro Aliado Imbloqueable que controles."
       }
     ],
     "tier": "muy bajo"

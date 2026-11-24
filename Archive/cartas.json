@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.6.0",
+    "pack_version": "3.6.1",
     "habilidades": []
   },
   {
@@ -123803,7 +123803,7 @@
     "nombre": "Telestris, la Amazona",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/45telestris5.webp",
+    "imagen_url": "/img/store/cartas/telestris.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener una Telestris, la Amazona en juego. Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -124427,7 +124427,7 @@
     "nombre": "Amazonas Guerreras",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/44amazonasguerreras1.webp",
+    "imagen_url": "/img/store/cartas/amazonasguerreras.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano reduciendo su coste en 1 Oro.",
     "descripcion": null,
     "expansion": "Helenica",

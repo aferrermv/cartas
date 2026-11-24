@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.6.1",
+    "pack_version": "3.6.2",
     "habilidades": []
   },
   {
@@ -123803,7 +123803,7 @@
     "nombre": "Telestris, la Amazona",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/telestris.webp",
+    "imagen_url": "/img/store/cartas/45telestris5.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener una Telestris, la Amazona en juego. Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -123817,85 +123817,85 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "description": "Solo puedes tener una Telestris, la Amazona en juego.",
-    "play_limitation": {
-      "type": "unique",
-      "scope": [
-        "attack",
-        "defense"
-      ]
-    }
-  },
-  {
-    "inherent": [
-      "canAttackOnEnterPlay"
-    ],
-    "description": "Puede atacar cuando entra en juego."
-  },
-  {
-    "trigger": "activatable",
-    "phase": "Principal",
-    "oncePerTurn": true,
-    "condition": {
-      "type": "isInZone",
-      "zone": "field"
-    },
-    "effect": {
-      "type": "searchAndPutInHand",
-      "prompt": "Elige una carta Amazona o una Reina Hipólita en tu Mazo Castillo para poner en tu Mano.",
-      "searchQuery": {
-        "zone": "mazoCastillo",
-        "nameIsNot": [
-          "Telestris, la Amazona",
-          "Telestris la Amazona"
-        ],
-        "or": [
-          {
-            "nameContains": "Amazona"
-          },
-          {
-            "nameContains": "Reina Hipolita"
-          }
-        ]
-      }
-    },
-    "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano.",
-    "id_habilidad": "telestris_search_amazona_or_hipolita"
-  },
-  {
-    "trigger": "continuous",
-    "effect": {
-      "type": "statBuff",
-      "buffs": [
-        {
-          "stat": "fuerza",
-          "value": 1
-        }
-      ],
-      "target": {
-        "zone": [
-          "attack",
-          "defense"
-        ],
-        "controller": "self",
-        "query": {
-          "type": "Aliado",
-          "or": [
-            {
-              "nameContains": "Amazona"
-            },
-            {
-              "nameContains": "Reina Hipolita"
-            }
+      {
+        "description": "Solo puedes tener una Telestris, la Amazona en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
           ]
         }
+      },
+      {
+        "inherent": [
+          "canAttackOnEnterPlay"
+        ],
+        "description": "Puede atacar cuando entra en juego."
+      },
+      {
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "searchAndPutInHand",
+          "prompt": "Elige una carta Amazona o una Reina Hipólita en tu Mazo Castillo para poner en tu Mano.",
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nameIsNot": [
+              "Telestris, la Amazona",
+              "Telestris la Amazona"
+            ],
+            "or": [
+              {
+                "nameContains": "Amazona"
+              },
+              {
+                "nameContains": "Reina Hipolita"
+              }
+            ]
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano.",
+        "id_habilidad": "telestris_search_amazona_or_hipolita"
+      },
+      {
+        "trigger": "continuous",
+        "effect": {
+          "type": "statBuff",
+          "buffs": [
+            {
+              "stat": "fuerza",
+              "value": 1
+            }
+          ],
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "self",
+            "query": {
+              "type": "Aliado",
+              "or": [
+                {
+                  "nameContains": "Amazona"
+                },
+                {
+                  "nameContains": "Reina Hipolita"
+                }
+              ]
+            }
+          }
+        },
+        "description": "Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
+        "id_habilidad": "telestris_amazona_hipolita_buff"
       }
-    },
-    "description": "Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
-    "id_habilidad": "telestris_amazona_hipolita_buff"
-  }
-],
+    ],
     "tier": "medio"
   },
   {
@@ -124427,7 +124427,7 @@
     "nombre": "Amazonas Guerreras",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/amazonasguerreras.webp",
+    "imagen_url": "/img/store/cartas/44amazonasguerreras1.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano reduciendo su coste en 1 Oro.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -128228,6 +128228,434 @@
           }
         },
         "description": "Mientras este Aliado esté en juego, gana 1 a la Fuerza por cada otro Aliado Imbloqueable que controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3376,
+    "nombre": "Pajaro Inti",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/pajarointi.webp",
+    "habilidad_texto_descriptivo": "Si es declarado atacante, gana 2 a la Fuerza hasta la Fase Final. En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 1 Oro para ponerlo en tu Mano.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Mega_real",
+    "fecha_creacion": null,
+    "fuerza": 1,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "pajaro_inti_attack_buff",
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "applyBuffToSelf",
+          "buff": {
+            "stat": "fuerza",
+            "value": 2
+          },
+          "duration": "endOfTurn"
+        },
+        "description": "Si es declarado atacante, gana 2 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "pajaro_inti_return_from_graveyard",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "cost": {
+          "type": "payCostForGraveyardAbility",
+          "count": 1
+        },
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "description": "En tu Fase de Vigilia, si este Aliado esta en tu Cementerio, puedes pagar 1 Oro para ponerlo en tu Mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4357,
+    "nombre": "Trauko",
+    "tipo": "Aliado",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/trauko.webp",
+    "habilidad_texto_descriptivo": "Gana 1 a la Fuerza por cada Trauko que controles.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Ultra_real",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Bestia",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "trauko_strength_buff",
+        "trigger": "continuous",
+        "effect": {
+          "type": "gainBuffFromCount",
+          "target": "self",
+          "stat": "fuerza",
+          "multiplier": 1,
+          "query": {
+            "type": "Aliado",
+            "nombre": "Trauko",
+            "controller": "self",
+            "zone": [
+              "attack",
+              "defense"
+            ]
+          }
+        },
+        "description": "Gana 1 a la Fuerza por cada Trauko que controles."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2467,
+    "nombre": "Hombre de piedra",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/hombredepiedra.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener un Hombre de Piedra en juego. En tu Fase de Vigilia, una vez por turno, puedes botar una carta del Mazo Castillo oponente por cada otro Aliado que controles. Puedes descartar una carta de tu Mano para prevenir que este Aliado sea destruido.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Chaman",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener un Hombre de Piedra en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "hombre_de_piedra_mill",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "millCards",
+          "target": "opponent",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "type": "Aliado",
+              "zone": "field",
+              "controller": "self",
+              "isOther": true
+            }
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes botar una carta del Mazo Castillo oponente por cada otro Aliado que controles."
+      },
+      {
+        "id_habilidad": "hombre_de_piedra_prevent_destruction",
+        "trigger": "onBeforeLeave",
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio"
+          ]
+        },
+        "cost": {
+          "type": "discardCard",
+          "count": 1,
+          "prompt": "Descarta una carta de tu mano para prevenir que Hombre de Piedra sea destruido."
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "description": "Puedes descartar una carta de tu Mano para prevenir que este Aliado sea destruido."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3664,
+    "nombre": "Ciudad de los Cesares",
+    "tipo": "Totem",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/ciudaddeloscesares2.webp",
+    "habilidad_texto_descriptivo": "Solo puedes tener una Ciudad de los Cesares en juego. En tu Fase Final, si jugaste uno o mas Aliados este turno, puedes robar una carta.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": 0,
+    "habilidades": [
+      {
+        "description": "Solo puedes tener una Ciudad de los Cesares en juego.",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "totem"
+          ]
+        }
+      },
+      {
+        "id_habilidad": "ciudad_de_los_cesares_draw",
+        "trigger": "activatable",
+        "phase": "Final",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerPlayedCardThisTurn",
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          ]
+        },
+        "effect": {
+          "type": "drawCards",
+          "count": 1
+        },
+        "description": "En tu Fase Final, si jugaste uno o mas Aliados este turno, puedes activar esta carta para robar una carta."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 5917,
+    "nombre": "Caceria del Peyolt",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/caceriadelpeyolt.webp",
+    "habilidad_texto_descriptivo": "Genera 2 Oros virtuales para Talismanes. Arma o Tótem.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "caceria_del_peyolt_gold",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 2,
+          "isTemporary": true,
+          "restriction": {
+            "type": [
+              "Talisman",
+              "Arma",
+              "Totem"
+            ]
+          }
+        },
+        "description": "Genera 2 Oros virtuales para Talismanes, Arma o Tótem."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4663,
+    "nombre": "Cataratas del Iguazu",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/cataratasdeliguazu.webp",
+    "habilidad_texto_descriptivo": "Destruye 2 aliados que controles y juega otro turno después de éste.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cataratas_del_iguazu_extra_turn",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerControls",
+          "amount": 2,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "type": "Aliado",
+            "zone": "field",
+            "notKeyword": "indestructible"
+          }
+        },
+        "cost": {
+          "type": "destroyTargetInModal",
+          "count": 2,
+          "minCount": 2,
+          "maxCount": 2,
+          "canCancel": false,
+          "prompt": "Habilidad de Cataratas del Iguazú: Elige 2 Aliados que controles para destruir como coste.",
+          "target": {
+            "controller": "self",
+            "query": {
+              "type": "Aliado"
+            }
+          }
+        },
+        "effect": {
+          "type": "takeExtraTurn"
+        },
+        "description": "Destruye 2 aliados que controles y juega otro turno después de éste."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2468,
+    "nombre": "Fafner el Avaro",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/fafnerelavaro.webp",
+    "habilidad_texto_descriptivo": "Una vez por turno, puedes mostrar un Aliado de tu Mano para que un Aliado en juego pierda su Raza y 1 a la Fuerza hasta la Fase Final. Una vez por turno, puedes desterrar un Oro que controles para prevenir que este Aliado sea destruido o barajado.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 6,
+    "raza": "Abominacion",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "fafner_reveal_lose_race_and_debuff",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerHasInHand",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          ]
+        },
+        "cost": {
+          "type": "revealFromHand",
+          "count": 1,
+          "query": {
+            "type": "Aliado"
+          },
+          "prompt": "Elige un Aliado de tu Mano para mostrar.",
+          "optional": true
+        },
+        "effect": {
+          "type": "targetLoseRaceAndDebuff",
+          "duration": "startOfFinalPhase",
+          "prompt": "Elige un Aliado en juego para que pierda su Raza y 1 a la Fuerza hasta la Fase Final.",
+          "debuff": {
+            "stat": "fuerza",
+            "value": -1
+          },
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any",
+            "query": {
+              "type": "Aliado"
+            }
+          }
+        },
+        "description": "Una vez por turno, puedes mostrar un Aliado de tu Mano para que un Aliado en juego pierda su Raza y 1 a la Fuerza hasta la Fase Final."
+      },
+      {
+        "id_habilidad": "fafner_prevent_destroy_or_shuffle",
+        "trigger": "onBeforeLeave",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isDestinationZone",
+          "zones": [
+            "cementerio",
+            "mazoCastillo"
+          ]
+        },
+        "cost": {
+          "type": "banishTargetInModal",
+          "count": 1,
+          "minCount": 1,
+          "maxCount": 1,
+          "canCancel": false,
+          "prompt": "Elige un Oro que controles para desterrar y prevenir que Fafner sea destruido o barajado.",
+          "target": {
+            "controller": "self",
+            "zone": [
+              "goldReserve",
+              "paidGold"
+            ],
+            "query": {
+              "type": "Oro"
+            }
+          }
+        },
+        "effect": {
+          "type": "prevent"
+        },
+        "description": "Una vez por turno, puedes desterrar un Oro que controles para prevenir que este Aliado sea destruido o barajado."
       }
     ],
     "tier": "muy bajo"

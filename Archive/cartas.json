@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.6.3",
+    "pack_version": "3.6.4",
     "habilidades": []
   },
   {
@@ -8764,7 +8764,28 @@
     "durabilidad": null,
     "cantidad_generada": null,
     "salud": null,
-    "habilidades": []
+    "habilidades": [
+      {
+        "id_habilidad": "escudo_del_lago_generate_gold",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 1,
+          "isTemporary": true,
+          "restriction": {
+            "type": "Arma",
+            "usage": "playOnly"
+          }
+        },
+        "description": "En tu Fase de Vigilia, una vez por turno, puedes generar 1 Oro para jugar Armas."
+      }
+    ]
   },
   {
     "id": 309,
@@ -123659,89 +123680,89 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-  {
-    "descripcion": "Solo puedes tener un Oberon en juego.",
-    "id_habilidad": "oberon_neww_unique",
-    "play_limitation": {
-      "type": "unique",
-      "scope": [
-        "attack",
-        "defense"
-      ]
-    }
-  },
-  {
-    "trigger": "onEnterPlay",
-    "effect": {
-      "type": "targetAndShuffle",
-      "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
-      "target": {
-        "zone": "field",
-        "query": {
-          "notType": "Oro"
-        },
-        "controller": "any"
-      },
-      "canCancel": true,
-      "requiresChoice": true
-    },
-    "description": "Cuando entra en juego, puedes barajar una carta en juego que no sea Oro.",
-    "id_habilidad": "oberon_neww_enter_play_shuffle"
-  },
-  {
-    "trigger": "activatable_with_costs",
-    "phase": [
-      "Principal",
-      "Guerra de Talismanes"
-    ],
-    "oncePerTurn": true,
-    "condition": {
-      "type": "isInZone",
-      "zone": "field"
-    },
-    "costs": [
       {
-        "type": "chooseOne",
-        "prompt": "Elige el coste para la habilidad de Oberon:",
-        "options": [
-          {
-            "id": "pay_gold",
-            "action": {
-              "type": "payGold",
-              "count": 1
+        "descripcion": "Solo puedes tener un Oberon en juego.",
+        "id_habilidad": "oberon_neww_unique",
+        "play_limitation": {
+          "type": "unique",
+          "scope": [
+            "attack",
+            "defense"
+          ]
+        }
+      },
+      {
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "targetAndShuffle",
+          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+          "target": {
+            "zone": "field",
+            "query": {
+              "notType": "Oro"
             },
-            "description": "Pagar 1 Oro"
+            "controller": "any"
           },
+          "canCancel": true,
+          "requiresChoice": true
+        },
+        "description": "Cuando entra en juego, puedes barajar una carta en juego que no sea Oro.",
+        "id_habilidad": "oberon_neww_enter_play_shuffle"
+      },
+      {
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
           {
-            "id": "destroy_ally",
-            "action": {
-              "type": "destroyTarget",
-              "count": 1,
-              "canTargetSourceCard": true,
-              "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
-              "target": {
-                "isOther": false,
-                "query": {
-                  "type": "Aliado",
-                  "isOther": false
+            "type": "chooseOne",
+            "prompt": "Elige el coste para la habilidad de Oberon:",
+            "options": [
+              {
+                "id": "pay_gold",
+                "action": {
+                  "type": "payGold",
+                  "count": 1
                 },
-                "controller": "self"
+                "description": "Pagar 1 Oro"
+              },
+              {
+                "id": "destroy_ally",
+                "action": {
+                  "type": "destroyTarget",
+                  "count": 1,
+                  "canTargetSourceCard": true,
+                  "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
+                  "target": {
+                    "isOther": false,
+                    "query": {
+                      "type": "Aliado",
+                      "isOther": false
+                    },
+                    "controller": "self"
+                  }
+                },
+                "description": "Destruir un Aliado que controles"
               }
-            },
-            "description": "Destruir un Aliado que controles"
+            ]
           }
-        ]
+        ],
+        "effect": {
+          "type": "drawThenDiscard",
+          "drawCount": 2,
+          "discardCount": 1
+        },
+        "description": "Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
+        "id_habilidad": "oberon_neww_draw_discard"
       }
     ],
-    "effect": {
-      "type": "drawThenDiscard",
-      "drawCount": 2,
-      "discardCount": 1
-    },
-    "description": "Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
-    "id_habilidad": "oberon_neww_draw_discard"
-  }
-],
     "tier": "medio"
   },
   {
@@ -129444,6 +129465,426 @@
             "usage": "playOnly"
           }
         }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1396,
+    "nombre": "Forja de Hefestos",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl537.webp",
+    "habilidad_texto_descriptivo": "Puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu mano. ",
+    "descripcion": "Puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu mano. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forja_de_hefestos_search_weapon",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndChoose",
+          "prompt": "Elige un Arma de tu Mazo Castillo o Cementerio para poner en tu mano.",
+          "canCancel": true,
+          "options": [
+            {
+              "id": "deck_weapons",
+              "zone": "mazoCastillo",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Mazo Castillo"
+            },
+            {
+              "id": "graveyard_weapons",
+              "zone": "cementerio",
+              "query": {
+                "type": "Arma"
+              },
+              "description": "Desde el Cementerio"
+            }
+          ],
+          "resolution": {
+            "type": "putInHand",
+            "count": 1
+          }
+        },
+        "description": "Puedes buscar un arma en tu Mazo Castillo o Cementerio y ponerla en tu mano."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1406,
+    "nombre": "Totem de Fenix",
+    "tipo": "Totem",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl547.webp",
+    "habilidad_texto_descriptivo": "Mientras Tótem de Fénix esté en juego, en tu Fase de Vigilia y sólo una vez por turno, puedes pagar 2 de oro para barajar 2 cartas del Cementerio en tu Mazo Castillo. ",
+    "descripcion": "Mientras Tótem de Fénix esté en juego, en tu Fase de Vigilia y sólo una vez por turno, puedes pagar 2 de oro para barajar 2 cartas del Cementerio en tu Mazo Castillo. ",
+    "expansion": "Helenica",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "totem_de_fenix_shuffle_graveyard",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "field"
+        },
+        "costs": [
+          {
+            "type": "payGold",
+            "count": 2,
+            "prompt": "Paga 2 Oros para barajar 2 cartas de tu Cementerio en tu Mazo Castillo."
+          }
+        ],
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 2 cartas de tu Cementerio para barajar en tu Mazo Castillo.",
+          "canCancel": true
+        },
+        "description": "Mientras Tótem de Fénix esté en juego, en tu Fase de Vigilia y sólo una vez por turno, puedes pagar 2 de oro para barajar 2 cartas del Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2430,
+    "nombre": "Joya de Dragon",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/joyadedragon13.webp",
+    "habilidad_texto_descriptivo": "En Respuesta a tu Fase de Agrupacion, si este Oro esta en tu Cementerio y controlas uno o mas Aliados Draco, puedes botar 2 cartas de tu Mazo Castillo para poner este Oro en tu Mano. Solo puedes disparar una Joya de Dragon por turno.",
+    "descripcion": null,
+    "expansion": "Espada Sagrada",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "joya_de_dragon_graveyard_recycle",
+        "trigger": "activatable_with_costs",
+        "phase": "Principal",
+        "oncePerTurn": "byAbilityId",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "cementerio"
+            },
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "hasNotPerformedActionThisTurn"
+            },
+            {
+              "type": "playerControls",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": "Aliado",
+                "nameContains": "Draco"
+              }
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "millCards",
+            "count": 2,
+            "target": "self"
+          }
+        ],
+        "effect": {
+          "type": "moveSelfToZone",
+          "destination": "hand"
+        },
+        "special_properties": [
+          {
+            "type": "allowGoldPlayAfter",
+            "condition": {
+              "type": "wasFirstActionOfTurn"
+            }
+          }
+        ],
+        "description": "En Respuesta a tu Fase de Agrupación, si este Oro está en tu Cementerio y controlas uno o más Aliados Draco, puedes botar 2 cartas de tu Mazo Castillo para poner este Oro en tu Mano. Solo puedes disparar una Joya de Dragón por turno."
+      }
+    ],
+    "tier": "bajo"
+  },
+  {
+    "id": 2264,
+    "nombre": "Cimitarra Persa",
+    "tipo": "Arma",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl1641.webp",
+    "habilidad_texto_descriptivo": "Cuando Cimitarra Persa entra en juego, puedes buscar una copia de esta carta y ponerla en juego sin pagar su coste. El Portador gana 2 a la fuerza.",
+    "descripcion": "Cuando Cimitarra Persa entra en juego, puedes buscar una copia de esta carta y ponerla en juego sin pagar su coste. El Portador gana 2 a la fuerza.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "cimitarra_persa_search_copy",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndPlayFree",
+          "prompt": "Puedes buscar una copia de Cimitarra Persa en tu Mazo Castillo y ponerla en juego sin pagar su coste.",
+          "canCancel": true,
+          "searchQuery": {
+            "zone": "mazoCastillo",
+            "nombre": "Cimitarra Persa"
+          }
+        },
+        "description": "Cuando Cimitarra Persa entra en juego, puedes buscar una copia de esta carta y ponerla en juego sin pagar su coste."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1564,
+    "nombre": "Forma Estelar",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl747.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues este Talismán, destiérralo. Elige una carta en juego que no sea Oro para que pierda su habilidad por el resto del juego. Carta Única.",
+    "descripcion": "Cuando juegues este Talismán, destiérralo. Elige una carta en juego que no sea Oro para que pierda su habilidad por el resto del juego. Carta Única.",
+    "expansion": "Helenica",
+    "rareza": "true",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "forma_estelar_annul_permanent",
+        "trigger": "onEnterPlay",
+        "banishOnPlay": true,
+        "effect": {
+          "type": "annulInModal",
+          "prompt": "Elige una carta en juego que no sea Oro para que pierda su habilidad por el resto del juego.",
+          "duration": "permanent",
+          "target": {
+            "zone": "field",
+            "controller": "any",
+            "query": {
+              "notType": "Oro"
+            }
+          }
+        },
+        "description": "Cuando juegues este Talismán, destiérralo. Elige una carta en juego que no sea Oro para que pierda su habilidad por el resto del juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1648,
+    "nombre": "Llama Marina",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl870.webp",
+    "habilidad_texto_descriptivo": "Baraja 2 carta de tu Cementerio en tu Mazo Castillo.",
+    "descripcion": "Baraja 2 carta de tu Cementerio en tu Mazo Castillo.",
+    "expansion": "Hijos De Daana",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "llama_marina_shuffle_graveyard",
+        "trigger": "onEnterPlay",
+        "effect": {
+          "type": "searchAndShuffleIntoDeck",
+          "zone": "cementerio",
+          "count": 2,
+          "query": {
+            "type": "*"
+          },
+          "prompt": "Elige 2 cartas de tu Cementerio para barajar en tu Mazo Castillo."
+        },
+        "description": "Baraja 2 cartas de tu Cementerio en tu Mazo Castillo."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2267,
+    "nombre": "Imentet",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/myl1646.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego y si sólo controlas aliados de raza Eterno, puedes elegir una carta en juego que no sea Oro para que esta y todas sus copias pierdan su habilidad mientras este Aliado esté en juego.",
+    "descripcion": "Cuando entra en juego y si sólo controlas aliados de raza Eterno, puedes elegir una carta en juego que no sea Oro para que esta y todas sus copias pierdan su habilidad mientras este Aliado esté en juego.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Eterno",
+    "leyenda": "",
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "imentet_annul_copies_while_in_play",
+        "trigger": "onEnterPlay",
+        "condition": {
+          "type": "allControlledAlliesAre",
+          "query": {
+            "raza": "Eterno"
+          }
+        },
+        "effect": {
+          "type": "annulAbilityOnTargetAndCopies",
+          "prompt": "Elige una carta en juego que no sea Oro para que ella y todas sus copias pierdan su habilidad mientras Imentet esté en juego.",
+          "canCancel": true,
+          "duration": "whileInPlay",
+          "target": {
+            "zone": "field",
+            "controller": "any",
+            "query": {
+              "notType": "Oro"
+            }
+          }
+        },
+        "description": "Cuando entra en juego y si sólo controlas aliados de raza Eterno, puedes elegir una carta en juego que no sea Oro para que esta y todas sus copias pierdan su habilidad mientras este Aliado esté en juego."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2131,
+    "nombre": "Honda Milisiana",
+    "tipo": "Arma",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/myl1487.webp",
+    "habilidad_texto_descriptivo": "Cuando el portador sea declarado atacante, tu oponente bota 2 cartas.",
+    "descripcion": "Cuando el portador sea declarado atacante, tu oponente bota 2 cartas.",
+    "expansion": "Dominios de Ra",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "honda_milisiana_on_attack_mill",
+        "trigger": "onDeclareAttack",
+        "effect": {
+          "type": "millCards",
+          "count": 2,
+          "target": "opponent"
+        },
+        "description": "Cuando el portador sea declarado atacante, tu oponente bota 2 cartas."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 1160,
+    "nombre": "Bugbear",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/myl205.webp",
+    "habilidad_texto_descriptivo": "En tu fase de vigilia: descarta 1 carta de la mano de tu oponente al azar, para que bote de su mazo castillo tantas cartas como coste de oro tenga la carta descartada. ",
+    "descripcion": "En tu fase de vigilia: descarta 1 carta de la mano de tu oponente al azar, para que bote de su mazo castillo tantas cartas como coste de oro tenga la carta descartada. ",
+    "expansion": "Espada Sagrada",
+    "rareza": "false",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "bugbear_discard_and_mill",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isPlayerTurn"
+            },
+            {
+              "type": "currentPhase",
+              "phase": "Principal"
+            }
+          ]
+        },
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent",
+          "rememberAs": "discardedCard",
+          "then": {
+            "effect": {
+              "type": "millCards",
+              "target": "opponent",
+              "count": {
+                "fromContext": "discardedCard.coste_oro"
+              }
+            }
+          }
+        },
+        "description": "En tu fase de vigilia: descarta 1 carta de la mano de tu oponente al azar, para que bote de su mazo castillo tantas cartas como coste de oro tenga la carta descartada."
       }
     ],
     "tier": "muy bajo"

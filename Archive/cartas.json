@@ -2769,7 +2769,7 @@
     "durabilidad": null,
     "cantidad_generada": 1,
     "salud": null,
-    "pack_version": "3.6.2",
+    "pack_version": "3.6.3",
     "habilidades": []
   },
   {
@@ -114883,7 +114883,10 @@
       {
         "id_habilidad": "comerciantes_del_rio_destroy_mill",
         "trigger": "activatable",
-        "phase": "Principal",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
         "cost": {
           "type": "destroySelf"
         },
@@ -116200,7 +116203,7 @@
     "id": 3755,
     "nombre": "Kyudo",
     "tipo": "Talisman",
-    "coste_oro": 3,
+    "coste_oro": 2,
     "imagen_url": "/img/primera_era/kyudo2.webp",
     "habilidad_texto_descriptivo": "Roba 3 cartas. Luego, destierra 1 carta de tu Mano.",
     "descripcion": null,
@@ -123656,86 +123659,89 @@
     "cantidad_generada": null,
     "salud": null,
     "habilidades": [
-      {
-        "descripcion": "Solo puedes tener un Oberon en juego.",
-        "id_habilidad": "oberon_neww_unique",
-        "play_limitation": {
-          "type": "unique",
-          "scope": [
-            "attack",
-            "defense"
-          ]
-        }
-      },
-      {
-        "trigger": "onEnterPlay",
-        "effect": {
-          "type": "targetAndShuffle",
-          "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
-          "target": {
-            "zone": "field",
-            "query": {
-              "notType": "Oro"
-            },
-            "controller": "any"
-          },
-          "canCancel": true,
-          "requiresChoice": true
+  {
+    "descripcion": "Solo puedes tener un Oberon en juego.",
+    "id_habilidad": "oberon_neww_unique",
+    "play_limitation": {
+      "type": "unique",
+      "scope": [
+        "attack",
+        "defense"
+      ]
+    }
+  },
+  {
+    "trigger": "onEnterPlay",
+    "effect": {
+      "type": "targetAndShuffle",
+      "prompt": "Elige una carta en juego que no sea Oro para barajar en el mazo de su dueño.",
+      "target": {
+        "zone": "field",
+        "query": {
+          "notType": "Oro"
         },
-        "description": "Cuando entra en juego, puedes barajar una carta en juego que no sea Oro.",
-        "id_habilidad": "oberon_neww_enter_play_shuffle"
+        "controller": "any"
       },
+      "canCancel": true,
+      "requiresChoice": true
+    },
+    "description": "Cuando entra en juego, puedes barajar una carta en juego que no sea Oro.",
+    "id_habilidad": "oberon_neww_enter_play_shuffle"
+  },
+  {
+    "trigger": "activatable_with_costs",
+    "phase": [
+      "Principal",
+      "Guerra de Talismanes"
+    ],
+    "oncePerTurn": true,
+    "condition": {
+      "type": "isInZone",
+      "zone": "field"
+    },
+    "costs": [
       {
-        "trigger": "activatable_with_costs",
-        "phase": "Principal",
-        "oncePerTurn": true,
-        "condition": {
-          "type": "isInZone",
-          "zone": "field"
-        },
-        "costs": [
+        "type": "chooseOne",
+        "prompt": "Elige el coste para la habilidad de Oberon:",
+        "options": [
           {
-            "type": "chooseOne",
-            "prompt": "Elige el coste para la habilidad de Oberon:",
-            "options": [
-              {
-                "id": "pay_gold",
-                "action": {
-                  "type": "payGold",
-                  "count": 1
+            "id": "pay_gold",
+            "action": {
+              "type": "payGold",
+              "count": 1
+            },
+            "description": "Pagar 1 Oro"
+          },
+          {
+            "id": "destroy_ally",
+            "action": {
+              "type": "destroyTarget",
+              "count": 1,
+              "canTargetSourceCard": true,
+              "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
+              "target": {
+                "isOther": false,
+                "query": {
+                  "type": "Aliado",
+                  "isOther": false
                 },
-                "description": "Pagar 1 Oro"
-              },
-              {
-                "id": "destroy_ally",
-                "action": {
-                  "type": "destroyTarget",
-                  "count": 1,
-                  "canTargetSourceCard": true,
-                  "prompt": "Elige este u otro Aliado que controles para destruir como coste.",
-                  "target": {
-                    "isOther": false,
-                    "query": {
-                      "type": "Aliado",
-                      "isOther": false
-                    },
-                    "controller": "self"
-                  }
-                },
-                "description": "Destruir un Aliado que controles"
+                "controller": "self"
               }
-            ]
+            },
+            "description": "Destruir un Aliado que controles"
           }
-        ],
-        "effect": {
-          "type": "drawThenDiscard",
-          "drawCount": 2,
-          "discardCount": 1
-        },
-        "description": "Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
-        "id_habilidad": "oberon_neww_draw_discard"
+        ]
       }
     ],
+    "effect": {
+      "type": "drawThenDiscard",
+      "drawCount": 2,
+      "discardCount": 1
+    },
+    "description": "Una vez por turno, puedes pagar 1 Oro o destruir este u otro Aliado que controles para Robar 2 cartas. Luego, descarta 1 carta de tu Mano.",
+    "id_habilidad": "oberon_neww_draw_discard"
+  }
+],
     "tier": "medio"
   },
   {
@@ -123803,7 +123809,7 @@
     "nombre": "Telestris, la Amazona",
     "tipo": "Aliado",
     "coste_oro": 3,
-    "imagen_url": "/img/store/cartas/45telestris5.webp",
+    "imagen_url": "/img/store/cartas/telestris.webp",
     "habilidad_texto_descriptivo": "Solo puedes tener una Telestris, la Amazona en juego. Puede atacar cuando entra en juego. En tu Fase de Vigilia, una vez por turno, puedes buscar una carta Amazona, que no sea Telestris la Amazona, o una Reina Hipolita en tu Mazo Castillo y ponerlo en tu Mano. Tus Aliados Amazona y Reina Hipolita ganan 1 a la fuerza.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -124427,7 +124433,7 @@
     "nombre": "Amazonas Guerreras",
     "tipo": "Aliado",
     "coste_oro": 2,
-    "imagen_url": "/img/store/cartas/44amazonasguerreras1.webp",
+    "imagen_url": "/img/store/cartas/amazonasguerreras.webp",
     "habilidad_texto_descriptivo": "Puede atacar cuando entra en juego. Si controlas 2 o mas Aliados Amazona, puedes jugar este Aliado de tu Mano reduciendo su coste en 1 Oro.",
     "descripcion": null,
     "expansion": "Helenica",
@@ -128656,6 +128662,788 @@
           "type": "prevent"
         },
         "description": "Una vez por turno, puedes desterrar un Oro que controles para prevenir que este Aliado sea destruido o barajado."
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3868,
+    "nombre": "Zhu Baie",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/zhubaie.webp",
+    "habilidad_texto_descriptivo": "Cada vez que haga daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Criaturas",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "zhu_baie_damage_banish",
+        "trigger": "onDealCombatDamageToDeck",
+        "description": "Cada vez que haga daño al Mazo Castillo oponente, puedes desterrar una carta del Cementerio oponente.",
+        "effect": {
+          "type": "chooseAndBanish",
+          "count": 1,
+          "canCancel": true,
+          "prompt": "Elige 1 carta del Cementerio oponente para desterrar.",
+          "target": {
+            "zone": "cementerio",
+            "controller": "opponent",
+            "query": {
+              "type": "*"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3175,
+    "nombre": "Kendo",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/kendo.webp",
+    "habilidad_texto_descriptivo": "Elige un Aliado en juego, Luego, tu oponente bota cartas igual al Coste del Aliado elegido.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Rework",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "kendo_mill_by_ally_cost",
+        "trigger": "onEnterPlay",
+        "description": "Elige un Aliado en juego, Luego, tu oponente bota cartas igual al Coste del Aliado elegido.",
+        "effect": {
+          "type": "selectAndMill",
+          "prompt": "Elige un Aliado en juego para que tu oponente bote tantas cartas como su Coste.",
+          "millProperty": "coste_oro",
+          "minCount": 1,
+          "canCancel": false,
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any",
+            "query": {
+              "type": "Aliado"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3952,
+    "nombre": "Kitsune Tsuki",
+    "tipo": "Talisman",
+    "coste_oro": 5,
+    "imagen_url": "/img/store/cartas/kitsunetsuki.webp",
+    "habilidad_texto_descriptivo": "Tu oponente bota 1 carta de su Mazo Castillo por cada Oro que controle.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "kitsune_tsuki_mill_by_opponent_gold",
+        "trigger": "onEnterPlay",
+        "description": "Tu oponente bota 1 carta de su Mazo Castillo por cada Oro que controle.",
+        "effect": {
+          "type": "millCards",
+          "count": {
+            "type": "fromCardCount",
+            "query": {
+              "tipo": "Oro",
+              "zone": [
+                "goldReserve",
+                "paidGold"
+              ],
+              "controller": "opponent"
+            }
+          },
+          "target": "opponent"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4121,
+    "nombre": "Moiras",
+    "tipo": "Aliado",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/moiras.webp",
+    "habilidad_texto_descriptivo": "Cada vez que no sea declarado atacante, tu oponente debe descartar 1 carta de su Mano al azar.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Vasallo",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Vampiro",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "moiras_passive_discard_on_attack",
+        "trigger": "onDeclareAttack",
+        "isPassive": true,
+        "description": "Cada vez que no sea declarado atacante, tu oponente debe descartar 1 carta de su Mano al azar.",
+        "effect": {
+          "type": "discardRandomCard",
+          "count": 1,
+          "target": "opponent"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2469,
+    "nombre": "Atento Ringo",
+    "tipo": "Talisman",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/atentoringo.webp",
+    "habilidad_texto_descriptivo": "Destruye un Aliado en juego de Coste 3 o menos. Luego, baraja una carta de tu Mano en tu Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "atento_ringo_destroy_and_shuffle",
+        "trigger": "onEnterPlay",
+        "play_condition": {
+          "type": "playerControls",
+          "controller": "any",
+          "amount": 1,
+          "comparison": "greaterOrEqual",
+          "query": {
+            "type": "Aliado",
+            "cost": {
+              "value": 3,
+              "operator": "<="
+            },
+            "notKeyword": "indestructible"
+          }
+        },
+        "description": "Destruye un Aliado en juego de Coste 3 o menos. Luego, baraja una carta de tu Mano en tu Mazo Castillo.",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Aliado en juego de Coste 3 o menos para destruir.",
+          "target": {
+            "zone": "field",
+            "controller": "any",
+            "query": {
+              "type": "Aliado",
+              "cost": {
+                "value": 3,
+                "operator": "<="
+              }
+            }
+          },
+          "then": {
+            "effect": {
+              "type": "searchAndShuffleIntoDeck",
+              "zone": "hand",
+              "count": 1,
+              "query": {
+                "type": "*"
+              },
+              "prompt": "Elige 1 carta de tu Mano para barajar en tu Mazo Castillo."
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3800,
+    "nombre": "Grimorio Sacro",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/grimoriosacro3.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, cada jugador elige entre descartar una carta de su Mano o botar 3 cartas de su Mazo Castillo.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "grimorio_sacro_enter_play",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, cada jugador elige entre descartar una carta de su Mano o botar 3 cartas de su Mazo Castillo.",
+        "effect": {
+          "type": "mutualChooseOne",
+          "prompt": "Grimorio Sacro: Elige entre descartar 1 carta de tu Mano o botar 3 cartas de tu Mazo Castillo.",
+          "opponentPrompt": "Grimorio Sacro: Tu oponente activó Grimorio Sacro. Elige entre descartar 1 carta de tu Mano o botar 3 cartas de tu Mazo Castillo.",
+          "options": [
+            {
+              "id": "grimorio_discard_1",
+              "description": "Descartar 1 carta de tu Mano",
+              "condition": {
+                "type": "playerHasInHand",
+                "query": {
+                  "type": "*"
+                },
+                "amount": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "action": {
+                "type": "discardCard",
+                "count": 1,
+                "prompt": "Elige 1 carta de tu Mano para descartar."
+              }
+            },
+            {
+              "id": "grimorio_mill_3",
+              "description": "Botar 3 cartas de tu Mazo Castillo",
+              "action": {
+                "type": "millCards",
+                "count": 3,
+                "target": "self"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2470,
+    "nombre": "Bogtroll",
+    "tipo": "Totem",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/bogtroll.webp",
+    "habilidad_texto_descriptivo": "Puedes destruir este Tótem para destruir 2 Aliados en juego que sus Fuerzas sumen 6 o menos.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "bogtroll_destroy_two_by_max_strength",
+        "trigger": "activatable_with_costs",
+        "phase": [
+          "Principal",
+          "Guerra de Talismanes"
+        ],
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "hasValidPairByMaxSum",
+              "count": 2,
+              "property": "fuerza",
+              "maxSum": 6,
+              "controller": "any",
+              "zones": [
+                "attack",
+                "defense"
+              ],
+              "excludeIndestructible": true,
+              "query": {
+                "type": "Aliado"
+              }
+            }
+          ]
+        },
+        "costs": [
+          {
+            "type": "destroySelf"
+          }
+        ],
+        "description": "Puedes destruir este Tótem para destruir 2 Aliados en juego que sus Fuerzas sumen 6 o menos.",
+        "effect": {
+          "type": "destroyMultipleByMaxSum",
+          "count": 2,
+          "property": "fuerza",
+          "maxSum": 6,
+          "prompt": "Elige 2 Aliados en juego cuyas Fuerzas sumen 6 o menos para destruirlos.",
+          "target": {
+            "zone": [
+              "attack",
+              "defense"
+            ],
+            "controller": "any",
+            "query": {
+              "type": "Aliado"
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 3073,
+    "nombre": "Poder del Relampago",
+    "tipo": "Talisman",
+    "coste_oro": 1,
+    "imagen_url": "/img/store/cartas/poderdelrelampago.webp",
+    "habilidad_texto_descriptivo": "Cuando juegues esta carta, destiérrala. Anula una carta que haya sido jugada sin pagar su Coste.",
+    "descripcion": null,
+    "expansion": "Ragnarok",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "poder_del_relampago_annul_free_card",
+        "trigger": "onOpponentPlayCard",
+        "banishOnPlay": true,
+        "play_condition": {
+          "type": "isResponseCard"
+        },
+        "condition": {
+          "type": "triggeringCardCondition",
+          "query": {
+            "wasPlayedFree": true,
+            "notType": "Oro"
+          }
+        },
+        "description": "Cuando juegues esta carta, destiérrala. Anula una carta que haya sido jugada sin pagar su Coste.",
+        "effect": {
+          "type": "annulTriggeringCard"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2471,
+    "nombre": "Perro Blanco",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/07perroblanco1.webp",
+    "habilidad_texto_descriptivo": "Imbloqueable. Puedes jugar este Aliado desde tu Cementerio pagando su Coste. Una vez por turno, cuando un Arma o Totem entre en juego, este Aliado gana 1 a la Fuerza Permanentemente.",
+    "descripcion": null,
+    "expansion": "Mundo Gotico",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Licantropo",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "perro_blanco_unblockable",
+        "inherent": [
+          "unblockable"
+        ],
+        "description": "Imbloqueable."
+      },
+      {
+        "id_habilidad": "perro_blanco_graveyard_play",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "isInZone",
+          "zone": "cementerio"
+        },
+        "cost": {
+          "type": "paySelfCostFromGraveyard",
+          "baseCost": 2
+        },
+        "effect": {
+          "type": "playSelfFromGraveyardFree"
+        },
+        "description": "Puedes jugar este Aliado desde tu Cementerio pagando su Coste."
+      },
+      {
+        "id_habilidad": "perro_blanco_buff_on_weapon_or_totem",
+        "trigger": "activatable",
+        "listensForEvent": "onCardEnterPlay",
+        "eventCondition": {
+          "type": [
+            "Arma",
+            "Totem"
+          ]
+        },
+        "oncePerTurn": true,
+        "askOncePerTurn": true,
+        "resolvesInstantly": true,
+        "description": "Una vez por turno, cuando un Arma o Totem entre en juego, este Aliado gana 1 a la Fuerza Permanentemente.",
+        "effect": {
+          "type": "applyBuffToSelf",
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "duration": "permanent"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2472,
+    "nombre": "Toxcatl",
+    "tipo": "Talisman",
+    "coste_oro": 4,
+    "imagen_url": "/img/store/cartas/14toxcatl2.webp",
+    "habilidad_texto_descriptivo": "Busca un Oro en tu Mazo Castillo o Cementerio y juegalo en tu Reserva de Oros. Luego sube una carta en juego que no sea Oro a la Mano de su dueño.",
+    "descripcion": null,
+    "expansion": "La Ira del Nahual",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "toxcatl_search_gold_and_return",
+        "trigger": "onEnterPlay",
+        "description": "Busca un Oro en tu Mazo Castillo o Cementerio y juegalo en tu Reserva de Oros. Luego sube una carta en juego que no sea Oro a la Mano de su dueño.",
+        "effect": {
+          "type": "chooseOne",
+          "prompt": "Toxcatl: ¿Dónde deseas buscar la carta de Oro?",
+          "options": [
+            {
+              "id": "toxcatl_search_deck",
+              "description": "Buscar un Oro en tu Mazo Castillo",
+              "action": {
+                "type": "searchAndPlayGold",
+                "prompt": "Elige un Oro de tu Mazo Castillo para poner en tu Reserva de Oros.",
+                "canCancel": false,
+                "searchQuery": {
+                  "type": "Oro",
+                  "zone": "mazoCastillo"
+                },
+                "then": {
+                  "effect": {
+                    "type": "targetAndReturnToHand",
+                    "prompt": "Elige una carta en juego (que no sea Oro) para devolver a la Mano de su dueño.",
+                    "canCancel": false,
+                    "target": {
+                      "zone": "field",
+                      "controller": "any",
+                      "query": {
+                        "notType": "Oro"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "id": "toxcatl_search_graveyard",
+              "description": "Buscar un Oro en tu Cementerio",
+              "condition": {
+                "type": "playerHasInGraveyard",
+                "query": {
+                  "type": "Oro"
+                },
+                "amount": 1,
+                "comparison": "greaterOrEqual"
+              },
+              "action": {
+                "type": "searchAndPlayGold",
+                "prompt": "Elige un Oro de tu Cementerio para poner en tu Reserva de Oros.",
+                "canCancel": false,
+                "searchQuery": {
+                  "type": "Oro",
+                  "zone": "cementerio"
+                },
+                "then": {
+                  "effect": {
+                    "type": "targetAndReturnToHand",
+                    "prompt": "Elige una carta en juego (que no sea Oro) para devolver a la Mano de su dueño.",
+                    "canCancel": false,
+                    "target": {
+                      "zone": "field",
+                      "controller": "any",
+                      "query": {
+                        "notType": "Oro"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2473,
+    "nombre": "Shinbang",
+    "tipo": "Aliado",
+    "coste_oro": 3,
+    "imagen_url": "/img/store/cartas/23shinbang3.webp",
+    "habilidad_texto_descriptivo": "Cuando entra en juego, puedes jugar un Totem de coste 2 o menos desde tu Mano sin Pagar su coste. Luego, puedes elegir entre barajar cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote tantas cartas como Coste tenga el totem jugado.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Kami",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "shinbang_play_totem_and_then",
+        "trigger": "onEnterPlay",
+        "description": "Cuando entra en juego, puedes jugar un Totem de coste 2 o menos desde tu Mano sin Pagar su coste. Luego, puedes elegir entre barajar cartas de tu Cementerio en tu Mazo Castillo o que tu oponente bote tantas cartas como Coste tenga el totem jugado.",
+        "effect": {
+          "type": "playTotemFromHandAndThen",
+          "canCancel": true,
+          "prompt": "Shinbang: Elige un Tótem de Coste 2 o menos de tu Mano para jugarlo sin pagar su Coste.",
+          "searchQuery": {
+            "type": "Totem",
+            "zone": "hand",
+            "coste_oro": {
+              "value": 2,
+              "operator": "<="
+            }
+          },
+          "thenConfig": {
+            "prompt": "Shinbang: Elige una opción."
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 2474,
+    "nombre": "Tristan de Lyonesse",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/tristandelyonesse4.webp",
+    "habilidad_texto_descriptivo": "Cuando sea declarado atacante, gana 1 a la fuerza hasta la Fase Final. En tu Fase de Vigilia, puedes destruir un Totem o Arma en juego. Luego, este Aliado pierde su habilidad permanentemente.",
+    "descripcion": null,
+    "expansion": "El Reto",
+    "rareza": "Común",
+    "fecha_creacion": null,
+    "fuerza": 3,
+    "raza": "Caballero",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "tristan_lyonesse_attack_buff",
+        "trigger": "onDeclareAttack",
+        "description": "Cuando sea declarado atacante, gana 1 a la fuerza hasta la Fase Final.",
+        "effect": {
+          "type": "applyBuffToSelf",
+          "buff": {
+            "stat": "fuerza",
+            "value": 1
+          },
+          "duration": "endOfTurn"
+        }
+      },
+      {
+        "id_habilidad": "tristan_lyonesse_destroy_and_lose_ability",
+        "trigger": "activatable",
+        "phase": "Principal",
+        "condition": {
+          "type": "and",
+          "conditions": [
+            {
+              "type": "isInZone",
+              "zone": "field"
+            },
+            {
+              "type": "playerControls",
+              "controller": "any",
+              "amount": 1,
+              "comparison": "greaterOrEqual",
+              "query": {
+                "type": [
+                  "Arma",
+                  "Totem"
+                ],
+                "notKeyword": "indestructible"
+              }
+            }
+          ]
+        },
+        "description": "En tu Fase de Vigilia, puedes destruir un Totem o Arma en juego. Luego, este Aliado pierde su habilidad permanentemente.",
+        "effect": {
+          "type": "destroyTarget",
+          "prompt": "Elige un Tótem o un Arma en juego para destruir.",
+          "canCancel": true,
+          "target": {
+            "zone": "field",
+            "controller": "any",
+            "query": {
+              "type": [
+                "Arma",
+                "Totem"
+              ]
+            }
+          },
+          "then": {
+            "effect": {
+              "type": "setCardProperty",
+              "property": "permanentAbilityAnnulled",
+              "value": true
+            }
+          }
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4064,
+    "nombre": "Yasakani",
+    "tipo": "Oro",
+    "coste_oro": 0,
+    "imagen_url": "/img/store/cartas/yasakani.webp",
+    "habilidad_texto_descriptivo": "Al final de cada turno, puedes reagrupar este Oro.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Real",
+    "fecha_creacion": null,
+    "fuerza": null,
+    "raza": null,
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": 1,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "yasakani_regroup_gold",
+        "trigger": "activatable",
+        "phase": "Final",
+        "oncePerTurn": true,
+        "condition": {
+          "type": "isInZone",
+          "zone": "paidGold"
+        },
+        "description": "Al final de cada turno, puedes reagrupar este Oro.",
+        "effect": {
+          "type": "regroupGold"
+        }
+      }
+    ],
+    "tier": "muy bajo"
+  },
+  {
+    "id": 4517,
+    "nombre": "Han Xiang Zi",
+    "tipo": "Aliado",
+    "coste_oro": 2,
+    "imagen_url": "/img/store/cartas/hanxiangzi.webp",
+    "habilidad_texto_descriptivo": "Si ataca o bloquea, genera 3 Oros para jugar Talismanes en Batalla Mitologica.",
+    "descripcion": null,
+    "expansion": "Espiritu de Dragon",
+    "rareza": "Cortesano",
+    "fecha_creacion": null,
+    "fuerza": 2,
+    "raza": "Xian",
+    "leyenda": null,
+    "danio": null,
+    "durabilidad": null,
+    "cantidad_generada": null,
+    "salud": null,
+    "habilidades": [
+      {
+        "id_habilidad": "han_xiang_zi_attack_gold",
+        "trigger": "onDeclareAttack",
+        "description": "Si ataca, genera 3 Oros para jugar Talismanes en Batalla Mitológica.",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 3,
+          "isTemporary": true,
+          "restriction": {
+            "type": "Talisman",
+            "usage": "playOnly"
+          }
+        }
+      },
+      {
+        "id_habilidad": "han_xiang_zi_block_gold",
+        "trigger": "onDeclareBlock",
+        "description": "Si bloquea, genera 3 Oros para jugar Talismanes en Batalla Mitológica.",
+        "effect": {
+          "type": "generateRestrictedGold",
+          "count": 3,
+          "isTemporary": true,
+          "restriction": {
+            "type": "Talisman",
+            "usage": "playOnly"
+          }
+        }
       }
     ],
     "tier": "muy bajo"
